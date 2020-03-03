@@ -1,0 +1,57 @@
+<%= form_for(xclass) do |f| %>
+  <% if xclass.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(xclass.errors.count, "error") %> prohibited this xclass from being saved:</h2>
+
+      <ul>
+      <% xclass.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :synonym %>
+    <%= f.text_area :synonym %>
+  </div>
+
+  <div class="field">
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :version_date %>
+    <%= f.date_select :version_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :publish %>
+    <%= f.check_box :publish %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :xcategory_id %>
+    <%= f.number_field :xcategory_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

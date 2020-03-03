@@ -1,0 +1,25 @@
+ru:
+  activerecord:
+    models:
+      test: 'Тест'
+      test_passage: 'Прохождение Теста'
+      question: 'Вопрос'
+      answer: 'Ответ'
+
+    attributes:
+      test:
+        title: 'Название'
+        level: 'Сложность'
+        category: 'Категория'
+      test_passage:
+        correct_questions: 'Успешно пройденные вопросы'
+      question:
+        body: 'Вопрос'
+      answer:
+        body: 'Ответ'
+        correct: 'Правильность'
+
+
+    errors:
+      messages:
+        blank: "не может быть пустым"

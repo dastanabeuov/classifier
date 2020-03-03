@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @xclass.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @xclass.description %>
+</p>
+
+<p>
+  <strong>Synonym:</strong>
+  <%= @xclass.synonym %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @xclass.code %>
+</p>
+
+<p>
+  <strong>Version date:</strong>
+  <%= @xclass.version_date %>
+</p>
+
+<p>
+  <strong>Publish:</strong>
+  <%= @xclass.publish %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @xclass.user_id %>
+</p>
+
+<p>
+  <strong>Xcategory:</strong>
+  <%= @xclass.xcategory_id %>
+</p>
+
+<%= link_to 'Edit', edit_xclass_path(@xclass) %> |
+<%= link_to 'Back', xclasses_path %>

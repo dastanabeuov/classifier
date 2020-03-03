@@ -1,0 +1,10 @@
+<div class="btn-group dropup">
+  <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= octicon "globe" %>
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to 'KZ', "http://localhost:3000/?locale=kz", class: "dropdown-item" %>
+    <%= link_to 'RU', "http://localhost:3000?locale=ru", class: "dropdown-item" %>
+    <%= link_to 'EN', "http://localhost:3000?locale=en", class: "dropdown-item" %>
+  </div>
+</div> 
