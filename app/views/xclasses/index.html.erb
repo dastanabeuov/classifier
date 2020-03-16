@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Xclasses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Synonym</th>
+      <th>Code</th>
+      <th>Version date</th>
+      <th>Publish</th>
+      <th>User</th>
+      <th>Xcategory</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @xclasses.each do |xclass| %>
+      <tr>
+        <td><%= xclass.name %></td>
+        <td><%= xclass.description %></td>
+        <td><%= xclass.synonym %></td>
+        <td><%= xclass.code %></td>
+        <td><%= xclass.version_date %></td>
+        <td><%= xclass.publish %></td>
+        <td><%= xclass.user_id %></td>
+        <td><%= xclass.xcategory_id %></td>
+        <td><%= link_to 'Show', xclass %></td>
+        <td><%= link_to 'Edit', edit_xclass_path(xclass) %></td>
+        <td><%= link_to 'Destroy', xclass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Xclass', new_xclass_path %>

@@ -1,0 +1,25 @@
+<!-- Footer -->
+<footer class="page-footer font-small mt-5">
+    <!-- Footer Links -->
+  <div class="container">
+    <!-- Grid row-->
+    <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+      <!-- Grid column -->
+      <div class="col-md-8 col-12 mt-5">
+        <p style="line-height: 1.7rem">
+          <%= link_to('Kazniisa.kz', 'https://kazniisa.kz', target: '_blank') %>
+        </p>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row-->
+  </div>
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    <%= render 'layouts/change_locale' %>
+    © <%= current_year %>
+    <b><%= t('classifier.copyright') %> </b><%= github_url('dastanabeuov', 'Classifier') %>
+  </div>
+    <!-- Copyright -->
+</footer>
+  <!-- Footer -->

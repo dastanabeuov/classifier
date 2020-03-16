@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Xroots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Synonym</th>
+      <th>Code</th>
+      <th>Version date</th>
+      <th>Publish</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @xroots.each do |xroot| %>
+      <tr>
+        <td><%= xroot.name %></td>
+        <td><%= xroot.description %></td>
+        <td><%= xroot.synonym %></td>
+        <td><%= xroot.code %></td>
+        <td><%= xroot.version_date %></td>
+        <td><%= xroot.publish %></td>
+        <td><%= xroot.user_id %></td>
+        <td><%= link_to 'Show', xroot %></td>
+        <td><%= link_to 'Edit', edit_xroot_path(xroot) %></td>
+        <td><%= link_to 'Destroy', xroot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Xroot', new_xroot_path %>

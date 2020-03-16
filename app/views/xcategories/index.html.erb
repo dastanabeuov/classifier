@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Xcategories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Synonym</th>
+      <th>Code</th>
+      <th>Version date</th>
+      <th>Publish</th>
+      <th>User</th>
+      <th>Xroot</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @xcategories.each do |xcategory| %>
+      <tr>
+        <td><%= xcategory.name %></td>
+        <td><%= xcategory.description %></td>
+        <td><%= xcategory.synonym %></td>
+        <td><%= xcategory.code %></td>
+        <td><%= xcategory.version_date %></td>
+        <td><%= xcategory.publish %></td>
+        <td><%= xcategory.user_id %></td>
+        <td><%= xcategory.xroot_id %></td>
+        <td><%= link_to 'Show', xcategory %></td>
+        <td><%= link_to 'Edit', edit_xcategory_path(xcategory) %></td>
+        <td><%= link_to 'Destroy', xcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Xcategory', new_xcategory_path %>
