@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :xclasses
-  resources :xcategories
   resources :xroots
+  resources :xcategories
+  resources :xclasses
   
   #########################
   root 'front_pages#home'
@@ -13,10 +13,16 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json' } do
     namespace :v1 do
       resources :xroots do
-            end
+        resources :xcategories do
+          resources :xclasses do
+          end        
+        end
+      end
     end
   end
 
+  #######################################################
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  #######################################################
 end
