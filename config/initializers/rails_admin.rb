@@ -28,14 +28,38 @@ RailsAdmin.config do |config|
     index                         # mandatory
     new
     export
+
+    history_index#
+    
     bulk_delete
     show
     edit
     delete
+
+    history_show#
+    
     show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+    # Add the nestable action for each model
+    nestable do
+      visible do
+        %w(Xcategory Xclass).include? bindings[:abstract_model].model_name
+      end
+    end     
   end
+
+  config.model 'Xcategory' do
+    nestable_list true
+  end
+
+  config.model 'Xclass' do
+    nestable_tree({
+      position_field: :position,
+      max_depth: 999
+    })
+  end  
 end
