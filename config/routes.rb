@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :xroots
-  resources :xcategories
-  resources :xclasses
-  
+  resources :xroots do
+    resources :properties
+    resources :xcategories do
+      resources :properties
+      resources :xclasses do
+        resources :properties
+      end
+    end
+  end
   #########################
   root 'front_pages#home'
   get 'front_pages/service'

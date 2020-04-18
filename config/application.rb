@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Classifier
   class Application < Rails::Application
     #Локаль по умолчанию
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :ru
     # Permitted locales available for the application
     config.i18n.available_locales = [:en, :ru, :kz]
     #Default time-zona from app

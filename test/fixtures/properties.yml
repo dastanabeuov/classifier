@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  propertyable_id: 1
+  propertyable_type: MyString
+
+two:
+  content: MyText
+  propertyable_id: 1
+  propertyable_type: MyString
