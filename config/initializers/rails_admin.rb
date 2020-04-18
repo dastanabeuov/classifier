@@ -1,5 +1,4 @@
-RailsAdmin.config do |config|
-
+RailsAdmin.config do |config|     
   ### Popular gems integration
 
   ## == Devise ==
@@ -61,5 +60,5 @@ RailsAdmin.config do |config|
       position_field: :position,
       max_depth: 999
     })
-  end  
+  end
 end

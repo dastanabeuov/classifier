@@ -1,5 +1,5 @@
 class CreateXcategories < ActiveRecord::Migration[5.0]
-  def change
+  def up
     create_table :xcategories do |t|
       t.string :name
       t.text :description
@@ -26,6 +26,17 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.integer :xroot_id
 
       t.timestamps
+    end
+  end
+
+  reversible do |dir|
+    dir.up do
+      Xcategory.create_translation_table! :name => :string, :description => :text, :synonym => :text,
+      :code => :string, :version_date => :date, :publish => :boolean, :user_id => :integer
+    end
+
+    dir.down do
+      Xcategory.drop_translation_table!
     end
   end  
 end
