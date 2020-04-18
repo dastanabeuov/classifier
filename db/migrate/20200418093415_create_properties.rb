@@ -21,16 +21,5 @@ class CreateProperties < ActiveRecord::Migration[5.0]
     end
     remove_index :properties, :propertyable_id
     remove_index :properties, :propertyable_type
-  end
-
-  reversible do |dir|
-    dir.up do
-      Property.create_translation_table! :name => :string, :description => :text, :synonym => :text,
-      :code => :string, :version_date => :date, :publish => :boolean, :user_id => :integer
-    end
-
-    dir.down do
-      Property.drop_translation_table!
-    end
-  end  
+  end 
 end

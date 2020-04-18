@@ -25,16 +25,5 @@ class CreateXroots < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-  end
-
-  reversible do |dir|
-    dir.up do
-      Xroot.create_translation_table! :name => :string, :description => :text, :synonym => :text,
-      :code => :string, :version_date => :date, :publish => :boolean, :user_id => :integer
-    end
-
-    dir.down do
-      Xroot.drop_translation_table!
-    end
-  end     
+  end   
 end
