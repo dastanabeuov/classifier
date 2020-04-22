@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Classifier
   class Application < Rails::Application
+    config.i18n.fallbacks = true
     #Локаль по умолчанию
     config.i18n.default_locale = :ru
     # Permitted locales available for the application

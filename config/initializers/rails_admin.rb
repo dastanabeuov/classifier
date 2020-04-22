@@ -1,4 +1,4 @@
-RailsAdmin.config do |config|     
+RailsAdmin.config do |config|
   #config.main_app_name = [Rails.application.class.parent_name]
   ### Popular gems integration
   I18n.default_locale = :ru
@@ -61,25 +61,25 @@ RailsAdmin.config do |config|
   end
 
   ## == Globalize ==
-  #translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property']
-  #config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
+  translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property']
+  config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
 
   ## == Globalize Translated Fields ==
 
 
-  #translated_models.each do |model|
+  translated_models.each do |model|
 
-  #  config.model model do
-  #    configure :translations, :globalize_tabs
-  #  end
+    config.model model do
+      configure :translations, :globalize_tabs
+    end
 
-    #config.model "#{model}::Translation" do
-    #  visible true
-    #  configure :locale, :hidden do
-    #    help ''
-    #  end
-    #  include_fields :locale, *Object.const_get(model).translated_attribute_names
-    #end
-  #end
+    config.model "#{model}::Translation" do
+      visible true
+      configure :locale, :hidden do
+        help ''
+      end
+      include_fields :locale, *Object.const_get(model).translated_attribute_names
+    end
+  end
 
 end
