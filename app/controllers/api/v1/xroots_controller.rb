@@ -1,27 +1,75 @@
 module Api
   module V1
     class XrootsController < ApplicationController
-      respond_to :json
+      before_action :set_xroot, only: [:show, :edit, :update, :destroy]
 
+      # GET /xroots
+      # GET /xroots.json
       def index
-        respond_with Xroot.all
+        @xroots = Xroot.all
+        render json: @xroots, status: :ok
       end
 
+      # GET /xroots/1
+      # GET /xroots/1.json
       def show
-        respond_with Xroot.find(params[:id])
+        render json: @xroot.to_json(only: [:id, :name, :description])
       end
 
+      # GET /xroots/new
+      def new
+        @xroot = Xroot.new
+      end
+
+      # GET /xroots/1/edit
+      def edit
+      end
+
+      # POST /xroots
+      # POST /xroots.json
       def create
-        respond_with Xroot.create(params[:xroot])
+        @xroot = Xroot.new(xroot_params)
+
+        respond_to do |format|
+          if @xroot.save
+            format.json { render :show, status: :created, location: @xroot }
+          else
+            format.json { render json: @xroot.errors, status: :unprocessable_entity }
+          end
+        end
       end
 
+      # PATCH/PUT /xroots/1
+      # PATCH/PUT /xroots/1.json
       def update
-        respond_with Xroot.update(params[:id], params[:xroot])
+        respond_to do |format|
+          if @xroot.update(xroot_params)
+            format.json { render :show, status: :ok, location: @xroot }
+          else
+            format.json { render json: @xroot.errors, status: :unprocessable_entity }
+          end
+        end
       end
 
+      # DELETE /xroots/1
+      # DELETE /xroots/1.json
       def destroy
-        respond_with Xroot.destroy(params[:id])
+        @xroot.destroy
+        respond_to do |format|
+          format.json { head :no_content }
+        end
       end
-    end    
+
+      private
+        # Use callbacks to share common setup or constraints between actions.
+        def set_xroot
+          @xroot = Xroot.find(params[:id])
+        end
+
+        # Only allow a list of trusted parameters through.
+        def xroot_params
+          params.require(:xroot).permit(:name, :description, :synonym, :code, :version_date, :publish, :user_id)
+        end
+    end   
   end
 end

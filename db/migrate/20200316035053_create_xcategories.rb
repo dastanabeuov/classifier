@@ -22,8 +22,8 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.string :code
       t.date :version_date
       t.boolean :publish
-      t.integer :user_id
-      t.integer :xroot_id
+      t.integer :user_id, foreign_key: true
+      t.integer :xroot_id, foreign_key: true
 
       t.timestamps
     end

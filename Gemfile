@@ -32,6 +32,20 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'chromedriver-helper'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
+  gem 'launchy'
 end
 
 group :development do
@@ -50,7 +64,7 @@ group :heroku do
   gem 'rails_12factor'
 end
 
-##################
+##################################
 gem "cocoon"
 gem 'apipie-rails'
 gem 'cancancan'
@@ -68,3 +82,4 @@ gem 'rails-i18n'
 gem 'rails_admin-i18n'
 gem 'globalize'
 gem 'rails_admin_globalize_field'
+gem 'swagger_ui_engine'
