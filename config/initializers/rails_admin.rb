@@ -74,7 +74,7 @@ RailsAdmin.config do |config|
     end
 
     config.model "#{model}::Translation" do
-      visible true
+      visible false
       configure :locale, :hidden do
         help ''
       end
