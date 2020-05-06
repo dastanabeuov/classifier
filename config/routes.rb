@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #########################
   
   ##############################################
-  mount SwaggerUiEngine::Engine, at: "/api_docs"
+  #mount SwaggerUiEngine::Engine, at: "/api_docs"
   ##############################################
   namespace :api, defaults: {format: 'json' } do
     namespace :v1 do
