@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Classifier
   class Application < Rails::Application
+    #####################################
+    config.assets.initialize_on_precompile = false
+    ############################
     config.i18n.fallbacks = true
     #Локаль по умолчанию
     config.i18n.default_locale = :ru
