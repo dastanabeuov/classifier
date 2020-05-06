@@ -34,7 +34,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
+  gem 'rspec_api_documentation', require: 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
 end
 
 group :test do
