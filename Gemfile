@@ -58,7 +58,7 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :heroku do
   gem 'rails_12factor'
@@ -71,7 +71,6 @@ gem 'cancancan'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'slim'
-gem 'jquery-rails'
 gem 'bootstrap'
 gem 'octicons_helper'
 gem 'rails_admin'
