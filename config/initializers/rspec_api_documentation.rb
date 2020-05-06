@@ -1,6 +1,7 @@
 RspecApiDocumentation.configure do |config|
   config.docs_dir = Rails.root.join('public/docs')
-  config.format = [:open_api]
+  config.format = [:json]
+  #config.format = [:open_api]
   config.curl_host = 'http://localhost:3000/api/v1'
   config.api_name = 'Classifier App API'
   config.api_explanation = "API Clasifier Description"
