@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/zipmark/rspec_api_documentation.git
+  remote: https://github.com/zipmark/rspec_api_documentation.git
   revision: 81e5c563ce6787f143cf775c64e2bd08c35d3585
   specs:
     rspec_api_documentation (6.1.0)
