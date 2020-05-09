@@ -18,8 +18,122 @@
     "application/xml"
   ],
   "paths": {
+    "/xroots": {
+      "get": {
+        "tags": [
+          "xroots"
+        ],
+        "summary": "This URL gets the list of xroots.",
+        "description": "Getting list of xroots. Long Description",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Getting list of xroots",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      },
+      "post": {
+        "tags": [
+          "xroots"
+        ],
+        "summary": "This is used to create xroots.",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "xroot": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Doodle IT",
+                      "description": "Doodle IT"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Doodling Information Technology",
+                      "description": "Doodling Information Technology"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create a xroot",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "order": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    }
   },
   "tags": [
-
+    {
+      "name": "xroots",
+      "description": "xroots are top-level business objects"
+    }
   ]
 }

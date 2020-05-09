@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgresql as the database for Active Record
@@ -34,7 +39,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  #gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
+  gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
 end
 
 group :test do
@@ -81,4 +86,4 @@ gem 'rails-i18n'
 gem 'rails_admin-i18n'
 gem 'globalize'
 gem 'rails_admin_globalize_field'
-#gem 'swagger_ui_engine'
+gem 'swagger_ui_engine'
