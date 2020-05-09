@@ -1,8 +1,5 @@
 class Xcategory < ApplicationRecord
-  belongs_to :user
   belongs_to :xroot
-
-  validates :name, :description, presence: true    
 
   has_many :xclasses, dependent: :destroy
   has_many :properties, as: :propertyable, :inverse_of => :propertyable

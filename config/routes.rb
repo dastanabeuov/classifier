@@ -7,16 +7,7 @@ Rails.application.routes.draw do
   #########################
   
   ##############################################
-  #mount SwaggerUiEngine::Engine, at: "/api_docs"
-  ##############################################
-  namespace :api, defaults: {format: 'json' } do
-    namespace :v1 do
-      resources :xroots
-      resources :xcategories
-      resources :xclasses
-      resources :properties
-    end
-  end
+  mount SwaggerUiEngine::Engine, at: "/api_docs"
   ##############################################
 
   #######################################################
@@ -25,9 +16,14 @@ Rails.application.routes.draw do
   #######################################################
 
   ######################
-  resources :xroots
-  resources :xcategories
-  resources :xclasses
-  resources :properties
+  resources :xroots do
+    resources :properties
+    resources :xcategories do
+      resources :properties
+      resources :xclasses do
+        resources :properties
+      end
+    end
+  end
   ######################
 end

@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
+    <%= f.number_field :user_id, value: "#{current_user.id}" %>
   </div>
 
   <div class="actions">

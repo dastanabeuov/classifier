@@ -43,12 +43,12 @@
 
   <div class="field">
     <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
+    <%= f.number_field :user_id, value: "#{current_user.id}" %>
   </div>
 
   <div class="field">
     <%= f.label :xcategory_id %>
-    <%= f.number_field :xcategory_id %>
+    <%= f.collection_select :xcategory_id, Xcategory.all, :id, :name, prompt: true %>
   </div>
 
   <div class="actions">

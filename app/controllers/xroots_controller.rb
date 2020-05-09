@@ -9,8 +9,7 @@ class XrootsController < ApplicationController
 
   # GET /xroots/1
   # GET /xroots/1.json
-  def show
-  end
+  def show; end
 
   # GET /xroots/new
   def new
@@ -18,8 +17,7 @@ class XrootsController < ApplicationController
   end
 
   # GET /xroots/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /xroots
   # POST /xroots.json

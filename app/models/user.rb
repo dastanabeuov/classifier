@@ -13,5 +13,5 @@ class User < ApplicationRecord
 
   def send_admin_mail
     UserMailer.send_welcome_email(self).deliver_later
-  end
+  end 
 end
