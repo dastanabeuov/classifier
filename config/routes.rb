@@ -16,14 +16,9 @@ Rails.application.routes.draw do
   #######################################################
 
   ######################
-  resources :xroots do
-    resources :properties
-    resources :xcategories do
-      resources :properties
-      resources :xclasses do
-        resources :properties
-      end
-    end
-  end
+  resources :xroots
+  resources :xcategories
+  resources :xclasses
+  resources :properties
   ######################
 end
