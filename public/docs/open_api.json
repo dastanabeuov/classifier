@@ -1,10 +1,10 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "OpenAPI Specification",
+    "title": "Classifier API Specification",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "demo-classifier.herokuapp.com",
   "schemes": [
     "http",
     "https"
