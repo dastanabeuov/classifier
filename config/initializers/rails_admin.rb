@@ -70,7 +70,7 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :propertyable_type
-      field :propertyable_id
+      field :content
     end
   end
 
