@@ -38,11 +38,11 @@ RailsAdmin.config do |config|
       position_field: :position,
       max_depth: 999
     })
-  end
+  end 
   ##############################    
 
   ##Display show atributes models
-  config.model 'Xroot' do
+  config.model 'Xroot' do  
     list do
       field :id
       field :name
@@ -58,7 +58,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'Xclass' do
+  config.model 'Xclass' do    
     list do
       field :id
       field :name

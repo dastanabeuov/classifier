@@ -4,7 +4,7 @@
     "title": "Classifier API Specification",
     "version": "1.0.0"
   },
-  "host": "demo-classifier.herokuapp.com",
+  "host": "localhost:3000",
   "schemes": [
     "http",
     "https"
