@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   around_action :switch_locale
 
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   skip_before_action :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   def switch_locale(&action)
