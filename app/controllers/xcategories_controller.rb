@@ -1,6 +1,4 @@
 class XcategoriesController < ApplicationController
-  before_action :set_xcategory, only: [:show, :edit, :update, :destroy]
-
   # GET /xcategories
   # GET /xcategories.json
   def index
@@ -9,17 +7,13 @@ class XcategoriesController < ApplicationController
 
   # GET /xcategories/1
   # GET /xcategories/1.json
-  def show
-  end
+  def show; end
 
   # GET /xcategories/new
-  def new
-    @xcategory = Xcategory.new
-  end
+  def new; end
 
   # GET /xcategories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /xcategories
   # POST /xcategories.json
@@ -41,7 +35,7 @@ class XcategoriesController < ApplicationController
   # PATCH/PUT /xcategories/1.json
   def update
     respond_to do |format|
-      if @xcategory.update(xcategory_params)
+      if xcategory.update(xcategory_params)
         format.html { redirect_to @xcategory, notice: 'Xcategory was successfully updated.' }
         format.json { render :show, status: :ok, location: @xcategory }
       else
@@ -54,7 +48,7 @@ class XcategoriesController < ApplicationController
   # DELETE /xcategories/1
   # DELETE /xcategories/1.json
   def destroy
-    @xcategory.destroy
+    xcategory.destroy
     respond_to do |format|
       format.html { redirect_to xcategories_url, notice: 'Xcategory was successfully destroyed.' }
       format.json { head :no_content }
@@ -63,9 +57,11 @@ class XcategoriesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_xcategory
-      @xcategory = Xcategory.find(params[:id])
+    def xcategory
+      @xcategory ||= params[:id] ? Xcategory.find(params[:id]) : Xcategory.new
     end
+
+    helper_method :xcategory
 
     # Only allow a list of trusted parameters through.
     def xcategory_params

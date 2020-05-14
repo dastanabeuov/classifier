@@ -1,6 +1,4 @@
 class XclassesController < ApplicationController
-  before_action :set_xclass, only: [:show, :edit, :update, :destroy]
-
   # GET /xclasses
   # GET /xclasses.json
   def index
@@ -9,17 +7,13 @@ class XclassesController < ApplicationController
 
   # GET /xclasses/1
   # GET /xclasses/1.json
-  def show
-  end
+  def show; end
 
   # GET /xclasses/new
-  def new
-    @xclass = Xclass.new
-  end
+  def new; end
 
   # GET /xclasses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /xclasses
   # POST /xclasses.json
@@ -41,7 +35,7 @@ class XclassesController < ApplicationController
   # PATCH/PUT /xclasses/1.json
   def update
     respond_to do |format|
-      if @xclass.update(xclass_params)
+      if xclass.update(xclass_params)
         format.html { redirect_to @xclass, notice: 'Xclass was successfully updated.' }
         format.json { render :show, status: :ok, location: @xclass }
       else
@@ -54,7 +48,7 @@ class XclassesController < ApplicationController
   # DELETE /xclasses/1
   # DELETE /xclasses/1.json
   def destroy
-    @xclass.destroy
+    xclass.destroy
     respond_to do |format|
       format.html { redirect_to xclasses_url, notice: 'Xclass was successfully destroyed.' }
       format.json { head :no_content }
@@ -63,9 +57,11 @@ class XclassesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_xclass
-      @xclass = Xclass.find(params[:id])
+    def xclass
+      @xclass ||= params[:id] ? Xclass.find(params[:id]) : Xclass.new
     end
+
+    helper_method :xclass
 
     # Only allow a list of trusted parameters through.
     def xclass_params

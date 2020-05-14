@@ -1,6 +1,4 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
-
   # GET /properties
   # GET /properties.json
   def index
@@ -9,17 +7,13 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1
   # GET /properties/1.json
-  def show
-  end
+  def show; end
 
   # GET /properties/new
-  def new
-    @property = Property.new
-  end
+  def new; end
 
   # GET /properties/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /properties
   # POST /properties.json
@@ -28,7 +22,7 @@ class PropertiesController < ApplicationController
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, notice: 'Property was successfully created.' }
+        format.html { redirect_to @property, notice: 'property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new }
@@ -41,8 +35,8 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1.json
   def update
     respond_to do |format|
-      if @property.update(property_params)
-        format.html { redirect_to @property, notice: 'Property was successfully updated.' }
+      if property.update(property_params)
+        format.html { redirect_to @property, notice: 'property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit }
@@ -54,32 +48,23 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1
   # DELETE /properties/1.json
   def destroy
-    @property.destroy
+    property.destroy
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
+      format.html { redirect_to properties_url, notice: 'property was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
+    def property
+      @property ||= params[:id] ? Property.find(params[:id]) : Property.new
     end
+
+    helper_method :property
 
     # Only allow a list of trusted parameters through.
     def property_params
       params.require(:property).permit(:content, :propertyable_id, :propertyable_type)
     end
-
-    #def load_commentable
-    #  resource, id = request.path.split('/')[1, 2]
-    #  @commentable = resource.singularize.classify.constantize.find(id)
-    #end
-
-    # alternative option:
-    # def load_commentable
-    #   klass = [Article, Photo, Event].detect { |c| params["#{c.name.underscore}_id"] }
-    #   @commentable = klass.find(params["#{klass.name.underscore}_id"])
-    # end    
 end
