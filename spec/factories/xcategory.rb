@@ -1,10 +1,10 @@
 FactoryBot.define do
-  factory :xroot do
+  factory :xcategory do
     name {"Name"}
     description {"Description"}
   end
 
-  trait :invalid_root do
+  trait :invalid_category do
   	name { nil }
-  end
+  end  
 end

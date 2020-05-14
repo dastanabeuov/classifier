@@ -76,11 +76,11 @@ RSpec.describe XrootsController, type: :controller do
 
   	context 'width invalid attributes' do
   	  it 'does not save xroot' do
-  	    expect { post :create, params: { xroot: attributes_for(:xroot, :invalid) } }.to_not change(Xroot, :count)
+  	    expect { post :create, params: { xroot: attributes_for(:xroot, :invalid_root) } }.to_not change(Xroot, :count)
   	  end
 
   	  it 'render new view' do
-  	  	post :create, params: { xroot: attributes_for(:xroot, :invalid) }
+  	  	post :create, params: { xroot: attributes_for(:xroot, :invalid_root) }
   	  	expect(response).to render_template :new
   	  end 	  
   	end
@@ -107,7 +107,7 @@ RSpec.describe XrootsController, type: :controller do
   	end
 
   	context 'width invalid attributes' do
-  	  before { patch :update, params: { id: xroot, xroot: attributes_for(:xroot, :invalid) } }
+  	  before { patch :update, params: { id: xroot, xroot: attributes_for(:xroot, :invalid_root) } }
 
   	  it 'does not change xroot' do
   	  	xroot.reload
@@ -125,7 +125,7 @@ RSpec.describe XrootsController, type: :controller do
   describe 'DELETE #destroy' do
   	let!(:xroot) { create(:xroot) }
 
-    it 'delete the question if user author' do
+    it 'delete the xroot' do
       expect { delete :destroy, params: { id: xroot } }.to change(Xroot, :count).by(-1)
     end
 
