@@ -15,21 +15,17 @@
     <ul class="navbar-nav pull-xs-right">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= current_user.email %>
+          <%= current_user.email %> <%= image_tag 'user.png', title: "User image", alt: "User image" %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "Dashboard", "/admin/", class: "dropdown-item" %>
+          <%= link_to "api_docs", "/api_docs/single_swagger_doc", class: "dropdown-item" %>
           <div class="dropdown-divider"></div>
           <%= link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item" %>
-          <%= link_to "api_docs", "/api_docs/single_swagger_doc", class: "dropdown-item" %>
-        </div>
-      </li>     
-      <li class="nav-item">
-        <%= link_to t('user.logout'), destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to t('user.logout'), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </div>       
       </li>        
-      <li class="nav-item">
-          <%= image_tag 'user.png', title: "User image", alt: "User image", class: 'nav-link' %>
-      </li>
     </ul>  
     <% else %>
     <ul class="navbar-nav mr-auto">
