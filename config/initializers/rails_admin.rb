@@ -29,16 +29,23 @@ RailsAdmin.config do |config|
   ########################################################################
 
   ##Neslable atrributes setting
-  config.model 'Xcategory' do
-    nestable_list true
-  end
+  #config.model 'Xclass' do
+  #  nestable_list true
+  #end
 
   config.model 'Xclass' do
     nestable_tree({
       position_field: :position,
       max_depth: 999
     })
-  end 
+  end
+
+  config.model 'Xcategory' do
+    nestable_tree({
+      position_field: :position,
+      max_depth: 999
+    })
+  end   
   ##############################    
 
   ##Display show atributes models

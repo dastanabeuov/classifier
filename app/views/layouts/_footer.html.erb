@@ -7,7 +7,7 @@
       <!-- Grid column -->
       <div class="col-md-8 col-12 mt-5">
         <p style="line-height: 1.7rem">
-          <%= link_to('Kazniisa.kz', 'https://kazniisa.kz', target: '_blank') %>
+          <%= render 'layouts/change_locale' %>
         </p>
       </div>
       <!-- Grid column -->
@@ -16,9 +16,8 @@
   </div>
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
-    <%= render 'layouts/change_locale' %>
     © <%= current_year %>
-    <b><%= t('classifier.copyright') %> </b><%= github_url('dastanabeuov', 'Classifier') %>
+    <b><%= t('classifier.copyright') %> </b> <%= link_to octicon('repo-forked'), github_url('dastanabeuov', 'Classifier'), target: '_blank' %>
   </div>
     <!-- Copyright -->
 </footer>

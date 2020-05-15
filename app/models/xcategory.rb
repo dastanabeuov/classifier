@@ -1,6 +1,8 @@
 class Xcategory < ApplicationRecord
   belongs_to :xroot
 
+  has_ancestry
+
   has_many :xclasses, dependent: :destroy
   has_many :properties, as: :propertyable, :inverse_of => :propertyable
 

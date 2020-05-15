@@ -65,9 +65,11 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.boolean  "publish"
     t.integer  "user_id"
     t.integer  "xroot_id"
+    t.string   "position"
+    t.string   "ancestry"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "position"
+    t.index ["ancestry"], name: "index_xcategories_on_ancestry", using: :btree
     t.index ["position"], name: "index_xcategories_on_position", using: :btree
   end
 
@@ -114,10 +116,10 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.boolean  "publish"
     t.integer  "user_id"
     t.integer  "xcategory_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
     t.string   "position"
     t.string   "ancestry"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["ancestry"], name: "index_xclasses_on_ancestry", using: :btree
     t.index ["position"], name: "index_xclasses_on_position", using: :btree
   end
