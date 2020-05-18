@@ -1,5 +1,5 @@
 class CreateXcategories < ActiveRecord::Migration[5.0]
-  def change
+  def up
     create_table :xcategories do |t|
       t.string :name
       t.text :description
@@ -10,8 +10,13 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :xroot_id
 
+      t.string :position
+      t.string :ancestry
+
       t.timestamps
     end
+    add_index :xcategories, :position
+    add_index :xcategories, :ancestry    
   end
 
   def down
@@ -25,7 +30,12 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :xroot_id
 
+      t.string :position      
+      t.string :ancestry
+
       t.timestamps
     end
-  end  
+    remove_index :xcategories, :position
+    remove_index :xcategories, :ancestry    
+  end
 end

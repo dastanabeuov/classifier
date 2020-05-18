@@ -1,5 +1,5 @@
 class CreateXclasses < ActiveRecord::Migration[5.0]
-  def change
+  def up
     create_table :xclasses do |t|
       t.string :name
       t.text :description
@@ -10,8 +10,13 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :xcategory_id
 
+      t.string :position
+      t.string :ancestry      
+
       t.timestamps
     end
+    add_index :xclasses, :position
+    add_index :xclasses, :ancestry
   end
 
   def down
@@ -25,7 +30,12 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :xcategory_id
 
+      t.string :position
+      t.string :ancestry
+
       t.timestamps
     end
-  end  
+    remove_index :xclasses, :position
+    remove_index :xclasses, :ancestry
+  end 
 end

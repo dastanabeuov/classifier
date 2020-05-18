@@ -21,7 +21,7 @@
 ru:
   classifier:  
     logo_text: "ТИМСО"
-    copyright: "Классификатор | КазНИИСА"
+    copyright: "КазНИИСА | Классификатор"
   user:
     login: "Вход"
     registration: "Регистрация"    

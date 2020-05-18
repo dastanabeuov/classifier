@@ -21,7 +21,7 @@
 en:
   classifier:
     logo_text: "BIM"
-    copyright: "Classifier | KazNIISA"
+    copyright: "KazNIISA | Classifier"
   user:
     login: "Login"
     registration: "Registration"

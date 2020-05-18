@@ -21,7 +21,7 @@
 kz:
   classifier:
     logo_text: "КОАМТ"
-    copyright: "Классификатор | КазНИИСА"
+    copyright: "КазНИИСА | Классификатор"
   user:
     login: "Кіру"
     registration: "тіркелу"    

@@ -1,5 +1,5 @@
 class CreateXroots < ActiveRecord::Migration[5.0]
-  def change
+  def up
     create_table :xroots do |t|
       t.string :name
       t.text :description
@@ -25,5 +25,5 @@ class CreateXroots < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-  end  
+  end   
 end

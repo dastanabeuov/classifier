@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgresql as the database for Active Record
@@ -32,6 +37,19 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'chromedriver-helper'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
+  gem 'launchy'
 end
 
 group :development do
@@ -44,22 +62,28 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :heroku do
   gem 'rails_12factor'
 end
 
-##################
+##################################
 gem "cocoon"
 gem 'apipie-rails'
 gem 'cancancan'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'slim'
-gem 'jquery-rails'
 gem 'bootstrap'
 gem 'octicons_helper'
 gem 'rails_admin'
+gem 'ancestry'
+gem 'rails_admin_nestable'
+gem 'devise-i18n'
 gem 'rails-i18n'
-gem 'i18n-js'
+gem 'rails_admin-i18n'
+gem 'globalize'
+gem 'rails_admin_globalize_field'
+gem 'swagger_ui_engine'
+gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'

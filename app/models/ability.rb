@@ -8,10 +8,14 @@ class Ability
     #
        user ||= User.new
        #can :manage, :all
-       if user.admin?
+       if user.email == "d.abeuov9@gmail.com"
          can :manage, :all
-         can :access, :rails_admin       # only allow admin users to access Rails Admin
-         can :manage, :dashboard         # allow access to dashboard
+       elsif user.admin?
+         can :manage, :all
+       elsif user.guest?
+         can :read, :all
+         can :access, :rails_admin
+         can :read, :dashboard
        else
          can :read, :all
        end

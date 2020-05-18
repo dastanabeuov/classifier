@@ -1,6 +1,4 @@
 class XrootsController < ApplicationController
-  before_action :set_xroot, only: [:show, :edit, :update, :destroy]
-
   # GET /xroots
   # GET /xroots.json
   def index
@@ -9,17 +7,13 @@ class XrootsController < ApplicationController
 
   # GET /xroots/1
   # GET /xroots/1.json
-  def show
-  end
+  def show; end
 
   # GET /xroots/new
-  def new
-    @xroot = Xroot.new
-  end
+  def new; end
 
   # GET /xroots/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /xroots
   # POST /xroots.json
@@ -41,7 +35,7 @@ class XrootsController < ApplicationController
   # PATCH/PUT /xroots/1.json
   def update
     respond_to do |format|
-      if @xroot.update(xroot_params)
+      if xroot.update(xroot_params)
         format.html { redirect_to @xroot, notice: 'Xroot was successfully updated.' }
         format.json { render :show, status: :ok, location: @xroot }
       else
@@ -54,7 +48,7 @@ class XrootsController < ApplicationController
   # DELETE /xroots/1
   # DELETE /xroots/1.json
   def destroy
-    @xroot.destroy
+    xroot.destroy
     respond_to do |format|
       format.html { redirect_to xroots_url, notice: 'Xroot was successfully destroyed.' }
       format.json { head :no_content }
@@ -63,9 +57,11 @@ class XrootsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_xroot
-      @xroot = Xroot.find(params[:id])
+    def xroot
+      @xroot ||= params[:id] ? Xroot.find(params[:id]) : Xroot.new
     end
+
+    helper_method :xroot
 
     # Only allow a list of trusted parameters through.
     def xroot_params
