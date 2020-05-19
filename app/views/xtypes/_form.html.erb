@@ -1,10 +1,10 @@
-<%= form_for(xclass) do |f| %>
-  <% if xclass.errors.any? %>
+<%= form_for(xtype) do |f| %>
+  <% if xtype.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(xclass.errors.count, "error") %> prohibited this xclass from being saved:</h2>
+      <h2><%= pluralize(xtype.errors.count, "error") %> prohibited this xtype from being saved:</h2>
 
       <ul>
-      <% xclass.errors.full_messages.each do |message| %>
+      <% xtype.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -42,24 +42,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :xtyples %>
-    <%= f.check_box :xtyples %>
-  </div>  
-
-  <div class="field">
     <%= f.label :user_id %>
-    <%= f.number_field :user_id, value: "#{current_user.id}" %>
+    <%= f.number_field :user_id %>
   </div>
-
-  <div class="field">
-    <%= f.label :xcategory_id %>
-    <%= f.collection_select :xcategory_id, Xcategory.all, :id, :name, prompt: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :xtype_id %>
-    <%= f.collection_select :xtype_id, Xtype.all, :id, :name, prompt: true %>
-  </div>  
 
   <div class="actions">
     <%= f.submit %>
