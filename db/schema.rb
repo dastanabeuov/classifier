@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200422143750) do
+ActiveRecord::Schema.define(version: 20200518113158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,8 +114,10 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.string   "code"
     t.date     "version_date"
     t.boolean  "publish"
+    t.boolean  "xtyples"
     t.integer  "user_id"
     t.integer  "xcategory_id"
+    t.integer  "xtype_id"
     t.string   "position"
     t.string   "ancestry"
     t.datetime "created_at",   null: false
@@ -141,6 +143,34 @@ ActiveRecord::Schema.define(version: 20200422143750) do
   end
 
   create_table "xroots", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "synonym"
+    t.string   "code"
+    t.date     "version_date"
+    t.boolean  "publish"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "xtype_translations", force: :cascade do |t|
+    t.integer  "xtype_id",     null: false
+    t.string   "locale",       null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "name"
+    t.text     "description"
+    t.text     "synonym"
+    t.string   "code"
+    t.date     "version_date"
+    t.boolean  "publish"
+    t.integer  "user_id"
+    t.index ["locale"], name: "index_xtype_translations_on_locale", using: :btree
+    t.index ["xtype_id"], name: "index_xtype_translations_on_xtype_id", using: :btree
+  end
+
+  create_table "xtypes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.text     "synonym"

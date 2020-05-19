@@ -106,7 +106,7 @@ RailsAdmin.config do |config|
   ################################
 
   ## == Globalize ==
-  translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property']
+  translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property', 'Xtype']
   config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
   #################################################################################################################
 
