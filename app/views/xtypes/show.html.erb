@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= xtype.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= xtype.description %>
+</p>
+
+<p>
+  <strong>Synonym:</strong>
+  <%= xtype.synonym %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= xtype.code %>
+</p>
+
+<p>
+  <strong>Version date:</strong>
+  <%= xtype.version_date %>
+</p>
+
+<p>
+  <strong>Publish:</strong>
+  <%= xtype.publish %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= xtype.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_xtype_path(xtype) %> |
+<%= link_to 'Back', xtypes_path %>

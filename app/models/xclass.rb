@@ -1,5 +1,6 @@
 class Xclass < ApplicationRecord
   belongs_to :xcategory
+  belongs_to :xtype  
 
   has_ancestry
   
