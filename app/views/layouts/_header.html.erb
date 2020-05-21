@@ -1,6 +1,9 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mb-5">
-<%= image_tag 'logo.png', title: "Logo BIM", alt: "Logo BIM", class: "navbar-brand img-fluid rounded-circle",
- heght: "50", width: "50" %>
+  <%= image_tag 'logo.png', title: "Logo BIM", alt: "Logo BIM", class: "navbar-brand img-fluid rounded-circle",
+    heght: "50", width: "50" %>
+  <% if user_signed_in? %>
+    <%= link_to (octicon 'home'), root_path, class: "navbar-brand" %>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,14 +22,19 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "Dashboard", "/admin/", class: "dropdown-item" %>
-          <%= link_to "api_docs", "/api_docs/single_swagger_doc", class: "dropdown-item" %>
+          <%= link_to "api_docs", "/api_docs/single_swagger_doc", target: "_blank", class: "dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <a href="<%= xroots_path %>" class="dropdown-item">Roots <span class="badge"><%= count_xroots %></span></a>
+          <a href="<%= xcategories_path %>" class="dropdown-item">Categories <span class="badge"><%= count_xcategories %></span></a>
+          <a href="<%= xclasses_path %>" class="dropdown-item">Classes <span class="badge"><%= count_xclasses %></span></a>
+          <a href="<%= properties_path %>" class="dropdown-item">Properties <span class="badge"><%= count_xproperties %></span></a>
           <div class="dropdown-divider"></div>
           <%= link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item" %>
           <%= link_to t('user.logout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
-          </div>
-        </div>       
+        </div>
       </li>        
-    </ul>  
+    </ul>    
+  </div>  
     <% else %>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
