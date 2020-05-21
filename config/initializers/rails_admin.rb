@@ -7,7 +7,7 @@ RailsAdmin.config do |config|
   ##Base configuration dashboard
   config.actions do    
     dashboard                     # mandatory
-    index                         # mandatory
+    index                       # mandatory
     new
     export
     bulk_delete
@@ -106,7 +106,7 @@ RailsAdmin.config do |config|
   ################################
 
   ## == Globalize ==
-  translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property', 'Xtype']
+  translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property']
   config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
   #################################################################################################################
 
