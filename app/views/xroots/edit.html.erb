@@ -1,6 +1,12 @@
-<h1>Editing Xroot</h1>
+<div class="name-container name-pale-blue name-leftbar">
+  <h1>Editing Xroot</h1>
+</div>
+
+<br>
 
 <%= render 'form', xroot: xroot %>
 
-<%= link_to 'Show', @xroot %> |
-<%= link_to 'Back', xroots_path %>
+<br>
+
+<%= link_to 'Show', @xroot, class: 'btn btn-sm btn-outline-primary' %>
+<%= link_to 'Back', xroots_path, class: 'btn btn-sm btn-outline-primary' %>
