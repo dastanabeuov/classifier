@@ -1,6 +1,12 @@
-<h1>Editing Xcategory</h1>
+<div class="name-container name-pale-blue name-leftbar">
+  <h1>Editing Xcategory</h1>
+</div>
+
+<br>
 
 <%= render 'form', xcategory: xcategory %>
 
-<%= link_to 'Show', @xcategory %> |
-<%= link_to 'Back', xcategories_path %>
+<br>
+
+<%= link_to 'Show', @xcategory, class: 'btn btn-sm btn-outline-primary' %>
+<%= link_to 'Back', xcategories_path, class: 'btn btn-sm btn-outline-primary' %>
