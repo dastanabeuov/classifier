@@ -20,6 +20,5 @@ Rails.application.routes.draw do
   resources :xcategories
   resources :xclasses
   resources :properties
-  resources :xtypes
   ######################
 end
