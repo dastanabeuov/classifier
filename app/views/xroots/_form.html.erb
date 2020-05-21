@@ -1,52 +1,58 @@
-<%= form_for(xroot) do |f| %>
-  <% if xroot.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(xroot.errors.count, "error") %> prohibited this xroot from being saved:</h2>
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      <%= form_for(xroot) do |f| %>
+        <% if xroot.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(xtype.errors.count, "error") %> prohibited this xtype from being saved:</h2>
 
-      <ul>
-      <% xroot.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+            <% xroot.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :synonym %>
+          <%= f.text_area :synonym, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :code %>
+          <%= f.text_field :code, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :version_date %>
+          <%= f.date_select :version_date, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :publish %>
+          <%= f.check_box :publish, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :user_id %>
+          <%= f.number_field :user_id, value: "#{current_user.id}", class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit class: "btn btn-sm btn-outline-primary mt-5" %>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :synonym %>
-    <%= f.text_area :synonym %>
-  </div>
-
-  <div class="field">
-    <%= f.label :code %>
-    <%= f.text_field :code %>
-  </div>
-
-  <div class="field">
-    <%= f.label :version_date %>
-    <%= f.date_select :version_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :publish %>
-    <%= f.check_box :publish %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id, value: "#{current_user.id}" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
