@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  #########################
+  #######################
   root 'front_pages#home'
+  #######################
+
+  ######################
+  get 'classifier/index'
+  ######################
+
+  #########################
   get 'front_pages/service'
   get 'front_pages/help'
   get 'front_pages/contact'
