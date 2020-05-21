@@ -1,44 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="name-container name-pale-blue name-leftbar">
+  <h1>Show Xcategory</h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= xcategory.name %>
-</p>
+<br>
 
-<p>
-  <strong>Description:</strong>
-  <%= xcategory.description %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Name: <%= xcategory.name %></strong></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Description:</strong> <%= xcategory.description %></li>
+    <li class="list-group-item"><strong>Synonym:</strong> <%= xcategory.synonym %></li>
+    <li class="list-group-item"><strong>Code:</strong> <%= xcategory.code %></li>
+    <li class="list-group-item"><strong>Version date:</strong> <%= xcategory.version_date %></li>
+    <li class="list-group-item"><strong>Publish:</strong> <%= xcategory.publish %></li>
+    <li class="list-group-item"><strong>User:</strong> <%= xcategory.user_id %></li>
+    <li class="list-group-item"><strong>User:</strong> <%= xcategory.root_id %></li>    
+  </ul>
+</div>
 
-<p>
-  <strong>Synonym:</strong>
-  <%= xcategory.synonym %>
-</p>
+<br>
 
-<p>
-  <strong>Code:</strong>
-  <%= xcategory.code %>
-</p>
-
-<p>
-  <strong>Version date:</strong>
-  <%= xcategory.version_date %>
-</p>
-
-<p>
-  <strong>Publish:</strong>
-  <%= xcategory.publish %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= xcategory.user_id %>
-</p>
-
-<p>
-  <strong>Xroot:</strong>
-  <%= xcategory.xroot_id %>
-</p>
-
-<%= link_to 'Edit', edit_xcategory_path(xcategory) %> |
-<%= link_to 'Back', xcategories_path %>
+<%= link_to 'Edit', edit_xcategory_path(xcategory), class: 'btn btn-sm btn-outline-primary' %>
+<%= link_to 'Back', xcategories_path, class: 'btn btn-sm btn-outline-primary' %>
