@@ -36,7 +36,13 @@ ru:
       welcome: "Добро пожаловать!"
       description: "Приложение для классификации объектов строительства по международным стандартам ИСО 1206."  
       link_watch: "Смотреть"
-
+  shared:
+    errors:
+      header:
+        few: "Обнаружено %{count} ошибки"
+        many: "Обнаружено %{count} ошибок"
+        one: "Обнаружена %{count} ошибка"
+        other: "Обнаружено %{count} ошибки"
   activerecord:
     errors:
       messages:

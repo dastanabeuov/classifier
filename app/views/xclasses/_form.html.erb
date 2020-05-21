@@ -2,18 +2,9 @@
   <div class="card-body">
     <div class="form-group">
       <%= form_for(xclass) do |f| %>
-        <% if xclass.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(xclass.errors.count, "error") %> prohibited this xclass from being saved:</h2>
 
-            <ul>
-            <% xclass.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
+        <%= render 'layouts/errors', resource: xclass %>
+        
         <div class="field">
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>
