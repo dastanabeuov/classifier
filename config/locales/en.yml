@@ -36,7 +36,11 @@ en:
       welcome: "Welcome!"
       description: "Application for the classification of construction projects according to international standards ISO 1206."
       link_watch: "Watch"
-
+  layouts:
+    errors:
+      header:
+        one: "%{count} error detected"
+        other: "%{count} errors detected"     
   activerecord:
     errors:
       messages:

@@ -2,17 +2,8 @@
   <div class="card-body">
     <div class="form-group">
       <%= form_for(xcategory) do |f| %>
-        <% if xcategory.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(xcategory.errors.count, "error") %> prohibited this xcategory from being saved:</h2>
 
-            <ul>
-            <% xcategory.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'layouts/errors', resource: xcategory %>
 
         <div class="field">
           <%= f.label :name %>

@@ -2,17 +2,8 @@
   <div class="card-body">
     <div class="form-group">
       <%= form_for(xroot) do |f| %>
-        <% if xroot.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(xtype.errors.count, "error") %> prohibited this xtype from being saved:</h2>
 
-            <ul>
-            <% xroot.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'layouts/errors', resource: xroot %>
 
         <div class="field">
           <%= f.label :name %>

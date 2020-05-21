@@ -2,17 +2,8 @@
   <div class="card-body">
     <div class="form-group">
       <%= form_for(property) do |f| %>
-        <% if property.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
 
-            <ul>
-            <% property.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'layouts/errors', resource: property %>
 
         <div class="field">
           <%= f.label :content %>
