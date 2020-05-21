@@ -1,44 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="name-container name-pale-blue name-leftbar">
+  <h1>Show xroot</h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= xclass.name %>
-</p>
+<br>
 
-<p>
-  <strong>Description:</strong>
-  <%= xclass.description %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Name:</strong> <%= xclass.name %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Description:</strong> <%= xclass.description %></li>
+    <li class="list-group-item"><strong>Synonym:</strong> <%= xclass.synonym %></li>
+    <li class="list-group-item"><strong>Code:</strong> <%= xclass.code %></li>
+    <li class="list-group-item"><strong>Version date:</strong> <%= xclass.version_date %></li>
+    <li class="list-group-item"><strong>Publish:</strong> <%= xclass.publish %></li>
+    <li class="list-group-item"><strong>User:</strong> <%= xclass.user_id %></li>
+    <li class="list-group-item"><strong>Xcategory:</strong>
+      <%= xclass.xcategory_id %></li>    
+  </ul>
+</div>
 
-<p>
-  <strong>Synonym:</strong>
-  <%= xclass.synonym %>
-</p>
+<br>
 
-<p>
-  <strong>Code:</strong>
-  <%= xclass.code %>
-</p>
-
-<p>
-  <strong>Version date:</strong>
-  <%= xclass.version_date %>
-</p>
-
-<p>
-  <strong>Publish:</strong>
-  <%= xclass.publish %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= xclass.user_id %>
-</p>
-
-<p>
-  <strong>Xcategory:</strong>
-  <%= xclass.xcategory_id %>
-</p>
-
-<%= link_to 'Edit', edit_xclass_path(xclass) %> |
-<%= link_to 'Back', xclasses_path %>
+<%= link_to 'Edit', edit_xclass_path(xclass), class: 'btn btn-sm btn-outline-primary' %>
+<%= link_to 'Back', xclasses_path, class: 'btn btn-sm btn-outline-primary' %>

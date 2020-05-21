@@ -1,6 +1,12 @@
-<h1>Editing Xclass</h1>
+<div class="name-container name-pale-blue name-leftbar">
+  <h1>Editing Xclass</h1>
+</div>
+
+<br>
 
 <%= render 'form', xclass: xclass %>
 
-<%= link_to 'Show', @xclass %> |
-<%= link_to 'Back', xclasses_path %>
+<br>
+
+<%= link_to 'Show', @xclass, class: 'btn btn-sm btn-outline-primary' %>
+<%= link_to 'Back', xclasses_path, class: 'btn btn-sm btn-outline-primary' %>
