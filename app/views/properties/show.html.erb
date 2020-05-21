@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="name-container name-pale-blue name-leftbar">
+  <h1>Show Property</h1>
+</div>
 
-<p>
-  <strong>Content:</strong>
-  <%= property.content %>
-</p>
+<br>
 
-<p>
-  <strong>Propertyable:</strong>
-  <%= property.propertyable_id %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Content:</strong> <%= property.content %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Propertyable:</strong> <%= property.propertyable_id %></li>
+    <li class="list-group-item"><strong>Propertyable type:</strong> <%= property.propertyable_type %></li>    
+  </ul>
+</div>
 
-<p>
-  <strong>Propertyable type:</strong>
-  <%= property.propertyable_type %>
-</p>
+<br>
 
-<%= link_to 'Edit', edit_property_path(property) %> |
-<%= link_to 'Back', properties_path %>
+<%= link_to 'Edit', edit_property_path(property), class: 'btn btn-sm btn-outline-primary' %>
+<%= link_to 'Back', properties_path, class: 'btn btn-sm btn-outline-primary' %>
