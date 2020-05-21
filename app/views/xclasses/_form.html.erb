@@ -56,11 +56,6 @@
     <%= f.collection_select :xcategory_id, Xcategory.all, :id, :name, prompt: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :xtype_id %>
-    <%= f.collection_select :xtype_id, Xtype.all, :id, :name, prompt: true %>
-  </div>  
-
   <div class="actions">
     <%= f.submit %>
   </div>

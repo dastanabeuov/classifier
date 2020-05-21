@@ -1,24 +1,21 @@
 en:
   activerecord:
-    models:
-      test: 'Test'
-      test_passage: 'Test Passage'
-      question: 'Question'
-      answer: 'Answer'
-
     attributes:
-      test:
-        title: 'Title'
-        level: 'Level'
-        category: 'Category'
-      test_passage:
-        correct_questions: 'Correct questions'
-      question:
-        body: 'Question'
-      answer:
-        body: 'Answer'
-        correct: 'Correct'
-
-    errors:
-      messages:
-        blank: "can't be blank"
+      xtypes:
+        name: "Name"
+        description: "Description"
+  forms:
+    messages:
+      success: "Operation succeeded!"
+    buttons:
+      edit: "Edit"
+      submit: "Submit"
+  menu:
+    new_xtype: "Add an xtype"
+  xtypes:
+    index:
+      title: "List of xtypes"
+    edit:
+      title: "Add xtypes"
+    new:
+      title: "New xtypes"

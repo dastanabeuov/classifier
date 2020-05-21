@@ -1,25 +1,21 @@
 ru:
   activerecord:
-    models:
-      test: 'Тест'
-      test_passage: 'Прохождение Теста'
-      question: 'Вопрос'
-      answer: 'Ответ'
-
-    attributes:
-      test:
-        title: 'Название'
-        level: 'Сложность'
-        category: 'Категория'
-      test_passage:
-        correct_questions: 'Успешно пройденные вопросы'
-      question:
-        body: 'Вопрос'
-      answer:
-        body: 'Ответ'
-        correct: 'Правильность'
-
-
-    errors:
-      messages:
-        blank: "не может быть пустым"
+   attributes:
+     xtypes:
+       name: "Название"
+       description: "Описание"
+   forms:
+    messages:
+      success: "Операция была успешно выполнена!"
+    buttons:
+     edit: "Редактировать"
+     submit: "Отправить"
+   menu:
+    new_xtype: "Добавить хтип"
+   xtypes:
+    index:
+      title: "Список хтипов"
+    edit:
+      title: "Редактировать хтип"
+    new:
+      title: "Добавить хтип"
