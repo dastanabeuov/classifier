@@ -65,6 +65,7 @@ class XclassesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def xclass_params
-      params.require(:xclass).permit(:name, :description, :synonym, :code, :version_date, :publish, :xtyples, :user_id, :xcategory_id)
+      params.require(:xclass).permit(:name, :description, :synonym, :code, 
+                 :version_date, :publish, :xtype, :user_id, :xcategory_id)
     end
 end

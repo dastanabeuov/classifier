@@ -7,13 +7,12 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.string :code
       t.date :version_date
       t.boolean :publish
-      t.boolean :xtyples
+      t.boolean :xtype
       t.integer :user_id
       t.integer :xcategory_id
-      t.integer :xtype_id
 
       t.string :position
-      t.string :ancestry      
+      t.string :ancestry
 
       t.timestamps
     end
@@ -29,10 +28,9 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.string :code
       t.date :version_date
       t.boolean :publish
-      t.boolean :xtyples
+      t.boolean :xtype
       t.integer :user_id
       t.integer :xcategory_id
-      t.integer :xtype_id
 
       t.string :position
       t.string :ancestry
