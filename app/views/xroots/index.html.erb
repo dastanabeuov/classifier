@@ -14,7 +14,7 @@
         <th>Code</th>
         <th>Version date</th>
         <th>Publish</th>
-        <th>User</th>
+        <th>Ancestry</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -28,7 +28,7 @@
           <td><%= xroot.code %></td>
           <td><%= xroot.version_date %></td>
           <td><%= xroot.publish %></td>
-          <td><%= xroot.user_id %></td>
+          <td><%= xroot.ancestry %></td>
           <td><%= link_to (octicon 'eye'), xroot, class: 'btn btn-sm btn-outline-info' %></td>
           <td><%= link_to (octicon 'pencil'), edit_xroot_path(xroot), class: 'btn btn-sm btn-outline-warning' %></td>
           <td><%= link_to (octicon 'trashcan'), xroot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>

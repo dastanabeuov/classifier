@@ -65,6 +65,8 @@ class XcategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def xcategory_params
-      params.require(:xcategory).permit(:name, :description, :synonym, :code, :version_date, :publish, :user_id, :xroot_id)
+      params.require(:xcategory).permit(:name, :description, :synonym, 
+                                        :code, :version_date, 
+                                        :publish, :xroot_id, :parent_id)
     end
 end

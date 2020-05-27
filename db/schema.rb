@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.string   "code"
     t.date     "version_date"
     t.boolean  "publish"
-    t.integer  "user_id"
     t.integer  "xroot_id"
     t.string   "position"
     t.string   "ancestry"
@@ -81,28 +80,18 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.string   "name"
     t.text     "description"
     t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
-    t.integer  "xroot_id"
     t.index ["locale"], name: "index_xcategory_translations_on_locale", using: :btree
     t.index ["xcategory_id"], name: "index_xcategory_translations_on_xcategory_id", using: :btree
   end
 
   create_table "xclass_translations", force: :cascade do |t|
-    t.integer  "xclass_id",    null: false
-    t.string   "locale",       null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "xclass_id",   null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "name"
     t.text     "description"
     t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
-    t.integer  "xcategory_id"
     t.index ["locale"], name: "index_xclass_translations_on_locale", using: :btree
     t.index ["xclass_id"], name: "index_xclass_translations_on_xclass_id", using: :btree
   end
@@ -115,7 +104,6 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.date     "version_date"
     t.boolean  "publish"
     t.boolean  "xtype"
-    t.integer  "user_id"
     t.integer  "xcategory_id"
     t.string   "position"
     t.string   "ancestry"
@@ -126,17 +114,13 @@ ActiveRecord::Schema.define(version: 20200422143750) do
   end
 
   create_table "xroot_translations", force: :cascade do |t|
-    t.integer  "xroot_id",     null: false
-    t.string   "locale",       null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "xroot_id",    null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "name"
     t.text     "description"
     t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
     t.index ["locale"], name: "index_xroot_translations_on_locale", using: :btree
     t.index ["xroot_id"], name: "index_xroot_translations_on_xroot_id", using: :btree
   end
@@ -148,9 +132,12 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.string   "code"
     t.date     "version_date"
     t.boolean  "publish"
-    t.integer  "user_id"
+    t.string   "position"
+    t.string   "ancestry"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["ancestry"], name: "index_xroots_on_ancestry", using: :btree
+    t.index ["position"], name: "index_xroots_on_position", using: :btree
   end
 
 end

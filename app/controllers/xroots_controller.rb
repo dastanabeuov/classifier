@@ -65,6 +65,6 @@ class XrootsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def xroot_params
-      params.require(:xroot).permit(:name, :description, :synonym, :code, :version_date, :publish, :user_id)
+      params.require(:xroot).permit(:name, :description, :synonym, :code, :version_date, :publish, :parent_id)
     end
 end

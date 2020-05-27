@@ -7,7 +7,6 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.string :code
       t.date :version_date
       t.boolean :publish
-      t.integer :user_id
       t.integer :xroot_id
 
       t.string :position
@@ -27,7 +26,6 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.string :code
       t.date :version_date
       t.boolean :publish
-      t.integer :user_id
       t.integer :xroot_id
 
       t.string :position      

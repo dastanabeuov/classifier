@@ -36,14 +36,14 @@
         </div>
 
         <div class="field">
-          <%= f.label :user_id %>
-          <%= f.number_field :user_id, value: "#{current_user.id}", class: 'form-control' %>
-        </div>
+          <%= f.label :xroot_id %><br />
+          <%= f.collection_select :xroot_id, Xroot.all, :id, :name, prompt: true, class: 'form-control' %>
+        </div>   
 
         <div class="field">
-          <%= f.label :xroot_id %>
-          <%= f.collection_select :xroot_id, Xroot.all, :id, :name, prompt: true, class: 'form-control' %>
-        </div>
+          <%= f.label :parent_id %><br />
+          <%= f.collection_select :parent_id, Xcategory.all, :id, :name, prompt: true, class: 'form-control' %>
+        </div>   
 
         <div class="actions">
           <%= f.submit class: "btn btn-sm btn-outline-primary mt-5" %>

@@ -15,8 +15,8 @@
         <th>Version date</th>
         <th>Publish</th>
         <th>Xtype</th>
-        <th>User</th>
         <th>Xcategory</th>
+        <th>Ancestry</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -31,8 +31,8 @@
           <td><%= xclass.version_date %></td>
           <td><%= xclass.publish %></td>
           <td><%= xclass.xtype %></td>
-          <td><%= xclass.user_id %></td>
           <td><%= xclass.xcategory_id %></td>
+          <td><%= xclass.ancestry %></td>
           <td><%= link_to (octicon 'eye'), xclass, class: 'btn btn-sm btn-outline-info' %></td>
           <td><%= link_to (octicon 'pencil'), edit_xclass_path(xclass), class: 'btn btn-sm btn-outline-warning' %></td>
           <td><%= link_to (octicon 'trashcan'), xclass, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>

@@ -36,8 +36,8 @@
         </div>
 
         <div class="field">
-          <%= f.label :user_id %>
-          <%= f.number_field :user_id, value: "#{current_user.id}", class: 'form-control' %>
+          <%= f.label :parent_id %><br />
+          <%= f.collection_select :parent_id, Xroot.order(:name), :id, :name, include_blank: true, class: 'form-control' %>
         </div>
 
         <div class="actions">

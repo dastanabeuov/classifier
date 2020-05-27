@@ -3,12 +3,7 @@ class CreateXcategoryTranslations < ActiveRecord::Migration[5.0]
     Xcategory.create_translation_table!({
       name: :string,
       description: :text,
-      synonym: :text,
-      code: :string,
-      version_date: :date,
-      publish: :boolean,
-      user_id: :integer,
-      xroot_id: :integer
+      synonym: :text
     }, {
       migrate_data: true
     })

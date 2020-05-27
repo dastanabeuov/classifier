@@ -1,8 +1,22 @@
-<div class="name-container name-pale-blue name-leftbar">
-  <h1>Show Xroot</h1>
+<ul id="menu">
+  <% Xroot.roots.each do |page| %>
+  <li><%= link_to page.name, page, class: ("active" if xroot.root == page) %></li>
+  <% end %>
+</ul>
+
+<div id="submenu">
+  <%= render 'submenu_pages', xroots: xroot.root.descendants.arrange %>
 </div>
 
-<br>
+<div id="breadcrumbs">
+  <% xroot.ancestors.each do |page| %>
+    <%= link_to page.name, page %> &gt;
+  <% end %>
+</div>
+
+<h1><%= xroot.name %></h1>
+
+<%= simple_format(xroot.description) %>
 
 <div class="card">
   <div class="card-body">
@@ -14,7 +28,7 @@
     <li class="list-group-item"><strong>Code:</strong> <%= xroot.code %></li>
     <li class="list-group-item"><strong>Version date:</strong> <%= xroot.version_date %></li>
     <li class="list-group-item"><strong>Publish:</strong> <%= xroot.publish %></li>
-    <li class="list-group-item"><strong>User:</strong> <%= xroot.user_id %></li>    
+    <li class="list-group-item"><strong>Ancestry:</strong> <%= xroot.ancestry %></li>    
   </ul>
 </div>
 

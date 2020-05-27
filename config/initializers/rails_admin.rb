@@ -22,7 +22,7 @@ RailsAdmin.config do |config|
     ## Sortable nestable action for each model
     nestable do
       visible do
-        %w(Xcategory Xclass).include? bindings[:abstract_model].model_name
+        %w(Xroot Xcategory Xclass).include? bindings[:abstract_model].model_name
       end
     end     
   end
@@ -32,15 +32,21 @@ RailsAdmin.config do |config|
   #config.model 'Xclass' do
   #  nestable_list true
   #end
-
-  config.model 'Xclass' do
+  config.model 'Xcategory' do
     nestable_tree({
       position_field: :position,
       max_depth: 999
     })
   end
 
-  config.model 'Xcategory' do
+  config.model 'Xroot' do
+    nestable_tree({
+      position_field: :position,
+      max_depth: 999
+    })
+  end
+
+  config.model 'Xclass' do
     nestable_tree({
       position_field: :position,
       max_depth: 999

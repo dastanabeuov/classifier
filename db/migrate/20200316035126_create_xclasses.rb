@@ -8,7 +8,6 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.date :version_date
       t.boolean :publish
       t.boolean :xtype
-      t.integer :user_id
       t.integer :xcategory_id
 
       t.string :position
@@ -29,7 +28,6 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.date :version_date
       t.boolean :publish
       t.boolean :xtype
-      t.integer :user_id
       t.integer :xcategory_id
 
       t.string :position
