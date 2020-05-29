@@ -17,9 +17,10 @@ class XrootsController < ApplicationController
 
   # POST /xroots
   # POST /xroots.json
+
   def create
     @xroot = Xroot.new(xroot_params)
-
+ 
     respond_to do |format|
       if @xroot.save
         format.html { redirect_to @xroot, notice: 'Xroot was successfully created.' }
@@ -57,8 +58,8 @@ class XrootsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def xroot
-      @xroot ||= params[:id] ? Xroot.find(params[:id]) : Xroot.new
+    def xroot      
+      @xroot ||= params[:id] ? Xroot.find(params[:id]) : Xroot.new 
     end
 
     helper_method :xroot

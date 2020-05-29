@@ -69,8 +69,6 @@ group :heroku do
 end
 
 ##################################
-gem 'webpacker'
-gem 'foreman'
 gem "cocoon"
 gem 'apipie-rails'
 gem 'cancancan'

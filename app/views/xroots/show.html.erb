@@ -14,22 +14,16 @@
   <% end %>
 </div>
 
-<h1><%= xroot.name %></h1>
-
-<%= simple_format(xroot.description) %>
-
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title"><strong>Name: <%= xroot.name %></strong></h5>
+    <h1><%= xroot.name %></h1>
+    <%= simple_format(xroot.description) %>
+    <%= simple_format(xroot.synonym) %>
+    <%= simple_format(xroot.code) %>
+    <%= simple_format(xroot.version_date.to_s) %>
+    <%= simple_format(xroot.publish.to_s) %>
+    <%= simple_format(xroot.ancestry) %>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Description:</strong> <%= xroot.description %></li>
-    <li class="list-group-item"><strong>Synonym:</strong> <%= xroot.synonym %></li>
-    <li class="list-group-item"><strong>Code:</strong> <%= xroot.code %></li>
-    <li class="list-group-item"><strong>Version date:</strong> <%= xroot.version_date %></li>
-    <li class="list-group-item"><strong>Publish:</strong> <%= xroot.publish %></li>
-    <li class="list-group-item"><strong>Ancestry:</strong> <%= xroot.ancestry %></li>    
-  </ul>
 </div>
 
 <br>
