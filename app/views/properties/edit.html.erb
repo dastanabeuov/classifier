@@ -1,12 +1,6 @@
-<div class="name-container name-pale-blue name-leftbar">
-  <h1>Editing Property</h1>
-</div>
+<h1>Editing Property</h1>
 
-<br>
+<%= render 'form', property: @property %>
 
-<%= render 'form', property: property %>
-
-<br>
-
-<%= link_to 'Show', @property, class: 'btn btn-sm btn-outline-secondary' %>
-<%= link_to 'Back', properties_path, class: 'btn btn-sm btn-outline-secondary' %>
+<%= link_to 'Show', @property %> |
+<%= link_to 'Back', properties_path %>

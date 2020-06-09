@@ -1,24 +1,17 @@
 class XcategoriesController < ApplicationController
-  # GET /xcategories
-  # GET /xcategories.json
+
   def index
     @xcategories = Xcategory.all
   end
 
-  # GET /xcategories/1
-  # GET /xcategories/1.json
   def show; end
 
-  # GET /xcategories/new
   def new; end
 
-  # GET /xcategories/1/edit
   def edit; end
 
-  # POST /xcategories
-  # POST /xcategories.json
   def create
-    @xcategory = Xcategory.new(xcategory_params)
+    @xcategory = current_user.xcategories.new(xcategory_params)
 
     respond_to do |format|
       if @xcategory.save
@@ -31,8 +24,6 @@ class XcategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /xcategories/1
-  # PATCH/PUT /xcategories/1.json
   def update
     respond_to do |format|
       if xcategory.update(xcategory_params)
@@ -45,8 +36,6 @@ class XcategoriesController < ApplicationController
     end
   end
 
-  # DELETE /xcategories/1
-  # DELETE /xcategories/1.json
   def destroy
     xcategory.destroy
     respond_to do |format|
@@ -56,17 +45,16 @@ class XcategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def xcategory
       @xcategory ||= params[:id] ? Xcategory.find(params[:id]) : Xcategory.new
     end
 
     helper_method :xcategory
 
-    # Only allow a list of trusted parameters through.
     def xcategory_params
       params.require(:xcategory).permit(:name, :description, :synonym, 
                                         :code, :version_date, 
-                                        :publish, :xroot_id, :parent_id)
+                                        :publish)
     end
 end

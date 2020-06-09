@@ -33,17 +33,7 @@
         <div class="field">
           <%= f.label :publish %>
           <%= f.check_box :publish, class: 'form-control' %>
-        </div>
-
-        <div class="field">
-          <%= f.label :xroot_id %><br />
-          <%= f.collection_select :xroot_id, Xroot.all, :id, :name, prompt: true, class: 'form-control' %>
-        </div>   
-
-        <div class="field">
-          <%= f.label :parent_id %><br />
-          <%= f.collection_select :parent_id, Xcategory.all, :id, :name, prompt: true, class: 'form-control' %>
-        </div>   
+        </div>    
 
         <div class="actions">
           <%= f.submit class: "btn btn-sm btn-outline-primary mt-5" %>

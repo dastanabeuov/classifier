@@ -14,7 +14,7 @@
         <%= t('classifier.logo_text') %>
       </li>
     </ul>
-    <% if user_signed_in? %>    
+    <% if user_signed_in? %>
     <ul class="navbar-nav pull-xs-right">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,10 +24,12 @@
           <%= link_to "Dashboard", "/admin/", class: "dropdown-item" %>
           <%= link_to "api_docs", "/api_docs/single_swagger_doc", target: "_blank", class: "dropdown-item" %>
           <div class="dropdown-divider"></div>
-          <a href="<%= xroots_path %>" class="dropdown-item">Roots <span class="badge"><%= count_xroots %></span></a>
+          <a href="<%= root_path %>" class="dropdown-item"><%= octicon('home') %></a>
+          <div class="dropdown-divider"></div>
           <a href="<%= xcategories_path %>" class="dropdown-item">Categories <span class="badge"><%= count_xcategories %></span></a>
           <a href="<%= xclasses_path %>" class="dropdown-item">Classes <span class="badge"><%= count_xclasses %></span></a>
-          <a href="<%= properties_path %>" class="dropdown-item">Properties <span class="badge"><%= count_xproperties %></span></a>
+          <a href="<%= properties_path %>" class="dropdown-item">Properties <span class="badge"><%= count_properties %></span></a>
+          <a href="<%= activities_path %>" class="dropdown-item">Activities <span class="badge"><%= count_activities %></span></a>    
           <div class="dropdown-divider"></div>
           <%= link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item" %>
           <%= link_to t('user.logout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>

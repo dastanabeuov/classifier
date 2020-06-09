@@ -14,8 +14,6 @@
         <th>Code</th>
         <th>Version date</th>
         <th>Publish</th>
-        <th>Xroot</th>
-        <th>Ancestry</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -29,8 +27,6 @@
           <td><%= xcategory.code %></td>
           <td><%= xcategory.version_date %></td>
           <td><%= xcategory.publish %></td>
-          <td><%= xcategory.xroot_id %></td>
-          <td><%= xcategory.ancestry %></td>
           <td><%= link_to (octicon 'eye'), xcategory, class: 'btn btn-sm btn-outline-info' %></td>
           <td><%= link_to (octicon 'pencil'), edit_xcategory_path(xcategory), class: 'btn btn-sm btn-outline-warning' %></td>
           <td><%= link_to (octicon 'trashcan'), xcategory, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>

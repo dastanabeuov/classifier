@@ -1,5 +1,5 @@
 module PropertiesHelper
-  def count_xproperties
+  def count_properties
     Property.all.count
-  end 
+  end
 end
