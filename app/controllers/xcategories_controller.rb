@@ -11,7 +11,7 @@ class XcategoriesController < ApplicationController
   def edit; end
 
   def create
-    @xcategory = current_user.xcategories.new(xcategory_params)
+    @xcategory = Xcategory.new(xcategory_params)
 
     respond_to do |format|
       if @xcategory.save

@@ -1,19 +1,14 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
     @activities = Activity.all
   end
 
-  def show
-  end
+  def show; end
 
-  def new
-    @activity = Activity.new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @activity = Activity.new(activity_params)
@@ -31,7 +26,7 @@ class ActivitiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @activity.update(activity_params)
+      if activity.update(activity_params)
         format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
@@ -42,7 +37,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    @activity.destroy
+    activity.destroy
     respond_to do |format|
       format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
@@ -51,9 +46,11 @@ class ActivitiesController < ApplicationController
 
   private
 
-    def set_activity
-      @activity = Activity.find(params[:id])
+    def activity
+      @activity ||= params[:id] ? Activity.find(params[:id]) : Activity.new
     end
+
+    helper_method :activity
 
     def activity_params
       params.require(:activity).permit(:name, :description, :synonym, :code, :version_date, :publish, :position, :ancestry)

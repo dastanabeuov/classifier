@@ -1,5 +1,11 @@
-<h1>New Activity</h1>
+<div class="name-container name-pale-blue name-leftbar">
+  <h1>New Activity</h1>
+</div>
 
-<%= render 'form', activity: @activity %>
+<br>
 
-<%= link_to 'Back', activities_path %>
+<%= render 'form', activity: activity %>
+
+<br>
+
+<%= link_to 'Back', activities_path, class: 'btn btn-sm btn-outline-secondary' %>
