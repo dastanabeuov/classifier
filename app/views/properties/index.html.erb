@@ -31,9 +31,9 @@
           <td><%= property.publish %></td>
           <td><%= property.position %></td>
           <td><%= property.ancestry %></td>
-          <td><%= link_to (octicon 'eye'), property, class: 'btn btn-sm btn-outline-info' %></td>
-          <td><%= link_to (octicon 'pencil'), edit_property_path(property), class: 'btn btn-sm btn-outline-warning' %></td>
-          <td><%= link_to (octicon 'trashcan'), property, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+          <td><%= link_to (octicon 'eye'), property, class: 'btn btn-sm btn-outline-secondary' %></td>
+          <td><%= link_to (octicon 'pencil'), edit_property_path(property), class: 'btn btn-sm btn-outline-secondary' %></td>
+          <td><%= link_to (octicon 'trashcan'), property, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary' %></td>
         </tr>
       <% end %>
     </tbody>

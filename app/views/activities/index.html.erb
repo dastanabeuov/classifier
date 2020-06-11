@@ -31,9 +31,9 @@
           <td><%= activity.publish %></td>
           <td><%= activity.position %></td>
           <td><%= activity.ancestry %></td>
-          <td><%= link_to (octicon 'eye'), activity, class: 'btn btn-sm btn-outline-info' %></td>
-          <td><%= link_to (octicon 'pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %></td>
-          <td><%= link_to (octicon 'trashcan'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+          <td><%= link_to (octicon 'eye'), activity, class: 'btn btn-sm btn-outline-secondary' %></td>
+          <td><%= link_to (octicon 'pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-secondary' %></td>
+          <td><%= link_to (octicon 'trashcan'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary' %></td>
         </tr>
       <% end %>
     </tbody>
