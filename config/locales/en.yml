@@ -35,7 +35,7 @@ en:
       back: "Back to front page"
       welcome: "Welcome!"
       description: "Application for the classification of construction projects according to international standards ISO 1206."
-      link_watch: "Watch"
+      link_watch: "Start"
   layouts:
     errors:
       header:
