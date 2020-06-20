@@ -56,13 +56,13 @@ RailsAdmin.config do |config|
   ##############################    
 
   ##Display show atributes models
-  config.model 'Xcategory' do    
-    list do
-      field :id
-      field :name
-      field :description
-    end
-  end
+  #config.model 'Xcategory' do    
+  #  list do
+  #    field :id
+  #    field :name
+  #    field :description
+  #  end
+  #end
 
   config.model 'Xclass' do    
     list do

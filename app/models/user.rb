@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :xcategories, dependent: :destroy
+  #has_many :xcategories, dependent: :destroy
 
   after_create :send_admin_mail
   

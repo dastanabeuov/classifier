@@ -66,21 +66,6 @@ ActiveRecord::Schema.define(version: 20200608051034) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "xcategories", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.string   "position"
-    t.string   "ancestry"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["ancestry"], name: "index_xcategories_on_ancestry", using: :btree
-    t.index ["position"], name: "index_xcategories_on_position", using: :btree
-  end
-
   create_table "xclasses", force: :cascade do |t|
     t.string   "name"
     t.text     "description"

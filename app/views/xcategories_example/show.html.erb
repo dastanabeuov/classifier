@@ -19,5 +19,7 @@
 
 <br>
 
-<%= link_to 'Edit', edit_xcategory_path(xcategory), class: 'btn btn-sm btn-outline-secondary' %>
-<%= link_to 'Back', xcategories_path, class: 'btn btn-sm btn-outline-secondary' %>
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_xcategory_path(xcategory), class: 'btn btn-sm btn-outline-secondary' %>
+  <%= link_to 'Back', xcategories_path, class: 'btn btn-sm btn-outline-secondary' %>
+<% end %>

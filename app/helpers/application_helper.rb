@@ -15,4 +15,8 @@ module ApplicationHelper
       when 'alert' then "alert alert-warning alert-dismissible"
     end
   end
+
+  def watch
+    Time.current
+  end  
 end
