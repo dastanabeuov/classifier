@@ -55,6 +55,6 @@ class XcategoriesController < ApplicationController
     def xcategory_params
       params.require(:xcategory).permit(:name, :description, :synonym, 
                                         :code, :version_date, 
-                                        :publish)
+                                        :publish, :parent_id)
     end
 end

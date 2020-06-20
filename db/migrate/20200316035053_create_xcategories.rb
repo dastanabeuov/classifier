@@ -7,9 +7,13 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.string :code
       t.date :version_date
       t.boolean :publish
+      t.string :position
+      t.string :ancestry
 
       t.timestamps
     end
+    add_index :xcategories, :position
+    add_index :xcategories, :ancestry    
   end
 
   def down
@@ -20,8 +24,12 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.string :code
       t.date :version_date
       t.boolean :publish
+      t.string :position
+      t.string :ancestry      
 
       t.timestamps
-    end 
+    end
+    remove_index :xcategories, :position
+    remove_index :xcategories, :ancestry    
   end
 end
