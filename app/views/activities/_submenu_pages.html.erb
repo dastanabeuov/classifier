@@ -1,0 +1,8 @@
+<ul class="items">
+  <% activities.each do |page, children| %>
+    <li>
+      <%= link_to_unless_current page.name, page %>
+      <%= render 'submenu_pages', activities: children if children.present? %>
+    </li>
+  <% end %>
+</ul>

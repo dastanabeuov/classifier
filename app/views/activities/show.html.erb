@@ -1,0 +1,37 @@
+<ul id="menu">
+  <% Activity.roots.each do |page| %>
+    <li><%= link_to page.name, page, class: ("active" if activity.root == page) %></li>
+  <% end %>
+</ul>
+
+<div id="submenu">
+  <%= render 'submenu_pages', activities: activity.root.descendants.arrange %>
+</div>
+
+<div id="breadcrumbs">
+  <% activity.ancestors.each do |page| %>
+    <%= link_to page.name, page %> &gt;
+  <% end %>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Name:</strong> <%= activity.name %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Description:</strong> <%= activity.description %></li>
+    <li class="list-group-item"><strong>Synonym:</strong> <%= activity.synonym %></li>
+    <li class="list-group-item"><strong>Code:</strong> <%= activity.code %></li>
+    <li class="list-group-item"><strong>Version date:</strong> <%= activity.version_date %></li>
+    <li class="list-group-item"><strong>Publish:</strong> <%= activity.publish %></li>
+    <li class="list-group-item"><strong>Position:</strong> <%= activity.position %></li>    
+    <li class="list-group-item"><strong>Ancestry:</strong> <%= activity.ancestry %></li>      
+  </ul>
+</div>
+
+<br>
+
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-sm btn-outline-secondary' %>
+  <%= link_to 'Back', activities_path, class: 'btn btn-sm btn-outline-secondary' %>
+<% end %>  

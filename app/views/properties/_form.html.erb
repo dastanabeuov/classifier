@@ -1,23 +1,48 @@
 <div class="card">
   <div class="card-body">
-    <div class="form-group">
+          <div class="form-group">
       <%= form_for(property) do |f| %>
 
         <%= render 'layouts/errors', resource: property %>
 
-        <div class="field">
-          <%= f.label :content %>
-          <%= f.text_area :content, class: 'form-control' %>
+        <div class="field mt-3">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
         </div>
 
-        <div class="field">
-          <%= f.label :propertyable_id %>
-          <%= f.number_field :propertyable_id, class: 'form-control' %>
+        <div class="field mt-3">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'form-control' %>
         </div>
 
-        <div class="field">
-          <%= f.label :propertyable_type %>
-          <%= f.text_field :propertyable_type, class: 'form-control' %>
+        <div class="field mt-3">
+          <%= f.label :synonym %>
+          <%= f.text_area :synonym, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :code %>
+          <%= f.text_field :code, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :version_date %>
+          <%= f.date_select :version_date, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :publish %>
+          <%= f.check_box :publish, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :position %>
+          <%= f.text_field :position, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :ancestry %>
+          <%= f.text_field :ancestry, class: 'form-control' %>
         </div>
 
         <div class="actions">

@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      <%= form_for(activity) do |f| %>
+
+        <%= render 'layouts/errors', resource: activity %>
+
+        <div class="field mt-3">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :synonym %>
+          <%= f.text_area :synonym, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :code %>
+          <%= f.text_field :code, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :version_date %>
+          <%= f.date_select :version_date, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :publish %>
+          <%= f.check_box :publish, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :position %>
+          <%= f.text_field :position, class: 'form-control' %>
+        </div>
+
+        <div class="field mt-3">
+          <%= f.label :ancestry %>
+          <%= f.text_field :ancestry, class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit class: "btn btn-sm btn-outline-primary mt-5" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

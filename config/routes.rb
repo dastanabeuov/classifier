@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   devise_for :users
   #######################################################
 
-  ######################
-  resources :xroots
-  resources :xcategories
-  resources :xclasses
+  #####################
+  #resources :xcategories  
+  resources :xclasses  
   resources :properties
-  ######################
+  resources :activities  
+  #####################
 end

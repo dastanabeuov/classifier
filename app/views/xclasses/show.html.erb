@@ -1,8 +1,18 @@
-<div class="name-container name-pale-blue name-leftbar">
-  <h1>Show Xclass</h1>
+<ul id="menu">
+  <% Xclass.roots.each do |page| %>
+    <li><%= link_to page.name, page, class: ("active" if xclass.root == page) %></li>
+  <% end %>
+</ul>
+
+<div id="submenu">
+  <%= render 'submenu_pages', xclasses: xclass.root.descendants.arrange %>
 </div>
 
-<br>
+<div id="breadcrumbs">
+  <% xclass.ancestors.each do |page| %>
+    <%= link_to page.name, page %> &gt;
+  <% end %>
+</div>
 
 <div class="card">
   <div class="card-body">
@@ -15,12 +25,14 @@
     <li class="list-group-item"><strong>Version date:</strong> <%= xclass.version_date %></li>
     <li class="list-group-item"><strong>Publish:</strong> <%= xclass.publish %></li>
     <li class="list-group-item"><strong>Xtype:</strong> <%= xclass.xtype %></li>
-    <li class="list-group-item"><strong>User:</strong> <%= xclass.user_id %></li>
-    <li class="list-group-item"><strong>Xcategory:</strong> <%= xclass.xcategory_id %></li>    
+    <li class="list-group-item"><strong>Position:</strong> <%= xclass.position %></li>    
+    <li class="list-group-item"><strong>Ancestry:</strong> <%= xclass.ancestry %></li>      
   </ul>
 </div>
 
 <br>
 
-<%= link_to 'Edit', edit_xclass_path(xclass), class: 'btn btn-sm btn-outline-secondary' %>
-<%= link_to 'Back', xclasses_path, class: 'btn btn-sm btn-outline-secondary' %>
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_xclass_path(xclass), class: 'btn btn-sm btn-outline-secondary' %>
+  <%= link_to 'Back', xclasses_path, class: 'btn btn-sm btn-outline-secondary' %>
+<% end %>

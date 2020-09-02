@@ -10,29 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200422143750) do
+ActiveRecord::Schema.define(version: 20200608051034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "properties", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "propertyable_id"
-    t.string   "propertyable_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["propertyable_id"], name: "index_properties_on_propertyable_id", using: :btree
-    t.index ["propertyable_type"], name: "index_properties_on_propertyable_type", using: :btree
+  create_table "activities", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "synonym"
+    t.string   "code"
+    t.date     "version_date"
+    t.boolean  "publish"
+    t.string   "position"
+    t.string   "ancestry"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["ancestry"], name: "index_activities_on_ancestry", using: :btree
+    t.index ["position"], name: "index_activities_on_position", using: :btree
   end
 
-  create_table "property_translations", force: :cascade do |t|
-    t.integer  "property_id", null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.text     "content"
-    t.index ["locale"], name: "index_property_translations_on_locale", using: :btree
-    t.index ["property_id"], name: "index_property_translations_on_property_id", using: :btree
+  create_table "properties", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "synonym"
+    t.string   "code"
+    t.date     "version_date"
+    t.boolean  "publish"
+    t.string   "position"
+    t.string   "ancestry"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["ancestry"], name: "index_properties_on_ancestry", using: :btree
+    t.index ["position"], name: "index_properties_on_position", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,57 +66,6 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "xcategories", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
-    t.integer  "xroot_id"
-    t.string   "position"
-    t.string   "ancestry"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["ancestry"], name: "index_xcategories_on_ancestry", using: :btree
-    t.index ["position"], name: "index_xcategories_on_position", using: :btree
-  end
-
-  create_table "xcategory_translations", force: :cascade do |t|
-    t.integer  "xcategory_id", null: false
-    t.string   "locale",       null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
-    t.integer  "xroot_id"
-    t.index ["locale"], name: "index_xcategory_translations_on_locale", using: :btree
-    t.index ["xcategory_id"], name: "index_xcategory_translations_on_xcategory_id", using: :btree
-  end
-
-  create_table "xclass_translations", force: :cascade do |t|
-    t.integer  "xclass_id",    null: false
-    t.string   "locale",       null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
-    t.integer  "xcategory_id"
-    t.index ["locale"], name: "index_xclass_translations_on_locale", using: :btree
-    t.index ["xclass_id"], name: "index_xclass_translations_on_xclass_id", using: :btree
-  end
-
   create_table "xclasses", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -115,42 +74,12 @@ ActiveRecord::Schema.define(version: 20200422143750) do
     t.date     "version_date"
     t.boolean  "publish"
     t.boolean  "xtype"
-    t.integer  "user_id"
-    t.integer  "xcategory_id"
     t.string   "position"
     t.string   "ancestry"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["ancestry"], name: "index_xclasses_on_ancestry", using: :btree
     t.index ["position"], name: "index_xclasses_on_position", using: :btree
-  end
-
-  create_table "xroot_translations", force: :cascade do |t|
-    t.integer  "xroot_id",     null: false
-    t.string   "locale",       null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
-    t.index ["locale"], name: "index_xroot_translations_on_locale", using: :btree
-    t.index ["xroot_id"], name: "index_xroot_translations_on_xroot_id", using: :btree
-  end
-
-  create_table "xroots", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.string   "code"
-    t.date     "version_date"
-    t.boolean  "publish"
-    t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
 end
