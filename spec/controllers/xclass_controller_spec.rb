@@ -1,137 +1,107 @@
 require 'rails_helper'
 
 RSpec.describe XclassesController, type: :controller do
-  let(:xclass) { create(:xclass) }
-  
-  describe 'GET #index' do
-  	#GLOBAL DATABASE SOME
-  	let(:xclasses) { create_list(:xclass, 3) }
 
-  	#GLOBAL method GET all tests
-  	before { get :index }
+  let(:valid_attributes) { create :Xclass }
 
-  	it 'All Xclasses' do
-  	  #xclass1 = FactoryBot.create(:xclass)
-  	  #xclass2 = FactoryBot.create(:xclass)
-  	  #xclasses = FactoryBot.create_list(:xclass, 3)
-  	  #ADD FACTORYBOT SYNTAX METHODS RAILS HELPER SPECS
-  	  #xclasses = create_list(:xclass, 3)
+  let(:invalid_attributes) { create :Xclass, name: nil }
 
-  	  #get :index
+  let(:valid_session) { create :user }
 
-  	  #expect(assigns(:xclasses)).to match_array([xclass1, xclass2])
-  	  expect(assigns(:xclasses)).to match_array(xclasses)
-  	end
-
-  	it 'render index view' do
-      #get :index
-      expect(response).to render_template :index
-  	end
+  describe "GET #index" do
+    it "returns a success response" do
+      Xclass.create! valid_attributes
+      get :index, params: {}, session: valid_session
+      expect(response).to be_successful
+    end
   end
 
-  ###############################################
-  describe 'GET #show' do
-  	before { get :show, params: { id: xclass } }
-
-  	it 'render show view' do
-      expect(response).to render_template :show
-  	end
+  describe "GET #show" do
+    it "returns a success response" do
+      Xclass = Xclass.create! valid_attributes
+      get :show, params: {id: Xclass.to_param}, session: valid_session
+      expect(response).to be_successful
+    end
   end
 
-  ##################################################
-  describe 'GET #new' do
-  	before { get :new }
-
-  	it 'render new view' do
-  	  expect(response).to render_template :new
-  	end
+  describe "GET #new" do
+    it "returns a success response" do
+      get :new, params: {}, session: valid_session
+      expect(response).to be_successful
+    end
   end
 
-  ###############################################
-  describe 'GET #edit' do
-  	before { get :edit, params: { id: xclass } }
-
-  	it 'render edit view' do
-      expect(response).to render_template :edit
-  	end
+  describe "GET #edit" do
+    it "returns a success response" do
+      Xclass = Xclass.create! valid_attributes
+      get :edit, params: {id: Xclass.to_param}, session: valid_session
+      expect(response).to be_successful
+    end
   end
 
-  describe 'POST #create' do
-  	context 'width valid attributes' do
-  	  it 'request and save xclass' do
-  	  	#count = Xclass.count
-  	  	#post :create, params: { xclass: { name: 'Name', description: 'Description' } }
-  	  	#FactoryBot attributes_for(:xclass)
-  	  	#post :create, params: { xclass: attributes_for(:xclass) }
-  	    #expect(Xclass.count).to eq count + 1
-  	  	#SUGAR syntacis
-  	  	expect { post :create, params: { xclass: attributes_for(:xclass) } }.to change(Xclass, :count).by(1) 	    
-  	  end
+  describe "POST #create" do
+    context "with valid params" do
+      it "creates a new Xclass" do
+        expect {
+          post :create, params: {Xclass: valid_attributes}, session: valid_session
+        }.to change(Xclass, :count).by(1)
+      end
 
-  	  it 'redirect create xclass' do
-  	  	post :create, params: { xclass: attributes_for(:xclass) }
-  	  	expect(response).to redirect_to assigns(:xclass)
-  	  end
-  	end
-
-  	context 'width invalid attributes' do
-  	  it 'does not save xclass' do
-  	    expect { post :create, params: { xclass: attributes_for(:xclass, :invalid_class) } }.to_not change(Xclass, :count)
-  	  end
-
-  	  it 'render new view' do
-  	  	post :create, params: { xclass: attributes_for(:xclass, :invalid_class) }
-  	  	expect(response).to render_template :new
-  	  end 	  
-  	end
-  end
-
-  describe 'PATCH #update' do
-  	context 'width valid attributes' do
-  	  it 'request xclass' do
-  	    patch :update, params: { id: xclass, xclass: attributes_for(:xclass) }
-  	    expect(assigns(:xclass)).to eq xclass
-  	  end
-
-  	  it 'change attributes xclass' do
-  	  	patch :update, params: { id: xclass, xclass: { name: 'TestName', description: 'TestDescription' } }
-  	    xclass.reload
-  	    expect(xclass.name).to eq 'TestName'
-  	    expect(xclass.description).to eq 'TestDescription'
-  	  end
-
-  	  it 'redirect update xclass' do
-  	  	patch :update, params: { id: xclass, xclass: attributes_for(:xclass) }
-  	  	expect(response).to redirect_to xclass
-  	  end
-  	end
-
-  	context 'width invalid attributes' do
-  	  before { patch :update, params: { id: xclass, xclass: attributes_for(:xclass, :invalid_class) } }
-
-  	  it 'does not change xclass' do
-  	  	xclass.reload
-
-  	    expect(xclass.name).to eq 'Name'
-  	    expect(xclass.description).to eq 'Description'
-  	  end
-
-  	  it 'render edit view' do
-  	  	expect(response).to render_template :edit
-  	  end
-  	end
-  end
-
-  describe 'DELETE #destroy' do
-  	let!(:xclass) { create(:xclass) }
-
-    it 'delete the xclass' do
-      expect { delete :destroy, params: { id: xclass } }.to change(Xclass, :count).by(-1)
+      it "redirects to the created Xclass" do
+        post :create, params: {Xclass: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(Xclass.last)
+      end
     end
 
-    it 'redirect_to index view' do
-      delete :destroy, params: { id: xclass }
-      expect(response).to redirect_to xclasses_path
+    context "with invalid params" do
+      it "returns a success response (i.e. to display the 'new' template)" do
+        post :create, params: {Xclass: invalid_attributes}, session: valid_session
+        expect(response).to be_successful
+      end
+    end
+  end
+
+  describe "PUT #update" do
+    context "with valid params" do
+      let(:new_attributes) {
+        skip("Add a hash of attributes valid for your model")
+      }
+
+      it "updates the requested Xclass" do
+        Xclass = Xclass.create! valid_attributes
+        put :update, params: {id: Xclass.to_param, Xclass: new_attributes}, session: valid_session
+        Xclass.reload
+        skip("Add assertions for updated state")
+      end
+
+      it "redirects to the Xclass" do
+        Xclass = Xclass.create! valid_attributes
+        put :update, params: {id: Xclass.to_param, Xclass: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(Xclass)
+      end
+    end
+
+    context "with invalid params" do
+      it "returns a success response (i.e. to display the 'edit' template)" do
+        Xclass = Xclass.create! valid_attributes
+        put :update, params: {id: Xclass.to_param, Xclass: invalid_attributes}, session: valid_session
+        expect(response).to be_successful
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    it "destroys the requested Xclass" do
+      Xclass = Xclass.create! valid_attributes
+      expect {
+        delete :destroy, params: {id: Xclass.to_param}, session: valid_session
+      }.to change(Xclass, :count).by(-1)
+    end
+
+    it "redirects to the Xclasses list" do
+      Xclass = Xclass.create! valid_attributes
+      delete :destroy, params: {id: Xclass.to_param}, session: valid_session
+      expect(response).to redirect_to(Xclasses_url)
     end
   end
 

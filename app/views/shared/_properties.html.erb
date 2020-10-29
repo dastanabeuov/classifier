@@ -1,0 +1,6 @@
+<% if resource.properties.any? %>
+  <% resource.properties.each do |property| %>
+      <p><%= property.name %> | <%= property.description %> | <%= property.activity %> <small title="Date of creation"><%= property.created_at %></small>
+      </p>
+  <% end %>
+<% end %>

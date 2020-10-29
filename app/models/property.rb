@@ -1,3 +1,9 @@
 class Property < ApplicationRecord
-  has_ancestry
+  # belongs_to :user
+  belongs_to :activity
+  belongs_to :propertyable, polymorphic: true
+
+  # has_ancestry
+
+  translates :name, :description, :synonym
 end

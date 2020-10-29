@@ -1,5 +1,8 @@
 class PropertiesController < ApplicationController
-
+  def destroy
+    property.destroy if current_user.author_of?(property.propertyable)
+  end
+  
   def index
     @properties = Property.all
   end
@@ -11,14 +14,13 @@ class PropertiesController < ApplicationController
   def edit; end
 
   def create
-    @property = Property.new(property_params)
-
+    @property = current_user.properties.new(property_params)
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, notice: 'Property was successfully created.' }
+        format.html { redirect_to @property, success: 'Property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else
-        format.html { render :new }
+        format.html { render :new, error: 'Property is not created.' }
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
@@ -26,21 +28,23 @@ class PropertiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if property.update(property_params)
-        format.html { redirect_to @property, notice: 'Property was successfully updated.' }
+      if current_user.author_of?(property) && property.update(property_params)
+        format.html { redirect_to @property, success: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
       else
-        format.html { render :edit }
+        format.html { render :edit, error: 'Property is not updated.' }
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    property.destroy
-    respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.author_of?(property)
+      property.destroy
+      respond_to do |format|
+        format.html { redirect_to properties_url, success: 'Property was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -53,6 +57,6 @@ class PropertiesController < ApplicationController
     helper_method :property    
 
     def property_params
-      params.require(:property).permit(:name, :description, :synonym, :code, :version_date, :publish, :position, :ancestry)
+      params.require(:property).permit(:name, :description, :activity_id)
     end
 end

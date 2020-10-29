@@ -1,0 +1,35 @@
+class CreateXcategories < ActiveRecord::Migration[5.0]
+  def up
+    create_table :xcategories do |t|
+      t.string :name
+      t.text :description
+      t.text :synonym
+      t.string :code
+      t.date :version_date
+      t.boolean :publish
+      t.integer :xroot_id, null: false, foreign_key: true
+      t.integer :user_id, null: false, foreign_key: true
+
+      t.timestamps
+    end
+    add_index :xcategories, :user_id
+    add_index :xcategories, :xroot_id
+  end
+
+  def down
+    remove_table :xcategories do |t|
+      t.string :name
+      t.text :description
+      t.text :synonym
+      t.string :code
+      t.date :version_date
+      t.boolean :publish
+      t.integer :xroot_id, null: false, foreign_key: true
+      t.integer :user_id, null: false, foreign_key: true
+      
+      t.timestamps
+    end
+    remove_index :xcategories, :user_id
+    remove_index :xcategories, :xroot_id
+  end
+end

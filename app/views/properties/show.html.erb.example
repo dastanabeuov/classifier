@@ -1,0 +1,48 @@
+<div class="show">
+  <div class="name-container name-pale-blue name-leftbar mb-2">
+    <h1>Show Property</h1>
+  </div>
+
+  <div class="show-form">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Name:</strong> <%= property.name %></li>
+      <li class="list-group-item"><strong>Description:</strong> <%= property.description %></li>
+      <li class="list-group-item"><strong>Synonym:</strong> <%= property.synonym %></li>
+      <li class="list-group-item"><strong>Code:</strong> <%= property.code %></li>
+      <li class="list-group-item"><strong>Version date:</strong> <%= property.version_date %></li>
+      <li class="list-group-item"><strong>Publish:</strong> <%= property.publish %></li>
+      <li class="list-group-item"><strong>Position:</strong> <%= property.position %></li>    
+      <li class="list-group-item"><strong>Ancestry:</strong> <%= property.ancestry %></li>
+      <li class="list-group-item"><strong>Children:</strong> <%= property.has_children? %></li>
+      <li class="list-group-item">
+        <strong>Children: <% if current_user.author_of?(property) %><%= link_to 'add new child', new_property_path(parent_id: property.id), class: "btn btn-sm btn-outline-success" %><% end %></strong>
+        <ul class="items list-group mt-3 mb-3">
+          <% property.children.each do |child| %>
+            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <%= link_to truncate("#{child.name}", :length => 30), property_path(child) %>
+                <small title="Date of creation"><%= child.created_at %></small>
+                <span class="badge badge-secondary badge-pill" title="Children">
+                  <%= child.children.size %>
+                </span>
+                <% if current_user.author_of?(child) %>
+                  <%= link_to (octicon 'trashcan'), property_path(child), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete' %>
+                <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="btn-group">
+    <% if current_user.author_of?(property) %>
+      <%= link_to 'Edit', edit_activity_path(property), class: 'btn btn-sm btn-outline-secondary' %>
+    <% end %>
+
+    <% if property.is_root? %>
+      <%= link_to 'Back', properties_path, class: 'btn btn-sm btn-outline-secondary' %>
+    <% else %>
+      <%= link_to 'Back', property_path(property.parent), class: 'btn btn-sm btn-outline-secondary' %>
+    <% end %>
+  </div>
+</div>

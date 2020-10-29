@@ -41,12 +41,12 @@
         </div>
 
         <div class="field mt-3">
-          <%= f.label :ancestry %>
-          <%= f.text_field :ancestry, class: 'form-control' %>
+          <%= f.label :parent_id %>
+          <%= f.select :parent_id, current_user.activities.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
         </div>
 
         <div class="actions">
-          <%= f.submit class: "btn btn-sm btn-outline-primary mt-5" %>
+          <%= f.submit class: "btn btn-sm btn-outline-success mt-5" %>
         </div>
       <% end %>
     </div>

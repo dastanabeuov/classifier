@@ -1,0 +1,46 @@
+<div class="show">
+  <div class="name-container name-pale-blue name-leftbar mb-2">
+    <h1>Show Xcategory</h1>
+  </div>
+
+  <div class="show-form">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Name:</strong> <%= @xcategory.name %></li>
+      <li class="list-group-item"><strong>Description:</strong> <%= @xcategory.description %></li>
+      <li class="list-group-item"><strong>Synonym:</strong> <%= @xcategory.synonym %></li>
+      <li class="list-group-item"><strong>Code:</strong> <%= @xcategory.code %></li>
+      <li class="list-group-item"><strong>Version date:</strong> <%= @xcategory.version_date %></li>
+      <li class="list-group-item"><strong>Publish:</strong> <%= @xcategory.publish %></li>
+      <li class="list-group-item"><strong>Properties:</strong>
+        <%= render 'shared/properties', resource: @xcategory %>
+      </li>
+      <li class="list-group-item">
+        <strong>Xclasses: <% if current_user.author_of?(@xcategory) %><%= link_to 'add new xclass', new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success" %><% end %></strong>
+        <ul class="list-group mt-3 mb-3">
+          <% @xcategory.xclasses.each do |xclass| %>
+            <% if xclass.is_root? %>
+              <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <%= link_to truncate("#{xclass.name}", :length => 30), xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, xclass), title: 'Name of xclass' %>
+                <small title="Date of creation"><%= xclass.created_at %></small>
+                <span class="badge badge-secondary badge-pill" title="Children">
+                  <%= xclass.children.size %>
+                </span>
+                <% if current_user.author_of?(xclass) %>
+                  <%= link_to (octicon 'trashcan'), xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, xclass), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete' %>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="btn-group mt-2">
+    <% if current_user.author_of?(@xcategory) %>  
+      <%= link_to 'Edit', edit_xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-outline-secondary' %>
+    <% end %>
+    <%= link_to 'Back', xroot_path(@xcategory.xroot), class: 'btn btn-sm btn-outline-secondary' %>
+  </div>
+
+</div>

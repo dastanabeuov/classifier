@@ -1,0 +1,43 @@
+<div class="show">
+  <div class="name-container name-pale-blue name-leftbar mb-2">
+    <h1><%= octicon('eye', height: 22) %> <%= @xroot.name %></h1>
+  </div>
+
+  <ul id="menu">
+    <% @xroots.each do |xroot| %>
+      <li><%= link_to xroot.name, xroot, class: ("text-danger active" if xroot == @xroot) %></li>
+    <% end %>
+  </ul>
+
+  <div id="submenu">
+    <%= render 'submenu_xcategories', xcategories: @xroot.xcategories %>
+  </div>
+
+  <div id="breadcrumbs">
+    <%= @xroot.name %>
+  </div>
+
+  <div class="card mt-2"> 
+    <h1><strong>Name: </strong><%= @xroot.name %></h1>
+    <p><strong>Description: </strong><%= @xroot.description %></p>
+    <p><strong>Synonym: </strong><%= @xroot.synonym %></p>
+    <p><strong>Code: </strong><%= @xroot.code %></p>
+    <p><strong>Version date: </strong><%= @xroot.version_date %></p>
+    <p><strong>Publish: </strong><%= @xroot.publish %></p>
+    <p><strong>Properties:</strong></p>
+    <%= render 'shared/properties', resource: @xroot %>
+    <p>
+    <div>
+      <% if current_user.author_of?(@xroot) %>
+        <%= link_to octicon('plus'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-outline-success" %>
+        <%= link_to (octicon 'pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-outline-warning' %>
+        <%= link_to (octicon 'trashcan'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+      <% end %>
+    </div>
+    </p>
+  </div>
+
+  <div class="btn-group">
+    <%= link_to octicon('arrow-left'), xroots_path, class: 'btn btn-sm btn-outline-secondary' %>
+  </div>
+</div>

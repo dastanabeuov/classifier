@@ -1,0 +1,57 @@
+<div class="show">
+  <div class="nav-side-menu">
+    <div class="brand">CLASSIFICATION SYSTEM</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+      <ul id="menu-content" class="menu-content collapse out">
+        
+        <li data-toggle="collapse" data-target="#xcategory-<%= @xcategory.id %>" class="collapsed active">
+          <a href="<%= xroot_xcategory_path(@xcategory.xroot, @xcategory) %>"><i class="fa fa-globe fa-lg"></i> <%= @xcategory.name %> <% if @xcategory.xclasses.present? %><span class="arrow"></span><% end %></a>
+        </li>
+          
+        <% if @xcategory.xclasses.present? %>
+          <ul class="sub-menu collapse" id="xcategory-<%= @xcategory.id %>">
+            <% @xcategory.xclasses.each do |xclass| %>
+              <li><%= link_to xclass.name, xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, xclass) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="breadcrumbs">
+      <%= link_to @xcategory.xroot.name, xroot_path(@xcategory.xroot) %> /<!-- &gt; -->
+      <%= @xcategory.name %>
+    </div>
+
+    <div class="card mt-2">
+      <h1><strong>Name: </strong><%= @xcategory.name %></h1>
+      <p><strong>Description: </strong><%= @xcategory.description %></p>
+      <p><strong>Synonym: </strong><%= @xcategory.synonym %></p>
+      <p><strong>Code: </strong><%= @xcategory.code %></p>
+      <p><strong>Version date: </strong><%= @xcategory.version_date %></p>
+      <p><strong>Publish: </strong><%= @xcategory.publish %></p>
+      <p><strong>Properties:</strong>
+      <%= render 'shared/properties', resource: @xcategory %>
+      </p>
+      <p><strong>Xclasses:</strong> <%= @xcategory.xclasses.count %></p>
+      <div>
+        <% if current_user.author_of?(@xcategory) %>
+          <%= link_to octicon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success" %>
+          <%= link_to (octicon 'pencil'), edit_xroot_xcategory_path(@xcategory), class: 'btn btn-sm btn-outline-warning' %>
+          <%= link_to (octicon 'trashcan'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+        <% end %>
+      </div>
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="btn-group">
+      <%= link_to octicon('arrow-left'), xroot_path(@xcategory.xroot), class: 'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+</div>

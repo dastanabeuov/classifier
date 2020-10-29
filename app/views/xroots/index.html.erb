@@ -1,0 +1,49 @@
+<div class="index container">
+  <div class="name-container name-pale-blue name-leftbar mb-2">
+    <h1>Xroots</h1>
+  </div>
+
+  <div class="table-responsive">
+    <table id="dttb" class="table table-striped table-light">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Synonym</th>
+          <th>Code</th>
+          <th>Version date</th>
+          <th>Publish</th>
+          <th>Xcategories</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @xroots.each do |xroot| %>
+          <tr>
+            <td><%= truncate("#{xroot.name}", :length => 20) %></td>
+            <td><%= truncate("#{xroot.description}", :length => 30) %></td>
+            <td><%= truncate("#{xroot.synonym}", :length => 30) %></td>
+            <td><%= xroot.code %></td>
+            <td><%= xroot.version_date %></td>
+            <td><%= xroot.publish %></td>
+            <td>
+              <span class="badge badge-secondary badge-pill">
+                <%= xroot.xcategories.size %>
+              </span>
+            </td>
+            <td><%= link_to (octicon 'eye'), xroot, class: 'btn btn-sm btn-outline-secondary' %></td>
+            <% if current_user.author_of?(xroot) %>
+              <td><%= link_to (octicon 'pencil'), edit_xroot_path(xroot), class: 'btn btn-sm btn-outline-secondary' %></td>
+              <td><%= link_to (octicon 'trashcan'), xroot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="btn-group">
+    <%= link_to 'New xroot', new_xroot_path, class: 'btn btn-sm btn-outline-success mt-2' %>
+  </div>
+</div>

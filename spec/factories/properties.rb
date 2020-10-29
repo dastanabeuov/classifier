@@ -8,5 +8,6 @@ FactoryBot.define do
     publish { false }
     position { "MyString" }
     ancestry { "MyString" }
+    user { nil }
   end
 end
