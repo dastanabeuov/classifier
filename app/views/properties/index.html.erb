@@ -1,45 +1,32 @@
-<div class="name-container name-pale-blue name-leftbar">
-  <h1>Properties</h1>
-</div>
+<div class="index">
+  <div class="name-container name-pale-blue name-leftbar mb-2">
+    <h1>Properties</h1>
+  </div>
 
-<br>
-
-<div class="table-responsive">
-  <table class="table table-bordered table-hover">
-    <thead class="thead-light">
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Synonym</th>
-        <th>Code</th>
-        <th>Version date</th>
-        <th>Publish</th>
-        <th>Position</th>
-        <th>Ancestry</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @properties.each do |property| %>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
         <tr>
-          <td><%= property.name %></td>
-          <td><%= property.description %></td>
-          <td><%= property.synonym %></td>
-          <td><%= property.code %></td>
-          <td><%= property.version_date %></td>
-          <td><%= property.publish %></td>
-          <td><%= property.position %></td>
-          <td><%= property.ancestry %></td>
-          <td><%= link_to (octicon 'eye'), property, class: 'btn btn-sm btn-outline-secondary' %></td>
-          <td><%= link_to (octicon 'pencil'), edit_property_path(property), class: 'btn btn-sm btn-outline-secondary' %></td>
-          <td><%= link_to (octicon 'trashcan'), property, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary' %></td>
+          <th>Propertyable</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Activity</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @properties.each do |property| %>
+          <tr>
+            <td><%= property.propertyable_type %></td>
+            <td><%= property.name %></td>
+            <td><%= property.description %></td>
+            <td><%= activity(property) %></td>
+            <td><%= link_to (octicon 'eye'), property, class: 'btn btn-sm btn-outline-secondary' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 </div>
-
-<br>
-
-<%= link_to 'New Property', new_property_path, class: 'btn btn-sm btn-outline-primary' %>

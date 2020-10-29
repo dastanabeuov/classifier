@@ -1,37 +1,19 @@
-<ul id="menu">
-  <% Property.roots.each do |page| %>
-    <li><%= link_to page.name, page, class: ("active" if property.root == page) %></li>
-  <% end %>
-</ul>
-
-<div id="submenu">
-  <%= render 'submenu_pages', properties: property.root.descendants.arrange %>
-</div>
-
-<div id="breadcrumbs">
-  <% property.ancestors.each do |page| %>
-    <%= link_to page.name, page %> &gt;
-  <% end %>
-</div>
-
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title"><strong>Name:</strong> <%= property.name %></h5>
+<div class="show">
+  <div class="name-container name-pale-blue name-leftbar mb-2">
+    <h1>Show Property</h1>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Description:</strong> <%= property.description %></li>
-    <li class="list-group-item"><strong>Synonym:</strong> <%= property.synonym %></li>
-    <li class="list-group-item"><strong>Code:</strong> <%= property.code %></li>
-    <li class="list-group-item"><strong>Version date:</strong> <%= property.version_date %></li>
-    <li class="list-group-item"><strong>Publish:</strong> <%= property.publish %></li>
-    <li class="list-group-item"><strong>Position:</strong> <%= property.position %></li>    
-    <li class="list-group-item"><strong>Ancestry:</strong> <%= property.ancestry %></li>      
-  </ul>
+
+  <div class="show-form">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Propertyable:</strong> <%= property.propertyable_type %></li>
+      <li class="list-group-item"><strong>Name:</strong> <%= property.name %></li>
+      <li class="list-group-item"><strong>Description:</strong> <%= property.description %></li>
+      <li class="list-group-item"><strong>Activity:</strong> <%= activity(property) %></li>
+      </li>
+    </ul>
+  </div>
+
+  <div class="btn-group mt-2">
+    <%= link_to 'All properties', properties_path, class: 'btn btn-sm btn-outline-secondary' %>
+  </div>
 </div>
-
-<br>
-
-<% if current_user.admin? %>
-  <%= link_to 'Edit', edit_property_path(property), class: 'btn btn-sm btn-outline-secondary' %>
-  <%= link_to 'Back', properties_path, class: 'btn btn-sm btn-outline-secondary' %>
-<% end %>  

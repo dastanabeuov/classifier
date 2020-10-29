@@ -1,23 +1,9 @@
 <!-- Footer -->
 <footer class="page-footer font-small mt-5">
-    <!-- Footer Links -->
-  <div class="container">
-    <!-- Grid row-->
-    <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
-      <!-- Grid column -->
-      <div class="col-md-8 col-12 mt-5">
-        <p style="line-height: 1.7rem">
-          <%= render 'layouts/change_locale' %>
-        </p>
-      </div>
-      <!-- Grid column -->
-    </div>
-    <!-- Grid row-->
-  </div>
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">
+  <div class="footer-copyright text-center py-3 text-secondary">
     © <%= current_year %>
-    <b><%= t('classifier.copyright') %> </b> <%= link_to octicon('repo-forked'), github_url('dastanabeuov', 'Classifier'), target: '_blank' %>
+    <b><%= t('classifier.copyright') %> </b> <%= link_to octicon('repo-forked'), github_url('dastanabeuov', 'Classifier'), target: '_blank', class: 'text-secondary' %>
   </div>
     <!-- Copyright -->
 </footer>

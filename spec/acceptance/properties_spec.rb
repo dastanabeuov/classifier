@@ -22,21 +22,18 @@ resource 'properties' do
     route_summary 'This is used to create properties.'
 
     with_options scope: :property, with_example: true do
-      parameter :content, 'Doodle IT', required: true
-      parameter :propertyable_type, 'Xroot'
-      parameter :propertyable_id, '1'
+      parameter :name, 'Doodle IT', required: true
+      parameter :description, 'Doodling Information Technology'
     end
 
     with_options scope: :order do
-      response_field :content, 'Doodle IT', type: :text
-      response_field :propertyable_type, 'Xroot', type: :string
-      response_field :propertyable_id, '1', type: :integer
+      response_field :name, 'Doodle IT', type: :text
+      response_field :description, 'Doodling Information Technology', type: :string
     end
 
     context '200' do
-      let(:content) { 'Doodle IT' }
-      let(:propertyable_type) { 'Xroot' }
-      let(:propertyable_id) {'1'}
+      let(:name) { 'Doodle IT' }
+      let(:description) { 'Doodling Information Technology' }
       let(:raw_post) { params.to_json }
 
       example 'Create a property' do

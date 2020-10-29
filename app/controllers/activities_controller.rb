@@ -6,19 +6,22 @@ class ActivitiesController < ApplicationController
 
   def show; end
 
-  def new; end
+  def new
+    @activity = Activity.new
+    @activity.parent_id = params[:parent_id]
+  end
 
   def edit; end
 
   def create
-    @activity = Activity.new(activity_params)
-
+    @activity = current_user.activities.new(activity_params)
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.html { redirect_to @activity, 
+          success: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
-        format.html { render :new }
+        format.html { render :new, error: 'Activity is not created.' }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
@@ -26,21 +29,25 @@ class ActivitiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if activity.update(activity_params)
-        format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
+      if current_user.author_of?(activity) && activity.update(activity_params)
+        format.html { redirect_to @activity, 
+          success: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
-        format.html { render :edit }
+        format.html { render :edit, error: 'Activity is not updated.' }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    activity.destroy
-    respond_to do |format|
-      format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.author_of?(activity)
+      activity.destroy
+      respond_to do |format|
+        format.html { redirect_to activities_url, 
+          success: 'Activity was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -53,6 +60,8 @@ class ActivitiesController < ApplicationController
     helper_method :activity
 
     def activity_params
-      params.require(:activity).permit(:name, :description, :synonym, :code, :version_date, :publish, :position, :ancestry)
+      params.require(:activity).permit(:name, :description, 
+        :synonym, :code, :version_date, :publish, :position, 
+        :parent_id)
     end
 end

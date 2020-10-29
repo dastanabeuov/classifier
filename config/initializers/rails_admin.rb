@@ -22,7 +22,8 @@ RailsAdmin.config do |config|
     ## Sortable nestable action for each model
     nestable do
       visible do
-        %w(Xclass Property Activity).include? bindings[:abstract_model].model_name
+        #Xroot Xcategory Xclass 
+        %w(Xclass Activity).include? bindings[:abstract_model].model_name
       end
     end     
   end
@@ -32,6 +33,19 @@ RailsAdmin.config do |config|
   #config.model 'Xcategory' do
   #  nestable_list true
   #end
+  # config.model 'Xroot' do
+  #   nestable_tree({
+  #     position_field: :position,
+  #     max_depth: 999
+  #   })
+  # end
+
+  # config.model 'Xcategory' do
+  #   nestable_tree({
+  #     position_field: :position,
+  #     max_depth: 999
+  #   })
+  # end
 
   config.model 'Xclass' do
     nestable_tree({
@@ -40,12 +54,12 @@ RailsAdmin.config do |config|
     })
   end
 
-  config.model 'Property' do
-    nestable_tree({
-      position_field: :position,
-      max_depth: 999
-    })
-  end
+  # config.model 'Property' do
+  #   nestable_tree({
+  #     position_field: :position,
+  #     max_depth: 999
+  #   })
+  # end
 
   config.model 'Activity' do
     nestable_tree({
@@ -56,13 +70,21 @@ RailsAdmin.config do |config|
   ##############################    
 
   ##Display show atributes models
-  #config.model 'Xcategory' do    
-  #  list do
-  #    field :id
-  #    field :name
-  #    field :description
-  #  end
-  #end
+  config.model 'Xroot' do    
+    list do
+      field :id
+      field :name
+      field :description
+    end
+  end
+  
+  config.model 'Xcategory' do    
+    list do
+      field :id
+      field :name
+      field :description
+    end
+  end
 
   config.model 'Xclass' do    
     list do
@@ -113,22 +135,22 @@ RailsAdmin.config do |config|
   ################################
 
   ## == Globalize ==
-  #translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property']
-  #config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
+  translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property', 'Activity']
+  config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
   #################################################################################################################
 
   ## == Globalize Translated Fields ==
-  #translated_models.each do |model|
-  #  config.model model do
-  #    configure :translations, :globalize_tabs
-  #  end
-  #  config.model "#{model}::Translation" do
-  #    visible false
-  #    configure :locale, :hidden do
-  #      help ''
-  #    end
-  #    include_fields :locale, *Object.const_get(model).translated_attribute_names
-  #  end
-  #end
+  translated_models.each do |model|
+    config.model model do
+      configure :translations, :globalize_tabs
+    end
+    config.model "#{model}::Translation" do
+      visible false
+      configure :locale, :hidden do
+        help ''
+      end
+      include_fields :locale, *Object.const_get(model).translated_attribute_names
+    end
+  end
   ###############################################################################
 end

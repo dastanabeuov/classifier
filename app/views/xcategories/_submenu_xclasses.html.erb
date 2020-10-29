@@ -1,0 +1,13 @@
+<ul>
+  <% if xclasses.empty? %>
+    <li>No tree...</li>
+  <% else %>
+    <% xclasses.each do |xclass| %>
+      <li>
+        <% if xclass.root? %>
+          <%= link_to xclass.name, xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

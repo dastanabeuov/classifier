@@ -1,0 +1,12 @@
+<ul>
+  <% if children.empty? %>
+    <li>No tree...</li>
+  <% else %>
+    <% children.each do |child, children| %>
+      <li>
+        <%= link_to_unless_current child.name, xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>
+        <%= render 'submenu_xclass', children: children if children.present? %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

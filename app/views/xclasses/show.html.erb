@@ -1,38 +1,62 @@
-<ul id="menu">
-  <% Xclass.roots.each do |page| %>
-    <li><%= link_to page.name, page, class: ("active" if xclass.root == page) %></li>
-  <% end %>
-</ul>
+<div class="show">
+  <div class="nav-side-menu">
+    <div class="brand">CLASSIFICATION SYSTEM</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
-<div id="submenu">
-  <%= render 'submenu_pages', xclasses: xclass.root.descendants.arrange %>
-</div>
-
-<div id="breadcrumbs">
-  <% xclass.ancestors.each do |page| %>
-    <%= link_to page.name, page %> &gt;
-  <% end %>
-</div>
-
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title"><strong>Name:</strong> <%= xclass.name %></h5>
+    <div class="menu-list">
+      <ul id="menu-content" class="menu-content collapse out">
+        
+        <li data-toggle="collapse" data-target="#xclass-<%= @xclass.id %>" class="collapsed active">
+          <a href="<%= xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass) %>"><i class="fa fa-globe fa-lg"></i> <%= @xclass.name %> <% if @xclass.children.present? %><span class="arrow"></span><% end %></a>
+        </li>
+          
+        <% if @xclass.children.present? %>
+          <ul class="sub-menu collapse" id="xclass-<%= @xclass.id %>">
+            <% @xclass.children.each do |child| %>
+              <li><%= link_to child.name, xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, child) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Description:</strong> <%= xclass.description %></li>
-    <li class="list-group-item"><strong>Synonym:</strong> <%= xclass.synonym %></li>
-    <li class="list-group-item"><strong>Code:</strong> <%= xclass.code %></li>
-    <li class="list-group-item"><strong>Version date:</strong> <%= xclass.version_date %></li>
-    <li class="list-group-item"><strong>Publish:</strong> <%= xclass.publish %></li>
-    <li class="list-group-item"><strong>Xtype:</strong> <%= xclass.xtype %></li>
-    <li class="list-group-item"><strong>Position:</strong> <%= xclass.position %></li>    
-    <li class="list-group-item"><strong>Ancestry:</strong> <%= xclass.ancestry %></li>      
-  </ul>
+
+  <div class="content">
+    <div id="breadcrumbs">
+      <% if @xclass.root? %>
+        <%= link_to @xclass.xcategory.name, xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory) %> /
+      <% else %>
+        <%= link_to @xclass.parent.name, xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass.parent) %> /
+      <% end %>
+      <%= @xclass.name %>
+    </div>
+    
+    <div class="card mt-2">
+      <h1><strong>Name: </strong><%= @xclass.name %></h1>
+      <p><strong>Description: </strong><%= @xclass.description %></p>
+      <p><strong>Synonym: </strong><%= @xclass.synonym %></p>
+      <p><strong>Code: </strong><%= @xclass.code %></p>
+      <p><strong>Version date: </strong><%= @xclass.version_date %></p>
+      <p><strong>Publish: </strong><%= @xclass.publish %></p>
+      <p><strong>Properties:</strong>
+      <%= render 'shared/properties', resource: @xclass %>
+      </p>
+      <p><strong>Children: </strong><%= @xclass.children.count %></p>
+      <div>
+        <% if current_user.author_of?(@xclass) %>
+          <%= link_to octicon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, parent_id: @xclass.id), class: "btn btn-sm btn-outline-success" %>
+          <%= link_to (octicon 'pencil'), edit_xroot_xcategory_xclass_path(@xclass), class: 'btn btn-sm btn-outline-warning' %>
+          <%= link_to (octicon 'trashcan'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <% if @xclass.root? %>
+        <%= link_to octicon('arrow-left'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-outline-secondary' %>
+      <% else %>
+        <%= link_to octicon('arrow-left'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass.parent), class: 'btn btn-sm btn-outline-secondary' %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<br>
-
-<% if current_user.admin? %>
-  <%= link_to 'Edit', edit_xclass_path(xclass), class: 'btn btn-sm btn-outline-secondary' %>
-  <%= link_to 'Back', xclasses_path, class: 'btn btn-sm btn-outline-secondary' %>
-<% end %>

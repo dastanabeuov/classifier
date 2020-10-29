@@ -18,7 +18,7 @@ feature 'User can give an xclass', %q{
 
     expect(current_path).to eq xclass_path(xclass)
     within '.xclasss' do # чтобы убедиться, что xclass в списке, а не в форме
-      expect(page).to have_content 'My root'
+      expect(page).to have_content 'My xclass'
     end
   end
 
