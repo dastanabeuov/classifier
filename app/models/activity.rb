@@ -5,5 +5,7 @@ class Activity < ApplicationRecord
 
   has_ancestry
 
-  translates :name, :description, :synonym
+  validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
+  
+  # translates :name, :description, :synonym
 end

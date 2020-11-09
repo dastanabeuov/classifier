@@ -1,6 +1,6 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark mb-5">  
-  <%= image_tag 'logo-smoke.png', title: "Logo BIM", alt: "Logo BIM", class: "navbar-brand img-fluid rounded-circle",
-    heght: "50", width: "50" %>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">  
+  <a href="<%= root_path %>"><%= image_tag 'logo-smoke.png', title: "Logo BIM", alt: "Logo BIM", class: "navbar-brand img-fluid rounded-circle",
+    heght: "50", width: "50" %></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,7 +14,7 @@
     <% if user_signed_in? %>
     <ul class="navbar-nav pull-xs-right">
       
-      <li class="nav-item dropleft mr-2">
+      <li class="nav-item dropleft">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= octicon "workflow", :height => 18 %>
         </a>
@@ -24,20 +24,20 @@
           <a href="<%= xroots_path %>" class="dropdown-item">Category <span class="badge"><%= count_xcategories %></span></a>
           <a href="<%= xroots_path %>" class="dropdown-item">Classes <span class="badge"><%= count_xclasses %></span></a>
           <a href="<%= properties_path %>" class="dropdown-item">Properties <span class="badge"><%= count_properties %></span></a>
-          <a href="<%= activities_path %>" class="dropdown-item">Activities <span class="badge"><%= count_activities %></span></a>    
+          <a href="<%= activities_path %>" class="dropdown-item">Activities <span class="badge"><%= count_activities %></span></a>
         </div>
       </li>
 
-      <li class="nav-item mr-2">
+      <li class="nav-item">
         <%= link_to octicon("plug", :height => 18), "/api_docs/single_swagger_doc", class: "nav-link", target: :_blank, title: "API docs" %>
       </li>
       <li class="nav-item mr-2">
           <%= link_to octicon("terminal", :height => 18), "/admin/", class: "nav-link", title: "Admin panel" %>
       </li>
 
-      <li class="nav-item dropdown mr-2">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= current_user.email %> <%= image_tag 'user.png', title: "User image", alt: "User image" %>
+          <%= current_user.email %> <%= image_tag 'user.png', title: "User avatar", alt: "User image" %>
         </a>
         <div class="dropleft dropdown-menu" aria-labelledby="navbarDropdown">
 

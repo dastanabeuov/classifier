@@ -1,12 +1,22 @@
-<ul>
-  <% if children.empty? %>
-    <li>No tree...</li>
-  <% else %>
-    <% children.each do |child, children| %>
-      <li>
-        <%= link_to_unless_current child.name, xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>
-        <%= render 'submenu_xclass', children: children if children.present? %>
-      </li>
+<% if child.children.empty? %>
+  <li>No Tree...</li>
+<% else %>
+  <% child.children.each do |child| %>
+    <li data-toggle="collapse" data-target="#child-<%= child.id %>" class="collapsed">
+      <% if child.children? %>
+        <i class="fa fa-folder fa-lg"></i>
+      <% else %>
+        <i class="fa fa-folder fa-lg"></i>
+      <% end %>
+      <%= link_to_unless_current truncate(child.name, :length => 20), xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>
+      <% if child.children.present? %>
+        <span class="arrow"></span>
+      <% end %>
+    </li>
+    <% if child.children.present? %>
+      <ul class="sub-menu collapse pl-2" id="child-<%= child.id %>">
+        <%= render 'submenu_xclass', child: child %>
+      </ul>
     <% end %>
   <% end %>
-</ul>
+<% end %>

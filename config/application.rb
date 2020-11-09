@@ -6,7 +6,6 @@ Bundler.require(*Rails.groups)
 
 module Classifier
   class Application < Rails::Application 
-    config.assets.initialize_on_precompile = false
     config.i18n.fallbacks = true
     config.i18n.default_locale = :ru
     config.i18n.available_locales = [:ru, :kz, :en]

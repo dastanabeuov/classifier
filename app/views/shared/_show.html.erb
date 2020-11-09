@@ -1,0 +1,20 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="card-columns pl-5">
+        <% xroot.xcategories.each do |xcategory| %>
+          <div class="card border-info mt-5 mb-5 pl-2" style="max-width: 18rem;">
+            <div class="card-header">
+              <%= link_to octicon('eye'), xroot_xcategory_path(xcategory.xroot, xcategory) %>
+              <span class="badge badge-warning"><%= count_xclasses_root_in_xcategory(xcategory) %></span>
+            </div>
+            <div class="card-body text-info">
+              <h5 class="card-title"><%= truncate(xcategory.name, :length => 20) %></h5>
+              <p class="card-text"><%= truncate(xcategory.description, :length => 160) %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

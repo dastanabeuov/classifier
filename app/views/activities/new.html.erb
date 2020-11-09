@@ -1,11 +1,25 @@
 <div class="new">
-  <div class="name-container name-pale-blue name-leftbar">
-    <h1>New Activity</h1>
-  </div>
 
-  <%= render 'form', activity: activity %>
+  <div class="row justify-content-center">
+    <div class="col-xl-12 col-sm-12 col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <h1 class="card-header text-center">New Activity</h1>
+          <div class="card-body">
+            <div class="row justify-content-md-center">
+              <div class="col-md-12">
+
+                <%= render 'form', activity: activity %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   
-  <div class="btn-group">
-    <%= link_to 'Back', activities_path, class: 'btn btn-sm btn-outline-secondary' %>
+  <div class="btn-group mt-5">
+    <%= link_to (octicon 'arrow-left'), activities_path, class: 'btn btn-sm btn-outline-secondary' %>
   </div>
 </div>

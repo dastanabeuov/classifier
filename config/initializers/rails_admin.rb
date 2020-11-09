@@ -1,13 +1,13 @@
 RailsAdmin.config do |config|
-  ##Set Locales
+  #Set Locales
   I18n.default_locale = :ru
   I18n.available_locales = [:ru, :kz, :en]   
   ########################################
 
-  ##Base configuration dashboard
+  #Base configuration dashboard
   config.actions do    
-    dashboard                     # mandatory
-    index                       # mandatory
+    dashboard # mandatory
+    index # mandatory
     new
     export
     bulk_delete
@@ -15,7 +15,7 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-    ## With an audit adapter, you can add:
+    #With an audit adapter, you can add:
     # history_index
     # history_show
 
@@ -27,25 +27,26 @@ RailsAdmin.config do |config|
       end
     end     
   end
-  ########################################################################
 
-  ##Neslable atrributes setting
+  #Neslable atrributes setting
+  
   #config.model 'Xcategory' do
   #  nestable_list true
   #end
-  # config.model 'Xroot' do
-  #   nestable_tree({
-  #     position_field: :position,
-  #     max_depth: 999
-  #   })
-  # end
 
-  # config.model 'Xcategory' do
-  #   nestable_tree({
-  #     position_field: :position,
+  #config.model 'Xroot' do
+  #  nestable_tree({
+  #    position_field: :position,
   #     max_depth: 999
   #   })
-  # end
+  #end
+
+  #config.model 'Xcategory' do
+  #  nestable_tree({
+  #    position_field: :position,
+  #     max_depth: 999
+  #   })
+  #end
 
   config.model 'Xclass' do
     nestable_tree({
@@ -54,22 +55,22 @@ RailsAdmin.config do |config|
     })
   end
 
-  # config.model 'Property' do
-  #   nestable_tree({
-  #     position_field: :position,
+  #config.model 'Property' do
+  #  nestable_tree({
+  #    position_field: :position,
   #     max_depth: 999
   #   })
-  # end
+  #end
 
   config.model 'Activity' do
     nestable_tree({
       position_field: :position,
       max_depth: 999
     })
-  end
-  ##############################    
+  end 
 
-  ##Display show atributes models
+  #Display show atributes models
+
   config.model 'Xroot' do    
     list do
       field :id
@@ -120,37 +121,34 @@ RailsAdmin.config do |config|
       field :guest
     end
   end
-  ############################
 
-  ### Popular gems integration  
-  ## == Devise ==
+  #gems integration
+  #== Devise ==
+
    config.authenticate_with do
      warden.authenticate! scope: :user
    end
    config.current_user_method(&:current_user)
-  ###########################################
 
-  ## == CancanCan ==
+  #== CancanCan ==
   config.authorize_with :cancancan
-  ################################
 
-  ## == Globalize ==
-  translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property', 'Activity']
-  config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
-  #################################################################################################################
+  # #== Globalize ==
+  # translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property', 'Activity']
+  # config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
 
-  ## == Globalize Translated Fields ==
-  translated_models.each do |model|
-    config.model model do
-      configure :translations, :globalize_tabs
-    end
-    config.model "#{model}::Translation" do
-      visible false
-      configure :locale, :hidden do
-        help ''
-      end
-      include_fields :locale, *Object.const_get(model).translated_attribute_names
-    end
-  end
-  ###############################################################################
+  # #== Globalize Translated Fields ==
+  # translated_models.each do |model|
+  #   config.model model do
+  #     configure :translations, :globalize_tabs
+  #   end
+  #   config.model "#{model}::Translation" do
+  #     visible false
+  #     configure :locale, :hidden do
+  #       help ''
+  #     end
+  #     include_fields :locale, *Object.const_get(model).translated_attribute_names
+  #   end
+  # end
+  
 end
