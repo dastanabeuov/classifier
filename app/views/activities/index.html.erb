@@ -1,53 +1,62 @@
 <div class="index">
-  <div class="name-container name-pale-blue name-leftbar mb-2">
-    <h1>Activities</h1>
+  <div class="card mt-4">
+    <div class="card-block">
+      <h1 class="card-header text-center">Activities</h1>
+      <div class="card-body">
+        <div class="row justify-content-md-center">
+          <div class="col-md-12">
+
+            <div class="table-responsive">
+              <table class="table table-striped table-light">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Synonym</th>
+                    <th>Code</th>
+                    <th>Version date</th>
+                    <th>Publish</th>
+                    <th>Position</th>
+                    <th>Ancestry</th>
+                    <th>Children</th>
+                    <th colspan="3"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @activities.each do |activity| %>
+                    <tr>
+                      <td><%= activity.name %></td>
+                      <td><%= activity.description %></td>
+                      <td><%= activity.synonym %></td>
+                      <td><%= activity.code %></td>
+                      <td><%= activity.version_date %></td>
+                      <td><%= activity.publish %></td>
+                      <td><%= activity.position %></td>
+                      <td><span class="badge badge-info badge-pill"><%= activity.ancestry %></span></td>
+                      <td>
+                        <span class="badge badge-info badge-pill">
+                          <%= activity.children.size %>
+                        </span>
+                      </td>
+                      <td><%= link_to (octicon 'eye'), activity, class: 'btn btn-sm btn-outline-info' %></td>
+                      <% if current_user.author_of?(activity) %>
+                        <td><%= link_to (octicon 'pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %></td>
+                        <td><%= link_to (octicon 'trashcan'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Synonym</th>
-          <th>Code</th>
-          <th>Version date</th>
-          <th>Publish</th>
-          <th>Position</th>
-          <th>Ancestry</th>
-          <th>Children</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @activities.each do |activity| %>
-          <tr>
-            <td><%= activity.name %></td>
-            <td><%= activity.description %></td>
-            <td><%= activity.synonym %></td>
-            <td><%= activity.code %></td>
-            <td><%= activity.version_date %></td>
-            <td><%= activity.publish %></td>
-            <td><%= activity.position %></td>
-            <td><%= activity.ancestry %></td>
-            <td>
-              <span class="badge badge-secondary badge-pill">
-                <%= activity.children.size %>
-              </span>
-            </td>
-            <td><%= link_to (octicon 'eye'), activity, class: 'btn btn-sm btn-outline-secondary' %></td>
-            <% if current_user.author_of?(activity) %>
-              <td><%= link_to (octicon 'pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-secondary' %></td>
-              <td><%= link_to (octicon 'trashcan'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary' %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="btn-group">
-    <%= link_to 'New Activity', new_activity_path, class: 'btn btn-sm btn-outline-success mt-2' %>
+  <div class="btn-group mt-5">
+    <%= link_to (octicon 'plus'), new_activity_path, class: 'btn btn-sm btn-outline-success mt-2' %>
   </div>
 </div>

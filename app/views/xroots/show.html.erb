@@ -1,4 +1,4 @@
-<div class="show">
+<div class="show-xroot">
   <div class="nav-side-menu">
     <div class="brand">CLASSIFICATION SYSTEM</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -6,14 +6,43 @@
     <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
         <% @xroots.each do |xroot| %>
-          <li data-toggle="collapse" data-target="#xroot-<%= xroot.id %>" class="collapsed <%= "active" if xroot == @xroot %>"><a href="<%= xroot_path(xroot) %>"><i class="fa fa-globe fa-lg"></i> <%= xroot.name %> <% if xroot.xcategories.present? %><span class="arrow"></span><% end %></a></li>
-          
-          <% if xroot.xcategories.present? %>
-              <% xroot.xcategories.each do |xcategory| %>
-                <ul class="sub-menu collapse" id="xroot-<%= xroot.id %>">
-                  <li><%= link_to xcategory.name, xroot_xcategory_path(xroot, xcategory) %></li>
-                </ul>
+          <li data-toggle="collapse" data-target="#xroot-<%= xroot.id %>" class="collapsed <%= "active" if xroot == @xroot %>">
+            <a href="<%= xroot_path(xroot) %>">
+              <% if xroot.xcategories.present? %>
+                <i class="fa fa-folder fa-lg"></i>
+              <% else %>
+                <i class="fa fa-file fa-lg"></i>
               <% end %>
+                <%= truncate(xroot.name, :length => 20) %>
+              <% if xroot.xcategories.present? %>
+                <span class="arrow"></span>
+              <% end %>
+            </a>
+          </li>
+
+          <% if xroot.xcategories.present? %>
+            <ul class="sub-menu collapse" id="xroot-<%= xroot.id %>">
+              <% xroot.xcategories.each do |xcategory| %>
+                <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed">
+                  <% if xcategory.xclasses.present? %>
+                    <i class="fa fa-folder fa-lg"></i>
+                  <% else %>
+                    <i class="fa fa-file fa-lg"></i>
+                  <% end %>
+                    <%= link_to truncate(xcategory.name, :length => 20), xroot_xcategory_path(xroot, xcategory) %>
+                  <% if xcategory.xclasses.present? %>
+                    <span class="arrow"></span>
+                  <% end %>
+                </li>
+
+                <% if xcategory.xclasses.present? %>
+                  <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
+                    <%= render 'submenu_xclasses', xcategory: xcategory %>
+                  </ul>
+                <% end %>
+              
+              <% end %>
+            </ul>
           <% end %>
         <% end %>
       </ul>
@@ -21,32 +50,46 @@
   </div>
 
   <div class="content">
-    <div id="breadcrumbs">
-      <%= @xroot.name %>
-    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 20) %></li>
+      </ol>
+    </nav>
 
-    <div class="card mt-2">
-      <h1><strong>Name: </strong><%= @xroot.name %></h1>
-      <p><strong>Description: </strong><%= @xroot.description %></p>
-      <p><strong>Synonym: </strong><%= @xroot.synonym %></p>
-      <p><strong>Code: </strong><%= @xroot.code %></p>
-      <p><strong>Version date: </strong><%= @xroot.version_date %></p>
-      <p><strong>Publish: </strong><%= @xroot.publish %></p>
-      <p><strong>Properties:</strong>
-      <%= render 'shared/properties', resource: @xroot %>
-      </p>
-      <p><strong>Xcategories:</strong> <%= @xroot.xcategories.count %></p>
-      <div>
-        <% if current_user.author_of?(@xroot) %>
-          <%= link_to octicon('plus'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-outline-success" %>
-          <%= link_to (octicon 'pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-outline-warning' %>
-          <%= link_to (octicon 'trashcan'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
-        <% end %>
+    <div class="card mt-4">
+      <div class="card-block">
+        <h1 class="card-header text-center"><%= @xroot.name %></h1>
+        <div class="card-body">
+          <div class="row justify-content-md-center">
+            <div class="col-md-12">
+
+              <p><strong>Description: </strong><%= @xroot.description %></p>
+              <p><strong>Synonym: </strong><%= @xroot.synonym %></p>
+              <p><strong>Code: </strong><%= @xroot.code %></p>
+              <p><strong>Version date: </strong><%= @xroot.version_date %></p>
+              <p><strong>Publish: </strong><%= @xroot.publish %></p>
+              <p><strong>Properties:</strong>
+              <%= render 'shared/properties', resource: @xroot %>
+              </p>
+              <p>
+                <!-- Large modal -->
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Xcategories <span class="badge badge-info"><%= @xroot.xcategories.count %></span></button>
+                <%= render 'shared/show', xroot: @xroot %>
+              </p>
+              <div class="float-right">
+                <% if current_user.author_of?(@xroot) %>
+                  <%= link_to octicon('plus'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-outline-success" %>
+                  <%= link_to (octicon 'pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-outline-warning' %>
+                  <%= link_to (octicon 'trashcan'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      </p>
     </div>
 
-    <div class="btn-group">
+    <div class="mt-5">
       <%= link_to octicon('arrow-left'), xroots_path, class: 'btn btn-sm btn-outline-secondary' %>
     </div>
   </div>

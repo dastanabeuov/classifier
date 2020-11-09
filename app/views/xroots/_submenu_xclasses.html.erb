@@ -1,0 +1,12 @@
+<% xcategory.xclasses.each do |xclass| %>
+  <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
+    <%= link_to_unless_current xclass.name, xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
+  </li>
+  
+  <% if xclass.children? %>
+    <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
+      <%= render 'submenu_children', xclass: xclass %> 
+    </ul>
+  <% end %>
+
+<% end %>

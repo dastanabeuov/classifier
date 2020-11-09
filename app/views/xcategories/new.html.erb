@@ -1,11 +1,25 @@
-<div class="new container">
-  <div class="name-container name-pale-blue name-leftbar">
-    <h1>New Category</h1>
+<div class="new">
+
+  <div class="row justify-content-center">
+    <div class="col-xl-12 col-sm-12 col-md-12">
+      <div class="card">
+        <div class="card-block">
+          <h1 class="card-header text-center">New Category</h1>
+          <div class="card-body">
+            <div class="row justify-content-md-center">
+              <div class="col-md-12">
+
+                <%= render 'form' %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <%= render 'form' %>
-
-  <div class="btn-group">
-    <%= link_to 'Back', xroot_path(@xcategory.xroot), class: 'btn btn-sm btn-outline-secondary' %>
+  <div class="btn-group mt-5">
+    <%= link_to (octicon 'arrow-left'), xroot_path(@xcategory.xroot), class: 'btn btn-sm btn-outline-secondary' %>
   </div>
 </div>

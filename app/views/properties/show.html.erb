@@ -1,19 +1,23 @@
-<div class="show">
-  <div class="name-container name-pale-blue name-leftbar mb-2">
-    <h1>Show Property</h1>
+<div class="show-second">
+  <div class="card mt-5">
+    <div class="card-block">
+      <h1 class="card-header text-center">Show Property</h1>
+      <div class="card-body">
+        <div class="row justify-content-md-center">
+          <div class="col-md-12">
+
+            <p><strong>Propertyable: </strong><%= property.propertyable_type %></p>
+            <p><strong>Name: </strong><%= property.name %></p>
+            <p><strong>Description: </strong><%= property.description %></p>
+            <p><strong>Activity: </strong><%= activity(property) %></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="show-form">
-    <ul class="list-group">
-      <li class="list-group-item"><strong>Propertyable:</strong> <%= property.propertyable_type %></li>
-      <li class="list-group-item"><strong>Name:</strong> <%= property.name %></li>
-      <li class="list-group-item"><strong>Description:</strong> <%= property.description %></li>
-      <li class="list-group-item"><strong>Activity:</strong> <%= activity(property) %></li>
-      </li>
-    </ul>
-  </div>
-
-  <div class="btn-group mt-2">
-    <%= link_to 'All properties', properties_path, class: 'btn btn-sm btn-outline-secondary' %>
+  <div class="btn-group mt-5">
+    <%= link_to octicon('arrow-left'), properties_path, class: 'btn btn-sm btn-outline-secondary' %>
   </div>
 </div>

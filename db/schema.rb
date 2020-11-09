@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200909110516) do
+ActiveRecord::Schema.define(version: 20200608051034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,18 +32,6 @@ ActiveRecord::Schema.define(version: 20200909110516) do
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
 
-  create_table "activity_translations", force: :cascade do |t|
-    t.integer  "activity_id", null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.index ["activity_id"], name: "index_activity_translations_on_activity_id", using: :btree
-    t.index ["locale"], name: "index_activity_translations_on_locale", using: :btree
-  end
-
   create_table "properties", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -54,18 +42,6 @@ ActiveRecord::Schema.define(version: 20200909110516) do
     t.datetime "updated_at",        null: false
     t.index ["activity_id"], name: "index_properties_on_activity_id", using: :btree
     t.index ["propertyable_type", "propertyable_id"], name: "index_properties_on_propertyable_type_and_propertyable_id", using: :btree
-  end
-
-  create_table "property_translations", force: :cascade do |t|
-    t.integer  "property_id", null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.index ["locale"], name: "index_property_translations_on_locale", using: :btree
-    t.index ["property_id"], name: "index_property_translations_on_property_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -104,30 +80,6 @@ ActiveRecord::Schema.define(version: 20200909110516) do
     t.index ["xroot_id"], name: "index_xcategories_on_xroot_id", using: :btree
   end
 
-  create_table "xcategory_translations", force: :cascade do |t|
-    t.integer  "xcategory_id", null: false
-    t.string   "locale",       null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.index ["locale"], name: "index_xcategory_translations_on_locale", using: :btree
-    t.index ["xcategory_id"], name: "index_xcategory_translations_on_xcategory_id", using: :btree
-  end
-
-  create_table "xclass_translations", force: :cascade do |t|
-    t.integer  "xclass_id",   null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.index ["locale"], name: "index_xclass_translations_on_locale", using: :btree
-    t.index ["xclass_id"], name: "index_xclass_translations_on_xclass_id", using: :btree
-  end
-
   create_table "xclasses", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -146,18 +98,6 @@ ActiveRecord::Schema.define(version: 20200909110516) do
     t.index ["position"], name: "index_xclasses_on_position", using: :btree
     t.index ["user_id"], name: "index_xclasses_on_user_id", using: :btree
     t.index ["xcategory_id"], name: "index_xclasses_on_xcategory_id", using: :btree
-  end
-
-  create_table "xroot_translations", force: :cascade do |t|
-    t.integer  "xroot_id",    null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "name"
-    t.text     "description"
-    t.text     "synonym"
-    t.index ["locale"], name: "index_xroot_translations_on_locale", using: :btree
-    t.index ["xroot_id"], name: "index_xroot_translations_on_xroot_id", using: :btree
   end
 
   create_table "xroots", force: :cascade do |t|

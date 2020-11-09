@@ -3,17 +3,12 @@ class XrootsController < ApplicationController
   before_action :set_xroot, only: %i[show edit update destroy]
 
   def index
-    @xroots = Xroot.all #.paginate(page: params[:page], per_page: 30)
+    @xroots = Xroot.all
   end
 
   def show
     @xroots = Xroot.all
   end
-
-  # def tree
-  #   @xroots = Xroot.all
-  #   @xroot = Xroot.first
-  # end
 
   def edit; end
 

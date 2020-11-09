@@ -1,54 +1,50 @@
-<div class="card">
-  <div class="card-body">
-    <div class="form-group">
-      <%= form_for(activity) do |f| %>
+<div class="form-group">
+  <%= form_for(activity) do |f| %>
 
-        <%= render 'layouts/errors', resource: activity %>
+    <%= render 'layouts/errors', resource: activity %>
 
-        <div class="field mt-3">
-          <%= f.label :name %>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-
-        <div class="field mt-3">
-          <%= f.label :description %>
-          <%= f.text_area :description, class: 'form-control' %>
-        </div>
-
-        <div class="field mt-3">
-          <%= f.label :synonym %>
-          <%= f.text_area :synonym, class: 'form-control' %>
-        </div>
-
-        <div class="field mt-3">
-          <%= f.label :code %>
-          <%= f.text_field :code, class: 'form-control' %>
-        </div>
-
-        <div class="field mt-3">
-          <%= f.label :version_date %>
-          <%= f.date_select :version_date, class: 'form-control' %>
-        </div>
-
-        <div class="field mt-3">
-          <%= f.label :publish %>
-          <%= f.check_box :publish, class: 'form-control' %>
-        </div>
-
-        <div class="field mt-3">
-          <%= f.label :position %>
-          <%= f.text_field :position, class: 'form-control' %>
-        </div>
-
-        <div class="field mt-3">
-          <%= f.label :parent_id %>
-          <%= f.select :parent_id, current_user.activities.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit class: "btn btn-sm btn-outline-success mt-5" %>
-        </div>
-      <% end %>
+    <div class="field mt-3">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
-  </div>
+
+    <div class="field mt-3">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :synonym %>
+      <%= f.text_area :synonym, class: 'form-control' %>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :code %>
+      <%= f.text_field :code, class: 'form-control' %>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :version_date %>
+      <%= f.date_select :version_date, class: 'form-control' %>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :publish %>
+      <%= f.check_box :publish, class: 'form-control' %>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :position %>
+      <%= f.text_field :position, class: 'form-control' %>
+    </div>
+
+    <div class="field mt-3">
+      <%= f.label :parent_id %>
+      <%= f.select :parent_id, current_user.activities.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit class: "btn btn-sm btn-outline-success mt-5" %>
+    </div>
+  <% end %>
 </div>

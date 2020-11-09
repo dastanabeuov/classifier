@@ -1,9 +1,9 @@
 <!-- Footer -->
-<footer class="page-footer font-small mt-5">
+<footer class="fixed-bottom bg-warning py-3">
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3 text-secondary">
+  <div class="footer-copyright text-center">
     © <%= current_year %>
-    <b><%= t('classifier.copyright') %> </b> <%= link_to octicon('repo-forked'), github_url('dastanabeuov', 'Classifier'), target: '_blank', class: 'text-secondary' %>
+    <b><%= t('classifier.copyright') %> </b> <%= link_to octicon('repo-forked', :height => 12), github_url('dastanabeuov', 'Classifier'), target: '_blank', class: 'text-dark', title: 'Repo-forked' %>
   </div>
     <!-- Copyright -->
 </footer>

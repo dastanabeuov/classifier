@@ -14,9 +14,9 @@ en:
     index:
       back: "Back to front page"
       welcome: "Welcome!"
-      description: "Application for the classification of construction objects according to international standards ISO 1206.
-       It is a platform that allows you to organize your model records in a tree structure
-        structures (or hierarchies). It uses the materialized path pattern and provides all the standard
-         tree structure relationships (ancestors, parent, root, children, siblings,
-          descendants), allowing you to retrieve them all in a single SQL query."
+      description: "According to international standards ISO 12006. 
+      This is a platform that allows you to organize the classification 
+      model of objects in the form of a tree structure (or hierarchy), and 
+      provides nested relationships (ancestors, parent, root, children, siblings, 
+      descendants), allowing you to retrieve all of them in one abstract SQL query."
       link_watch: "Start"

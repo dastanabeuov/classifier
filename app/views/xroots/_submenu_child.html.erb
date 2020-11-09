@@ -1,0 +1,12 @@
+<% child.children.each do |child| %>
+  <li data-toggle="collapse" data-target="#child-<%= child.id %>" class="collapsed">
+    <%= link_to_unless_current child.name, xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>
+  </li>
+
+  <% if child.children.present? %>
+    <ul class="sub-menu collapse pl-2" id="child-<%= child.id %>">
+      <%= render 'submenu_child', child: child if child.children.present? %>
+    </ul>
+  <% end %>
+
+<% end %>

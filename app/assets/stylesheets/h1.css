@@ -3,12 +3,13 @@
 }
 
 .name-pale-blue {
-  //color: #2196F3;
+  color: #17a1b8;
+  text-align: center;
   background-color: #E9ECEF;
 }
 
 .name-leftbar {
-  border-left: 6px solid #343A40;
+  border-left: 7px solid #17a1b8;
 }
 
 .name-container, .name-panel {

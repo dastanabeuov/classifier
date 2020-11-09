@@ -4,6 +4,12 @@ module PropertiesHelper
   end
 
   def current_user_count_properties
-    #current_user.properties.all.count
+    properties = []
+    sum = 0
+    current_user.activities.each do |activity|
+      properties << activity.properties.all.count
+    end
+    properties.each { |a| sum += a }
+    sum
   end
 end
