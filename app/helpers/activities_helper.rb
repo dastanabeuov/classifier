@@ -1,6 +1,6 @@
 module ActivitiesHelper
   def count_activities
-    Activity.all.count
+    Activity.all.size
   end
 
   def activity(property)
@@ -9,6 +9,6 @@ module ActivitiesHelper
   end
 
   def current_user_count_activities
-    current_user.activities.all.count
+    current_user.activities.size
   end
 end

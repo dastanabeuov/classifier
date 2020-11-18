@@ -35,10 +35,10 @@
                           <%= xroot.xcategories.size %>
                         </span>
                       </td>
-                      <td><%= link_to (octicon 'eye'), xroot, class: 'btn btn-sm btn-outline-info' %></td>
+                      <td><%= link_to fa_icon('eye'), xroot, class: 'btn btn-sm btn-outline-info' %></td>
                       <% if current_user.author_of?(xroot) %>
-                        <td><%= link_to (octicon 'pencil'), edit_xroot_path(xroot), class: 'btn btn-sm btn-outline-warning' %></td>
-                        <td><%= link_to (octicon 'trashcan'), xroot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+                        <td><%= link_to fa_icon('pencil'), edit_xroot_path(xroot), class: 'btn btn-sm btn-outline-warning' %></td>
+                        <td><%= link_to fa_icon('trash'), xroot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
                       <% end %>
                     </tr>
                   <% end %>
@@ -53,6 +53,6 @@
   </div>
 
   <div class="btn-group mt-5">
-    <%= link_to (octicon 'plus'), new_xroot_path, class: 'btn btn-sm btn-outline-success mt-2' %>
+    <%= link_to fa_icon('plus'), new_xroot_path, class: 'btn btn-sm btn-outline-success mt-2' %>
   </div>
 </div>

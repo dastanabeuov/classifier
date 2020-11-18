@@ -6,7 +6,7 @@
           <% if xclass.root? %>
             <div class="card border-info mt-5 mb-5 pl-2" style="max-width: 18rem;">
               <div class="card-header">
-                <%= link_to octicon('eye'), xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
+                <%= link_to fa_icon('eye'), xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
                 <span class="badge badge-warning"><%= count_xclasses_for_xcategory(xclass) %></span>
               </div>
               <div class="card-body text-info">

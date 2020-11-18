@@ -10,7 +10,7 @@
               <div class="col-md-12">
 
                 <%= render 'form', xclass: @xclass %>
-                
+
               </div>
             </div>
           </div>
@@ -20,7 +20,7 @@
   </div>
 
   <div class="btn-group mt-5">
-    <%= link_to (octicon 'eye'), xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass), class: 'btn btn-sm btn-outline-info' %>
-    <%= link_to (octicon 'arrow-left'), xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-outline-secondary' %>
+    <%= link_to fa_icon('eye'), xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass), class: 'btn btn-sm btn-outline-info' %>
+    <%= link_to fa_icon('arrow-left'), xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-outline-secondary' %>
   </div>
 </div>

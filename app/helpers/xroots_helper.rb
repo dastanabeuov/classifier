@@ -1,9 +1,9 @@
 module XrootsHelper
   def count_xroots
-    Xroot.all.count
+    Xroot.all.size
   end
 
   def current_user_count_xroots
-    current_user.xroots.all.count
+    current_user.xroots.size
   end
 end

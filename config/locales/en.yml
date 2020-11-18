@@ -8,11 +8,16 @@ en:
     edit_profile: "Edit profile"
     logout: "Logout"
   front_pages:
+    back: "Back"
     help: "Manual"
     service: "Service"
     contact: "Contact"
+    location: "Ulugbek street 45/1, Almaty"
+    working_time: "Monday - Friday 9:00 - 18:30"
+    www: "kazniisa.kz"
+    phone: "+77273927559"
+    code: "6RGX+GG Almaty"
     index:
-      back: "Back to front page"
       welcome: "Welcome!"
       description: "According to international standards ISO 12006. 
       This is a platform that allows you to organize the classification 

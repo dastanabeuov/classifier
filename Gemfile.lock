@@ -60,11 +60,11 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (7.1.4)
-    autoprefixer-rails (10.0.1.2)
+    autoprefixer-rails (10.0.2.0)
       execjs
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootstrap (4.5.2)
+    bootstrap (4.5.3)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
@@ -171,11 +171,6 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
-    octicons (10.1.0)
-      nokogiri (>= 1.6.3.1)
-    octicons_helper (10.1.0)
-      octicons (= 10.1.0)
-      rails
     orm_adapter (0.5.0)
     pg (0.21.0)
     popper_js (1.16.0)
@@ -322,7 +317,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (1.2.7)
+    tzinfo (1.2.8)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -361,8 +356,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
-  octicons (~> 10.0)
-  octicons_helper
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.0)

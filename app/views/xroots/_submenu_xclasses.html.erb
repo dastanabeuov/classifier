@@ -1,12 +1,23 @@
 <% xcategory.xclasses.each do |xclass| %>
-  <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
-    <%= link_to_unless_current xclass.name, xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
-  </li>
-  
+  <% if xclass.root? %>
+    <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
+      <% if xclass.children? %>
+        <i class="fa fa-folder fa-lg"></i>
+      <% else %>
+        <i class="fa fa-file fa-lg"></i>
+      <% end %>
+      
+      <%= xclass.code %> <%= link_to_unless_current xclass.name, xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
+      
+      <% if xclass.children? %>
+        <span class="arrow"></span>
+      <% end %>
+    </li>
+  <% end %>
+    
   <% if xclass.children? %>
     <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
       <%= render 'submenu_children', xclass: xclass %> 
     </ul>
   <% end %>
-
 <% end %>

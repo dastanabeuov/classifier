@@ -21,12 +21,12 @@
                 <% activity.children.each do |child| %>
                   <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     <%= link_to truncate("#{child.name}", :length => 30), activity_path(child), class: 'text-secondary' %>
-                      <small title="Date of creation"><%= child.created_at %></small>
+                      <small title="date of creation"><%= child.created_at %></small>
                       <span class="badge badge-info badge-pill" title="Children">
                         <%= child.children.size %>
                       </span>
                       <% if current_user.author_of?(child) %>
-                        <%= link_to (octicon 'trashcan'), activity_path(child), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete', class: 'btn btn-sm btn-outline-danger' %>
+                        <%= link_to fa_icon('trash'), activity_path(child), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete', class: 'btn btn-sm btn-outline-danger' %>
                       <% end %>
                   </li>
                 <% end %>
@@ -42,12 +42,12 @@
 
   <div class="btn-group mt-5">
     <% if current_user.author_of?(activity) %>
-      <%= link_to (octicon 'pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %>
+      <%= link_to fa_icon('pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %>
     <% end %>
     <% if activity.is_root? %>
-      <%= link_to (octicon 'arrow-left'), activities_path, class: 'btn btn-sm btn-outline-secondary' %>
+      <%= link_to fa_icon('arrow-left'), activities_path, class: 'btn btn-sm btn-outline-secondary' %>
     <% else %>
-      <%= link_to (octicon 'arrow-left'), activity_path(activity.parent), class: 'btn btn-sm btn-outline-secondary' %>
+      <%= link_to fa_icon('arrow-left'), activity_path(activity.parent), class: 'btn btn-sm btn-outline-secondary' %>
     <% end %>
   </div>
 </div>

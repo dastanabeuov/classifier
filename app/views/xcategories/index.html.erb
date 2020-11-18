@@ -31,10 +31,10 @@
                       <td><%= xcategory.version_date %></td>
                       <td><%= xcategory.publish %></td>
                       <td><%= xcategory.xroot.name %></td>
-                      <td><%= link_to (octicon 'eye'), xroot_xcategory_path(xcategory.xroot, xcategory), class: 'btn btn-sm btn-outline-info' %></td>
+                      <td><%= link_to fa_icon('eye'), xroot_xcategory_path(xcategory.xroot, xcategory), class: 'btn btn-sm btn-outline-info' %></td>
                       <% if current_user.author_of?(xcategory) %>
-                        <td><%= link_to (octicon 'pencil'), edit_xroot_xcategory_path(xcategory.xroot, xcategory), class: 'btn btn-sm btn-outline-warning' %></td>
-                        <td><%= link_to (octicon 'trashcan'), xroot_xcategory_path(xcategory.xroot, xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+                        <td><%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(xcategory.xroot, xcategory), class: 'btn btn-sm btn-outline-warning' %></td>
+                        <td><%= link_to fa_icon('trashcan'), xroot_xcategory_path(xcategory.xroot, xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
                       <% end %>
                     </tr>
                   <% end %>

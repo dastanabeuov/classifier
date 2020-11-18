@@ -5,7 +5,7 @@
         <% xroot.xcategories.each do |xcategory| %>
           <div class="card border-info mt-5 mb-5 pl-2" style="max-width: 18rem;">
             <div class="card-header">
-              <%= link_to octicon('eye'), xroot_xcategory_path(xcategory.xroot, xcategory) %>
+              <%= link_to fa_icon('eye'), xroot_xcategory_path(xcategory.xroot, xcategory) %>
               <span class="badge badge-warning"><%= count_xclasses_root_in_xcategory(xcategory) %></span>
             </div>
             <div class="card-body text-info">

@@ -21,9 +21,9 @@
 
   <div class="btn-group mt-5">
     <% if @xclass.root? %>
-      <%= link_to octicon('arrow-left'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-outline-secondary' %>
+      <%= link_to fa_icon('arrow-left'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-outline-secondary' %>
     <% else %>
-      <%= link_to octicon('arrow-left'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass.parent), class: 'btn btn-sm btn-outline-secondary' %>
+      <%= link_to fa_icon('arrow-left'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass.parent), class: 'btn btn-sm btn-outline-secondary' %>
     <% end %>
   </div>
 </div>

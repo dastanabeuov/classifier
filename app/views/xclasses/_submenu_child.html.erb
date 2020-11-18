@@ -1,4 +1,4 @@
-<% xclass.children.each do |child| %>
+<% child.children.each do |child| %>
   <li data-toggle="collapse" data-target="#child-<%= child.id %>" class="collapsed <%= 'active' if child == @xclass %>">
     <% if child.children? %>
       <i class="fa fa-folder fa-lg"></i>

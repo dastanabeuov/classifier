@@ -39,10 +39,10 @@
                           <%= activity.children.size %>
                         </span>
                       </td>
-                      <td><%= link_to (octicon 'eye'), activity, class: 'btn btn-sm btn-outline-info' %></td>
+                      <td><%= link_to fa_icon('eye'), activity, class: 'btn btn-sm btn-outline-info' %></td>
                       <% if current_user.author_of?(activity) %>
-                        <td><%= link_to (octicon 'pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %></td>
-                        <td><%= link_to (octicon 'trashcan'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+                        <td><%= link_to fa_icon('pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %></td>
+                        <td><%= link_to fa_icon('trash'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
                       <% end %>
                     </tr>
                   <% end %>
@@ -57,6 +57,6 @@
   </div>
 
   <div class="btn-group mt-5">
-    <%= link_to (octicon 'plus'), new_activity_path, class: 'btn btn-sm btn-outline-success mt-2' %>
+    <%= link_to fa_icon('plus'), new_activity_path, class: 'btn btn-sm btn-outline-success mt-2' %>
   </div>
 </div>

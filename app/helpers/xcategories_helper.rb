@@ -1,16 +1,14 @@
 module XcategoriesHelper
   def count_xcategories
-    Xcategory.all.count
+    Xcategory.all.size
   end
 
   def current_user_count_xcategories
     xcategories = []
-    sum = 0
     current_user.xroots.each do |xroot|
       xcategories << xroot.xcategories.all.count
     end
-    xcategories.each { |a| sum += a }
-    sum
+    xcategories.size
   end
 
   def count_xclasses_for_xcategory(xclass)
@@ -18,7 +16,7 @@ module XcategoriesHelper
     xclass.children.each do |child|
       items << child
     end
-    items.count
+    items.size
   end
 
   def count_xclasses_root_in_xcategory(xcategory)
@@ -28,6 +26,6 @@ module XcategoriesHelper
         xclasses << xclass
       end
     end
-    xclasses.count
+    xclasses.size
   end
 end

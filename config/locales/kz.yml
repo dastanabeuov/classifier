@@ -8,10 +8,16 @@ kz:
     edit_profile: "Профильді өңдеу"
     logout: "Шығу"
   front_pages:
+    back: "Оралу"
     back: "Басты бетке оралу"
     help: "Анықтама"
     service: "Қызмет"
-    contact: "Байланыс"     
+    contact: "Байланыс"
+    location: "Алматы қаласы, Ұлықбек көшесі 45/1"
+    working_time: "Дүйсенбі - Жұма 9:00 - 18:30"
+    www: "kazniisa.kz"
+    phone: "+77273927559"
+    code: "6RGX+GG Алматы"
     index:
       welcome: "Қош келдіңіз!"
       description: "ISO 12006 халықаралық стандарттарына сәйкес. 

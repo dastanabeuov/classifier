@@ -13,7 +13,7 @@
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
-                <%= truncate(xroot.name, :length => 20) %>
+                <%= xroot.code %> <%= truncate(xroot.name, :length => 20) %>
               <% if xroot.xcategories.present? %>
                 <span class="arrow"></span>
               <% end %>
@@ -21,7 +21,7 @@
           </li>
 
           <% if xroot.xcategories.present? %>
-            <ul class="sub-menu collapse" id="xroot-<%= xroot.id %>">
+            <ul class="sub-menu collapse pl-2" id="xroot-<%= xroot.id %>">
               <% xroot.xcategories.each do |xcategory| %>
                 <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed">
                   <% if xcategory.xclasses.present? %>
@@ -29,7 +29,7 @@
                   <% else %>
                     <i class="fa fa-file fa-lg"></i>
                   <% end %>
-                    <%= link_to truncate(xcategory.name, :length => 20), xroot_xcategory_path(xroot, xcategory) %>
+                    <%= xcategory.code %> <%= link_to truncate(xcategory.name, :length => 20), xroot_xcategory_path(xroot, xcategory) %>
                   <% if xcategory.xclasses.present? %>
                     <span class="arrow"></span>
                   <% end %>
@@ -78,9 +78,9 @@
               </p>
               <div class="float-right">
                 <% if current_user.author_of?(@xroot) %>
-                  <%= link_to octicon('plus'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-outline-success" %>
-                  <%= link_to (octicon 'pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-outline-warning' %>
-                  <%= link_to (octicon 'trashcan'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+                  <%= link_to fa_icon('plus'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-outline-success" %>
+                  <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-outline-warning' %>
+                  <%= link_to fa_icon('trash'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
                 <% end %>
               </div>
             </div>
@@ -90,7 +90,7 @@
     </div>
 
     <div class="mt-5">
-      <%= link_to octicon('arrow-left'), xroots_path, class: 'btn btn-sm btn-outline-secondary' %>
+      <%= link_to fa_icon('arrow-left'), xroots_path, class: 'btn btn-sm btn-outline-secondary' %>
     </div>
   </div>
 </div>

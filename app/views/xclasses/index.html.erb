@@ -35,10 +35,10 @@
                       <td><%= xclass.xtype %></td>
                       <td><%= xclass.position %></td>      
                       <td><span class="badge badge-info badge-pill"><%= xclass.ancestry %></span></td>
-                      <td><%= link_to (octicon 'eye'),  xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass), class: 'btn btn-sm btn-outline-info' %></td>
+                      <td><%= link_to fa_icon('eye'),  xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass), class: 'btn btn-sm btn-outline-info' %></td>
                       <% if current_user.author_of?(xclass) %>
-                        <td><%= link_to (octicon 'pencil'), edit_xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass), class: 'btn btn-sm btn-outline-warning' %></td>
-                        <td><%= link_to (octicon 'trashcan'), xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+                        <td><%= link_to fa_icon('pencil'), edit_xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass), class: 'btn btn-sm btn-outline-warning' %></td>
+                        <td><%= link_to fa_icon('trashcan'), xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
                       <% end %>
                     </tr>
                   <% end %>
@@ -53,6 +53,6 @@
   </div>
 
   <div class="btn-group mt-5">
-    <%= link_to (octicon 'plus'), new_xroot_xcategory_xclass_path, class: 'btn btn-sm btn-outline-success' %>
+    <%= link_to fa_icon('plus'), new_xroot_xcategory_xclass_path, class: 'btn btn-sm btn-outline-success' %>
   </div>
 </div>

@@ -44,8 +44,6 @@ end
 ############
 gem 'cocoon'
 gem "font-awesome-rails"
-gem 'octicons', '~> 10.0'
-gem 'octicons_helper'
 gem 'apipie-rails'
 gem 'cancancan'
 gem 'devise'
