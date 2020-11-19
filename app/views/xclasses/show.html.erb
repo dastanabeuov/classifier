@@ -17,7 +17,7 @@
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
-                <%= xcategory.code %> <%= truncate(xcategory.name, :length => 20) %>
+                <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
               <% if xcategory.xclasses.present? %>
                 <span class="arrow"></span>
               <% end %>
@@ -38,7 +38,7 @@
                     <% else %>
                       <i class="fa fa-file fa-lg"></i>
                     <% end %>
-                    <%= link_to truncate(xclass.name, :length => 20), xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
+                    <%= link_to truncate(xclass.name, :length => 18), xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
                     <% if xclass.children.present? %>
                       <span class="arrow"></span>
                     <% end %>
@@ -66,12 +66,12 @@
   <div class="content">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.name, :length => 20), xroot_path(@xclass.xcategory.xroot) %></li>
-        <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.name, :length => 20), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory) %></li>
+        <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.name, :length => 18), xroot_path(@xclass.xcategory.xroot) %></li>
+        <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.name, :length => 18), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory) %></li>
         <% @xclass.ancestors.each do |ancestor| %>
-          <li class="breadcrumb-item"><%= link_to truncate(ancestor.name, :length => 20), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, ancestor) %></li>
+          <li class="breadcrumb-item"><%= link_to truncate(ancestor.name, :length => 18), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, ancestor) %></li>
         <% end %>
-        <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xclass.name, :length => 20) %></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xclass.name, :length => 18) %></li>
       </ol>
     </nav>
 

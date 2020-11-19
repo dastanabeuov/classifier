@@ -6,7 +6,7 @@
       <i class="fa fa-folder fa-lg"></i>
     <% end %>
 
-    <%= child.code %> <%= link_to_unless_current truncate(child.name, :length => 20), xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>
+    <%= child.code %> <%= link_to_unless_current truncate(child.name, :length => 18), xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>
 
     <% if child.children.present? %>
       <span class="arrow"></span>

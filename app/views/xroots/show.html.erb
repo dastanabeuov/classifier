@@ -13,7 +13,7 @@
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
-                <%= xroot.code %> <%= truncate(xroot.name, :length => 20) %>
+                <%= xroot.code %> <%= truncate(xroot.name, :length => 18) %>
               <% if xroot.xcategories.present? %>
                 <span class="arrow"></span>
               <% end %>
@@ -29,7 +29,7 @@
                   <% else %>
                     <i class="fa fa-file fa-lg"></i>
                   <% end %>
-                    <%= xcategory.code %> <%= link_to truncate(xcategory.name, :length => 20), xroot_xcategory_path(xroot, xcategory) %>
+                    <%= xcategory.code %> <%= link_to truncate(xcategory.name, :length => 18), xroot_xcategory_path(xroot, xcategory) %>
                   <% if xcategory.xclasses.present? %>
                     <span class="arrow"></span>
                   <% end %>
@@ -52,7 +52,7 @@
   <div class="content">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 20) %></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 18) %></li>
       </ol>
     </nav>
 
