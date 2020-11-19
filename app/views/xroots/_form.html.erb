@@ -33,6 +33,7 @@
     </div>
     <hr>
     <div class="field mt-5">
+      <h2>Additional properties</h2>
       <%= f.fields_for :properties do |property| %>
         <%= render 'shared/property_fields', f: property %>
       <% end %>
