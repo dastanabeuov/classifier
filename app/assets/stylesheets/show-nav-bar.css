@@ -156,11 +156,11 @@
   margin-bottom: 80px;
 }
 .card {
-  border-left: 7px solid #17a1b8   !important;
+  border-left: 7px solid #17a1b8 !important;
   background-color: #e9ecef;
 }
 .breadcrumb {
-  border-left: 7px solid #17a1b8   !important;
+  border-left: 7px solid #17a1b8 !important;
 }
 /*media settings content*/
 @media (min-width: 767px) and (max-width: 993px) { 
