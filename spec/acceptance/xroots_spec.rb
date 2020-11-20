@@ -34,7 +34,7 @@ resource 'xroots' do
     context '200' do
       let(:name) { 'Doodle IT' }
       let(:description) { 'Doodling Information Technology' }
-      let{:raw_post} { params.to_json }
+      let(:raw_post) { params.to_json }
     end
 
     example 'create a xroot' do

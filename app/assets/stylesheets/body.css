@@ -8,7 +8,7 @@ body {
   background-repeat: no-repeat;
   background-position: center bottom;
   background-attachment: fixed;
-  background-size: 100% 70%;
+  background-size: 100%;
 }
 
 @include media-breakpoint-up(xs) {
