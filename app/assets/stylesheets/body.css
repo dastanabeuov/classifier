@@ -3,7 +3,14 @@ html {
 }
 body {
   /*background-color: #4f5b69;*/
+  background-image: image-url('towers.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-size: 100% 70%;
 }
+
 @include media-breakpoint-up(xs) {
   html {
     font-size: 0.4rem;
