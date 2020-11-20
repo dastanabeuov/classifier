@@ -19,9 +19,8 @@ en:
     code: "6RGX+GG Almaty"
     index:
       welcome: "Welcome!"
-      description: "According to international standards ISO 12006. 
-      This is a platform that allows you to organize the classification 
-      model of objects in the form of a tree structure (or hierarchy), and 
-      provides nested relationships (ancestors, parent, root, children, siblings, 
-      descendants), allowing you to retrieve all of them in one abstract SQL query."
+      description: "BIM (Building Information Model or Modeling) is an information 
+      model (or modeling) of buildings and structures, which in a broad sense means 
+      any infrastructure objects, for example, engineering networks (water, gas, electrical, 
+      sewage, communication), roads, railways , bridges, ports and tunnels, etc."
       link_watch: "Start"

@@ -9,6 +9,7 @@ class Ability
     elsif user.admin?
      can :manage, :all
     elsif user.guest?
+     can :create, :all
      can :read, :all
      can :access, :rails_admin
      can :read, :dashboard
