@@ -41,7 +41,7 @@ group :heroku do
   gem 'rails_12factor'
 end
 
-############
+
 gem 'cocoon'
 gem "font-awesome-rails"
 gem 'apipie-rails'
