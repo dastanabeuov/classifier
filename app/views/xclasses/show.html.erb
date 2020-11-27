@@ -1,7 +1,7 @@
 <div class="show-xclass">
   <div class="nav-side-menu">
     <div class="brand">
-      <%= fa_icon('arrow-left') %>
+      <%= fa_icon('arrow-circle-o-left') %>
         <%= link_to truncate(@xclass.xcategory.xroot.name, :length => 20), xroot_path(@xclass.xcategory.xroot) %>
     </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -96,30 +96,30 @@
                 <%= render 'shared/show3', resource: @xclass %>
               </p>
 
-              <div class="float-right">
-                <% if current_user.author_of?(@xclass) %>
-                  <%= link_to fa_icon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, parent_id: @xclass.id), class: "btn btn-sm btn-outline-success" %>
-                  <%= link_to fa_icon('pencil'), edit_xroot_xcategory_xclass_path(@xclass), class: 'btn btn-sm btn-outline-warning' %>
-                  <%= link_to fa_icon('trash'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+              <div class="mt-5">
+                <div class="float-right">
+                  <% if current_user.author_of?(@xclass) %>
+                    <%= link_to fa_icon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, parent_id: @xclass.id), class: "btn btn-sm btn-outline-success ml-5" %>
+                    <%= link_to fa_icon('pencil'), edit_xroot_xcategory_xclass_path(@xclass), class: 'btn btn-sm btn-outline-warning ml-5' %>
+                    <%= link_to fa_icon('trash'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
+                  <% end %>
+                </div>
+                
+                <% if @xclass.root? %>
+                  <%= link_to fa_icon('arrow-left'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-outline-secondary' %>
+                <% else %>
+                  <%= link_to fa_icon('arrow-left'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass.parent), class: 'btn btn-sm btn-outline-secondary' %>
+                <% end %>
+                <% if @xclass.parent %>
+                  <%= link_to fa_icon('reply'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-outline-secondary ml-5' %>
                 <% end %>
               </div>
-
+              
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="mt-5">
-      <% if @xclass.root? %>
-        <%= link_to fa_icon('arrow-left'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-outline-secondary' %>
-      <% else %>
-        <%= link_to fa_icon('arrow-left'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass.parent), class: 'btn btn-sm btn-outline-secondary' %>
-      <% end %>
-      <% if @xclass.parent %>
-        <%= link_to fa_icon('reply'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-outline-secondary float-right' %>
-      <% end %>
-    </div>
-  
   </div>
 </div>

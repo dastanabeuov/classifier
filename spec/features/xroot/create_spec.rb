@@ -1,29 +1,26 @@
 require 'rails_helper'
 
-feature 'User can give an xroot', %q{
-  In order to share my knowledge
-  As an authenticated user
-  I want to be able to create xroot
+feature 'XROOT CREATE', %q{
+  Authenticated user create xroot
+  Authenticated user create xroot with errors
 } do
 
   given(:user) { create(:user) }
-  given!(:xroot) { create(:xroot) }
+  given!(:xroot) { create(:xroot, user: user) }
 
   scenario 'Authenticated user create xroot', js: true do
-    sign_in(user)
+    login(user)
     visit xroot_path(xroot)
 
     fill_in 'Name', with: 'My xroot'
     click_on 'Create xroot'
 
     expect(current_path).to eq xroot_path(xroot)
-    within '.xroots' do # чтобы убедиться, что xroot в списке, а не в форме
-      expect(page).to have_content 'My xroot'
-    end
+    expect(page).to have_content 'My xroot'
   end
 
-  scenario 'Authenticated user creates xroot with errors', js: true do
-    sign_in(user)
+  scenario 'Authenticated user create xroot with errors', js: true do
+    login(user)
     visit xroot_path(xroot)
 
     click_on 'Create xroot'

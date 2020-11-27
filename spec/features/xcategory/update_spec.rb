@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-feature 'Xcategory update', %q{
-  Authenticated user can able to update xcategory
+feature 'XCATEGORY UPDATE', %q{
+  Author xcategory try edit
+  Is not author try edit
 } do
 
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
-  given!(:xcategory) { create :xcategory, user: user }
+  given!(:xcategory) { create(:xcategory, user: user) }
  
   scenario 'Author xcategory try edit', js: true do
     sign_in(user)
@@ -24,7 +25,7 @@ feature 'Xcategory update', %q{
     end
   end
 
-  scenario 'User is not author try edit', js: true do
+  scenario 'Is not author try edit', js: true do
     sign_in(user2)
     visit xcategory_path(xcategory)
     

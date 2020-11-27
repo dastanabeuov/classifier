@@ -1,40 +1,44 @@
 html {
   font-size: 0.3rem;
 }
-body {
-  /*background-color: #4f5b69;*/
-  background-image: image-url('towers.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-attachment: fixed;
-  background-size: 100%;
-}
-
 @include media-breakpoint-up(xs) {
-  html {
-    font-size: 0.4rem;
-  }
-}
-
-@include media-breakpoint-up(sm) {
-  html {
-    font-size: 0.5rem;
-  }
-}
-
-@include media-breakpoint-up(md) {
-  html {
-    font-size: 0.6rem;
-  }
-}
-
-@include media-breakpoint-up(lg) {
   html {
     font-size: 0.7rem;
   }
 }
 
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 0.8rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 0.9rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.0rem;
+  }
+}
+
+/*Body style*/
+body {
+  /*background-color: #4f5b69;*/
+  background-image: image-url('towers.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-attachment: fixed;
+  background-size: 20%;
+}
+/*alert*/
+.alert {
+  margin-bottom: 0px;
+}
 /*start-content*/
 .justify-content-center {
   margin-top: 30px;

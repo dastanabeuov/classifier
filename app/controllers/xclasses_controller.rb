@@ -1,5 +1,6 @@
 class XclassesController < ApplicationController
-  before_action :authenticate_user!
+  load_and_authorize_resource
+  
   before_action :set_xcategory, only: %i[new create show edit update destroy]
   before_action :set_xclass, only: %i[show edit update destroy]
 

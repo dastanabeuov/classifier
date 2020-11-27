@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-feature 'User can give an property', %q{
-  In order to share my knowledge
-  As an authenticated user
-  I want to be able to create property
+feature 'PROPERTY CREATE', %q{
+  Authenticated user create property
+  Authenticated user create property with errors
 } do
 
   given(:user) { create(:user) }
@@ -17,12 +16,10 @@ feature 'User can give an property', %q{
     click_on 'Create property'
 
     expect(current_path).to eq property_path(property)
-    within '.propertys' do # чтобы убедиться, что property в списке, а не в форме
-      expect(page).to have_content 'My property'
-    end
+    expect(page).to have_content 'My property'
   end
 
-  scenario 'Authenticated user creates property with errors', js: true do
+  scenario 'Authenticated user create property with errors', js: true do
     sign_in(user)
     visit property_path(property)
 

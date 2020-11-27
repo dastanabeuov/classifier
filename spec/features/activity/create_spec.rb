@@ -1,13 +1,12 @@
 require 'rails_helper'
 
-feature 'User can give an activity', %q{
-  In order to share my knowledge
-  As an authenticated user
-  I want to be able to create activity
+feature 'ACTIVITY CREATE', %q{
+  Authenticated user create activity
+  Authenticated user creates activity with errors
 } do
 
   given(:user) { create(:user) }
-  given!(:activity) { create(:activity) }
+  given!(:activity) { create(:activity, user: user) }
 
   scenario 'Authenticated user create activity', js: true do
     sign_in(user)
@@ -17,9 +16,7 @@ feature 'User can give an activity', %q{
     click_on 'Create activity'
 
     expect(current_path).to eq activity_path(activity)
-    within '.activitys' do # чтобы убедиться, что activity в списке, а не в форме
-      expect(page).to have_content 'My activity'
-    end
+    expect(page).to have_content 'My activity'
   end
 
   scenario 'Authenticated user creates activity with errors', js: true do

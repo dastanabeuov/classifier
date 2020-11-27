@@ -1,33 +1,33 @@
 require 'rails_helper'
 
-feature 'xclass update', %q{
-  Authenticated user can able to update xclass
+feature 'XCLASS UPDATE', %q{
+  Author xclass try edit
+  Is not author try edit
 } do
 
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
-  given!(:xclass) { create :xclass, user: user }
+  given!(:xroot) { create(:xroot, user: user) }
+  given!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
+  given!(:xclass) { create(:xclass, xcategory: xcategory, user: user) }
  
   scenario 'Author xclass try edit', js: true do
     sign_in(user)
-    visit question_path(question)
+    visit xroot_xcategory_xclass_path(xroot, xcategory, xclass)
 
-    click_on 'Edit xclass'
-    within '.question' do
-      fill_in "Name",  with: "New xclass name"
-      fill_in "Description", with: "New xclass description"
-      click_on 'Save xclass'
+    find(".fa-pencil").click
+    fill_in "Name",  with: "New xclass name"
+    fill_in "Description", with: "New xclass description"
+    click_on 'Save xclass'
 
-      expect(page).to have_content "New xclass name"
-      expect(page).to have_content "New xclass description"
-      expect(page).to_not have_selector 'textarea'
-    end
+    expect(page).to have_content "New xclass name"
+    expect(page).to have_content "New xclass description"
   end
 
-  scenario 'User is not author try edit', js: true do
+  scenario 'Is not author try edit', js: true do
     sign_in(user2)
     visit xclass_path(xclass)
     
-    expect(page).to_not have_link 'Edit question'
+    expect(page).to_not have_link find(".fa-pencil")
   end
 end

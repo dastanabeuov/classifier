@@ -3,18 +3,27 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    #can :manage, :all
+
     if user.email == "d.abeuov9@gmail.com"
      can :manage, :all
-    elsif user.admin?
+    end
+    
+    if user.admin?
      can :manage, :all
-    elsif user.guest?
+    end
+
+    if user.guest?
      can :create, :all
      can :read, :all
-     can :access, :rails_admin
-     can :read, :dashboard
-    else
+     can :update, :all
+    end
+    
+    if user.moderator?
+     can :create, :all
      can :read, :all
+     can :destroy, :all
+     can :update, :all
     end
   end
+  
 end

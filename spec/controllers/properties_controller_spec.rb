@@ -2,13 +2,12 @@ require 'rails_helper'
 
 RSpec.describe PropertiesController, type: :controller do
 
+  let(:valid_session) { create :user }
   let(:valid_attributes) { create :property }
-
   let(:invalid_attributes) { create :property, name: nil }
 
-  let(:valid_session) { create :user }
 
-  describe "GET #index" do
+  describe "GET #INDEX" do
     it "returns a success response" do
       Property.create! valid_attributes
       get :index, params: {}, session: valid_session
@@ -16,7 +15,7 @@ RSpec.describe PropertiesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "GET #SHOW" do
     it "returns a success response" do
       property = Property.create! valid_attributes
       get :show, params: {id: property.to_param}, session: valid_session
@@ -24,14 +23,14 @@ RSpec.describe PropertiesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
+  describe "GET #NEW" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
       expect(response).to be_successful
     end
   end
 
-  describe "GET #edit" do
+  describe "GET #EDIT" do
     it "returns a success response" do
       property = Property.create! valid_attributes
       get :edit, params: {id: property.to_param}, session: valid_session
@@ -39,7 +38,7 @@ RSpec.describe PropertiesController, type: :controller do
     end
   end
 
-  describe "POST #create" do
+  describe "POST #CREATE" do
     context "with valid params" do
       it "creates a new Property" do
         expect {
@@ -61,7 +60,7 @@ RSpec.describe PropertiesController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
+  describe "PUT #UPDATE" do
     context "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
@@ -90,7 +89,7 @@ RSpec.describe PropertiesController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
+  describe "DELETE #DESTROY" do
     it "destroys the requested property" do
       property = Property.create! valid_attributes
       expect {
