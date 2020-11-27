@@ -2,13 +2,11 @@ require 'rails_helper'
 
 RSpec.describe XrootsController, type: :controller do
 
+  let(:valid_session) { create :user }
   let(:valid_attributes) { create :xroot }
-
   let(:invalid_attributes) { create :xroot, name: nil }
 
-  let(:valid_session) { create :user }
-
-  describe "GET #index" do
+  describe "GET #INDEX" do
     it "returns a success response" do
       Xroot.create! valid_attributes
       get :index, params: {}, session: valid_session
@@ -16,7 +14,7 @@ RSpec.describe XrootsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "GET #SHOW" do
     it "returns a success response" do
       xroot = Xroot.create! valid_attributes
       get :show, params: {id: xroot.to_param}, session: valid_session
@@ -24,14 +22,14 @@ RSpec.describe XrootsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
+  describe "GET #NEW" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
       expect(response).to be_successful
     end
   end
 
-  describe "GET #edit" do
+  describe "GET #EDIT" do
     it "returns a success response" do
       xroot = Xroot.create! valid_attributes
       get :edit, params: {id: xroot.to_param}, session: valid_session
@@ -39,7 +37,7 @@ RSpec.describe XrootsController, type: :controller do
     end
   end
 
-  describe "POST #create" do
+  describe "POST #CREATE" do
     context "with valid params" do
       it "creates a new xroot" do
         expect {
@@ -61,7 +59,7 @@ RSpec.describe XrootsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
+  describe "PUT #UPDATE" do
     context "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
@@ -90,7 +88,7 @@ RSpec.describe XrootsController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
+  describe "DELETE #DESTROY" do
     it "destroys the requested xroot" do
       xroot = Xroot.create! valid_attributes
       expect {

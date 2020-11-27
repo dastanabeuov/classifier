@@ -6,49 +6,47 @@
         <div class="row justify-content-md-center">
           <div class="col-md-12">
 
-            <div class="table-responsive">
-              <table class="table table-striped table-light">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Synonym</th>
-                    <th>Code</th>
-                    <th>Version date</th>
-                    <th>Publish</th>
-                    <th>Position</th>
-                    <th>Ancestry</th>
-                    <th>Children</th>
-                    <th colspan="3"></th>
-                  </tr>
-                </thead>
+            <table class="table table-bordered table-striped table-responsive table-light">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Synonym</th>
+                  <th>Code</th>
+                  <th>Version date</th>
+                  <th>Publish</th>
+                  <th>Position</th>
+                  <th>Ancestry</th>
+                  <th>Children</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-                <tbody>
-                  <% @activities.each do |activity| %>
-                    <tr>
-                      <td><%= activity.name %></td>
-                      <td><%= activity.description %></td>
-                      <td><%= activity.synonym %></td>
-                      <td><%= activity.code %></td>
-                      <td><%= activity.version_date %></td>
-                      <td><%= activity.publish %></td>
-                      <td><%= activity.position %></td>
-                      <td><span class="badge badge-info badge-pill"><%= activity.ancestry %></span></td>
-                      <td>
-                        <span class="badge badge-info badge-pill">
-                          <%= activity.children.size %>
-                        </span>
-                      </td>
-                      <td><%= link_to fa_icon('eye'), activity, class: 'btn btn-sm btn-outline-info' %></td>
-                      <% if current_user.author_of?(activity) %>
-                        <td><%= link_to fa_icon('pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %></td>
-                        <td><%= link_to fa_icon('trash'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
-                      <% end %>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
+              <tbody>
+                <% @activities.each do |activity| %>
+                  <tr>
+                    <td><%= truncate("#{activity.name}", :length => 20) %></td>
+                    <td><%= truncate("#{activity.description}", :length => 20) %></td>
+                    <td><%= truncate("#{activity.synonym}", :length => 20) %></td>
+                    <td><%= activity.code %></td>
+                    <td><%= activity.version_date %></td>
+                    <td><%= activity.publish %></td>
+                    <td><%= activity.position %></td>
+                    <td><span class="badge badge-info badge-pill"><%= activity.ancestry %></span></td>
+                    <td>
+                      <span class="badge badge-info badge-pill">
+                        <%= activity.children.size %>
+                      </span>
+                    </td>
+                    <td><%= link_to fa_icon('eye'), activity, class: 'btn btn-sm btn-outline-info' %></td>
+                    <% if current_user.author_of?(activity) %>
+                      <td><%= link_to fa_icon('pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning' %></td>
+                      <td><%= link_to fa_icon('trash'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
 
           </div>
         </div>

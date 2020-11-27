@@ -1,6 +1,6 @@
 <div class="show-xcategory">
   <div class="nav-side-menu">
-    <div class="brand"><%= fa_icon('arrow-left') %> <%= link_to truncate(@xcategory.xroot.name, :length => 20), xroot_path(@xcategory.xroot) %></div>
+    <div class="brand"><%= fa_icon('arrow-circle-o-left') %> <%= link_to truncate(@xcategory.xroot.name, :length => 20), xroot_path(@xcategory.xroot) %></div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
     <div class="menu-list">
@@ -83,13 +83,17 @@
                 <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Xclasses <span class="badge badge-info"><%= count_xclasses_root_in_xcategory(@xcategory) %></span></button>
                 <%= render 'shared/show2', resource: @xcategory %>
               </p>
-              
-              <div class="float-right">
-                <% if current_user.author_of?(@xcategory) %>
-                  <%= link_to fa_icon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success" %>
-                  <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory), class: 'btn btn-sm btn-outline-warning' %>
-                  <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
-                <% end %>
+
+              <div class="mt-5">
+                <div class="float-right">
+                  <% if current_user.author_of?(@xcategory) %>
+                    <%= link_to fa_icon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success ml-5" %>
+                    <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory), class: 'btn btn-sm btn-outline-warning ml-5' %>
+                    <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
+                  <% end %>
+                </div>
+
+                <%= link_to fa_icon('arrow-left'), xroot_path(@xcategory.xroot), class: 'btn btn-sm btn-outline-secondary' %>
               </div>
 
             </div>
@@ -97,9 +101,6 @@
         </div>
       </div>
     </div>
-
-    <div class="mt-5">
-      <%= link_to fa_icon('arrow-left'), xroot_path(@xcategory.xroot), class: 'btn btn-sm btn-outline-secondary' %>
-    </div>
+    
   </div>
 </div>

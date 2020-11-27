@@ -1,19 +1,20 @@
 require 'rails_helper'
 
-feature 'xroot update', %q{
-  Authenticated user can able to update xroot
+feature 'XROOT UPDATE', %q{
+  Author xroot try edit
+  Not author try edit
 } do
 
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
-  given!(:xroot) { create :xroot, user: user }
- 
-  scenario 'Author xroot try edit', js: true do
-    sign_in(user)
-    visit question_path(question)
+  given!(:xroot) { create(:xroot, user: user) }
 
-    click_on 'Edit xroot'
-    within '.question' do
+  scenario 'Author xroot try edit', js: true do
+    login(user)
+    visit xroot_path(xroot)
+
+    find(".fa-pencil").click
+    within '.edit' do
       fill_in "Name",  with: "New xroot name"
       fill_in "Description", with: "New xroot description"
       click_on 'Save xroot'
@@ -24,10 +25,10 @@ feature 'xroot update', %q{
     end
   end
 
-  scenario 'User is not author try edit', js: true do
-    sign_in(user2)
+  scenario 'Not author try edit', js: true do
+    login(user2)
     visit xroot_path(xroot)
     
-    expect(page).to_not have_link 'Edit question'
+    expect(page).to_not have_link find(".fa-pencil")
   end
 end

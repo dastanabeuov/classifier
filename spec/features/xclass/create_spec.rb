@@ -1,30 +1,30 @@
 require 'rails_helper'
 
-feature 'User can give an xclass', %q{
-  In order to share my knowledge
-  As an authenticated user
-  I want to be able to create xclass
+feature 'XCLASS CREATE', %q{
+  Authenticated user create xclass
+  Authenticated user create xclass with errors
 } do
 
   given(:user) { create(:user) }
-  given!(:xclass) { create(:xclass) }
+
+  given!(:xroot) { create(:xroot, user: user) }
+  given!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
+  given!(:xclass) { create(:xclass, xcategory: xcategory, user: user) }
 
   scenario 'Authenticated user create xclass', js: true do
     sign_in(user)
-    visit xclass_path(xclass)
+    visit new_xroot_xcategory_xclass_path(xroot, xcategory, xclass)
 
     fill_in 'Name', with: 'My xclass'
     click_on 'Create Xclass'
 
     expect(current_path).to eq xclass_path(xclass)
-    within '.xclasss' do # чтобы убедиться, что xclass в списке, а не в форме
-      expect(page).to have_content 'My xclass'
-    end
+    expect(page).to have_content 'My xclass'
   end
 
-  scenario 'Authenticated user creates xclass with errors', js: true do
+  scenario 'Authenticated user create xclass with errors', js: true do
     sign_in(user)
-    visit xclass_path(xclass)
+    visit xroot_xcategory_xclass_path(xroot, xcategory, xclass)
 
     click_on 'Create Xclass'
 

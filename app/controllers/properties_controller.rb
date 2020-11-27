@@ -1,4 +1,6 @@
 class PropertiesController < ApplicationController
+  load_and_authorize_resource
+
   def destroy
     property.destroy if current_user.author_of?(property.propertyable)
   end

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-feature 'activity update', %q{
-  Authenticated user can able to update activity
+feature 'ACTIVITY UPDATE', %q{
+  Author activity try edit
+  Is not author try edit
 } do
 
   given(:user) { create(:user) }
@@ -24,7 +25,7 @@ feature 'activity update', %q{
     end
   end
 
-  scenario 'User is not author try edit', js: true do
+  scenario 'Is not author try edit', js: true do
     sign_in(user2)
     visit activity_path(activity)
     

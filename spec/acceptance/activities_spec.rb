@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
-resource 'activities' do
+resource 'ACTIVITIES' do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   explanation 'activities are top-level business objects'
@@ -12,8 +12,8 @@ resource 'activities' do
 
     context '200' do
       example_request 'Getting list of activities' do
+        do_request(params)
         expect(status).to eq(200)
-        # do_request(param)
       end
     end
   end
