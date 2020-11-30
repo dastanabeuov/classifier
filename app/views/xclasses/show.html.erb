@@ -10,18 +10,21 @@
       <ul id="menu-content" class="menu-content collapse out">
 
         <% @xclass.xcategory.xroot.xcategories.each do |xcategory| %>
-          <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if @xclass.xcategory == xcategory %>">
+          <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if @xclass.xcategory == xcategory %> pl-2">
+            
+            <% if xcategory.xclasses %>
+              <i class="fa fa-folder fa-lg"></i>
+            <% else %>
+              <i class="fa fa-file fa-lg"></i>
+            <% end %>
+
             <a href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
-              <% if xcategory.xclasses %>
-                <i class="fa fa-folder fa-lg"></i>
-              <% else %>
-                <i class="fa fa-file fa-lg"></i>
-              <% end %>
                 <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
-              <% if xcategory.xclasses.present? %>
-                <span class="arrow"></span>
-              <% end %>
             </a>
+            
+            <% if xcategory.xclasses.present? %>
+              <span class="arrow"></span>
+            <% end %>
           </li>
 
           <% if xcategory.xclasses.present? %>
@@ -66,6 +69,7 @@
   <div class="content">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= fa_icon('link') %></li>
         <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.name, :length => 18), xroot_path(@xclass.xcategory.xroot) %></li>
         <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.name, :length => 18), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory) %></li>
         <% @xclass.ancestors.each do |ancestor| %>
@@ -77,29 +81,24 @@
 
     <div class="card mt-4">
       <div class="card-block">
-        <h1 class="card-header text-center"><%= @xclass.name %></h1>
+        <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xclass.name %></h1>
         <div class="card-body">
           <div class="row justify-content-md-center">
             <div class="col-md-12">
 
-              <p><strong>Description: </strong><%= @xclass.description %></p>
-              <p><strong>Synonym: </strong><%= @xclass.synonym %></p>
-              <p><strong>Code: </strong><%= @xclass.code %></p>
-              <p><strong>Version date: </strong><%= @xclass.version_date %></p>
-              <p><strong>Publish: </strong><%= @xclass.publish %></p>
-              <p><strong>Properties:</strong>
+              <p><strong><%= fa_icon('align-left') %> description: </strong><%= @xclass.description %></p>
+              <p><strong><%= fa_icon('align-left') %> synonym: </strong><%= @xclass.synonym %></p>
+              <p><strong><%= fa_icon('file-code-o') %> code: </strong><%= @xclass.code %></p>
+              <p><strong><%= fa_icon('calendar') %> version date: </strong><%= @xclass.version_date %></p>
+              <p><strong><%= fa_icon('check-square-o') %> publish: </strong><%= @xclass.publish %></p>
+              <p><strong><%= fa_icon('cogs') %> properties:</strong>
               <%= render 'shared/properties', resource: @xclass %>
-              </p>
-              <p>
-                <!-- Large modal -->
-                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Xclasses <span class="badge badge-info"><%= @xclass.children.count %></span></button>
-                <%= render 'shared/show3', resource: @xclass %>
               </p>
 
               <div class="mt-5">
                 <div class="float-right">
                   <% if current_user.author_of?(@xclass) %>
-                    <%= link_to fa_icon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, parent_id: @xclass.id), class: "btn btn-sm btn-outline-success ml-5" %>
+                    <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, parent_id: @xclass.id), class: "btn btn-sm btn-outline-success ml-5" %>
                     <%= link_to fa_icon('pencil'), edit_xroot_xcategory_xclass_path(@xclass), class: 'btn btn-sm btn-outline-warning ml-5' %>
                     <%= link_to fa_icon('trash'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
                   <% end %>

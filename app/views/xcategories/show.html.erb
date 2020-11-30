@@ -58,6 +58,7 @@
   <div class="content">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= fa_icon('link') %></li>
         <li class="breadcrumb-item"><%= link_to truncate(@xcategory.xroot.name, :lenth => 18), xroot_path(@xcategory.xroot) %></li>
         <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xcategory.name, :length => 18) %></li>
       </ol>
@@ -65,29 +66,24 @@
 
     <div class="card mt-4">
       <div class="card-block">
-        <h1 class="card-header text-center"><%= @xcategory.name %></h1>
+        <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xcategory.name %></h1>
         <div class="card-body">
           <div class="row justify-content-md-center">
             <div class="col-md-12">
 
-              <p><strong>Description: </strong><%= @xcategory.description %></p>
-              <p><strong>Synonym: </strong><%= @xcategory.synonym %></p>
-              <p><strong>Code: </strong><%= @xcategory.code %></p>
-              <p><strong>Version date: </strong><%= @xcategory.version_date %></p>
-              <p><strong>Publish: </strong><%= @xcategory.publish %></p>
-              <p><strong>Properties:</strong>
+              <p><strong><%= fa_icon('align-left') %> description: </strong><%= @xcategory.description %></p>
+              <p><strong><%= fa_icon('align-left') %> synonym: </strong><%= @xcategory.synonym %></p>
+              <p><strong><%= fa_icon('file-code-o') %> code: </strong><%= @xcategory.code %></p>
+              <p><strong><%= fa_icon('calendar') %> version date: </strong><%= @xcategory.version_date %></p>
+              <p><strong><%= fa_icon('check-square-o') %> publish: </strong><%= @xcategory.publish %></p>
+              <p><strong><%= fa_icon('cogs') %> properties:</strong>
               <%= render 'shared/properties', resource: @xcategory %>
-              </p>
-              <p>
-                <!-- Large modal -->
-                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Xclasses <span class="badge badge-info"><%= count_xclasses_root_in_xcategory(@xcategory) %></span></button>
-                <%= render 'shared/show2', resource: @xcategory %>
               </p>
 
               <div class="mt-5">
                 <div class="float-right">
                   <% if current_user.author_of?(@xcategory) %>
-                    <%= link_to fa_icon('plus'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success ml-5" %>
+                    <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success ml-5" %>
                     <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory), class: 'btn btn-sm btn-outline-warning ml-5' %>
                     <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
                   <% end %>
