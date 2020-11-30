@@ -13,16 +13,18 @@ class Ability
     end
 
     if user.guest?
-     can :create, :all
-     can :read, :all
-     can :update, :all
+     can :manage, :all
+     # can :create, :all
+     # can :read, :all
+     # can :update, :all
     end
     
     if user.moderator?
-     can :create, :all
-     can :read, :all
-     can :destroy, :all
-     can :update, :all
+     can :manage, :all
+     # can :create, :all
+     # can :read, :all
+     # can :destroy, :all
+     # can :update, :all
     end
   end
   

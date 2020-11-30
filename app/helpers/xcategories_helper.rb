@@ -11,22 +11,4 @@ module XcategoriesHelper
     end
     xcategories.size
   end
-
-  def count_xclasses_for_xcategory(xclass)
-    items = []
-    xclass.children.each do |child|
-      items << child
-    end
-    items.size
-  end
-
-  def count_xclasses_root_in_xcategory(xcategory)
-    xclasses = []
-    xcategory.xclasses.each do |xclass|
-      if xclass.root?
-        xclasses << xclass
-      end
-    end
-    xclasses.size
-  end
 end
