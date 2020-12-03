@@ -8,17 +8,19 @@
       <ul id="menu-content" class="menu-content collapse out">
         <% @xroots.each do |xroot| %>
           <li data-toggle="collapse" data-target="#xroot-<%= xroot.id %>" class="collapsed <%= "active" if xroot == @xroot %>">
+
             <a href="<%= xroot_path(xroot) %>">
               <% if xroot.xcategories.present? %>
                 <i class="fa fa-folder fa-lg"></i>
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
-                <%= xroot.code %> <%= truncate(xroot.name, :length => 18) %>
-              <% if xroot.xcategories.present? %>
-                <span class="arrow"></span>
-              <% end %>
+              <%= xroot.code %> <%= truncate(xroot.name, :length => 18) %>
             </a>
+            
+            <% if xroot.xcategories.present? %>
+              <span class="arrow"></span>
+            <% end %>
           </li>
 
           <% if xroot.xcategories.present? %>

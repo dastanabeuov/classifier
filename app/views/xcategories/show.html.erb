@@ -8,19 +8,19 @@
         <% @xcategory.xroot.xcategories.each do |xcategory| %>
 
           <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if xcategory == @xcategory %>">
+
             <a href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
               <% if xcategory.xclasses.present? %>
                 <i class="fa fa-folder fa-lg"></i>
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
-              
               <%= xcategory.code %> <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
-              
-              <% if xcategory.xclasses.present? %>
-                <span class="arrow"></span>
-              <% end %>
             </a>
+            
+            <% if xcategory.xclasses.present? %>
+              <span class="arrow"></span>
+            <% end %>
           </li>
 
           <% if xcategory.xclasses.present? %>
