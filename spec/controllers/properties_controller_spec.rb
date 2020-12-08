@@ -6,7 +6,6 @@ RSpec.describe PropertiesController, type: :controller do
   let(:valid_attributes) { create :property }
   let(:invalid_attributes) { create :property, name: nil }
 
-
   describe "GET #INDEX" do
     it "returns a success response" do
       Property.create! valid_attributes
