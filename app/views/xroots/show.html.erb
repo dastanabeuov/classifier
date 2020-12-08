@@ -1,10 +1,11 @@
 <div class="show-xroot">
   <div class="nav-side-menu">
+
     <div class="brand">CLASSIFICATION SYSTEM</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
     <div class="menu-list">
-    
+
       <ul id="menu-content" class="menu-content collapse out">
         <% @xroots.each do |xroot| %>
           <li data-toggle="collapse" data-target="#xroot-<%= xroot.id %>" class="collapsed <%= "active" if xroot == @xroot %>">
@@ -96,5 +97,6 @@
       </div>
     </div>
 
+    <div id="debug"></div>
   </div>
 </div>

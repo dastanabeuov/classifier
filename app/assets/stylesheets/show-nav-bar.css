@@ -1,6 +1,7 @@
 /*show-nav-bar*/
 .nav-side-menu {
-  overflow: auto;
+  cursor: e-resize;
+  overflow-y: auto;
   white-space: nowrap;
   font-weight: 200;
   background-color: #2e353d;
