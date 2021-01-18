@@ -8,8 +8,8 @@ feature 'XCLASS UPDATE', %q{
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
-  given!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
-  given!(:xclass) { create(:xclass, xcategory: xcategory, user: user) }
+  given!(:xcategory) { create(:xcategory, xroot_id: xroot.id, user: user) }
+  given!(:xclass) { create(:xclass, xcategory_id: xcategory.id, user: user) }
  
   scenario 'Author xclass try edit', js: true do
     sign_in(user)
@@ -26,7 +26,7 @@ feature 'XCLASS UPDATE', %q{
 
   scenario 'Is not author try edit', js: true do
     sign_in(user2)
-    visit xclass_path(xclass)
+    visit xroot_xcategory_xclass_path(xroot, xcategory, xclass)
     
     expect(page).to_not have_link find(".fa-pencil")
   end

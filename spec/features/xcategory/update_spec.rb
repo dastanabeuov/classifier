@@ -7,27 +7,26 @@ feature 'XCATEGORY UPDATE', %q{
 
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
-  given!(:xcategory) { create(:xcategory, user: user) }
+  given!(:xroot) { create(:xroot, user: user) }
+  given!(:xcategory) { create(:xcategory, :xroot_id xroot.id, user: user) }
  
   scenario 'Author xcategory try edit', js: true do
     sign_in(user)
-    visit question_path(question)
+    visit xroot_xcategory_path(xroot, xcategory)
 
     click_on 'Edit Xcategory'
-    within '.question' do
-      fill_in "Name",  with: "New xcategory name"
-      fill_in "Description", with: "New xcategory description"
-      click_on 'Save Xcategory'
 
-      expect(page).to have_content "New xcategory name"
-      expect(page).to have_content "New xcategory description"
-      expect(page).to_not have_selector 'textarea'
-    end
+    fill_in "Name",  with: "New xcategory name"
+    fill_in "Description", with: "New xcategory description"
+    click_on 'Save Xcategory'
+
+    expect(page).to have_content "New xcategory name"
+    expect(page).to have_content "New xcategory description"
   end
 
   scenario 'Is not author try edit', js: true do
     sign_in(user2)
-    visit xcategory_path(xcategory)
+    visit xroot_xcategory_path(xroot, xcategory)
     
     expect(page).to_not have_link 'Edit question'
   end

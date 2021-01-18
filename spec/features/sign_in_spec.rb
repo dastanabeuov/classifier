@@ -9,7 +9,6 @@ feature 'USER CAN SIGHN_IN', %q{
 
   given(:user) { create(:user) }
   
-  #save_and_open_page
   scenario 'User can register on system' do
     visit new_user_registration_path
     fill_in 'Email', with: 'new@example.com'

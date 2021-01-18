@@ -14,15 +14,12 @@ feature 'XROOT UPDATE', %q{
     visit xroot_path(xroot)
 
     find(".fa-pencil").click
-    within '.edit' do
-      fill_in "Name",  with: "New xroot name"
-      fill_in "Description", with: "New xroot description"
-      click_on 'Save xroot'
+    fill_in "Name",  with: "New xroot name"
+    fill_in "Description", with: "New xroot description"
+    click_on 'Save xroot'
 
-      expect(page).to have_content "New xroot name"
-      expect(page).to have_content "New xroot description"
-      expect(page).to_not have_selector 'textarea'
-    end
+    expect(page).to have_content "New xroot name"
+    expect(page).to have_content "New xroot description"
   end
 
   scenario 'Not author try edit', js: true do

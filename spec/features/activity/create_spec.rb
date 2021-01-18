@@ -6,13 +6,13 @@ feature 'ACTIVITY CREATE', %q{
 } do
 
   given(:user) { create(:user) }
-  given!(:activity) { create(:activity, user: user) }
 
   scenario 'Authenticated user create activity', js: true do
     sign_in(user)
-    visit activity_path(activity)
+    visit new_activity_path
 
     fill_in 'Name', with: 'My activity'
+    fill_in 'Description', with: 'My text'
     click_on 'Create activity'
 
     expect(current_path).to eq activity_path(activity)
@@ -21,7 +21,7 @@ feature 'ACTIVITY CREATE', %q{
 
   scenario 'Authenticated user creates activity with errors', js: true do
     sign_in(user)
-    visit activity_path(activity)
+    visit new_activity_path
 
     click_on 'Create activity'
 

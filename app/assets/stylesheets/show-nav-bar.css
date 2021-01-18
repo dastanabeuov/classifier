@@ -12,6 +12,19 @@
   color: #e1ffff;
   padding-bottom: 10%;
 }
+.main-list {
+  cursor: e-resize;
+  overflow-y: auto;
+  white-space: nowrap;
+  font-weight: 200;
+  background-color: #2e353d;
+  position: fixed;
+  top: 65px;
+  width: 300px;
+  height: 100%;
+  color: #e1ffff;
+  padding-bottom: 10%;  
+}
 .nav-side-menu .brand { 
   padding-top: 17px;
   text-transform: uppercase;

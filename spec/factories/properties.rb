@@ -3,6 +3,6 @@ FactoryBot.define do
     name { "MyString" }
     description { "MyText" }
     propertyable { nil }
-    user { nil }
+    activity_id { nil }
   end
 end

@@ -6,13 +6,13 @@ feature 'XROOT CREATE', %q{
 } do
 
   given(:user) { create(:user) }
-  given!(:xroot) { create(:xroot, user: user) }
 
   scenario 'Authenticated user create xroot', js: true do
     login(user)
-    visit xroot_path(xroot)
+    visit new_xroot_path
 
     fill_in 'Name', with: 'My xroot'
+    fill_in 'Description', with: 'My text'
     click_on 'Create xroot'
 
     expect(current_path).to eq xroot_path(xroot)
