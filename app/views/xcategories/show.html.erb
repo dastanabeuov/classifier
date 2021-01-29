@@ -84,7 +84,7 @@
                 <div class="float-right">
                   <% if current_user.author_of?(@xcategory) %>
                     <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success ml-5" %>
-                    <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory), class: 'btn btn-sm btn-outline-warning ml-5' %>
+                    <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-outline-warning ml-5' %>
                     <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
                   <% end %>
                 </div>

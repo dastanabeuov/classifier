@@ -19,10 +19,12 @@ class PropertiesController < ApplicationController
     @property = current_user.properties.new(property_params)
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, success: 'Property was successfully created.' }
+        format.html { redirect_to @property }
+        flash[:success] = 'Property was successfully created.'
         format.json { render :show, status: :created, location: @property }
       else
-        format.html { render :new, error: 'Property is not created.' }
+        format.html { render :new }
+        flash[:error] = 'Property is not created.'
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
@@ -31,10 +33,12 @@ class PropertiesController < ApplicationController
   def update
     respond_to do |format|
       if current_user.author_of?(property) && property.update(property_params)
-        format.html { redirect_to @property, success: 'Property was successfully updated.' }
+        format.html { redirect_to @property }
+        flash[:success] = 'Property was successfully updated.'
         format.json { render :show, status: :ok, location: @property }
       else
-        format.html { render :edit, error: 'Property is not updated.' }
+        format.html { render :edit }
+        flash[:error] = 'Property is not updated.'
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
@@ -44,7 +48,8 @@ class PropertiesController < ApplicationController
     if current_user.author_of?(property)
       property.destroy
       respond_to do |format|
-        format.html { redirect_to properties_url, success: 'Property was successfully destroyed.' }
+        format.html { redirect_to properties_url }
+        flash[:success] = 'Property was successfully destroyed.'
         format.json { head :no_content }
       end
     end

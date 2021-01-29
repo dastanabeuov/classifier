@@ -23,10 +23,12 @@ class XrootsController < ApplicationController
     @xroot = current_user.xroots.new(xroot_params)
     respond_to do |format|
       if @xroot.save
-        format.html { redirect_to @xroot, success: 'Xroot was successfully created.' }
+        format.html { redirect_to @xroot }
+        flash[:success] = 'Xroot was successfully created.'
         format.json { render :show, status: :created, location: @xroot }
       else
-        format.html { render :new, error: 'Xroot is not created.' }
+        format.html { render :new }
+        flash[:error] = "Xroot is not created."
         format.json { render json: @xroot.errors, status: :unprocessable_entity }
       end
     end
@@ -35,10 +37,12 @@ class XrootsController < ApplicationController
   def update
     respond_to do |format|
       if current_user.author_of?(@xroot) && @xroot.update(xroot_params)
-        format.html { redirect_to @xroot, success: 'Xclass was successfully updated.' }
+        format.html { redirect_to @xroot }
+        flash[:success] = 'Xroot was successfully updated.'
         format.json { render :show, status: :ok, location: @xroot }
       else
-        format.html { render :edit, error: 'Xroot is not updated.' }
+        format.html { render :edit }
+        flash[:error] = "Xroot is not updated."
         format.json { render json: @xroot.errors, status: :unprocessable_entity }
       end
     end
@@ -48,7 +52,8 @@ class XrootsController < ApplicationController
     if current_user.author_of?(@xroot)
       @xroot.destroy
       respond_to do |format|
-        format.html { redirect_to xroots_url, success: 'Xroot was successfully destroyed.' }
+        format.html { redirect_to xroots_path }
+        flash[:success] = 'Xroot was successfully destroyed.'
         format.json { head :no_content }
       end
     end

@@ -6,7 +6,7 @@ resource 'xcategories' do
   header 'Content-Type', 'application/json'
   explanation 'xcategories are top-level business objects'
 
-  get '/xcategories' do
+  get 'xroot/1/xcategories' do
     route_summary 'This URL gets the list of xcategories.'
     route_description 'Getting list of xcategories. Long Description'
 
@@ -18,7 +18,7 @@ resource 'xcategories' do
     end
   end
 
-  post '/xcategories' do
+  post 'xroot/1/xcategories' do
     route_summary 'This is used to create xcategories.'
 
     with_options scope: :xcategory, with_example: true do

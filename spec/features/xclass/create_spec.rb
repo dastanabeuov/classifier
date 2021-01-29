@@ -1,31 +1,34 @@
 require 'rails_helper'
 
 feature 'XCLASS CREATE', %q{
-  Authenticated user create xclass
-  Authenticated user create xclass with errors
+  Authenticated user create
+  Authenticated user create with errors
 } do
 
   given(:user) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
-  given!(:xcategory) { create(:xcategory, xroot_id: xroot.id, user: user) }
-  given!(:xclass) { create(:xclass, xcategory_id: xcategory.id, user: user) }
+  given!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
 
-  scenario 'Authenticated user create xclass', js: true do
+  scenario 'Authenticated user create' do
     sign_in(user)
-    visit new_xroot_xcategory_xclass_path(xroot, xcategory, xclass)
+    visit new_xroot_xcategory_xclass_path(xroot, xcategory)
 
-    fill_in 'Name', with: 'My xclass'
-    fill_in 'Description', with: 'My text'
+    within find('.xclass') do
+      fill_in 'Name', with: 'My xclass'
+      fill_in 'Description', with: 'My text'
+    end
     click_on 'Create Xclass'
 
-    expect(current_path).to eq xroot_xcategory_xclass_path(xroot, xcategory, xclass)
+    expect(current_path).to eq xroot_xcategory_xclass_path(xroot, xcategory, Xclass.last)
+    expect(page).to have_content "Xclass was successfully created."
     expect(page).to have_content 'My xclass'
   end
 
-  scenario 'Authenticated user create xclass with errors', js: true do
+  scenario 'Authenticated user create with errors' do
     sign_in(user)
-    visit xroot_xcategory_xclass_path(xroot, xcategory, xclass)
+    visit new_xroot_xcategory_xclass_path(xroot, xcategory)
 
+    find(:css, ".btn-outline-success").click
     click_on 'Create Xclass'
 
     expect(page).to have_content "Name can't be blank"

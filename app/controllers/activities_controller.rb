@@ -18,11 +18,12 @@ class ActivitiesController < ApplicationController
     @activity = current_user.activities.new(activity_params)
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, 
-          success: 'Activity was successfully created.' }
+        format.html { redirect_to @activity }
+        flash[:success] = 'Activity was successfully created.'
         format.json { render :show, status: :created, location: @activity }
       else
-        format.html { render :new, error: 'Activity is not created.' }
+        format.html { render :new }
+        flash[:error] = 'Activity is not created.'
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
@@ -31,11 +32,12 @@ class ActivitiesController < ApplicationController
   def update
     respond_to do |format|
       if current_user.author_of?(activity) && activity.update(activity_params)
-        format.html { redirect_to @activity, 
-          success: 'Activity was successfully updated.' }
+        format.html { redirect_to @activity }
+        flash[:success] = 'Activity was successfully updated.'
         format.json { render :show, status: :ok, location: @activity }
       else
-        format.html { render :edit, error: 'Activity is not updated.' }
+        format.html { render :edit }
+        flash[:error] = 'Activity is not updated.'
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
@@ -45,8 +47,8 @@ class ActivitiesController < ApplicationController
     if current_user.author_of?(activity)
       activity.destroy
       respond_to do |format|
-        format.html { redirect_to activities_url, 
-          success: 'Activity was successfully destroyed.' }
+        format.html { redirect_to activities_url }
+        flash[:success] = 'Activity was successfully destroyed.'
         format.json { head :no_content }
       end
     end

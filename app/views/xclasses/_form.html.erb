@@ -2,49 +2,51 @@
   <%= form_for [@xcategory.xroot, @xcategory, xclass] do |f| %>
     <%= render 'layouts/errors', resource: xclass %>
 
-    <div class="field mt-3">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
+    <div class="xclass">
+      <div class="field mt-3">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control' %>
-    </div>
+      <div class="field mt-3">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :synonym %>
-      <%= f.text_area :synonym, class: 'form-control' %>
-    </div>
+      <div class="field mt-3">
+        <%= f.label :synonym %>
+        <%= f.text_area :synonym, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :code %>
-      <%= f.text_field :code, class: 'form-control' %>
-    </div>
+      <div class="field mt-3">
+        <%= f.label :code %>
+        <%= f.text_field :code, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :version_date %>
-      <%= f.date_select :version_date, class: 'form-control' %>
-    </div>
+      <div class="field mt-3">
+        <%= f.label :version_date %>
+        <%= f.date_select :version_date, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :publish %>
-      <%= f.check_box :publish, class: 'form-control' %>
-    </div>
+      <div class="field mt-3">
+        <%= f.label :publish %>
+        <%= f.check_box :publish, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :xtype %>
-      <%= f.check_box :xtype, class: 'form-control' %>
-    </div>
+      <div class="field mt-3">
+        <%= f.label :xtype %>
+        <%= f.check_box :xtype, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :position %>
-      <%= f.text_field :position, class: 'form-control' %>
-    </div>
+      <div class="field mt-3">
+        <%= f.label :position %>
+        <%= f.text_field :position, class: 'form-control' %>
+      </div>
 
-    <div class="field mt-3">
-      <%= f.label :parent_id %>
-      <%= f.select :parent_id, Xclass.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+      <div class="field mt-3">
+        <%= f.label :parent_id %>
+        <%= f.select :parent_id, Xclass.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+      </div>
     </div>
     <hr>
     <div class="field mt-5">

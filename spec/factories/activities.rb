@@ -7,7 +7,11 @@ FactoryBot.define do
     version_date { "2020-06-08" }
     publish { false }
     position { "MyString" }
-    ancestry { "MyString" }
+    ancestry { nil }
     user { nil }
+
+    trait :invalid do
+      name { nil }
+    end
   end
 end

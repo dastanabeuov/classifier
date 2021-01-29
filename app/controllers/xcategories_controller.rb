@@ -25,11 +25,12 @@ class XcategoriesController < ApplicationController
     @xcategory.user = current_user
     respond_to do |format|
       if @xcategory.save
-        format.html { redirect_to xroot_xcategory_path(@xroot, @xcategory), 
-          success: 'Xcategory was successfully created.' }
+        format.html { redirect_to xroot_xcategory_path(@xroot, @xcategory) }
+        flash[:success] = 'Xcategory was successfully created.'
         format.json { render :show, status: :created, location: @xcategory }
       else
-        format.html { render :new, error: 'Xcategory is not created.' }
+        format.html { render :new }
+        flash[:success] = 'Xcategory is not created.'
         format.json { render json: @xcategory.errors, status: :unprocessable_entity }
       end
     end
@@ -38,11 +39,12 @@ class XcategoriesController < ApplicationController
   def update
     respond_to do |format|
       if current_user.author_of?(@xcategory) && @xcategory.update(xcategory_params)
-        format.html { redirect_to xroot_xcategory_path(@xroot, @xcategory), 
-          success: 'Xcategory was successfully updated.' }
+        format.html { redirect_to xroot_xcategory_path(@xroot, @xcategory) }
+        flash[:success] = 'Xcategory was successfully updated.'
         format.json { render :show, status: :ok, location: @xcategory }
       else
-        format.html { render :edit, error: 'Xcategory is not updated.' }
+        format.html { render :edit }
+        flash[:error] = 'Xcategory is not updated.'
         format.json { render json: @xcategory.errors, status: :unprocessable_entity }
       end
     end
@@ -52,8 +54,8 @@ class XcategoriesController < ApplicationController
     if current_user.author_of?(@xcategory)
       @xcategory.destroy
       respond_to do |format|
-        format.html { redirect_to xroot_path(@xcategory.xroot), 
-          success: 'Xcategory was successfully destroyed.' }
+        format.html { redirect_to xroot_path(@xcategory.xroot) }
+        flash[:success] = 'Xcategory was successfully destroyed.'
         format.json { head :no_content }
       end
     end
@@ -62,7 +64,7 @@ class XcategoriesController < ApplicationController
   private
 
     def set_xroot
-      @xroot ||= Xroot.find(params[:xroot_id])
+      @xroot = Xroot.find(params[:xroot_id])
     end
 
     def set_xcategory

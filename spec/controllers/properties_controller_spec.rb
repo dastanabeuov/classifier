@@ -2,104 +2,141 @@ require 'rails_helper'
 
 RSpec.describe PropertiesController, type: :controller do
 
-  let(:valid_session) { create :user }
-  let(:valid_attributes) { create :property }
-  let(:invalid_attributes) { create :property, name: nil }
+  let(:user) { create :user }
+  let(:xroot) { create :xroot, user: user }
+  let(:activity) { create :activity, user: user }
+  let(:property) { create :property, activity: activity, propertyable: xroot }
 
   describe "GET #INDEX" do
-    it "returns a success response" do
-      Property.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
+    let(:properties) { create_list(:property, 3, activity: activity, propertyable: xroot) }
+
+    before { get :index }
+
+    it "array all properties" do
+      expect(assigns(:properties)).to match_array(properties)
+    end
+
+    it "renders index view" do
+      expect(response).to render_template :index
     end
   end
 
   describe "GET #SHOW" do
-    it "returns a success response" do
-      property = Property.create! valid_attributes
-      get :show, params: {id: property.to_param}, session: valid_session
-      expect(response).to be_successful
+    before { get :show, params: { id: property } }
+
+    it "request show propety to property" do
+      expect(assigns(:property)).to eq property
+    end
+
+    it "render show view" do
+      expect(response).to render_template :show
     end
   end
 
   describe "GET #NEW" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
+    before { get :new }
+
+    it "request new property to property" do
+      expect(assigns(:property)).to be_a_new(Property)
+    end
+
+    it "render new view" do
+      expect(response).to render_template :new
     end
   end
 
   describe "GET #EDIT" do
-    it "returns a success response" do
-      property = Property.create! valid_attributes
-      get :edit, params: {id: property.to_param}, session: valid_session
-      expect(response).to be_successful
+    before { get :edit, params: { id: property } }
+
+    it "request edit property to property" do
+      expect(assigns(:property)).to eq property
+    end
+
+    it "render edit view" do
+      expect(response).to render_template :edit
     end
   end
 
   describe "POST #CREATE" do
-    context "with valid params" do
-      it "creates a new Property" do
-        expect {
-          post :create, params: {property: valid_attributes}, session: valid_session
-        }.to change(Property, :count).by(1)
+    context "valid attribute" do
+      it "save new property" do
+        count = Property.count
+        post :create, params: { property: attributes_for(:property) }
+        expect(Property.count).to eq count + 1
       end
 
-      it "redirects to the created property" do
-        post :create, params: {property: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Property.last)
+      it "redirect to show view" do
+        post :create, params: { property: attributes_for(:property) }
+        
+        expect(response).to redirect_to property_path(Property.last)
       end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {property: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+    context "invalid attribute" do
+      it "is not save activity" do
+        count = Property.count
+        post :create, params: { property: attributes_for(:property, :invalid) }
+        expect(Property.count).to eq count
+      end
+
+      it "render show new" do
+        post :create, params: { propety: attributes_for(:property, :invalid) }
+        expect(response).to render_template :new
       end
     end
   end
 
-  describe "PUT #UPDATE" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe "PATCH(PUT) #UPDATE" do
+    context "valid attribute" do
+      it "update property to property" do
+        patch :update, params: { id: property, property: attributes_for(:property) }
+        expect(assigns(:property)).to eq property
+      end
 
-      it "updates the requested property" do
-        property = Property.create! valid_attributes
-        put :update, params: {id: property.to_param, property: new_attributes}, session: valid_session
+      it "change property attribute" do
+        patch :update, params: { id: property, property: attributes_for(:property, description: "NewDescription") }
         property.reload
-        skip("Add assertions for updated state")
+
+        expect(property.description).to eq 'NewDescription'
       end
 
-      it "redirects to the property" do
-        property = Property.create! valid_attributes
-        put :update, params: {id: property.to_param, property: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(property)
+      it "redirect update property" do
+        patch :update, params: { id: property, property: attributes_for(:property) }
+        expect(response).to redirect_to property
       end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        property = Property.create! valid_attributes
-        put :update, params: {id: property.to_param, property: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+    context "invalid attribute" do
+      render_views
+      
+      it "does not change property" do
+        patch :update, params: { id: property, property: attributes_for(:property, :invalid) }
+        property.reload
+
+        expect(property.name).to eq 'MyString'
+        expect(property.description).to eq 'MyText'
+      end
+
+      it "re-render edit view" do
+        patch :update, params: { id: property, property: attributes_for(:property, :invalid) }
+        expect(response).to render_template :edit
       end
     end
   end
+
 
   describe "DELETE #DESTROY" do
-    it "destroys the requested property" do
-      property = Property.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: property.to_param}, session: valid_session
-      }.to change(Property, :count).by(-1)
+    let!(:property) { create(:property, user: user) }
+
+    it "delete property" do
+      count = Property.count
+      delete :destroy, params: { id: property }
+      expect(Property.count).to eq count - 1
     end
 
-    it "redirects to the properties list" do
-      property = Property.create! valid_attributes
-      delete :destroy, params: {id: property.to_param}, session: valid_session
-      expect(response).to redirect_to(properties_url)
+    it "redirect index" do
+      delete :destroy, params: { id: property }
+      expect(response).to redirect_to properties_path
     end
   end
 

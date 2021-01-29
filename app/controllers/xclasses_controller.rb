@@ -27,11 +27,12 @@ class XclassesController < ApplicationController
     @xclass.user = current_user
     respond_to do |format|
       if @xclass.save
-        format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass), 
-          success: 'Xclass was successfully created.' }
+        format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass) }
+        flash[:success] = 'Xclass was successfully created.'
         format.json { render :show, status: :created, location: @xclass }
       else
-        format.html { render :new, error: 'Xclass is not created.' }
+        format.html { render :new }
+        flash[:error] = 'Xclass is not created.'
         format.json { render json: @xclass.errors, status: :unprocessable_entity }
       end
     end  
@@ -40,11 +41,12 @@ class XclassesController < ApplicationController
   def update
     respond_to do |format|
       if current_user.author_of?(@xclass) && @xclass.update(xclass_params)
-        format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass), 
-          success: 'Xclass was successfully updated.' }
+        format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass) }
+        flash[:success] = 'Xclass was successfully updated.'
         format.json { render :show, status: :ok, location: @xclass }
       else
-        format.html { render :edit, error: 'Xclass is not updated.' }
+        format.html { render :edit }
+        flash[:error] = "Xclass is not updated."
         format.json { render json: @xclass.errors, status: :unprocessable_entity }
       end
     end
@@ -54,15 +56,13 @@ class XclassesController < ApplicationController
     if current_user.author_of?(@xclass)
       @xclass.destroy
       respond_to do |format|
-        format.html { 
-          if @xclass.parent
-            redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass.parent), 
-            success: 'Xclas was successfully destroyed.'
-          else
-            redirect_to xroot_xcategory_path(@xcategory.xroot, @xcategory), 
-            success: 'Xclas was successfully destroyed.'
-          end
-        }
+        if @xclass.parent
+          format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass.parent) }
+          flash[:success] = 'Xclass was successfully destroyed.'
+        else
+          format.html { redirect_to xroot_xcategory_path(@xcategory.xroot, @xcategory) }
+          flash[:error] = 'Xclass is not destroyed.'
+        end
         format.json { head :no_content }
       end
     end

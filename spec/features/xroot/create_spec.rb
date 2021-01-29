@@ -7,23 +7,32 @@ feature 'XROOT CREATE', %q{
 
   given(:user) { create(:user) }
 
-  scenario 'Authenticated user create xroot', js: true do
-    login(user)
-    visit new_xroot_path
+  scenario 'Authenticated user create xroot' do
+    sign_in(user)
+    visit xroots_path
 
-    fill_in 'Name', with: 'My xroot'
-    fill_in 'Description', with: 'My text'
-    click_on 'Create xroot'
+    # save_and_open_page
 
-    expect(current_path).to eq xroot_path(xroot)
+    find(:css, ".btn-outline-success").click
+
+    within find('.xroot') do
+      fill_in 'Name', with: 'My xroot'
+      fill_in 'Description', with: 'My text'
+    end
+    click_on 'Create Xroot'
+
+    expect(current_path).to eq xroot_path(Xroot.last)
+    expect(page).to have_content 'Xroot was successfully created.'
     expect(page).to have_content 'My xroot'
+    expect(page).to have_content 'My text'
   end
 
-  scenario 'Authenticated user create xroot with errors', js: true do
-    login(user)
-    visit xroot_path(xroot)
+  scenario 'Authenticated user create xroot with errors' do
+    sign_in(user)
+    visit xroots_path
 
-    click_on 'Create xroot'
+    find(:css, ".btn-outline-success").click
+    click_on 'Create Xroot'
 
     expect(page).to have_content "Name can't be blank"
   end

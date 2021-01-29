@@ -2,7 +2,6 @@ class User < ApplicationRecord
   has_many :xroots, dependent: :destroy  
   has_many :xcategories, dependent: :destroy
   has_many :xclasses, dependent: :destroy
-  has_many :properties, dependent: :destroy
   has_many :activities, dependent: :destroy  
 
   validates :email, exclusion: { in: %w(admin@classifier.kazniisa.kz 
