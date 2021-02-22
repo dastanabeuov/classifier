@@ -12,8 +12,8 @@ resource 'properties' do
 
     context '200' do
       example_request 'Getting list of properties' do
+        do_request(param)
         expect(status).to eq(200)
-        # do_request(param)
       end
     end
   end

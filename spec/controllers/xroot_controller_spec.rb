@@ -2,105 +2,138 @@ require 'rails_helper'
 
 RSpec.describe XrootsController, type: :controller do
 
-  let(:valid_session) { create :user }
-  let(:valid_attributes) { create :xroot }
-  let(:invalid_attributes) { create :xroot, name: nil }
+  let(:user) { create(:user) }
+  let(:xroot) { create(:xroot, user: user) }
 
   describe "GET #INDEX" do
-    it "returns a success response" do
-      Xroot.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
+    let(:xroot) { create_list(:xroot, 3, user: user) }
+
+    before { get :index }
+
+    it "array all xroots" do
+      expect(assigns(:xroots)).to match_array(xroots)
+    end
+
+    it "renders index view" do
+      expect(response).to render_template :index
     end
   end
 
   describe "GET #SHOW" do
-    it "returns a success response" do
-      xroot = Xroot.create! valid_attributes
-      get :show, params: {id: xroot.to_param}, session: valid_session
-      expect(response).to be_successful
+    before { get :show, params: { id: xroot } }
+
+    it "request show xroot to xroot" do
+      expect(assigns(:xroot)).to eq xroot
+    end
+
+    it "render show view" do
+      expect(response).to render_template :show
     end
   end
 
   describe "GET #NEW" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
+    before { get :new }
+
+    it "request new xroot to xroot" do
+      expect(assigns(:xroot)).to be_a_new(xroot)
+    end
+
+    it "render new view" do
+      expect(response).to render_template :new
     end
   end
 
   describe "GET #EDIT" do
-    it "returns a success response" do
-      xroot = Xroot.create! valid_attributes
-      get :edit, params: {id: xroot.to_param}, session: valid_session
-      expect(response).to be_successful
+    before { get :edit, params: { id: xroot } }
+
+    it "request edit xroot to xroot" do
+      expect(assigns(:xroot)).to eq xroot
+    end
+
+    it "render edit view" do
+      expect(response).to render_template :edit
     end
   end
 
   describe "POST #CREATE" do
-    context "with valid params" do
-      it "creates a new xroot" do
-        expect {
-          post :create, params: {xroot: valid_attributes}, session: valid_session
-        }.to change(xroot, :count).by(1)
+    context "valid attribute" do
+      it "save new xroot" do
+        count = Xroot.count
+        post :create, params: { xroot: attributes_for(:xroot) }
+        expect(Xroot.count).to eq count + 1
       end
 
-      it "redirects to the created xroot" do
-        post :create, params: {xroot: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(xroot.last)
+      it "redirect to show view" do
+        post :create, params: { xroot: attributes_for(:xroot) }
+        
+        expect(response).to redirect_to xroot_path(Xroot.last)
       end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {xroot: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+    context "invalid attribute" do
+      it "is not save xroot" do
+        count = Xroot.count
+        post :create, params: { xroot: attributes_for(:xroot, :invalid) }
+        expect(Xroot.count).to eq count
+      end
+
+      it "render show new" do
+        post :create, params: { xroot: attributes_for(:xroot, :invalid) }
+        expect(response).to render_template :new
       end
     end
   end
 
   describe "PUT #UPDATE" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested xroot" do
-        xroot = Xroot.create! valid_attributes
-        put :update, params: {id: xroot.to_param, xroot: new_attributes}, session: valid_session
-        xroot.reload
-        skip("Add assertions for updated state")
+    context "valid attribute" do
+      it "update xclass to xroot" do
+        patch :update, params: { id: xroot, xroot: attributes_for(:xroot) }
+        expect(assigns(:xroot)).to eq xroot
       end
 
-      it "redirects to the xroot" do
-        xroot = Xroot.create! valid_attributes
-        put :update, params: {id: xroot.to_param, xroot: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(xroot)
+      it "change xroot attribute" do
+        patch :update, params: { id: xroot, xroot: attributes_for(:xroot, description: "NewDescription") }
+        xroot.reload
+
+        expect(xroot.description).to eq 'NewDescription'
+      end
+
+      it "redirect update xroot" do
+        patch :update, params: { id: xroot, xroot: attributes_for(:xroot) }
+        expect(response).to redirect_to xroot_path(xroot)
       end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        xroot = Xroot.create! valid_attributes
-        put :update, params: {id: xroot.to_param, xroot: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+    context "invalid attribute" do
+      render_views
+      
+      it "does not change xroot" do
+        patch :update, params: { id: xroot, xroot: attributes_for(:xroot, :invalid) }
+        xroot.reload
+
+        expect(xroot.name).to eq 'MyString'
+        expect(xroot.description).to eq 'MyText'
+      end
+
+      it "re-render edit view" do
+        patch :update, params: { id: xroot, xroot: attributes_for(:xroot, :invalid) }
+        expect(response).to render_template :edit
       end
     end
   end
 
   describe "DELETE #DESTROY" do
-    it "destroys the requested xroot" do
-      xroot = Xroot.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: xroot.to_param}, session: valid_session
-      }.to change(xroot, :count).by(-1)
+    let!(:xroot) { create(:xroot, xcategory: xcategory, user: user) }
+
+    it "delete xroot" do
+      count = Xroot.count
+      delete :destroy, params: { id: xroot }
+      expect(Xroot.count).to eq count - 1
     end
 
-    it "redirects to the Xroots list" do
-      xroot = Xroot.create! valid_attributes
-      delete :destroy, params: {id: xroot.to_param}, session: valid_session
-      expect(response).to redirect_to(Xroots_url)
+    it "redirect index" do
+      delete :destroy, params: { id: xroot }
+      expect(response).to redirect_to xroots_path
     end
   end
-
 end

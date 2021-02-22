@@ -12,8 +12,8 @@ resource 'xroots' do
 
     context '200' do
       example_request 'Getting list of Xroots' do
+        do_request(xroots_path)        
         expect(status).to eq(200)
-        do_request(xroots_path)
       end
     end
   end

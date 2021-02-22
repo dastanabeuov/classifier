@@ -7,5 +7,9 @@ FactoryBot.define do
     version_date { "2020-06-08" }
     publish { false }
     user { nil }
+
+    trait :invalid do
+      name { nil }
+    end
   end
 end

@@ -8,40 +8,28 @@ feature 'USER CAN SIGHN_IN', %q{
 } do
 
   given(:user) { create(:user) }
+  given(:invalid_user) { attributes_for(:user, email: 'warning@example.com', password: '12345678') }
+  given(:unregistered_user) { attributes_for(:user, email: 'warning@example.com', password: '12345678', password_confirmation: '12345678') }
   
-  # scenario 'User can register on system' do
-  #   visit new_user_registration_path
-  #   fill_in 'Email', with: 'new@example.com'
-  #   fill_in 'Password', with: '12345678'
-  #   fill_in 'Password confirmation', with: '12345678'
-  #   visit user_confirmation_path(confirmation_token: email_token)
-  #   click_on 'Log in'
-  #   expect(page).to have_content 'Welcome! You have signed up successfully.'
-  # end
-
   scenario 'Registration user tries sign in' do
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in(user)
     expect(page).to have_content 'Signed in successfully.'
   end
 
   scenario 'User can logout system' do
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in(user)
     visit xroots_path
     click_on 'Sign out'
     expect(page).to have_content 'Signed out successfully.'
   end
 
   scenario 'Unregistered user tries sign in' do
-    visit new_user_session_path
-    fill_in 'Email', with: 'warning@example.com'
-    fill_in 'Password', with: '12345678'
-    click_on 'Log in'
+    sign_in(invalid_user)
     expect(page).to have_content 'Invalid Email or password.'
+  end
+
+  scenario 'User can register on system' do
+    sign_up(unregistered_user)
+    expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 end

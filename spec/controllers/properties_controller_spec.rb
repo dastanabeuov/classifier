@@ -139,5 +139,4 @@ RSpec.describe PropertiesController, type: :controller do
       expect(response).to redirect_to properties_path
     end
   end
-
 end

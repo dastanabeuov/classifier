@@ -10,5 +10,9 @@ FactoryBot.define do
     ancestry { nil }
     xcategory_id { nil }
     user { nil }
+
+    trait :invalid do
+      name { nil }
+    end
   end
 end

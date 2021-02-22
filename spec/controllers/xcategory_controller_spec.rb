@@ -2,105 +2,139 @@ require 'rails_helper'
 
 RSpec.describe XcategoriesController, type: :controller do
 
-  let(:valid_session) { create :user }
-  let(:valid_attributes) { create :xcategory }
-  let(:invalid_attributes) { create :xcategory, name: nil }
+  let(:user) { create(:user) }
+  let(:xroot) { create(:xroot, user: user) }
+  let(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
 
   describe "GET #INDEX" do
-    it "returns a success response" do
-      Xcategory.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
+    let(:xcategories) { create_list(:xcategory, 3, xroot: xroot, user: user) }
+
+    before { get :index }
+
+    it "array all xcategories" do
+      expect(assigns(:xcategories)).to match_array(xcategories)
+    end
+
+    it "renders index view" do
+      expect(response).to render_template :index
     end
   end
 
   describe "GET #SHOW" do
-    it "returns a success response" do
-      xcategory = Xcategory.create! valid_attributes
-      get :show, params: {id: xcategory.to_param}, session: valid_session
-      expect(response).to be_successful
+    before { get :show, params: { id: xcategory } }
+
+    it "request show xcategory to xcategory" do
+      expect(assigns(:xcategory)).to eq xcategory
+    end
+
+    it "render show view" do
+      expect(response).to render_template :show
     end
   end
 
   describe "GET #NEW" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
+    before { get :new }
+
+    it "request new xcategory to xcategory" do
+      expect(assigns(:xcategory)).to be_a_new(Xcategory)
+    end
+
+    it "render new view" do
+      expect(response).to render_template :new
     end
   end
 
   describe "GET #EDIT" do
-    it "returns a success response" do
-      xcategory = Xcategory.create! valid_attributes
-      get :edit, params: {id: xcategory.to_param}, session: valid_session
-      expect(response).to be_successful
+    before { get :edit, params: { id: xcategory } }
+
+    it "request edit xcategory to xcategory" do
+      expect(assigns(:xcategory)).to eq xcategory
+    end
+
+    it "render edit view" do
+      expect(response).to render_template :edit
     end
   end
 
   describe "POST #CREATE" do
-    context "with valid params" do
-      it "creates a new xcategory" do
-        expect {
-          post :create, params: {xcategory: valid_attributes}, session: valid_session
-        }.to change(xcategory, :count).by(1)
+    context "valid attribute" do
+      it "save new xcategory" do
+        count = Xcategory.count
+        post :create, params: { xcategory: attributes_for(:xcategory) }
+        expect(Xcategory.count).to eq count + 1
       end
 
-      it "redirects to the created xcategory" do
-        post :create, params: {xcategory: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(xcategory.last)
+      it "redirect to show view" do
+        post :create, params: { xcategory: attributes_for(:xcategory) }
+        
+        expect(response).to redirect_to xroot_xcategory_path(Xcategory.last.xroot, Xcategory.last)
       end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {xcategory: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+    context "invalid attribute" do
+      it "is not save xcategory" do
+        count = Xcategory.count
+        post :create, params: { xcategory: attributes_for(:xcategory, :invalid) }
+        expect(Xcategory.count).to eq count
+      end
+
+      it "render show new" do
+        post :create, params: { xcategory: attributes_for(:xcategory, :invalid) }
+        expect(response).to render_template :new
       end
     end
   end
 
   describe "PUT #UPDATE" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested xcategory" do
-        xcategory = Xcategory.create! valid_attributes
-        put :update, params: {id: xcategory.to_param, xcategory: new_attributes}, session: valid_session
-        xcategory.reload
-        skip("Add assertions for updated state")
+    context "valid attribute" do
+      it "update xcategory to xcategory" do
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory) }
+        expect(assigns(:xcategory)).to eq xcategory
       end
 
-      it "redirects to the xcategory" do
-        xcategory = Xcategory.create! valid_attributes
-        put :update, params: {id: xcategory.to_param, xcategory: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(xcategory)
+      it "change xcategory attribute" do
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, description: "NewDescription") }
+        xcategory.reload
+
+        expect(xcategory.description).to eq 'NewDescription'
+      end
+
+      it "redirect update xcategory" do
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory) }
+        expect(response).to redirect_to xroot_xcategory_path(xroot, xcategory)
       end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        xcategory = Xcategory.create! valid_attributes
-        put :update, params: {id: xcategory.to_param, xcategory: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+    context "invalid attribute" do
+      render_views
+      
+      it "does not change xcategory" do
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, :invalid) }
+        xcategory.reload
+
+        expect(xcategory.name).to eq 'MyString'
+        expect(xcategory.description).to eq 'MyText'
+      end
+
+      it "re-render edit view" do
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, :invalid) }
+        expect(response).to render_template :edit
       end
     end
   end
 
   describe "DELETE #DESTROY" do
-    it "destroys the requested xcategory" do
-      xcategory = Xcategory.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: xcategory.to_param}, session: valid_session
-      }.to change(xcategory, :count).by(-1)
+    let!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
+
+    it "delete xcategory" do
+      count = Xcategory.count
+      delete :destroy, params: { id: xcategory }
+      expect(Xcategory.count).to eq count - 1
     end
 
-    it "redirects to the xcategories list" do
-      xcategory = Xcategory.create! valid_attributes
-      delete :destroy, params: {id: xcategory.to_param}, session: valid_session
-      expect(response).to redirect_to(xcategories_url)
+    it "redirect index" do
+      delete :destroy, params: { id: xcategory }
+      expect(response).to redirect_to xcategories_path(xcategory.xroot)
     end
   end
-
 end
