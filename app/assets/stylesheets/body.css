@@ -50,18 +50,7 @@ body {
 .edit, .index, .new, .contact, .help, .service, .show-second {
   padding-left: 70px;
   padding-right: 70px;
-  margin-bottom: 100px;
-  margin-top: 30px;
 }
 .hidden {
   display: none
-}
-.card { 
-  border: none 
-}
-a {
-  color: #17A1B8;
-}
-a:hover {
-  color: #128496;
 }

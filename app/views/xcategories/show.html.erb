@@ -1,76 +1,82 @@
 <div class="show-xcategory">
   <div class="nav-side-menu">
-    <div class="brand"><%= fa_icon('arrow-circle-o-left') %> <%= link_to truncate(@xcategory.xroot.name, :length => 20), xroot_path(@xcategory.xroot) %></div>
+    <div class="brand text-left pl-4">
+      <a href="<%= xroot_path(@xroot) %>"><%= fa_icon('chevron-left') %> BACK</a>
+    </div>
+    <div class="brand text-left pl-4">
+      <a href="<%= xroot_path(@xroot) %>"><%= @xroot.code %> <%= truncate(@xroot.name, :length => 12) %></a>
+    </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
     <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
-        <% @xcategory.xroot.xcategories.each do |xcategory| %>
-
-          <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if xcategory == @xcategory %>">
-
-            <a href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
-              <% if xcategory.xclasses.present? %>
+      <% @xcategory.xroot.xcategories.each do |xcategory| %>
+        <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if xcategory == @xcategory %>">
+          <a href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
+          <% if xcategory.xclasses.present? %>
+            <i class="fa fa-folder fa-lg"></i>
+          <% else %>
+            <i class="fa fa-file fa-lg"></i>
+          <% end %>
+            <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
+          </a>
+          <% if xcategory.xclasses.present? %>
+            <span class="arrow"></span>
+          <% end %>
+        </li>
+        <% if xcategory.xclasses.present? %>
+          <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
+          <% xcategory.xclasses.each do |xclass| %>
+            <% if xclass.root? %>
+              <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
+              <% if xclass.children.present? %>
                 <i class="fa fa-folder fa-lg"></i>
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
-              <%= xcategory.code %> <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
-            </a>
-            
-            <% if xcategory.xclasses.present? %>
-              <span class="arrow"></span>
-            <% end %>
-          </li>
-
-          <% if xcategory.xclasses.present? %>
-            <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
-              <% xcategory.xclasses.each do |xclass| %>
-                <% if xclass.root? %>
-                  <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
-                    <% if xclass.children.present? %>
-                      <i class="fa fa-folder fa-lg"></i>
-                    <% else %>
-                      <i class="fa fa-file fa-lg"></i>
-                    <% end %>
-
-                    <%= xclass.code %> <%= link_to truncate(xclass.name, :length => 18), xroot_xcategory_xclass_path(xcategory.xroot, xcategory, xclass) %>
-                    
-                    <% if xclass.children.present? %>
-                      <span class="arrow"></span>
-                    <% end %>
-                  </li>
-
-                  <% if xclass.children? %>
-                    <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
-                      <%= render 'submenu_xclass', xclass: xclass %>
-                    </ul>
-                  <% end %>
-                <% end %>
+                <%= xclass.code %> <%= link_to truncate(xclass.name, :length => 18), xroot_xcategory_xclass_path(xcategory.xroot, xcategory, xclass) %>
+              <% if xclass.children.present? %>
+                <span class="arrow"></span>
               <% end %>
-            </ul>
+              </li>
+              <% if xclass.children? %>
+                <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
+                  <%= render 'submenu_xclass', xclass: xclass %>
+                </ul>
+              <% end %>
+            <% end %>
           <% end %>
+          </ul>
         <% end %>
+      <% end %>
       </ul>
     </div>
   </div>
-
   <div class="content">
+    <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
+    <div class="card-body">
+      <div class="row justify-content-md-center">
+        <div class="col-md-12 btn-group">
+          <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong><%= truncate(@xroot.description, :length => 7) %></p>
+          <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong><%= truncate(@xroot.synonym, :length => 7) %></p>
+          <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong><%= @xroot.code %></p>
+          <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong><%= @xroot.version_date %></p>
+          <p><strong><%= fa_icon('check-square-o') %> </strong><%= @xroot.publish %></p>
+          </p>
+        </div>
+      </div>
+    </div>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><%= fa_icon('link') %></li>
         <li class="breadcrumb-item"><%= link_to truncate(@xcategory.xroot.name, :lenth => 18), xroot_path(@xcategory.xroot) %></li>
         <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xcategory.name, :length => 18) %></li>
       </ol>
     </nav>
-
     <div class="card mt-4">
       <div class="card-block">
         <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xcategory.name %></h1>
         <div class="card-body">
           <div class="row justify-content-md-center">
             <div class="col-md-12">
-
               <p><strong><%= fa_icon('align-left') %> description: </strong><%= @xcategory.description %></p>
               <p><strong><%= fa_icon('align-left') %> synonym: </strong><%= @xcategory.synonym %></p>
               <p><strong><%= fa_icon('file-code-o') %> code: </strong><%= @xcategory.code %></p>
@@ -79,24 +85,17 @@
               <p><strong><%= fa_icon('cogs') %> properties:</strong>
               <%= render 'shared/properties', resource: @xcategory %>
               </p>
-
-              <div class="mt-5">
-                <div class="float-right">
-                  <% if current_user.author_of?(@xcategory) %>
-                    <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-outline-success ml-5" %>
-                    <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-outline-warning ml-5' %>
-                    <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
-                  <% end %>
-                </div>
-
-                <%= link_to fa_icon('arrow-left'), xroot_path(@xcategory.xroot), class: 'btn btn-sm btn-outline-secondary' %>
+              <div class="mt-5 btn-group">
+              <% if current_user.author_of?(@xcategory) %>
+                <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-success" %>
+                <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-warning ml-5' %>
+                <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
+              <% end %>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
 </div>

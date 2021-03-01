@@ -1,6 +1,7 @@
 class XclassesController < ApplicationController
   load_and_authorize_resource
   
+  before_action :set_xroot, only: %i[new create show edit update destroy show]
   before_action :set_xcategory, only: %i[new create show edit update destroy]
   before_action :set_xclass, only: %i[show edit update destroy]
 
@@ -69,6 +70,10 @@ class XclassesController < ApplicationController
   end
 
   private
+    def set_xroot
+      @xroot = Xroot.find(params[:xroot_id])
+    end
+
     def set_xcategory
       @xcategory = Xcategory.find(params[:xcategory_id])
     end

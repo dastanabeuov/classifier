@@ -1,7 +1,7 @@
 class XcategoriesController < ApplicationController
   load_and_authorize_resource
   
-  before_action :set_xroot, only: %i[new create edit update]
+  before_action :set_xroot, only: %i[new create edit update show]
   before_action :set_xcategory, only: %i[show edit update destroy]
 
   def index
