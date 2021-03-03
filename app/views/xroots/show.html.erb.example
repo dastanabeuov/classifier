@@ -12,8 +12,8 @@
           <% else %>
             <i class="fa fa-file fa-lg"></i>
           <% end %>
+            <%= xroot.code %> <%= truncate(xroot.name, :length => 18) %>
           </a>
-          <%= xroot.code %> <%= truncate(xroot.name, :length => 18) %>
           <% if xroot.xcategories.present? %>
             <span class="arrow"></span>
           <% end %>
@@ -22,14 +22,12 @@
           <ul class="sub-menu collapse pl-2" id="xroot-<%= xroot.id %>">
           <% xroot.xcategories.each do |xcategory| %>
             <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed">
-            <a href="<%= xroot_xcategory_path(xroot, xcategory) %>">
             <% if xcategory.xclasses.present? %>
               <i class="fa fa-folder fa-lg"></i>
             <% else %>
               <i class="fa fa-file fa-lg"></i>
             <% end %>
-            </a>
-            <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
+              <%= xcategory.code %> <%= link_to truncate(xcategory.name, :length => 18), xroot_xcategory_path(xroot, xcategory) %>
             <% if xcategory.xclasses.present? %>
               <span class="arrow"></span>
             <% end %>
@@ -47,40 +45,30 @@
     </div>
   </div>
   <div class="content">
-    <h1 class="card-header"><%= fa_icon('file-text-o') %> All xroots (You can her start tree table)</h1>
-    <div class="card-body">
-      <div class="row justify-content-md-center">
-        <div class="col-md-12 btn-group">
-          <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>description</p>
-          <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>synonym</p>
-          <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong>code</p>
-          <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong>version_date</p>
-          <p><strong><%= fa_icon('check-square-o') %> </strong>publish</p>
-          </p>
-        </div>
-      </div>
-    </div>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Xroots</li>
+        <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 18) %></li>
       </ol>
     </nav>
     <div class="card mt-4">
       <div class="card-block">
-        <h1 class="card-header"><%= fa_icon('file-text-o') %> Example</h1>
+        <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
         <div class="card-body">
           <div class="row justify-content-md-center">
             <div class="col-md-12">
-              <p><strong><%= fa_icon('align-left') %> description: </strong>This line from description text in object</p>
-              <p><strong><%= fa_icon('align-left') %> synonym: </strong>This line from synonym text in object</p>
-              <p><strong><%= fa_icon('file-code-o') %> code: </strong>This line from code(A-A34) string in object</p>
-              <p><strong><%= fa_icon('calendar') %> version date: </strong>This line from created at and updated at date format in object</p>
-              <p><strong><%= fa_icon('check-square-o') %> publish: </strong>This line from boolean true ore false in object</p>
-              <p><strong><%= fa_icon('cogs') %> properties: </strong>This line from additional properties in object
+              <p><strong><%= fa_icon('align-left') %> description: </strong><%= @xroot.description %></p>
+              <p><strong><%= fa_icon('align-left') %> synonym: </strong><%= @xroot.synonym %></p>
+              <p><strong><%= fa_icon('file-code-o') %> code: </strong><%= @xroot.code %></p>
+              <p><strong><%= fa_icon('calendar') %> version date: </strong><%= @xroot.version_date %></p>
+              <p><strong><%= fa_icon('check-square-o') %> publish: </strong><%= @xroot.publish %></p>
+              <p><strong><%= fa_icon('cogs') %> properties: </strong>
+              <%= render 'shared/properties', resource: @xroot %>
               </p>
               <div class="mt-5 btn-group">
-              <% if current_user %>
-                <%= link_to fa_icon('file'), new_xroot_path, class: 'btn btn-sm btn-outline-success' %>
+              <% if current_user.author_of?(@xroot) %>
+                <%= link_to fa_icon('files-o'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-success" %>
+                <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-warning ml-5' %>
+                <%= link_to fa_icon('trash'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
               <% end %>
               </div>
             </div>

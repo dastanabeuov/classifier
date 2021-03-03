@@ -1,26 +1,33 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
 en:
-  classifier:
-    logo_text: "BIM"
-    copyright: "KazNIISA | Classifier"
-  user:
-    login: "Login"
-    registration: "Registration"
-    edit_profile: "Edit profile"
-    logout: "Logout"
-  front_pages:
-    back: "Back"
-    help: "Manual"
-    service: "Service"
-    contact: "Contact"
-    location: "Ulugbek street 45/1, Almaty"
-    working_time: "Monday - Friday 9:00 - 18:30"
-    www: "kazniisa.kz"
-    phone: "+77273927559"
-    code: "6RGX+GG Almaty"
-    index:
-      welcome: "Welcome!"
-      description: "BIM (Building Information Model or Modeling) is an information 
-      model (or modeling) of buildings and structures, which in a broad sense means 
-      any infrastructure objects, for example, engineering networks (water, gas, electrical, 
-      sewage, communication), roads, railways , bridges, ports and tunnels, etc."
-      link_watch: "Start"
+  hello: "Hello world"

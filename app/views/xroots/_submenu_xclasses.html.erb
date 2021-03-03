@@ -1,13 +1,14 @@
 <% xcategory.xclasses.each do |xclass| %>
   <% if xclass.root? %>
     <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
+      <a href="<%= xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>">
       <% if xclass.children? %>
         <i class="fa fa-folder fa-lg"></i>
       <% else %>
         <i class="fa fa-file fa-lg"></i>
       <% end %>
-      
-      <%= xclass.code %> <%= link_to_unless_current truncate(xclass.name, :length => 18), xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>
+      </a>
+      <%= xclass.code %> <%= link_to_unless_current truncate(xclass.name, :length => 18) %>
       
       <% if xclass.children? %>
         <span class="arrow"></span>

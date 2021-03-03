@@ -1,10 +1,8 @@
 <div class="show-xcategory">
   <div class="nav-side-menu">
-    <div class="brand text-left pl-4">
-      <a href="<%= xroot_path(@xroot) %>"><%= fa_icon('chevron-left') %> BACK</a>
-    </div>
-    <div class="brand text-left pl-4">
-      <a href="<%= xroot_path(@xroot) %>"><%= @xroot.code %> <%= truncate(@xroot.name, :length => 12) %></a>
+    <div class="brand text-left pl-4 btn-group">
+      <a class="btn btn-secondary btn-sm" href="<%= xroots_path %>"><%= fa_icon('chevron-left') %></a>
+      <a class="btn btn-success btn-sm" href="<%= xroot_path(@xroot) %>"><%= @xroot.code %> <%= truncate(@xroot.name, :length => 18) %></a>
     </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     <div class="menu-list">
@@ -17,8 +15,8 @@
           <% else %>
             <i class="fa fa-file fa-lg"></i>
           <% end %>
-            <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
           </a>
+          <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
           <% if xcategory.xclasses.present? %>
             <span class="arrow"></span>
           <% end %>
@@ -28,12 +26,14 @@
           <% xcategory.xclasses.each do |xclass| %>
             <% if xclass.root? %>
               <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
+              <a href="<%= xroot_xcategory_xclass_path(xcategory.xroot, xcategory, xclass) %>">
               <% if xclass.children.present? %>
                 <i class="fa fa-folder fa-lg"></i>
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
-                <%= xclass.code %> <%= link_to truncate(xclass.name, :length => 18), xroot_xcategory_xclass_path(xcategory.xroot, xcategory, xclass) %>
+              </a>
+              <%= xclass.code %> <%= truncate(xclass.name, :length => 18) %>
               <% if xclass.children.present? %>
                 <span class="arrow"></span>
               <% end %>
@@ -87,7 +87,7 @@
               </p>
               <div class="mt-5 btn-group">
               <% if current_user.author_of?(@xcategory) %>
-                <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-success" %>
+                <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-info" %>
                 <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-warning ml-5' %>
                 <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
               <% end %>

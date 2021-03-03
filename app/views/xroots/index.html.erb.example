@@ -1,0 +1,56 @@
+<div class="index">
+  <div class="card mt-4">
+    <div class="card-block">
+      <h1 class="card-header text-center">Xroots</h1>
+      <div class="card-body">
+        <div class="row justify-content-md-center">
+          <div class="col-md-12">
+
+            <table class="table table-bordered table-striped table-responsive table-light">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Synonym</th>
+                  <th>Code</th>
+                  <th>Version date</th>
+                  <th>Publish</th>
+                  <th>Xcategories</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @xroots.each do |xroot| %>
+                  <tr>
+                    <td><%= truncate("#{xroot.name}", :length => 40) %></td>
+                    <td><%= truncate("#{xroot.description}", :length => 40) %></td>
+                    <td><%= truncate("#{xroot.synonym}", :length => 40) %></td>
+                    <td><%= xroot.code %></td>
+                    <td><%= xroot.version_date %></td>
+                    <td><%= xroot.publish %></td>
+                    <td>
+                      <span class="badge badge-info badge-pill">
+                        <%= xroot.xcategories.size %>
+                      </span>
+                    </td>
+                    <td><%= link_to fa_icon('eye'), xroot, class: 'btn btn-sm btn-outline-info' %></td>
+                    <% if current_user.author_of?(xroot) %>
+                      <td><%= link_to fa_icon('pencil'), edit_xroot_path(xroot), class: 'btn btn-sm btn-outline-warning' %></td>
+                      <td><%= link_to fa_icon('trash'), xroot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-group mt-5">
+    <%= link_to fa_icon('file'), new_xroot_path, class: 'btn btn-sm btn-outline-success mt-2' %>
+  </div>
+</div>
