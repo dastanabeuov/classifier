@@ -100,7 +100,7 @@
               <div class="mt-5 btn-group">
               <% if current_user.author_of?(@xclass) %>
                 <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, parent_id: @xclass.id), class: "btn btn-sm btn-info" %>
-                <%= link_to fa_icon('pencil'), edit_xroot_xcategory_xclass_path(@xclass), class: 'btn btn-sm btn-warning ml-5' %>
+                <%= link_to fa_icon('pencil'), edit_xroot_xcategory_xclass_path(@xroot, @xcategory, @xclass), class: 'btn btn-sm btn-warning ml-5' %>
                 <%= link_to fa_icon('trash'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
               <% end %>
               </div>
