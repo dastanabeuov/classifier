@@ -9,7 +9,7 @@
       <ul id="menu-content" class="menu-content collapse out">
       <% @xcategory.xroot.xcategories.each do |xcategory| %>
         <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if xcategory == @xcategory %>">
-          <a href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
+          <a class="file" href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
           <% if xcategory.xclasses.present? %>
             <i class="fa fa-folder fa-lg"></i>
           <% else %>
@@ -26,7 +26,7 @@
           <% xcategory.xclasses.each do |xclass| %>
             <% if xclass.root? %>
               <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
-              <a href="<%= xroot_xcategory_xclass_path(xcategory.xroot, xcategory, xclass) %>">
+              <a class="file" href="<%= xroot_xcategory_xclass_path(xcategory.xroot, xcategory, xclass) %>">
               <% if xclass.children.present? %>
                 <i class="fa fa-folder fa-lg"></i>
               <% else %>

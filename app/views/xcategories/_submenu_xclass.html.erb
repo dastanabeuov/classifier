@@ -1,6 +1,6 @@
 <% xclass.children.each do |child| %>
   <li data-toggle="collapse" data-target="#child-<%= child.id %>" class="collapsed">
-    <a href="<%= xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>">
+    <a class="file" href="<%= xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>">
     <% if child.children? %>
       <i class="fa fa-folder fa-lg"></i>
     <% else %>

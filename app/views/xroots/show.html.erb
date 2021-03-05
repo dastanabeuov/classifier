@@ -9,7 +9,7 @@
       <ul id="menu-content" class="menu-content collapse out">
       <% @xroot.xcategories.each do |xcategory| %>
         <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed">
-          <a href="<%= xroot_xcategory_path(@xroot, xcategory) %>">
+          <a class="file" href="<%= xroot_xcategory_path(@xroot, xcategory) %>">
           <% if xcategory.xclasses.present? %>
             <i class="fa fa-folder fa-lg"></i>
           <% else %>
@@ -23,26 +23,7 @@
         </li>
         <% if xcategory.xclasses.present? %>
           <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
-          <% xcategory.xclasses.each do |xclass| %>
-            <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed">
-              <a href="<%= xroot_xcategory_xclass_path(@xroot, xcategory, xclass) %>">
-              <% if xclass.children? %>
-                <i class="fa fa-folder fa-lg"></i>
-              <% else %>
-                <i class="fa fa-file fa-lg"></i>
-              <% end %>
-              </a>
-              <%= xclass.code %> <%= truncate(xclass.name, :length => 18) %>
-              <% if xclass.children? %>
-                <span class="arrow"></span>
-              <% end %>
-            </li>
-            <% if xclass.children? %>
-              <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
-                <%= render 'submenu_children', xclass: xclass %> 
-              </ul>
-            <% end %>
-          <% end %>
+            <%= render 'submenu_xclasses', xcategory: xcategory %>
           </ul>
         <% end %>
       <% end %>
