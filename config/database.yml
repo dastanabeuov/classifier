@@ -1,24 +1,24 @@
-default: &default
+development:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
   username: postgres
+  database: classifier_development
   password: <%= ENV['CLASSIFIER_DATABASE_PASSWORD'] %>
 
-
-development:
-  <<: *default
-  database: classifier_development
-
-  
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: postgres
   database: classifier_test
-
+  password: <%= ENV['CLASSIFIER_DATABASE_PASSWORD'] %>
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
   database: classifier_production
-  username: postgres
-  password: <%= ENV['CLASSIFIER_DATABASE_PASSWORD'] %>
