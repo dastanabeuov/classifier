@@ -8,6 +8,4 @@ class Xcategory < ApplicationRecord
   accepts_nested_attributes_for :properties, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true, length: { minimum: 2 }
-  
-  # translates :name, :description, :synonym
 end

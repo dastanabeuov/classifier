@@ -52,16 +52,18 @@
     </div>
   </div>
   <div class="content">
-    <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
-    <div class="card-body">
-      <div class="row justify-content-md-center">
-        <div class="col-md-12 btn-group">
-          <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong><%= truncate(@xroot.description, :length => 7) %></p>
-          <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong><%= truncate(@xroot.synonym, :length => 7) %></p>
-          <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong><%= @xroot.code %></p>
-          <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong><%= @xroot.version_date %></p>
-          <p><strong><%= fa_icon('check-square-o') %> </strong><%= @xroot.publish %></p>
-          </p>
+    <div class="parent">
+      <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
+      <div class="card-body">
+        <div class="row justify-content-md-center">
+          <div class="col-md-12 btn-group">
+            <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong><%= truncate(@xroot.description, :length => 7) %></p>
+            <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong><%= truncate(@xroot.synonym, :length => 7) %></p>
+            <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong><%= @xroot.code %></p>
+            <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong><%= @xroot.version_date %></p>
+            <p><strong><%= fa_icon('check-square-o') %> </strong><%= @xroot.publish %></p>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -83,7 +85,7 @@
               <p><strong><%= fa_icon('calendar') %> version date: </strong><%= @xcategory.version_date %></p>
               <p><strong><%= fa_icon('check-square-o') %> publish: </strong><%= @xcategory.publish %></p>
               <p><strong><%= fa_icon('cogs') %> properties:</strong>
-              <%= render 'shared/properties', resource: @xcategory %>
+              <%= render 'properties/properties', resource: @xcategory %>
               </p>
               <div class="mt-5 btn-group">
               <% if current_user.author_of?(@xcategory) %>

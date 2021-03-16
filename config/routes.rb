@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :xroots do
-    resources :xcategories do
-      resources :xclasses do
+    resources :xcategories, except: :index do
+      resources :xclasses, except: :index do
       end
     end
   end
 
-  resources :properties
   resources :activities
+  resources :properties, only: %i[update destroy]
 end

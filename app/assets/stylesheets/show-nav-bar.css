@@ -142,10 +142,11 @@
     padding-bottom: 0%;
   }
   .nav-side-menu .toggle-btn {
+    border-radius: 2px;
     display: block;
     cursor: pointer;
     position: absolute;
-    right: 15px;
+    right: 12px;
     top: 40px;
     z-index: 10 !important;
     padding: 3px;
@@ -164,8 +165,13 @@
     line-height: 95px !important;
   }
 }
+@media (max-width: 200px) {
+  .parent {
+    display: none;    
+  }
+}
 @media (max-width: 400px) {
-    body {
+  body {
     background-size: 40% !important;
   }
 }

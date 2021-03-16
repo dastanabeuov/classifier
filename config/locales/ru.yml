@@ -1,7 +1,7 @@
 ru:
   classifier:  
     logo_text: "ТИМСО"
-    copyright: "КазНИИСА | Классификатор"
+    copyright: "КазНИИСА | Классификатор "
   user:
     login: "Вход"
     registration: "Регистрация"    

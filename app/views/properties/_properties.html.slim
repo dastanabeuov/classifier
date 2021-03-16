@@ -1,0 +1,7 @@
+- if resource.properties.present?
+  - resource.properties.each do |property|
+      p
+        = property.name
+        = property.description
+        = property.activity
+        small title="Date of creation" = property.created_at

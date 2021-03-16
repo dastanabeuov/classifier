@@ -1,0 +1,18 @@
+.nested-fields
+  .field.mb-2
+    = f.label :name
+    br
+    = f.text_field :name, class: "form-control"
+
+  .field.mb-2
+    = f.label :description
+    br
+    = f.text_field :description, class: "form-control"
+
+  .field.mb-2
+    = f.label :activity_id
+    = f.select :activity_id, Activity.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true }
+  
+  .field.mb-2
+    = f.check_box :_destroy
+    = f.label :_destroy, "Remove", class: "pl-2"

@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= form_for(xroot) do |f| %>
-    <%= render 'layouts/errors', resource: xroot %>
+    <%= render 'shared/errors', resource: xroot %>
     <div class="xroot">
       <div class="field mt-3">
         <%= f.label :name %>
@@ -32,19 +32,20 @@
         <%= f.check_box :publish, class: 'form-control' %>
       </div>
     </div>
+    
     <hr>
     <div class="field mt-5">
       <h2>Additional properties</h2>
       <%= f.fields_for :properties do |property| %>
-        <%= render 'shared/property_fields', f: property %>
+        <%= render 'properties/property_fields', f: property %>
       <% end %>
       <p>
-        <%= link_to_add_association fa_icon('plus'), f, :properties, partial: 'shared/property_fields', title: "Add property" %>
+        <%= link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property" %>
       </p>
     </div>
 
     <div class="actions">
-      <%= f.submit class: "btn btn-sm btn-outline-success mt-5" %>
+      <%= f.submit class: "btn btn-sm btn-success mt-5" %>
     </div>
   <% end %>
 </div>

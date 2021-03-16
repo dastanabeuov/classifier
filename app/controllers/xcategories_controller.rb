@@ -1,79 +1,53 @@
 class XcategoriesController < ApplicationController
-  load_and_authorize_resource
-  
-  before_action :set_xroot, only: %i[new create edit update show]
+  before_action :set_xroot, only:     %i[show edit update destroy new create]
   before_action :set_xcategory, only: %i[show edit update destroy]
 
-  def index
-    @xcategories = Xcategory.all
-  end
+  authorize_resource
+
+  respond_to :js, :json
 
   def show
-    @xcategories = Xcategory.all
+    respond_with(@xcategory)
   end
 
   def edit; end
 
   def new
     @xcategory = @xroot.xcategories.new
-
     @xcategory.properties.new
+    respond_with(@xcategory)
   end
 
   def create
-    @xcategory = @xroot.xcategories.new(xcategory_params)
+    @xcategory = @xroot.xcategories.build(xcategory_params)
     @xcategory.user = current_user
-    respond_to do |format|
-      if @xcategory.save
-        format.html { redirect_to xroot_xcategory_path(@xroot, @xcategory) }
-        flash[:success] = 'Xcategory was successfully created.'
-        format.json { render :show, status: :created, location: @xcategory }
-      else
-        format.html { render :new }
-        flash[:success] = 'Xcategory is not created.'
-        format.json { render json: @xcategory.errors, status: :unprocessable_entity }
-      end
-    end
+    @xcategory.save
+    respond_with(@xroot, @xcategory)
   end
 
   def update
-    respond_to do |format|
-      if current_user.author_of?(@xcategory) && @xcategory.update(xcategory_params)
-        format.html { redirect_to xroot_xcategory_path(@xroot, @xcategory) }
-        flash[:success] = 'Xcategory was successfully updated.'
-        format.json { render :show, status: :ok, location: @xcategory }
-      else
-        format.html { render :edit }
-        flash[:error] = 'Xcategory is not updated.'
-        format.json { render json: @xcategory.errors, status: :unprocessable_entity }
-      end
-    end
+    @xcategory.update(xcategory_params) if current_user.author_of?(@xcategory)
+    respond_with(@xroot, @xcategory)
   end
 
   def destroy
-    if current_user.author_of?(@xcategory)
-      @xcategory.destroy
-      respond_to do |format|
-        format.html { redirect_to xroot_path(@xcategory.xroot) }
-        flash[:success] = 'Xcategory was successfully destroyed.'
-        format.json { head :no_content }
-      end
-    end
+    @xcategory.destroy if current_user.author_of?(@xcategory)
+    respond_with(@xroot)
   end
 
   private
 
-    def set_xroot
-      @xroot = Xroot.find(params[:xroot_id])
-    end
+  def set_xroot
+    @xroot = Xroot.find(params[:xroot_id])
+  end
 
-    def set_xcategory
-      @xcategory ||= Xcategory.find(params[:id])
-    end
+  def set_xcategory
+    @xcategory = Xcategory.find(params[:id])
+  end
 
-    def xcategory_params
-      params.require(:xcategory).permit(:name, :description, 
-        :synonym, :code, :version_date, :publish,
-        properties_attributes: [:id, :name, :description, :activity_id, :_destroy])
-    end
+  def xcategory_params
+    params.require(:xcategory).permit(:name, :description, 
+      :synonym, :code, :version_date, :publish,
+      properties_attributes: [:id, :name, :description, :activity_id, :_destroy])
+  end
 end

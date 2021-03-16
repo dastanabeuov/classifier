@@ -1,0 +1,6 @@
+footer class="fixed-bottom bg-warning py-1 mt-5"
+  div class="footer-copyright text-center"
+    small
+      = current_year
+      = t('classifier.copyright') 
+      = link_to fa_icon("code-fork"), github_url('dastanabeuov', 'Classifier'), target: '_blank', class: 'text-dark', title: 'Repo-forked'

@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= form_for [@xroot, @xcategory] do |f| %>
-    <%= render 'layouts/errors', resource: @xcategory %>
+    <%= render 'shared/errors', resource: @xcategory %>
 
     <div class="xcategory">
       <div class="field mt-3">
@@ -37,15 +37,15 @@
     <div class="field mt-5">
       <h2>Additional properties</h2>
       <%= f.fields_for :properties do |property| %>
-        <%= render 'shared/property_fields', f: property %>
+        <%= render 'properties/property_fields', f: property %>
       <% end %>
       <p>
-        <%= link_to_add_association fa_icon('plus'), f, :properties, partial: 'shared/property_fields', title: "Add property" %>
+        <%= link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property" %>
       </p>
     </div>
 
     <div class="actions">
-      <%= f.submit class: "btn btn-sm btn-outline-success mt-5" %>
+      <%= f.submit class: "btn btn-sm btn-success mt-5" %>
     </div>
   <% end %>
 </div>

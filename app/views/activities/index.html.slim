@@ -1,0 +1,45 @@
+.index
+  .card.mt-4
+    .card-block
+      h1 class="card-header text-center" Activities
+      .card-body
+        .row.justify-content-md-center
+          .col-md-12
+
+            table class="table table-bordered table-striped table-responsive table-light"
+              thead
+                tr
+                  th Name
+                  th Description
+                  th Synonym
+                  th Code
+                  th Version date
+                  th Publish
+                  th Position
+                  th Ancestry
+                  th Children
+                  th colspan="3"
+                
+              tbody
+                - @activities.each do |activity|
+                  tr
+                    td = truncate("#{activity.name}", :length => 20)
+                    td = truncate("#{activity.description}", :length => 20)
+                    td = truncate("#{activity.synonym}", :length => 20)
+                    td = activity.code
+                    td = activity.version_date
+                    td = activity.publish
+                    td = activity.position
+                    td 
+                      span class="badge badge-info badge-pill" = activity.ancestry
+                    td
+                      span class="badge badge-info badge-pill"
+                        = activity.children.size
+                    td = link_to fa_icon('eye'), activity, class: 'btn btn-sm btn-info'
+                    - if current_user.author_of?(activity)
+                      td = link_to fa_icon('pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-warning'
+                      td = link_to fa_icon('trash'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+                    
+
+  .btn-group.mt-5
+    = link_to fa_icon('file'), new_activity_path, class: 'btn btn-sm btn-success mt-2'

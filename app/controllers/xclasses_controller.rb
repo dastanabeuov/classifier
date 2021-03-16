@@ -1,91 +1,64 @@
 class XclassesController < ApplicationController
-  load_and_authorize_resource
-  
-  before_action :set_xroot, only: %i[new create show edit update destroy show]
-  before_action :set_xcategory, only: %i[new create show edit update destroy]
-  before_action :set_xclass, only: %i[show edit update destroy]
+  before_action :set_xroot, only:     %i[show edit update destroy new create]
+  before_action :set_xcategory, only: %i[show edit update destroy new create]
+  before_action :set_xclass, only:    %i[show edit update destroy]
 
-  def index
-    @xclasses = Xclass.all
-  end
+  authorize_resource
+  
+  respond_to :js, :json
 
   def show
-    @xclasses = Xclass.all
+    respond_with(@xclass)
   end
-
+  
   def edit; end
 
   def new
     @xclass = @xcategory.xclasses.new
-    @xclass.properties.new
-
     @xclass.parent_id = params[:parent_id]
     @xclass.properties.new
+    respond_with(@xclass)
   end
 
   def create
-    @xclass = @xcategory.xclasses.new(xclass_params)
+    @xclass = @xcategory.xclasses.build(xclass_params)
     @xclass.user = current_user
-    respond_to do |format|
-      if @xclass.save
-        format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass) }
-        flash[:success] = 'Xclass was successfully created.'
-        format.json { render :show, status: :created, location: @xclass }
-      else
-        format.html { render :new }
-        flash[:error] = 'Xclass is not created.'
-        format.json { render json: @xclass.errors, status: :unprocessable_entity }
-      end
-    end  
+    @xclass.save
+    respond_with(@xroot, @xcategory, @xclass)
   end
 
   def update
-    respond_to do |format|
-      if current_user.author_of?(@xclass) && @xclass.update(xclass_params)
-        format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass) }
-        flash[:success] = 'Xclass was successfully updated.'
-        format.json { render :show, status: :ok, location: @xclass }
-      else
-        format.html { render :edit }
-        flash[:error] = "Xclass is not updated."
-        format.json { render json: @xclass.errors, status: :unprocessable_entity }
-      end
-    end
+    @xclass.update(xclass_params) if current_user.author_of?(@xclass)
+    respond_with(@xroot, @xcategory, @xclass)
   end
 
   def destroy
-    if current_user.author_of?(@xclass)
-      @xclass.destroy
-      respond_to do |format|
-        if @xclass.parent
-          format.html { redirect_to xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass.parent) }
-          flash[:success] = 'Xclass was successfully destroyed.'
-        else
-          format.html { redirect_to xroot_xcategory_path(@xcategory.xroot, @xcategory) }
-          flash[:error] = 'Xclass is not destroyed.'
-        end
-        format.json { head :no_content }
-      end
+    @xclass.destroy if current_user.author_of?(@xclass)
+    if @xclass.parent
+      respond_with(@xroot, @xcategory, @xclass.parent)
+    else
+      respond_with(@xroot, @xcategory)
     end
   end
 
   private
-    def set_xroot
-      @xroot = Xroot.find(params[:xroot_id])
-    end
 
-    def set_xcategory
-      @xcategory = Xcategory.find(params[:xcategory_id])
-    end
+  def set_xroot
+    @xroot = Xroot.find(params[:xroot_id])
+  end
 
-    def set_xclass
-      @xclass = Xclass.find(params[:id])
-    end
+  def set_xcategory
+    @xcategory = Xcategory.find(params[:xcategory_id])
+  end
 
-    def xclass_params
-      params.require(:xclass).permit(:name, :description, 
-        :synonym, :code, :version_date, :publish, :xtype, 
-        :position, :parent_id,
-        properties_attributes: [:id, :name, :description, :activity_id, :_destroy])
-    end
+  def set_xclass
+    @xclass = Xclass.find(params[:id])
+  end
+
+  def xclass_params
+    params.require(:xclass).permit(:name, :description, 
+      :synonym, :code, :version_date, :publish, :xtype, 
+      :position, :parent_id,
+      properties_attributes: [:id, :name, :description, :activity_id, :_destroy])
+  end
 end
