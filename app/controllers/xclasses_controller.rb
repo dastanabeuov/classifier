@@ -44,15 +44,15 @@ class XclassesController < ApplicationController
   private
 
   def set_xroot
-    @xroot = Xroot.find(params[:xroot_id])
+    @xroot ||= Xroot.find(params[:xroot_id])
   end
 
   def set_xcategory
-    @xcategory = Xcategory.find(params[:xcategory_id])
+    @xcategory ||= Xcategory.find(params[:xcategory_id])
   end
 
   def set_xclass
-    @xclass = Xclass.find(params[:id])
+    @xclass ||= Xclass.find(params[:id])
   end
 
   def xclass_params

@@ -1,10 +1,9 @@
 RailsAdmin.config do |config|
-  #Set Locales
+###Set Locales
   I18n.default_locale = :ru
   I18n.available_locales = [:ru, :kz, :en]   
-  ########################################
 
-  #Base configuration dashboard
+###Base configuration dashboard
   config.actions do    
     dashboard # mandatory
     index # mandatory
@@ -28,8 +27,21 @@ RailsAdmin.config do |config|
     end     
   end
 
-  #Neslable atrributes setting
-  
+###Neslable atrributes setting
+  config.model 'Xclass' do
+    nestable_tree({
+      position_field: :position,
+      max_depth: 999
+    })
+  end
+
+  config.model 'Activity' do
+    nestable_tree({
+      position_field: :position,
+      max_depth: 999
+    })
+  end
+
   #config.model 'Xcategory' do
   #  nestable_list true
   #end
@@ -48,13 +60,6 @@ RailsAdmin.config do |config|
   #   })
   #end
 
-  config.model 'Xclass' do
-    nestable_tree({
-      position_field: :position,
-      max_depth: 999
-    })
-  end
-
   #config.model 'Property' do
   #  nestable_tree({
   #    position_field: :position,
@@ -62,15 +67,7 @@ RailsAdmin.config do |config|
   #   })
   #end
 
-  config.model 'Activity' do
-    nestable_tree({
-      position_field: :position,
-      max_depth: 999
-    })
-  end 
-
-  #Display show atributes models
-
+###Display show atributes models
   config.model 'Xroot' do    
     list do
       field :id
@@ -122,18 +119,17 @@ RailsAdmin.config do |config|
     end
   end
 
-  #gems integration
-  #== Devise ==
+###Devise gems integration
 
-   config.authenticate_with do
-     warden.authenticate! scope: :user
-   end
-   config.current_user_method(&:current_user)
+  config.authenticate_with do
+   warden.authenticate! scope: :user
+  end
+  config.current_user_method(&:current_user)
 
-  #== CancanCan ==
+  ###CancanCan
   config.authorize_with :cancancan
 
-  # #== Globalize ==
+  # ###Globalize
   # translated_models = ['Xroot', 'Xcategory', 'Xclass', 'Property', 'Activity']
   # config.included_models = ["User"].concat(translated_models.map{|model| [model, "#{model}::Translation"]}.flatten)
 
@@ -150,5 +146,4 @@ RailsAdmin.config do |config|
   #     include_fields :locale, *Object.const_get(model).translated_attribute_names
   #   end
   # end
-  
 end

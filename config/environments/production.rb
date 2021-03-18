@@ -2,8 +2,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'classifier-beta-version.herokuapp.com' }
 
   config.action_mailer.smtp_settings = {
-    user_name:      ENV['USERNAME'],#Rails.application.secrets.mail_username,
-    password:       ENV['PASSWORD'],#Rails.application.secrets.mail_password,
+    user_name:      ENV['USERNAME'],
+    password:       ENV['PASSWORD'],
     domain:         'gmail.com',
     address:       'smtp.gmail.com',
     port:          '587',

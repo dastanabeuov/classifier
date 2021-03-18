@@ -39,7 +39,7 @@ class XrootsController < ApplicationController
   private
 
   def set_xroot
-    @xroot = Xroot.find(params[:id])
+    @xroot ||= Xroot.find(params[:id])
   end
 
   def xroot_params

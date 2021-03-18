@@ -1,0 +1,21 @@
+ru:
+  activerecord:
+   attributes:
+     xtypes:
+       name: "Аты-жөні"
+       description: "Сипаттама"
+   forms:
+    messages:
+      success: "Операция сәтті аяқталды!"
+    buttons:
+     edit: "Өңдеу"
+     submit: "Хат жіберу"
+   menu:
+    new_xtype: "xtypes қосыңыз"
+   xtypes:
+    index:
+      title: "xtypes тізімі"
+    edit:
+      title: "Өңдеу xtypes"
+    new:
+      title: "Қосу xtypes"

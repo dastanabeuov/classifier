@@ -11,11 +11,11 @@ ru:
      edit: "Редактировать"
      submit: "Отправить"
    menu:
-    new_xtype: "Добавить хтип"
+    new_xtype: "Добавить xtypes"
    xtypes:
     index:
-      title: "Список хтипов"
+      title: "Список xtypes"
     edit:
-      title: "Редактировать хтип"
+      title: "Редактировать xtypes"
     new:
-      title: "Добавить хтип"
+      title: "Добавить xtypes"
