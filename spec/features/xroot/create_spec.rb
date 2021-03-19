@@ -13,7 +13,7 @@ feature 'XROOT CREATE', %q{
 
     # save_and_open_page
 
-    find(:css, ".btn-outline-success").click
+    find(:css, ".btn-success").click
 
     within find('.xroot') do
       fill_in 'Name', with: 'My xroot'
@@ -31,7 +31,7 @@ feature 'XROOT CREATE', %q{
     sign_in(user)
     visit xroots_path
 
-    find(:css, ".btn-outline-success").click
+    find(:css, ".btn-success").click
     click_on 'Create Xroot'
 
     expect(page).to have_content "Name can't be blank"

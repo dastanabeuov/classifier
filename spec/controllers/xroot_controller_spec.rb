@@ -123,7 +123,7 @@ RSpec.describe XrootsController, type: :controller do
   end
 
   describe "DELETE #DESTROY" do
-    let!(:xroot) { create(:xroot, xcategory: xcategory, user: user) }
+    let!(:xroot) { create(:xroot, user: user) }
 
     it "delete xroot" do
       count = Xroot.count

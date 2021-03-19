@@ -14,7 +14,7 @@ feature 'ACTIVITY DESTROY', %q{
     sign_in(user)
     visit activities_path
 
-    find(:css, ".btn-outline-danger").click
+    find(:css, ".btn-danger").click
 
     expect(current_path).to eq activities_path
     expect(page).to have_content 'Activity was successfully destroyed.'

@@ -15,7 +15,7 @@ feature 'XCLASS UPDATE', %q{
     sign_in(user)
     visit xroot_xcategory_xclass_path(xroot, xcategory, xclass)
 
-    find(:css, ".btn-outline-warning").click
+    find(:css, ".btn-warning").click
 
     fill_in "Name",  with: "New xclass name"
     fill_in "Description", with: "New xclass description"

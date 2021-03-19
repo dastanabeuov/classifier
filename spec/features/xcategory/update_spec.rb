@@ -14,7 +14,7 @@ feature 'XCATEGORY UPDATE', %q{
     sign_in(user)
     visit xroot_xcategory_path(xroot, xcategory)
 
-    find(:css, ".btn-outline-warning").click
+    find(:css, ".btn-warning").click
 
     fill_in "Name",  with: "New xcategory name"
     fill_in "Description", with: "New xcategory description"

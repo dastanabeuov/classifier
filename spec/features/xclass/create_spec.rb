@@ -28,7 +28,7 @@ feature 'XCLASS CREATE', %q{
     sign_in(user)
     visit new_xroot_xcategory_xclass_path(xroot, xcategory)
 
-    find(:css, ".btn-outline-success").click
+    find(:css, ".btn-success").click
     click_on 'Create Xclass'
 
     expect(page).to have_content "Name can't be blank"

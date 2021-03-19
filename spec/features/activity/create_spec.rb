@@ -11,7 +11,7 @@ feature 'ACTIVITY CREATE', %q{
     sign_in(user)
     visit activities_path
 
-    find(:css, ".btn-outline-success").click
+    find(:css, ".btn-success").click
     fill_in 'Name', with: 'My activity'
     fill_in 'Description', with: 'My text'
     click_on 'Create Activity'
@@ -25,7 +25,7 @@ feature 'ACTIVITY CREATE', %q{
     sign_in(user)
     visit activities_path
 
-    find(:css, ".btn-outline-success").click
+    find(:css, ".btn-success").click
     click_on 'Create Activity'
 
     expect(page).to have_content "Name can't be blank"

@@ -15,7 +15,7 @@ feature 'XCATEGORY DESTROY', %q{
     sign_in(user)
     visit xroot_xcategory_path(xroot, xcategory)
 
-    find(:css, ".btn-outline-danger").click
+    find(:css, ".btn-danger").click
 
     expect(current_path).to eq xroot_path(xroot)
     expect(page).to have_content 'Xcategory was successfully destroyed.'

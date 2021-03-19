@@ -13,7 +13,7 @@ feature 'ACTIVITY UPDATE', %q{
     sign_in(user)
     visit activity_path(activity)
 
-    find(:css, ".btn-outline-warning").click
+    find(:css, ".btn-warning").click
     fill_in "Name",  with: "New activity name"
     fill_in "Description", with: "New activity description"
     click_on 'Update Activity'

@@ -14,7 +14,7 @@ feature 'XROOT DESTROY', %q{
     sign_in(user)
     visit xroot_path(xroot)
 
-    find(:css, ".btn-outline-danger").click
+    find(:css, ".btn-danger").click
 
     expect(current_path).to eq xroots_path
     expect(page).to have_content 'Xroot was successfully destroyed.'

@@ -7,56 +7,6 @@ RSpec.describe PropertiesController, type: :controller do
   let(:activity) { create :activity, user: user }
   let(:property) { create :property, activity: activity, propertyable: xroot }
 
-  describe "GET #INDEX" do
-    let(:properties) { create_list(:property, 3, activity: activity, propertyable: xroot) }
-
-    before { get :index }
-
-    it "array all properties" do
-      expect(assigns(:properties)).to match_array(properties)
-    end
-
-    it "renders index view" do
-      expect(response).to render_template :index
-    end
-  end
-
-  describe "GET #SHOW" do
-    before { get :show, params: { id: property } }
-
-    it "request show propety to property" do
-      expect(assigns(:property)).to eq property
-    end
-
-    it "render show view" do
-      expect(response).to render_template :show
-    end
-  end
-
-  describe "GET #NEW" do
-    before { get :new }
-
-    it "request new property to property" do
-      expect(assigns(:property)).to be_a_new(Property)
-    end
-
-    it "render new view" do
-      expect(response).to render_template :new
-    end
-  end
-
-  describe "GET #EDIT" do
-    before { get :edit, params: { id: property } }
-
-    it "request edit property to property" do
-      expect(assigns(:property)).to eq property
-    end
-
-    it "render edit view" do
-      expect(response).to render_template :edit
-    end
-  end
-
   describe "POST #CREATE" do
     context "valid attribute" do
       it "save new property" do

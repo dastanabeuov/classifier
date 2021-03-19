@@ -13,7 +13,7 @@ feature 'XROOT UPDATE', %q{
     sign_in(user)
     visit xroots_path
 
-    find(:css, ".btn-outline-warning").click
+    find(:css, ".btn-warning").click
 
     fill_in "Name", with: "New xroot name"
     fill_in "Description", with: "New xroot description"

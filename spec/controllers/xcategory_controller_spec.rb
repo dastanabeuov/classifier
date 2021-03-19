@@ -6,20 +6,6 @@ RSpec.describe XcategoriesController, type: :controller do
   let(:xroot) { create(:xroot, user: user) }
   let(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
 
-  describe "GET #INDEX" do
-    let(:xcategories) { create_list(:xcategory, 3, xroot: xroot, user: user) }
-
-    before { get :index }
-
-    it "array all xcategories" do
-      expect(assigns(:xcategories)).to match_array(xcategories)
-    end
-
-    it "renders index view" do
-      expect(response).to render_template :index
-    end
-  end
-
   describe "GET #SHOW" do
     before { get :show, params: { id: xcategory } }
 

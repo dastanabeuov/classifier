@@ -16,7 +16,7 @@ feature 'XCLASS DESTROY', %q{
     sign_in(user)
     visit xroot_xcategory_xclass_path(xroot, xcategory, xclass)
 
-    find(:css, ".btn-outline-danger").click
+    find(:css, ".btn-danger").click
 
     expect(page).to have_content 'Xclass was successfully destroyed.'
   end

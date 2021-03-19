@@ -1,83 +1,85 @@
-<div class="show-xroot">
-  <div class="nav-side-menu">
-    <div class="brand text-left pl-4 btn-group">
-      <a class="btn btn-secondary btn-sm" href="<%= xroots_path %>"><%= fa_icon('chevron-left') %></a>
-      <a class="btn btn-success btn-sm" href="<%= xroot_path(@xroot) %>"><%= @xroot.code %> <%= truncate(@xroot.name, :length => 18) %></a>
-    </div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-    <div class="menu-list">
-      <ul id="menu-content" class="menu-content collapse out">
-      <% @xroot.xcategories.each do |xcategory| %>
-        <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed">
-          <a class="file" href="<%= xroot_xcategory_path(@xroot, xcategory) %>">
+<% cache @xroot do %>
+  <div class="show-xroot">
+    <div class="nav-side-menu">
+      <div class="brand text-left pl-4 btn-group">
+        <a class="btn btn-secondary btn-sm" href="<%= xroots_path %>"><%= fa_icon('chevron-left') %></a>
+        <a class="btn btn-success btn-sm" href="<%= xroot_path(@xroot) %>"><%= @xroot.code %> <%= truncate(@xroot.name, :length => 18) %></a>
+      </div>
+      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+      <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+        <% @xroot.xcategories.each do |xcategory| %>
+          <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed">
+            <a class="file" href="<%= xroot_xcategory_path(@xroot, xcategory) %>">
+            <% if xcategory.xclasses.present? %>
+              <i class="fa fa-folder fa-lg"></i>
+            <% else %>
+              <i class="fa fa-file fa-lg"></i>
+            <% end %>
+            </a>
+            <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
+            <% if xcategory.xclasses.present? %>
+              <span class="arrow"></span>
+            <% end %>
+          </li>
           <% if xcategory.xclasses.present? %>
-            <i class="fa fa-folder fa-lg"></i>
-          <% else %>
-            <i class="fa fa-file fa-lg"></i>
+            <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
+              <%= render 'submenu_xclasses', xcategory: xcategory %>
+            </ul>
           <% end %>
-          </a>
-          <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
-          <% if xcategory.xclasses.present? %>
-            <span class="arrow"></span>
-          <% end %>
-        </li>
-        <% if xcategory.xclasses.present? %>
-          <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
-            <%= render 'submenu_xclasses', xcategory: xcategory %>
-          </ul>
         <% end %>
-      <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="content">
-    <div class="parent">
-      <h1 class="card-header"><%= fa_icon('file-text-o') %> Classification system tree views table</h1>
-      <div class="card-body">
-        <div class="row justify-content-md-center">
-          <div class="col-md-12 btn-group">
-            <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>description</p>
-            <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>synonym</p>
-            <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong>code</p>
-            <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong>version_date</p>
-            <p><strong><%= fa_icon('check-square-o') %> </strong>publish</p>
-            </p>
+    <div class="content">
+      <div class="parent">
+        <h1 class="card-header"><%= fa_icon('file-text-o') %> Classification system tree views table</h1>
+        <div class="card-body">
+          <div class="row justify-content-md-center">
+            <div class="col-md-12 btn-group">
+              <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>description</p>
+              <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>synonym</p>
+              <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong>code</p>
+              <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong>version_date</p>
+              <p><strong><%= fa_icon('check-square-o') %> </strong>publish</p>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><%= link_to 'Xroots', xroots_path %></li>
-        <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 18) %></li>
-      </ol>
-    </nav>
-    <div class="card mt-4">
-      <div class="card-block">
-        <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
-        <div class="card-body">
-          <div class="row justify-content-md-center">
-            <div class="col-md-12">
-              <p><strong><%= fa_icon('align-left') %> description: </strong><%= @xroot.description %></p>
-              <p><strong><%= fa_icon('align-left') %> synonym: </strong><%= @xroot.synonym %></p>
-              <p><strong><%= fa_icon('file-code-o') %> code: </strong><%= @xroot.code %></p>
-              <p><strong><%= fa_icon('calendar') %> version date: </strong><%= @xroot.version_date %></p>
-              <p><strong><%= fa_icon('check-square-o') %> publish: </strong><%= @xroot.publish %></p>
-              <p><strong><%= fa_icon('cogs') %> properties: </strong>
-              <%= render 'properties/properties', resource: @xroot %>
-              </p>
-              <div class="mt-5 btn-group">
-              <% if current_user.author_of?(@xroot) %>
-                <%= link_to fa_icon('files-o'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-info" %>
-                <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-warning ml-5' %>
-                <%= link_to fa_icon('trash'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
-              <% end %>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to 'Xroots', xroots_path %></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 18) %></li>
+        </ol>
+      </nav>
+      <div class="card mt-4">
+        <div class="card-block">
+          <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
+          <div class="card-body">
+            <div class="row justify-content-md-center">
+              <div class="col-md-12">
+                <p><strong><%= fa_icon('align-left') %> description: </strong><%= @xroot.description %></p>
+                <p><strong><%= fa_icon('align-left') %> synonym: </strong><%= @xroot.synonym %></p>
+                <p><strong><%= fa_icon('file-code-o') %> code: </strong><%= @xroot.code %></p>
+                <p><strong><%= fa_icon('calendar') %> version date: </strong><%= @xroot.version_date %></p>
+                <p><strong><%= fa_icon('check-square-o') %> publish: </strong><%= @xroot.publish %></p>
+                <p><strong><%= fa_icon('cogs') %> properties: </strong>
+                <%= render 'properties/properties', resource: @xroot %>
+                </p>
+                <div class="mt-5 btn-group">
+                <% if current_user.author_of?(@xroot) %>
+                  <%= link_to fa_icon('files-o'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-info" %>
+                  <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-warning ml-5' %>
+                  <%= link_to fa_icon('trash'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
+                <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div id="debug"></div>
     </div>
-    <div id="debug"></div>
   </div>
-</div>
+<% end %>
