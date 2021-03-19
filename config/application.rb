@@ -13,6 +13,8 @@ module Classifier
     config.app_generators.scaffold_controller :responders_controller
     config.autoload_paths += [config.root.join('app')]
 
+    config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
+
     config.generators do |g|
       g.test_framework :rspec,
                       view_specs: false,

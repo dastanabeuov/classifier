@@ -1,4 +1,4 @@
-  source 'https://rubygems.org'
+source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -24,7 +24,7 @@ gem 'cancancan'
 gem 'rails_admin'
 gem 'rails_admin_nestable'
 gem 'responders'
-
+gem 'redis-rails'
 #api docs
 gem 'apipie-rails'
 gem 'swagger_ui_engine'

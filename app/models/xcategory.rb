@@ -1,6 +1,6 @@
 class Xcategory < ApplicationRecord
   belongs_to :user
-  belongs_to :xroot
+  belongs_to :xroot, touch: true
 
   has_many :xclasses, dependent: :destroy
   has_many :properties, dependent: :destroy, as: :propertyable
