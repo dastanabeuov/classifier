@@ -27,6 +27,8 @@ en:
         updated_at: Updated at
     models:
       user:
+        few: Users
+        many: Users
         one: User
         other: Users
   devise:

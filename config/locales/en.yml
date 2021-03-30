@@ -1,26 +1,27 @@
 ru:
   classifier:  
-    logo_text: "ТИМСО"
-    copyright: "КазНИИСА | Классификатор "
+    logo_text: "BIM"
+    copyright: "KazNIISA | Classifier "
   user:
-    login: "Вход"
-    registration: "Регистрация"    
-    edit_profile: "Редактировать профиль"
-    logout: "Выйти"
+    login: "Sign in"
+    registration: "Registration"    
+    edit_profile: "Edit profile"
+    logout: "Sign out"
   front_pages:
-    back: "Назад"
-    help: "Справочник"
-    service: "Сервис"
-    contact: "Контакт"
-    location: "Ул.Улугбека 45/1, Алматы"
-    working_time: "Понедельник - Пятница 9:00 - 18:30"
+    back: "Back"
+    help: "Help"
+    service: "Service"
+    contact: "Contact"
+    location: "st.Ulugbeka 45/1, Almaty"
+    working_time: "Monday - Friday 9:00 - 18:30"
     www: "kazniisa.kz"
     phone: "+77273927559"
-    code: "6RGX+GG Алматы"   
+    code: "6RGX+GG Almaty"   
     index:
-      welcome: "Добро пожаловать!"
-      description: "BIM (англ. Building Information Model или Modeling) — информационная модель 
-      (или моделирование) зданий и сооружений, под которыми в широком смысле понимают любые объекты 
-      инфраструктуры, например инженерные сети (водные, газовые, электрические, канализационные, 
-      коммуникационные), дороги, железные дороги, мосты, порты и тоннели и т. д."  
-      link_watch: "Начать"
+      welcome: "Welcome!"
+      description: "BIM (Building Information Model or Modeling) is an information model
+       (or modeling) of buildings and structures,
+        which in a broad sense means any infrastructure objects,
+         for example, engineering networks (water, gas, electrical, sewer, communication),
+          roads, railways , bridges, ports and tunnels, etc."
+      link_watch: "Start"
