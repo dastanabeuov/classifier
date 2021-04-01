@@ -54,3 +54,9 @@ body {
 .hidden {
   display: none
 }
+.form-inline label {
+  justify-content: left !important;
+}
+.form-inline .form-control {
+  width: 100% !important;
+}
