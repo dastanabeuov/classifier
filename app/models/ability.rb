@@ -23,6 +23,6 @@ class Ability
   def user_abilities(user)
     guest_abilities
     can :create, [Xroot, Xcategory, Xclass, Activity, Property]
-    can [:update, :destroy], [Xroot, Xcategory, Xclass, Activity, Property], user_id: @user.id
+    can [:update, :update_inline, :destroy], [Xroot, Xcategory, Xclass, Activity, Property], user_id: @user.id
   end
 end
