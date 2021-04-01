@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :xroots do
+    patch :update_inline, on: :member
+    
     resources :xcategories, except: :index do
       resources :xclasses, except: :index do
       end

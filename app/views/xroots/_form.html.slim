@@ -25,13 +25,14 @@
       .field.mt-3
         = f.label :publish
         = f.check_box :publish, class: 'form-control'    
-    hr
-    .field.mt-5
-      h2 Additional properties
-      = f.fields_for :properties do |property|
-        = render 'properties/property_fields', f: property
-      p
-        = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
+      
+      hr
+      .field.mt-5
+        h2 Additional properties
+        = f.fields_for :properties do |property|
+          = render 'properties/property_fields', f: property
+        p
+          = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
 
     .actions
       = f.submit class: "btn btn-sm btn-success mt-5"

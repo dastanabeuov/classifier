@@ -53,8 +53,10 @@
           <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 18) %></li>
         </ol>
       </nav>
+      <%= render 'shared/errors', resource: @xroot %>
       <div class="card mt-4">
-        <div class="card-block">
+        <%= render 'form_inline', xroot: @xroot %>
+        <div class="card-block" data-resource-id="<%= @xroot.id %>">
           <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
           <div class="card-body">
             <div class="row justify-content-md-center">
@@ -70,7 +72,9 @@
                 <div class="mt-5 btn-group">
                 <% if current_user.author_of?(@xroot) %>
                   <%= link_to fa_icon('files-o'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-info" %>
-                  <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), class: 'btn btn-sm btn-warning ml-5' %>
+                 
+                  <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), data: { resource_id: @xroot.id }, class: 'form-inline-link btn btn-sm btn-warning ml-5' %>
+                  
                   <%= link_to fa_icon('trash'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
                 <% end %>
                 </div>

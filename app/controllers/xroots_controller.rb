@@ -1,5 +1,5 @@
 class XrootsController < ApplicationController
-  before_action :set_xroot, only: %i[show edit update destroy]
+  before_action :set_xroot, only: %i[show edit update destroy update_inline]
 
   authorize_resource
   
@@ -30,6 +30,14 @@ class XrootsController < ApplicationController
   def update
     @xroot.update(xroot_params) if current_user.author_of?(@xroot)
     respond_with(@xroot)
+  end
+
+  def update_inline
+    if current_user.author_of?(@xroot) && @xroot.update(xroot_params)
+      redirect_to @xroot
+    else
+      render :show
+    end
   end
 
   def destroy
