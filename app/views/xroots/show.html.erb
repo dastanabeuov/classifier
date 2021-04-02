@@ -58,7 +58,7 @@
       <div class="card mt-4">
         <%= render 'form_inline', xroot: @xroot %>
         
-        <%= content_tag :div, class: 'card-block', data: { resource_id: @xroot.id } do %>  
+        <%= content_tag :div, class: 'card-block', data: { resource_id: @xroot.id } do %>
           <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xroot.name %></h1>
           <div class="card-body">
             <div class="row justify-content-md-center">

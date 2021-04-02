@@ -74,8 +74,12 @@
           <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xcategory.name, :length => 18) %></li>
         </ol>
       </nav>
+      <%= render 'shared/errors', resource: @xcategory %>
+      
       <div class="card mt-4">
-        <div class="card-block">
+        <%= render 'form_inline', xcategory: @xcategory %>
+        
+        <%= content_tag :div, class: 'card-block', data: { resource_id: @xcategory.id } do %>
           <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= @xcategory.name %></h1>
           <div class="card-body">
             <div class="row justify-content-md-center">
@@ -91,14 +95,16 @@
                 <div class="mt-5 btn-group">
                 <% if current_user.author_of?(@xcategory) %>
                   <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory), class: "btn btn-sm btn-info" %>
-                  <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-warning ml-5' %>
+                  
+                  <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(@xcategory.xroot, @xcategory), data: { resource_id: @xcategory.id }, class: 'form-inline-link btn btn-sm btn-warning ml-5' %>
+                  
                   <%= link_to fa_icon('trash'), xroot_xcategory_path(@xcategory.xroot, @xcategory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
                 <% end %>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

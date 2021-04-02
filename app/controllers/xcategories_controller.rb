@@ -1,6 +1,6 @@
 class XcategoriesController < ApplicationController
-  before_action :set_xroot, only:     %i[show edit update destroy new create]
-  before_action :set_xcategory, only: %i[show edit update destroy]
+  before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
+  before_action :set_xcategory, only: %i[show edit update destroy update_inline]
 
   authorize_resource
 
@@ -28,6 +28,14 @@ class XcategoriesController < ApplicationController
   def update
     @xcategory.update(xcategory_params) if current_user.author_of?(@xcategory)
     respond_with(@xroot, @xcategory)
+  end
+
+  def update_inline
+    if current_user.author_of?(@xcategory) && @xcategory.update(xcategory_params)
+      respond_with(@xroot, @xcategory)
+    else
+      render :show
+    end
   end
 
   def destroy

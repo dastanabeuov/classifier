@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     patch :update_inline, on: :member
     
     resources :xcategories, except: :index do
+      patch :update_inline, on: :member
+      
       resources :xclasses, except: :index do
+        patch :update_inline, on: :member
       end
     end
   end

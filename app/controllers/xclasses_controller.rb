@@ -1,7 +1,7 @@
 class XclassesController < ApplicationController
-  before_action :set_xroot, only:     %i[show edit update destroy new create]
-  before_action :set_xcategory, only: %i[show edit update destroy new create]
-  before_action :set_xclass, only:    %i[show edit update destroy]
+  before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
+  before_action :set_xcategory, only: %i[show edit update destroy new create update_inline]
+  before_action :set_xclass, only:    %i[show edit update destroy update_inline]
 
   authorize_resource
   
@@ -30,6 +30,14 @@ class XclassesController < ApplicationController
   def update
     @xclass.update(xclass_params) if current_user.author_of?(@xclass)
     respond_with(@xroot, @xcategory, @xclass)
+  end
+
+  def update_inline
+    if current_user.author_of?(@xclass) && @xclass.update(xclass_params)
+      respond_with(@xroot, @xcategory, @xclass)
+    else
+      render :show
+    end
   end
 
   def destroy
