@@ -1,14 +1,22 @@
 .container
-  h1 = t('.resend_unlock_instructions')
+  .row.justify-content-center
+    .col-xl-8.col-sm-8
+      .card
+        .card-block
+          h1 class="card-header text-center" = t('.sign_in')
+          .card-body
+            .row.justify-content-md-center
+              .col-md-5
+                h1 = t('.resend_unlock_instructions')
 
-  = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-    = devise_error_messages!
+                = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+                  = devise_error_messages!
 
-    .form-group
-      = f.label :email
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-    
-    .form-group
-      = f.submit t('.resend_unlock_instructions'), class: 'btn btn-primary'
-    
-  = render 'devise/shared/links'
+                  .form-group
+                    = f.label :email
+                    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
+                  
+                  .form-group
+                    = f.submit t('.resend_unlock_instructions'), class: 'btn btn-primary'
+                  
+                = render 'devise/shared/links'
