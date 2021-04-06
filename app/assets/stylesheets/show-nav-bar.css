@@ -4,7 +4,7 @@
   overflow-y: auto;
   white-space: nowrap;
   font-weight: 200;
-  background-color: #2e353d;
+  background-color: #09182C;
   position: fixed;
   top: 65px;
   width: 300px;
@@ -17,7 +17,7 @@
   overflow-y: auto;
   white-space: nowrap;
   font-weight: 200;
-  background-color: #2e353d;
+  background-color: #09182C;
   position: fixed;
   top: 65px;
   width: 300px;
@@ -28,7 +28,7 @@
 .nav-side-menu .brand { 
   padding-top: 17px;
   text-transform: uppercase;
-  background-color: #23282e;
+  background-color: #09182C;
   line-height: 75px;
   display: block;
   text-align: center;
@@ -84,10 +84,10 @@
 }
 .nav-side-menu ul .sub-menu li,
 .nav-side-menu li .sub-menu li {
-  background-color: #181c20;
+  background-color: #0C141E;
   border: none;
   line-height: 28px;
-  border-bottom: 1px solid #23282e;
+  border-bottom: 1px solid #09182C;
   margin-left: 0px;
 }
 .nav-side-menu ul .sub-menu li:hover,
@@ -106,8 +106,8 @@
 }
 .nav-side-menu li {
   padding-left: 0px;
-  border-left: 5px solid #2e353d;
-  border-bottom: 1px solid #23282e;
+  border-left: 5px solid #09182C;
+  border-bottom: 1px solid #09182C;
 }
 .nav-side-menu li a {
   padding: 10px; 

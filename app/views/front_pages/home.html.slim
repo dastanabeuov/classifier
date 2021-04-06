@@ -1,31 +1,21 @@
-.container
-  .jumbotron
-    h1 class="display-4" 
-      = t 'front_pages.index.welcome'
-    p
-      = t 'front_pages.index.description'
-    p
-      = link_to t('front_pages.index.link_watch'), xroots_path, role: "button", class: "btn btn-primary btn-lg"
-
-    hr
-
-    <!-- Example row of columns -->
-    .row
-      .col-md-4
-        h2 #КОАМТ = current_year
-        p Курылыс саласын трансформациалау. Құрылыстағы ақпараттық модельдеу технологиялары саласында нормативтік-техникалық базаны дамыту жөніндегі комиссия.
-        p 
-          = link_to t('front_pages.help'), front_pages_help_path, role: "button",  class: "btn btn-secondary" 
-            
-      .col-md-4
-        h2 #ТИМСО = current_year
-        p Трансформация строительной отрасли. Комиссия по развитию нормативно-технической базы в области технологии информационного моделирования в строительстве.
-        p
-          = link_to t('front_pages.service'), front_pages_service_path, role: "button", class: "btn btn-secondary"
-            
-      .col-md-4
-        h2 #BIM = current_year
-        p Transformation of construction industry. Commission for the development of the regulatory and technical base in the field of information modeling technology in construction.
-        p 
-          = link_to t('front_pages.contact'), front_pages_contact_path, role: "button", class:"btn btn-secondary"
-            
+.home
+  .container
+    .jumbotron
+      h1 class="display-4" 
+        = t 'front_pages.index.welcome'
+      p
+        = t 'front_pages.index.description'
+      p
+        = link_to t('front_pages.index.link_watch'), xroots_path, role: "button", class: "btn btn-danger btn-lg"
+      
+      hr
+      .row
+        .col-md-4
+          h2 #КОАМТ
+          p Курылыс саласын трансформациалау. Құрылыстағы ақпараттық модельдеу технологиялары саласында нормативтік-техникалық базаны дамыту жөніндегі комиссия.
+        .col-md-4
+          h2 #ТИМСО
+          p Трансформация строительной отрасли. Комиссия по развитию нормативно-технической базы в области технологии информационного моделирования в строительстве.
+        .col-md-4
+          h2 #BIM
+          p Transformation of construction industry. Commission for the development of the regulatory and technical base in the field of information modeling technology in construction.

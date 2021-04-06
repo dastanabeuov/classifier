@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :activities
   resources :properties, only: %i[create update destroy]
 
+  get 'front_pages/feedback'
   get 'front_pages/service'
   get 'front_pages/help'
   get 'front_pages/contact'

@@ -34,9 +34,9 @@ class XclassesController < ApplicationController
 
   def update_inline
     if current_user.author_of?(@xclass) && @xclass.update(xclass_params)
-      respond_with(@xroot, @xcategory, @xclass)
+      redirect_to xroot_xcategory_xclass_path(@xroot, @xcategory, @xclass)
     else
-      render :show
+      render :update_inline
     end
   end
 

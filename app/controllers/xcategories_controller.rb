@@ -32,9 +32,9 @@ class XcategoriesController < ApplicationController
 
   def update_inline
     if current_user.author_of?(@xcategory) && @xcategory.update(xcategory_params)
-      respond_with(@xroot, @xcategory)
+      redirect_to xroot_xcategory_path(@xroot, @xcategory)
     else
-      render :show
+      render :update_inline
     end
   end
 

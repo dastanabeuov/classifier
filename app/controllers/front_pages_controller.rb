@@ -6,6 +6,9 @@ class FrontPagesController < ApplicationController
   def home
   end
 
+  def feedback
+  end
+
   def service
   end
 

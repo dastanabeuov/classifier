@@ -24,32 +24,39 @@ html {
     font-size: 1.0rem;
   }
 }
-
 /*Body style*/
 body {
-  /*background-color: #4f5b69;*/
-  background-image: image-url('towers.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: right bottom;
-  background-attachment: fixed;
-  background-size: 20%;
+  background-color: #1C2633;
 }
-/*alert*/
+footer {
+  background-color: #0C141E;
+}
+nav {
+  background-color: #1A2D44;
+}
+.parent {
+  color: $light;
+}
+.card, .container, .jumbotron {
+  color: $secondary;
+}
+.breadcrumb, .card, .jumbotron, .container {
+  background-color: #0C141E !important;
+  /*#1C2023*/
+}
+.edit, .index, .new, .contact, .help, .service, .show-second {
+  padding-left: 70px;
+  padding-right: 70px;
+}
 .alert {
   margin-bottom: 0px;
 }
-/*start-content*/
 .justify-content-center {
   margin-top: 30px;
 }
 .container-fluid {
   padding-left: 0px;
   padding-right: 0px;
-}
-.edit, .index, .new, .contact, .help, .service, .show-second {
-  padding-left: 70px;
-  padding-right: 70px;
 }
 .hidden {
   display: none

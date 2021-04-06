@@ -10,6 +10,7 @@ ru:
   front_pages:
     back: "Назад"
     help: "Справочник"
+    feedback: "Обратная связь"
     service: "Сервис"
     contact: "Контакт"
     location: "Ул.Улугбека 45/1, Алматы"

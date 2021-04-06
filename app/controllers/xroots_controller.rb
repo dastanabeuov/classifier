@@ -36,7 +36,7 @@ class XrootsController < ApplicationController
     if current_user.author_of?(@xroot) && @xroot.update(xroot_params)
       redirect_to @xroot
     else
-      render :show
+      render :update_inline
     end
   end
 

@@ -1,6 +1,6 @@
 .row.form-inline.hidden data-resource-id="#{xclass.id}"
   .col-md-12
-    = form_with model: [xclass], url: update_inline_xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass), local: true do |f|
+    = form_with model: [xclass], url: update_inline_xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) do |f|
       h1 class="card-header"
         = fa_icon('file-text-o')
         = f.label :name
