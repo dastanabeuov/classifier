@@ -76,11 +76,11 @@
                 </p>
                 <div class="mt-5 btn-group">
                 <% if current_user.author_of?(@xroot) %>
-                  <%= link_to fa_icon('files-o'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-info" %>
+                  <%= link_to fa_icon('files-o'), new_xroot_xcategory_path(@xroot), class: "btn btn-sm btn-outline-info" %>
                  
-                  <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), data: { resource_id: @xroot.id }, class: 'form-inline-link btn btn-sm btn-warning ml-5' %>
+                  <%= link_to fa_icon('pencil'), edit_xroot_path(@xroot), data: { resource_id: @xroot.id }, class: 'form-inline-link btn btn-sm btn-outline-warning ml-5' %>
                   
-                  <%= link_to fa_icon('trash'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger ml-5' %>
+                  <%= link_to fa_icon('trash'), xroot_path(@xroot), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
                 <% end %>
                 </div>
               </div>

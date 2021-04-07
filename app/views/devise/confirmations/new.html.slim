@@ -1,12 +1,12 @@
-.container
-  .row.justify-content-center
-    .col-xl-8.col-sm-8
+.container.col-xxl-8.px-5.py-5
+  .row.flex-lg-row-reverse.align-items-center.g-5.py-5
+    .col-xl-12.col-sm-12
       .card
         .card-block
           h1 class="card-header text-center" = t('.resend_confirmation_instructions')
           .card-body
             .row.justify-content-md-center
-              .col-md-5
+              .col-md-6
                 = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
                   = devise_error_messages!
 

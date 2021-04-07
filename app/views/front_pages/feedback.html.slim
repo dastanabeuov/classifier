@@ -1,27 +1,9 @@
-.container
-  h1
-    = t('front_pages.feedback')
+.container.col-xxl-8.px-5.py-5
+  .row.flex-lg-row-reverse.align-items-center.g-5.py-5
+    .col-md-12
+      h1
+        = t('front_pages.feedback')
 
-  .row
-    .col-md-6
-      iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.242752491631!2d76.84798976988617!3d43.22536980514234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x388369c9fe955e1d%3A0xa8670e91f8d15215!2z0JDQniDQmtCw0LfQndCY0JjQodCQ!5e0!3m2!1sru!2skz!4v1605069673083!5m2!1sru!2skz" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+      .btn-group.mt-5
+        = link_to fa_icon("arrow-left"), root_path, class: 'btn btn-sm btn-outline-secondary', title: t('front_pages.back')
 
-    .col-md-6
-      p 
-        = fa_icon "map-marker"
-        = t('front_pages.location')
-      p
-        = fa_icon "clock-o"
-        = t('front_pages.working_time')
-      p 
-        = fa_icon "globe"
-        = t('front_pages.www')
-      p
-        = fa_icon "phone"
-        = t('front_pages.phone')
-      p 
-        = fa_icon "code"
-        = t('front_pages.code')
-
-  .btn-group.mt-5
-    = link_to fa_icon("arrow-left"), root_path, class: 'btn btn-sm btn-secondary', title: t('front_pages.back')
