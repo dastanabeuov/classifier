@@ -1,32 +1,6 @@
-html {
-  font-size: 0.3rem;
-}
-@include media-breakpoint-up(xs) {
-  html {
-    font-size: 0.7rem;
-  }
-}
-
-@include media-breakpoint-up(sm) {
-  html {
-    font-size: 0.8rem;
-  }
-}
-
-@include media-breakpoint-up(md) {
-  html {
-    font-size: 0.9rem;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  html {
-    font-size: 1.0rem;
-  }
-}
-/*Body style*/
 body {
   background-color: #1C2633;
+  font-family: 'Roboto', sans-serif !important;
 }
 footer {
   background-color: #0C141E;
@@ -34,15 +8,27 @@ footer {
 nav {
   background-color: #1A2D44;
 }
+nav .navbar-nav li a {
+  color: white !important;
+}
+nav .navbar-nav li a:hover {
+  color: $danger !important;
+  /*#bcd7ff*/
+}
+.dropdown-menu {
+  background-color: #191E26 !important;
+}
+.dropdown-item {
+  background-color: transparent !important;
+}
 .parent {
   color: $light;
 }
 .card, .container, .jumbotron {
-  color: $secondary;
+  color: $light;
 }
 .breadcrumb, .card, .jumbotron, .container {
   background-color: #0C141E !important;
-  /*#1C2023*/
 }
 .edit, .index, .new, .contact, .help, .service, .show-second {
   padding-left: 70px;

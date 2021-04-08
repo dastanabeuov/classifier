@@ -29,14 +29,14 @@
                 <b>Ancestry: </b> 
                 = @activity.ancestry
               p 
-                <b>Children: </b>
+                <b>Children: #{@activity.children.count}</b>
                 - if current_user.author_of?(@activity)
-                  = link_to 'add new child', new_activity_path(parent_id: @activity.id), class: "btn btn-sm btn-outline-success"
+                  = link_to 'add new child', new_activity_path(parent_id: @activity.id), class: "btn btn-sm btn-outline-success ml-2"
               p
                 ul class="items list-group mt-3 mb-3"
                   - @activity.children.each do |child|
-                    li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                      = link_to truncate(child.name, :length => 30), activity_path(child), class: 'text-secondary'
+                    li class="d-flex justify-content-between align-items-center"
+                      = link_to truncate(child.name, :length => 30), activity_path(child), class: 'text-success'
                       <small title="date of creation">
                         = child.created_at
                       </small>
