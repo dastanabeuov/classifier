@@ -48,10 +48,10 @@ nav class="navbar sticky-top navbar-expand-md navbar-dark mb-5"
           .dropdown-divider
           = link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item"
       li.nav-item.ml-2
-        = button_to t('user.logout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, title: "Sign out", alt: "Logout", class: "nav-link btn btn-sm btn-danger text-light"
+        = button_to t('user.signout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, title: "Sign out", alt: "Logout", class: "nav-link btn btn-sm btn-danger text-light"
   - else
     ul.navbar-nav.pull-xs-right
       li.nav-item.ml-2
-        = button_to t('user.login'), new_user_session_path, class: "nav-link btn btn-sm btn-danger text-light"
+        = button_to t('user.signin'), new_user_session_path, class: "nav-link btn btn-sm btn-danger text-light"
       li.nav-item.ml-2
-        = button_to t('user.registration'), new_user_registration_path, class: "nav-link btn btn-sm btn-success text-light"
+        = button_to t('user.signup'), new_user_registration_path, class: "nav-link btn btn-sm btn-success text-light"

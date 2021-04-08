@@ -3,9 +3,9 @@ en:
     logo_text: "BIM"
     copyright: "KazNIISA | Classifier "
   user:
-    login: "Login"
-    logout: "Logout"
-    registration: "Registration"    
+    signin: "Sign in"
+    signup: "Sign up"
+    signout: "Sign out"    
     edit_profile: "Edit profile"
   front_pages:
     back: "Back"
