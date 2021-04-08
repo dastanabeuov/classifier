@@ -3,11 +3,10 @@ en:
     logo_text: "BIM"
     copyright: "KazNIISA | Classifier "
   user:
+    login: "Login"
     logout: "Logout"
-    login: "Sign in"
     registration: "Registration"    
     edit_profile: "Edit profile"
-    logout: "Sign out"
   front_pages:
     back: "Back"
     help: "Help"
