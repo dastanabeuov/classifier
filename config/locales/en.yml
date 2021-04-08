@@ -3,6 +3,7 @@ ru:
     logo_text: "BIM"
     copyright: "KazNIISA | Classifier "
   user:
+    logout: "Logout"
     login: "Sign in"
     registration: "Registration"    
     edit_profile: "Edit profile"

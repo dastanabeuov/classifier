@@ -3,7 +3,8 @@ ru:
     logo_text: "ТИМСО"
     copyright: "КазНИИСА | Классификатор "
   user:
-    login: "Вход"
+    logout: "Выйти"
+    login: "Войти"
     registration: "Регистрация"    
     edit_profile: "Редактировать профиль"
     logout: "Выйти"

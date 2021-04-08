@@ -3,6 +3,7 @@ kz:
     logo_text: "КОАМТ"
     copyright: "КазНИИСА | Классификатор "
   user:
+    logout: "Шығу"
     login: "Кіру"
     registration: "тіркелу"    
     edit_profile: "Профильді өңдеу"
