@@ -1,0 +1,21 @@
+<li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if xcategory == @xcategory %>">
+  <a class="file" href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
+  <% if xcategory.xclasses.present? %>
+    <i class="fa fa-folder fa-lg"></i>
+  <% else %>
+    <i class="fa fa-file fa-lg"></i>
+  <% end %>
+  </a>
+
+  <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
+
+  <% if xcategory.xclasses.present? %>
+    <span class="arrow"></span>
+  <% end %>
+</li>
+
+<% if xcategory.xclasses.present? %>
+  <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
+    <%= render 'xcategories/sub_xclasses', xcategory: xcategory %>
+  </ul>
+<% end %>

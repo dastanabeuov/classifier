@@ -13,7 +13,9 @@ nav .navbar-nav li a {
 }
 nav .navbar-nav li a:hover {
   color: $danger !important;
-  /*#bcd7ff*/
+}
+.table-dark {
+  background-color: inherit !important;
 }
 .dropdown-menu {
   background-color: #191E26 !important;

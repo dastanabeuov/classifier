@@ -1,4 +1,4 @@
-<% xclass.children.each do |child| %>
+<% child.children.each do |child| %>
   <li data-toggle="collapse" data-target="#child-<%= child.id %>" class="collapsed">
     <a class="file" href="<%= xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) %>">
     <% if child.children? %>
@@ -6,17 +6,17 @@
     <% else %>
       <i class="fa fa-file fa-lg"></i>
     <% end %>
-    </a>
+    </a>    
     <%= child.code %> <%= link_to_unless_current truncate(child.name, :length => 18) %>
     
     <% if child.children? %>
       <span class="arrow"></span>
     <% end %>
   </li>
-  
-  <% if child.children? %>
+
+  <% if child.children.present? %>
     <ul class="sub-menu collapse pl-2" id="child-<%= child.id %>">
-      <%= render 'submenu_child', child: child %>
+      <%= render 'xcategories/sub_child', child: child %>
     </ul>
   <% end %>
 <% end %>

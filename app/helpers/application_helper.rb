@@ -26,4 +26,8 @@ module ApplicationHelper
   def watch
     Time.current
   end
+
+  def resource_name(resource)
+    resource.class.name.underscore.to_s
+  end
 end

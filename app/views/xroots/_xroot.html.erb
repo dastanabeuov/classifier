@@ -1,0 +1,21 @@
+<li data-toggle="collapse" data-target="#xroot-<%= xroot.id %>" class="collapsed">
+  <a class="file" href="<%= xroot_path(xroot) %>">
+  <% if xroot.xcategories.present? %>
+    <i class="fa fa-folder fa-lg"></i>
+  <% else %>
+    <i class="fa fa-file fa-lg"></i>
+  <% end %>
+  </a>
+
+  <%= xroot.code %> <%= truncate(xroot.name, :length => 18) %>
+
+  <% if xroot.xcategories.present? %>
+    <span class="arrow"></span>
+  <% end %>  
+</li>
+
+<% if xroot.xcategories.present? %>
+  <ul class="sub-menu collapse pl-2" id="xroot-<%= xroot.id %>">
+    <%= render xroot.xcategories %>
+  </ul>
+<% end %>

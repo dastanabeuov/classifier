@@ -24,10 +24,17 @@
           = f.label :version_date
           = f.date_select :version_date, class: 'form-control'
         p
-          = fa_icon('check-square-o')
           = f.label :publish
           = f.check_box :publish, class: 'form-control'
-
+        p
+          = f.label :xtype
+          = f.check_box :xtype, class: 'form-control'
+        p
+          = f.label :position
+          = f.text_field :position, class: 'form-control'
+        p
+          = f.label :parent_id
+          = f.select :parent_id, Xclass.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true }
         hr
         .field.mt-5
           h2 Additional properties

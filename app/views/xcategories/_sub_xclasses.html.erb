@@ -9,7 +9,7 @@
       <% end %>
       </a>
       <%= xclass.code %> <%= link_to_unless_current truncate(xclass.name, :length => 18) %>
-      
+
       <% if xclass.children? %>
         <span class="arrow"></span>
       <% end %>
@@ -18,7 +18,7 @@
     
   <% if xclass.children? %>
     <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
-      <%= render 'submenu_children', xclass: xclass %> 
+      <%= render 'xcategories/sub_children', xclass: xclass %> 
     </ul>
   <% end %>
 <% end %>

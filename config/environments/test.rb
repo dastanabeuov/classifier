@@ -24,4 +24,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
 
   config.active_support.deprecation = :stderr
+
+  config.action_cable.disable_request_forgery_protection = false
 end

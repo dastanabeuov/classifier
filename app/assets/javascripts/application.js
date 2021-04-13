@@ -12,8 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require action_cable
 //= require turbolinks
 //= require popper
 //= require bootstrap-sprockets
 //= require cocoon
 //= require_tree .
+
+(function() {
+  this.App || (this.App = {});
+
+  App.cable = ActionCable.createConsumer();
+
+}).call(this);

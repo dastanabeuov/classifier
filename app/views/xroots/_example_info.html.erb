@@ -1,0 +1,44 @@
+<div class="parent">
+  <h1 class="card-header"><%= fa_icon('file-text-o') %> All xroots (You can her start tree table)</h1>
+  <div class="card-body">
+    <div class="row justify-content-md-center">
+      <div class="col-md-12 btn-group">
+        <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>description</p>
+        <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>synonym</p>
+        <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong>code</p>
+        <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong>version_date</p>
+        <p><strong><%= fa_icon('check-square-o') %> </strong>publish</p>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Xroots</li>
+  </ol>
+</nav>
+<div class="card mt-4">
+  <div class="card-block">
+    <h1 class="card-header"><%= fa_icon('file-text-o') %> Example</h1>
+    <div class="card-body">
+      <div class="row justify-content-md-center">
+        <div class="col-md-12">
+          <p><strong><%= fa_icon('align-left') %> description: </strong>This line from description text in object</p>
+          <p><strong><%= fa_icon('align-left') %> synonym: </strong>This line from synonym text in object</p>
+          <p><strong><%= fa_icon('file-code-o') %> code: </strong>This line from code(A-A34) string in object</p>
+          <p><strong><%= fa_icon('calendar') %> version date: </strong>This line from created at and updated at date format in object</p>
+          <p><strong><%= fa_icon('check-square-o') %> publish: </strong>This line from boolean true ore false in object</p>
+          <p><strong><%= fa_icon('cogs') %> properties: </strong>This line from additional properties in object
+          </p>
+          <div class="mt-5 btn-group">
+          <% if current_user %>
+            <%= link_to fa_icon('file'), new_xroot_path, class: 'btn btn-sm btn-outline-success' %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="debug"></div>

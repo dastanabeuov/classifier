@@ -2,6 +2,8 @@ class XcategoriesController < ApplicationController
   before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
   before_action :set_xcategory, only: %i[show edit update destroy update_inline]
 
+  after_action :publish_xcategory, only: [:create]
+
   authorize_resource
 
   respond_to :js, :json
@@ -44,6 +46,17 @@ class XcategoriesController < ApplicationController
   end
 
   private
+
+  def publish_xcategory
+    return if @xcategory.errors.any?
+    ActionCable.server.broadcast(
+      'xcategories',
+      ApplicationController.render(
+        partial: 'xcategories/xcategory',
+        locals: { xcategory: @xcategory }, layout: false
+      )
+    )
+  end
 
   def set_xroot
     @xroot ||= Xroot.find(params[:xroot_id])

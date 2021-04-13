@@ -25,4 +25,5 @@ Rails.application.routes.draw do
 
   mount SwaggerUiEngine::Engine, at: "/api_docs"
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount ActionCable.server => '/cable'
 end

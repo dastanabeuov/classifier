@@ -1,0 +1,25 @@
+<li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed <%= 'active' if xclass == @xclass %>">
+  <a class="file" href="<%= xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>">
+  <% if xclass.children? %>
+    <i class="fa fa-folder fa-lg"></i>
+  <% else %>
+    <i class="fa fa-file fa-lg"></i>
+  <% end %>
+  </a>
+
+  <%= xclass.code %> <%= truncate(xclass.name, :length => 18) %>
+  
+  <% if xclass.children.present? %>
+    <span class="arrow"></span>
+  <% end %>
+</li>
+
+<% if xclass.children? %>
+  <% if @xclass.ancestors.include?(xclass) %>
+  <ul class="sub-menu collapse pl-2 show" id="xclass-<%= xclass.id %>">
+  <% else %>
+  <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
+  <% end %>
+    <%= render 'xclasses/children', xclass: xclass %>
+  </ul>
+<% end %>

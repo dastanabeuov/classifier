@@ -1,0 +1,5 @@
+<div class="brand btn-group">
+  <a class="btn btn-secondary btn-sm" href="<%= xroots_path %>"><%= fa_icon('chevron-left') %></a>
+  <a class="btn btn-success btn-sm" href="<%= xroot_path(@xroot) %>"><%= @xroot.code %> <%= truncate(@xroot.name, :length => 18) %></a>
+</div>
+<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>

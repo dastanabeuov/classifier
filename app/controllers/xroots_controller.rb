@@ -1,6 +1,7 @@
 class XrootsController < ApplicationController
   before_action :set_xroot, only: %i[show edit update destroy update_inline]
-
+  after_action :publish_xroot, only: [:create]
+  
   authorize_resource
   
   respond_to :js, :json
@@ -45,6 +46,17 @@ class XrootsController < ApplicationController
   end
 
   private
+
+  def publish_xroot
+    return if @xroot.errors.any?
+    ActionCable.server.broadcast(
+      'xroots',
+      ApplicationController.render(
+        partial: 'xroots/xroot',
+        locals: { xroot: @xroot }, layout: false
+      )
+    )
+  end
 
   def set_xroot
     @xroot ||= Xroot.find(params[:id])

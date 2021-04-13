@@ -1,0 +1,50 @@
+  <%= content_tag :div, class: 'card-block', data: { resource_id: resource.id } do %>
+    <h1 class="card-header"><%= fa_icon('file-text-o') %> <%= resource.name %></h1>
+    <div class="card-body">
+      <div class="row justify-content-md-center">
+        <div class="col-md-12">
+          <p><strong><%= fa_icon('align-left') %> description: </strong><%= resource.description %></p>
+          <p><strong><%= fa_icon('align-left') %> synonym: </strong><%= resource.synonym %></p>
+          <p><strong><%= fa_icon('file-code-o') %> code: </strong><%= resource.code %></p>
+          <p><strong><%= fa_icon('calendar') %> version date: </strong><%= resource.version_date %></p>
+          <p><strong><%= fa_icon('check-square-o') %> publish: </strong><%= resource.publish %></p>
+          <p><strong><%= fa_icon('cogs') %> properties: </strong>
+          <%= render 'properties/properties', resource: resource %>
+          </p>
+
+          <% if resource_name(resource) == 'xroot' %>
+            <div class="mt-5 btn-group">
+            <% if current_user.author_of?(resource) %>
+              <%= link_to fa_icon('files-o'), new_xroot_xcategory_path(resource), class: "btn btn-sm btn-outline-info" %>
+             
+              <%= link_to fa_icon('pencil'), edit_xroot_path(resource), data: { resource_id: resource.id }, class: 'form-inline-link btn btn-sm btn-outline-warning ml-5' %>
+              
+              <%= link_to fa_icon('trash'), xroot_path(resource), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
+            <% end %>
+            </div>
+          <% elsif resource_name(resource) == 'xcategory' %>
+            <div class="mt-5 btn-group">
+            <% if current_user.author_of?(resource) %>
+              <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(resource.xroot, resource), class: "btn btn-sm btn-outline-info" %>
+              
+              <%= link_to fa_icon('pencil'), edit_xroot_xcategory_path(resource.xroot, resource), data: { resource_id: resource.id }, class: 'form-inline-link btn btn-sm btn-outline-warning ml-5' %>
+              
+              <%= link_to fa_icon('trash'), xroot_xcategory_path(resource.xroot, resource), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
+            <% end %>
+            </div>
+          <% else %>
+            <div class="mt-5 btn-group">
+            <% if current_user.author_of?(resource) %>
+              <%= link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(resource.xcategory.xroot, resource.xcategory, parent_id: resource.id), class: "btn btn-sm btn-outline-info" %>
+              
+              <%= link_to fa_icon('pencil'), edit_xroot_xcategory_xclass_path(resource.xcategory.xroot, resource.xcategory, resource), data: { resource_id: resource.id }, class: 'form-inline-link btn btn-sm btn-outline-warning ml-5' %>
+
+              <%= link_to fa_icon('trash'), xroot_xcategory_xclass_path(resource.xcategory.xroot, resource.xcategory, resource), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5' %>
+            <% end %>
+            </div>
+          <% end %>
+          
+        </div>
+      </div>
+    </div>
+  <% end %>
