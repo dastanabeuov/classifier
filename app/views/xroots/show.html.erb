@@ -32,22 +32,7 @@
     </div>
 
     <div class="content">
-      <div class="parent">
-        <h1 class="card-header"><%= fa_icon('file-text-o') %> Classification system tree views table</h1>
-        <div class="card-body">
-          <div class="row justify-content-md-center">
-            <div class="col-md-12 btn-group">
-              <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>description</p>
-              <p class="pr-2"><strong><%= fa_icon('align-left') %> </strong>synonym</p>
-              <p class="pr-2"><strong><%= fa_icon('file-code-o') %> </strong>code</p>
-              <p class="pr-2"><strong><%= fa_icon('calendar') %> </strong>version_date</p>
-              <p><strong><%= fa_icon('check-square-o') %> </strong>publish</p>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+      <%= render 'example_info_2' %>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link_to 'Xroots', xroots_path %></li>

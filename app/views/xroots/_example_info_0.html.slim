@@ -1,0 +1,28 @@
+.parent
+  h1 class="card-header" 
+    = fa_icon('file-text-o')
+    = t('show.name')
+    = xroot.name
+  .card-body
+    .row.justify-content-md-center
+      .col-md-12.btn-group
+        p class="pr-2"
+          = fa_icon('align-left')
+          = t('show.description')
+          = truncate(xroot.description, :length => 7)
+        p class="pr-2" 
+          = fa_icon('align-left')
+          = t('show.synonym')
+          = truncate(xroot.synonym, :length => 7)
+        p class="pr-2" 
+          = fa_icon('file-code-o')
+          = t('show.code')
+          = xroot.code
+        p class="pr-2"
+          = fa_icon('calendar')
+          = t('show.version_date')
+          = xroot.version_date
+        p 
+          = fa_icon('check-square-o')
+          = t('show.publish')
+          = xroot.publish

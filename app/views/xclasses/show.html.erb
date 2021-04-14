@@ -40,7 +40,7 @@
     </div>
 
     <div class="content">
-      <%= render 'shared/root_information', xroot: @xroot %>
+      <%= render 'xroots/example_info_0', xroot: @xroot %>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.name, :length => 18), xroot_path(@xclass.xcategory.xroot) %></li>
