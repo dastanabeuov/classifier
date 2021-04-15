@@ -25,6 +25,7 @@ gem 'rails_admin'
 gem 'rails_admin_nestable'
 gem 'responders'
 gem 'redis-rails'
+# gem 'redis'
 #api docs
 gem 'apipie-rails'
 gem 'swagger_ui_engine'
