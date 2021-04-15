@@ -40,7 +40,7 @@
     </div>
 
     <div class="content">
-      <%= render 'xroots/example_info_0', xroot: @xroot %>
+      <%= render 'xroots/example_info_0', xroot: @xclass.xcategory.xroot %>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.name, :length => 18), xroot_path(@xclass.xcategory.xroot) %></li>
@@ -54,11 +54,11 @@
       <div class="show-errors" >
         <%= render 'shared/errors', resource: @xclass %>
       </div>
-      <div class="card mt-4">
+      <div class="resource-show card mt-4">
         <%= render 'form_inline', xclass: @xclass %>
-        <%= render 'shared/content', resource: @xclass %>
-        <div id="debug"></div>        
+        <%= render 'shared/content', resource: @xclass %>        
       </div>
+      <%= render 'shared/btn_content', resource: @xclass %>
     </div>
   </div>
 <% end %>

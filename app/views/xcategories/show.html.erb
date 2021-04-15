@@ -22,11 +22,11 @@
       <div class="show-errors" >
         <%= render 'shared/errors', resource: @xcategory %>
       </div>
-      <div class="card mt-4">
+      <div class="resource-show card mt-4">
         <%= render 'form_inline', xcategory: @xcategory %>
         <%= render 'shared/content', resource: @xcategory %>
-        <div id="debug"></div>
       </div>
+    <%= render 'shared/btn_content', resource: @xcategory %>
     </div>
   </div>
 <% end %>
