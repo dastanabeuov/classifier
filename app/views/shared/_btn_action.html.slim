@@ -1,6 +1,6 @@
-.action.mt-3
-  .row
-    .col-md-12
+.card
+  .card-block
+    .card-body
       - if resource_name(resource) == 'xroot'
         .mt-5.btn-group
         - if current_user.author_of?(resource)

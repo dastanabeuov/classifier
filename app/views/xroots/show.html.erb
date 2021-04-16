@@ -43,9 +43,9 @@
         <%= render 'shared/errors', resource: @xroot %>
       </div>
       <div class="resource-show card mt-4">
-        <%= render 'form_inline', resource: @xroot %>
+        <%= render 'form_inline', xroot: @xroot %>
         <%= render 'shared/content', resource: @xroot %>
-    </div>
-    <%= render 'shared/btn_content', resource: @xroot %>
+      </div>
+      <%= render 'shared/btn_action', resource: @xroot %>
   </div>
 <% end %>

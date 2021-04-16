@@ -29,7 +29,7 @@ nav .navbar-nav li a:hover {
 .card, .container, .jumbotron {
   color: $light;
 }
-.breadcrumb, .card, .jumbotron, .container {
+.breadcrumb, .card, .jumbotron, .container, .action {
   background-color: #0C141E !important;
 }
 .edit, .index, .new, .contact, .help, .service, .show-second {
@@ -52,6 +52,6 @@ nav .navbar-nav li a:hover {
 .form-inline label {
   justify-content: left !important;
 }
-.form-inline .form-control {
+.form-inline .form-control, .form-update-inline {
   width: 100% !important;
 }

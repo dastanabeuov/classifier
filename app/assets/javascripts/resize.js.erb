@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function(){
     
        if(unlock) {
           if(change > 310) {
-            $("#debug").text(e.clientX + " Размер");
+            $("#debug").text(e.clientX + " <%= I18n.t('info.size') %>");
             
             p.css("width", change);
             d.css("padding-left", change + 10);

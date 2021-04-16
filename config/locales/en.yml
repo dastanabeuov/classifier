@@ -1,4 +1,6 @@
 en:
+  info:
+    size: "Size"
   classifier:  
     logo_text: "BIM"
     copyright: "KazNIISA | Classifier "

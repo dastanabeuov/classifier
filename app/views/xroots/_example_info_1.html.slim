@@ -57,8 +57,9 @@ nav aria-label="breadcrumb"
             = fa_icon('cogs')
             = t('show.properties')
 
-          .mt-5.btn-group
-          - if current_user
-            = link_to fa_icon('file'), new_xroot_path, class: 'btn btn-sm btn-outline-success'
-            
-div id="debug"
+.card
+  .card-block
+    .card-body
+      .mt-5.btn-group
+      - if current_user
+        = link_to fa_icon('file'), new_xroot_path, class: 'btn btn-sm btn-outline-success'

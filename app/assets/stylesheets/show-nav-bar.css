@@ -12,19 +12,6 @@
   color: #e1ffff;
   padding-bottom: 20%;
 }
-.parent h1 {
-  overflow-x: auto;
-  white-space: nowrap;
-}
-.breadcrumb {
-  overflow-y: auto;
-  white-space: nowrap;
-  max-height: 70px;
-}
-.resource-show {
-  max-height: 500px;
-  overflow-x: auto;
-}
 .main-list {
   cursor: e-resize;
   overflow-y: auto;
@@ -193,7 +180,6 @@
     display: block;
   }
 }
-
 /*div content*/
 .content {
   margin-top: -30px;
@@ -219,4 +205,18 @@
     padding-left: 10px !important;
     margin-top: 80px !important;
     }
+}
+/*OVERF:PW Y - X*/
+.parent h1 {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.breadcrumb {
+  overflow-y: auto;
+  white-space: nowrap;
+  max-height: 70px;
+}
+.resource-show {
+  max-height: 500px;
+  overflow-y: auto;
 }

@@ -1,4 +1,6 @@
 ru:
+  info:
+    size: "Размер"
   classifier:  
     logo_text: "ТИМСО"
     copyright: "КазНИИСА | Классификатор "

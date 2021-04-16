@@ -1,4 +1,6 @@
 kz:
+  info:
+    size: "Мөлшері"
   classifier:
     logo_text: "КОАМТ"
     copyright: "КазНИИСА | Классификатор "
