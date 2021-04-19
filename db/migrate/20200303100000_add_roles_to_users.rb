@@ -11,5 +11,5 @@ class AddRolesToUsers < ActiveRecord::Migration[5.0]
     remove_column :users, :moderator, :boolean, default: false
     remove_column :users, :paid_user, :boolean, default: false
     remove_column :users, :guest, :boolean, default: true
-  end  
+  end
 end
