@@ -24,4 +24,9 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
 
   config.sign_out_via = :delete
+
+  config.omniauth :github,
+                  Rails.application.credentials[Rails.env.to_sym][:github][:app_id],
+                  Rails.application.credentials[Rails.env.to_sym][:github][:app_secret],
+                  scope: 'user:email, read:user'
 end
