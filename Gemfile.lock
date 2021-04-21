@@ -189,9 +189,9 @@ GEM
     omniauth (1.0.3)
       hashie (~> 1.2)
       rack
-    omniauth-google-oauth2 (0.2.2)
+    omniauth-github (1.0.1)
       omniauth (~> 1.0)
-      omniauth-oauth2
+      omniauth-oauth2 (~> 1.0)
     omniauth-oauth2 (1.0.2)
       oauth2 (~> 0.6.0)
       omniauth (~> 1.0)
@@ -397,7 +397,7 @@ DEPENDENCIES
   launchy
   listen (~> 3.0.5)
   omniauth (~> 1.0.0.pr2)
-  omniauth-google-oauth2
+  omniauth-github
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.2.0)

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'front_pages#home'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks' }
 
   resources :xroots do
     patch :update_inline, on: :member

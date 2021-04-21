@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :xcategories, dependent: :destroy
   has_many :xclasses, dependent: :destroy
   has_many :activities, dependent: :destroy  
+  has_many :authorizations, dependent: :destroy
 
   validates :email, exclusion: { in: %w(admin@classifier.kazniisa.kz 
                                         moderator@classifier.kazniisa.kz 
@@ -19,7 +20,16 @@ class User < ApplicationRecord
          :recoverable, 
          :rememberable, 
          :validatable,
-         :confirmable
+         :confirmable,
+         :omniauthable, omniauth_providers: [:github]
+
+  def self.find_for_oauth(auth)
+    Services::FindForOauth.new(auth).call
+  end
+
+  def create_authorization(auth)
+    self.authorizations.create(provider: auth.provider, uid: auth.uid)
+  end
 
   def send_admin_mail
     UserMailer.send_welcome_email(self).deliver_later

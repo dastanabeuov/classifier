@@ -17,6 +17,8 @@ gem 'turbolinks', '~> 5'
 gem 'bootsnap', require: false
 
 #additional function
+gem 'omniauth', '~> 1.0.0.pr2'
+gem 'omniauth-github'
 gem 'cocoon'
 gem 'devise'
 gem 'ancestry'

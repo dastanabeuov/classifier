@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_051034) do
+ActiveRecord::Schema.define(version: 2021_04_19_110820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2020_06_08_051034) do
     t.index ["ancestry"], name: "index_activities_on_ancestry"
     t.index ["position"], name: "index_activities_on_position"
     t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "authorizations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authorizations_on_provider_and_uid"
+    t.index ["user_id"], name: "index_authorizations_on_user_id"
   end
 
   create_table "properties", id: :serial, force: :cascade do |t|
@@ -113,4 +123,5 @@ ActiveRecord::Schema.define(version: 2020_06_08_051034) do
     t.index ["user_id"], name: "index_xroots_on_user_id"
   end
 
+  add_foreign_key "authorizations", "users"
 end
