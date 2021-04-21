@@ -18,6 +18,7 @@ gem 'bootsnap', require: false
 
 #additional function
 gem 'omniauth', '~> 1.9.1'
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
 gem 'cocoon'
 gem 'devise'
