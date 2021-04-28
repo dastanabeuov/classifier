@@ -1,12 +1,13 @@
 class XcategoriesController < ApplicationController
+  before_action :authenticate_user!
+  authorize_resource
+
   before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
   before_action :set_xcategory, only: %i[show edit update destroy update_inline]
 
   after_action :publish_xcategory, only: [:create]
 
-  authorize_resource
-
-  respond_to :js, :json
+  respond_to :html
 
   def show
     respond_with(@xcategory)
@@ -42,7 +43,7 @@ class XcategoriesController < ApplicationController
 
   def destroy
     @xcategory.destroy if current_user.author_of?(@xcategory)
-    respond_with(@xroot)
+    respond_with @xcategory
   end
 
   private

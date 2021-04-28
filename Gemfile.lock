@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/heartcombo/devise.git
+  revision: 5d5636f03ac19e8188d99c044d4b5e90124313af
+  branch: master
+  specs:
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+
+GIT
   remote: https://github.com/zipmark/rspec_api_documentation.git
   revision: d3892cc7388460a98476734963face5a7a2ac158
   specs:
@@ -33,6 +45,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.12)
+      actionpack (>= 4.1, < 6.2)
+      activemodel (>= 4.1, < 6.2)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (5.2.5)
       activesupport (= 5.2.5)
       globalid (>= 0.3.6)
@@ -59,8 +76,6 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ancestry (4.0.0)
       activerecord (>= 5.2.4.5)
-    apipie-rails (0.5.18)
-      rails (>= 4.1)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -68,7 +83,7 @@ GEM
       execjs
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.7.3)
+    bootsnap (1.7.4)
       msgpack (~> 1.0)
     bootstrap (4.6.0)
       autoprefixer-rails (>= 9.1.0)
@@ -85,6 +100,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    case_transform (0.2)
+      activesupport
     childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
@@ -99,13 +116,9 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
-    devise (4.7.3)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    doorkeeper (5.1.0)
+      railties (>= 5)
     erubi (1.10.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -152,6 +165,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jsonapi-renderer (0.2.2)
     jwt (2.2.3)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
@@ -196,6 +210,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
+    oj (3.11.5)
     omniauth (2.0.4)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
@@ -397,8 +412,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (= 0.10.12)
   ancestry
-  apipie-rails
   bootsnap
   bootstrap
   byebug
@@ -407,13 +422,15 @@ DEPENDENCIES
   chromedriver-helper
   cocoon
   coffee-rails (~> 4.2)
-  devise
+  devise!
+  doorkeeper (= 5.1.0)
   factory_bot_rails
   font-awesome-rails
   jquery-rails
   launchy
   listen (~> 3.0.5)
-  omniauth (~> 2.0.4)
+  oj
+  omniauth
   omniauth-github
   omniauth-rails_csrf_protection
   pg (~> 0.18)

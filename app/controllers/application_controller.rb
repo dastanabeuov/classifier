@@ -2,12 +2,8 @@ require "application_responder"
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
-  respond_to :html
 
-  before_action :authenticate_user!
-  protect_from_forgery with: :exception
   around_action :switch_locale
-  check_authorization unless: :devise_controller?
 
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
