@@ -12,7 +12,8 @@ module Classifier
     config.i18n.fallbacks =[:ru, :kz, :en]
     config.app_generators.scaffold_controller :responders_controller
     config.autoload_paths += [config.root.join('app')]
-
+    config.assets.initialize_on_precompile = false
+    
     config.action_cable.disable_request_forgery_protection = false
 
     config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
