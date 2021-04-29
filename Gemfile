@@ -16,31 +16,32 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'bootsnap', require: false
 
-#additional function
-gem 'omniauth', '~> 2.0.4'
-gem 'omniauth-rails_csrf_protection'
-gem 'omniauth-github'
-gem 'cocoon'
-gem 'devise'
-gem 'ancestry'
-gem 'cancancan'
-gem 'rails_admin'
-gem 'rails_admin_nestable'
-gem 'responders'
-gem 'redis-rails'
-# gem 'redis'
-#api docs
-gem 'apipie-rails'
-gem 'swagger_ui_engine'
-gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
-
-#internationalize
-gem 'rails-i18n'
-
-#style
+#theme style
 gem 'slim'
 gem 'bootstrap'
 gem "font-awesome-rails"
+
+#function
+gem 'cocoon'
+gem 'ancestry'
+gem 'rails-i18n'
+gem 'responders'
+gem 'redis-rails'
+gem 'devise', github: 'heartcombo/devise', branch: 'master'
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-github'
+gem 'cancancan'
+gem 'doorkeeper', '5.1.0'
+gem 'active_model_serializers', '0.10.12'
+gem 'oj'
+#admin dashboard
+gem 'rails_admin'
+gem 'rails_admin_nestable'
+
+#api docs
+gem 'swagger_ui_engine'
+gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
 
 group :development, :test do
   gem 'byebug', platform: :mri

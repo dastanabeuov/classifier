@@ -1,9 +1,10 @@
 class PropertiesController < ApplicationController
+  before_action :authenticate_user!
+  authorize_resource
+  
   before_action :set_property, only: %i[update destroy]
 
-  authorize_resource
-
-  respond_to :js, :json
+  respond_to :html
 
   def create
     @property = propertyable.properties.build(property_params)
@@ -16,7 +17,8 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
-    respond_with(@property.destroy) if current_user.author_of?(@property)
+    @property.destroy if current_user.author_of?(@property)
+    respond_with @property
   end
 
   private

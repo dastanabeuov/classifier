@@ -1,10 +1,12 @@
 class XrootsController < ApplicationController
+  before_action :authenticate_user!
+  authorize_resource
+
   before_action :set_xroot, only: %i[show edit update destroy update_inline]
+  
   after_action :publish_xroot, only: [:create]
   
-  authorize_resource
-  
-  respond_to :js, :json
+  respond_to :html
 
   def index
     @xroots = Xroot.all
@@ -42,7 +44,8 @@ class XrootsController < ApplicationController
   end
 
   def destroy
-    respond_with(@xroot.destroy) if current_user.author_of?(@xroot)
+    @xroot.destroy if current_user.author_of?(@xroot)
+    respond_with @xroot
   end
 
   private

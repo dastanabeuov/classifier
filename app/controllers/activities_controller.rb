@@ -1,10 +1,11 @@
 class ActivitiesController < ApplicationController
+  before_action :authenticate_user!
+  authorize_resource
+  
   before_action :set_activity, only: %i[show edit update destroy]
 
-  authorize_resource
+  respond_to :html
 
-  respond_to :js, :json
-  
   def index
     @activities = Activity.all
     respond_with(@activities)
@@ -35,7 +36,8 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    respond_with(@activity.destroy) if current_user.author_of?(@activity)
+    @activity.destroy if current_user.author_of?(@activity)
+    respond_with @activity
   end
 
   private
