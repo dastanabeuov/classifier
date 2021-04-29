@@ -41,6 +41,7 @@
 
     <div class="content">
       <%= render 'xroots/example_info_0', xroot: @xclass.xcategory.xroot %>
+      
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.name, :length => 18), xroot_path(@xclass.xcategory.xroot) %></li>
@@ -51,10 +52,11 @@
           <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xclass.name, :length => 18) %></li>
         </ol>
       </nav>
+      
       <div class="show-errors" >
         <%= render 'shared/errors', resource: @xclass %>
       </div>
-      <div class="resource-show card mt-4">
+      <div class="resource-show card">
         <%= render 'form_inline', xclass: @xclass %>
         <%= render 'shared/content', resource: @xclass %>        
       </div>

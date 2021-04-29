@@ -7,7 +7,7 @@
   background-color: #09182C;
   position: fixed;
   top: 65px;
-  width: 300px;
+  width: 400px;
   height: 100%;
   color: #e1ffff;
   padding-bottom: 20%;
@@ -20,7 +20,7 @@
   background-color: #09182C;
   position: fixed;
   top: 65px;
-  width: 300px;
+  width: 400px;
   height: 100%;
   color: #e1ffff;
   padding-bottom: 10%;  
@@ -183,7 +183,7 @@
 /*div content*/
 .content {
   margin-top: -30px;
-  padding-left: 310px;
+  padding-left: 410px;
   padding-right: 10px;
   margin-bottom: 80px;
 }
@@ -207,7 +207,7 @@
     }
 }
 /*OVERF:PW Y - X*/
-.parent h1 {
+.parent {
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -217,6 +217,6 @@
   max-height: 70px;
 }
 .resource-show {
-  max-height: 500px;
+  max-height: 460px;
   overflow-y: auto;
 }

@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? || u.paid_user? } do
     mount SwaggerUiEngine::Engine, at: "/api_docs"
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-    mount ActionCable.server => '/cable'
   end
+  
+  mount ActionCable.server => '/cable'
 end

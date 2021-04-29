@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function(){
       var change = curr_width + (e.clientX - curr_width);
     
        if(unlock) {
-          if(change > 310) {
+          if(change > 410) {
             $("#debug").text(e.clientX + " <%= I18n.t('info.size') %>");
             
             p.css("width", change);
@@ -18,8 +18,8 @@ $(document).on('turbolinks:load', function(){
           }
           else {
             
-            p.css("width", 300);
-            d.css("padding-left", 310);
+            p.css("width", 400);
+            d.css("padding-left", 410);
             }
         }
     });
