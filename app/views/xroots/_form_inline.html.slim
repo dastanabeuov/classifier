@@ -3,18 +3,18 @@
     = form_with model: [xroot], url: update_inline_xroot_path(xroot), class: "form-update-inline" do |f|
       h1 class="card-header"
         = fa_icon('file-text-o')
-        = f.label :name
-        = f.text_field :name, class: 'form-control'
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
     
       .card-body
+        p
+          = fa_icon('align-left')
+          = f.label :synonym
+          = f.text_field :synonym, class: 'form-control'
         p   
           = fa_icon('align-left')
           = f.label :description
           = f.text_area :description, class: 'form-control'
-        p
-          = fa_icon('align-left')
-          = f.label :synonym
-          = f.text_area :synonym, class: 'form-control'
         p
           = fa_icon('file-code-o')
           = f.label :code

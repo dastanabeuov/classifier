@@ -29,7 +29,7 @@ describe 'Xcategories API', type: :request do
       end
 
       it 'returns all public fields' do
-        %w[id name describtion synonym code version_date publish user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish user_id created_at updated_at].each do |attr|
           expect(xcategory_response[attr]).to eq xcategory.send(attr).as_json
         end
       end
@@ -47,7 +47,7 @@ describe 'Xcategories API', type: :request do
         end
 
         it 'returns all public fields xcategory' do
-          %w[id name describtion synonym code version_date publish user_id xcategory_id created_at updated_at].each do |attr|
+          %w[id title describtion synonym code version_date publish user_id xcategory_id created_at updated_at].each do |attr|
             expect(xcategory_response[attr]).to eq xcategory.send(attr).as_json
           end
         end
@@ -76,7 +76,7 @@ describe 'Xcategories API', type: :request do
       end
 
       context '- contains' do
-        %w[id name describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
           it "- #{attr}" do
             expect(response.body).to be_json_eql(xcategory.send(attr.to_sym).to_json).at_path("#{attr}")
           end
@@ -97,7 +97,7 @@ describe 'Xcategories API', type: :request do
 
   describe 'POST /create' do
     let(:attrs) { attributes_for(:xcategory, xroot: xroot, user: user) }
-    let(:invalid_attrs) { attributes_for(:xcategory, name: :invalid, xroot: xroot, user: user) }
+    let(:invalid_attrs) { attributes_for(:xcategory, title: :invalid, xroot: xroot, user: user) }
 
     let(:api_path) { '/api/v1/xroots/#{xroot.id}/xcategories' }
 
@@ -120,13 +120,13 @@ describe 'Xcategories API', type: :request do
           expect(response).to have_http_status(201)
         end
   
-        %w[id name describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
           it "- contains #{attr}" do
             expect(response.body).to have_json_path(attr)
           end
         end
   
-        %w[name describtion].each do |attr|
+        %w[title describtion].each do |attr|
           it "- set #{attr}" do
             expect(response.body).to be_json_eql(attrs[attr.to_sym].to_json).at_path(attr)
           end

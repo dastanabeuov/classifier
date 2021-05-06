@@ -98,7 +98,7 @@ RSpec.describe XcategoriesController, type: :controller do
         patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, :invalid) }
         xcategory.reload
 
-        expect(xcategory.name).to eq 'MyString'
+        expect(xcategory.title).to eq 'MyString'
         expect(xcategory.description).to eq 'MyText'
       end
 

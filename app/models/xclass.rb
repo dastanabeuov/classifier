@@ -8,5 +8,5 @@ class Xclass < ApplicationRecord
   
   has_ancestry
 
-  validates :name, presence: true, length: { minimum: 2 } 
+  validates :title, presence: true, length: { minimum: 2 } 
 end

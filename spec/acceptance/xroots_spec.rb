@@ -1,4 +1,4 @@
-require 'rails_helper'
+arequire 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource 'xroots' do
@@ -22,17 +22,17 @@ resource 'xroots' do
     route_summary 'this is used to create Xroots'
 
     with_options scope: :xroot, with_example: true do
-      parameter :name, 'Doodle IT', require: true
+      parameter :title, 'Doodle IT', require: true
       parameter :description, 'Doodling Information Technology'
     end
 
     with_options scope: :order do
-      response_field :name, 'Name', type: :string
+      response_field :title, 'title', type: :string
       response_field :description, 'Description', type: :string
     end
 
     context '200' do
-      let(:name) { 'Doodle IT' }
+      let(:title) { 'Doodle IT' }
       let(:description) { 'Doodling Information Technology' }
       let(:raw_post) { params.to_json }
     end

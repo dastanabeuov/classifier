@@ -1,5 +1,5 @@
 class SingleXcategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :synonym, :code, 
+  attributes :id, :title, :description, :synonym, :code, 
   :version_date, :publish, :xroot_id, :user_id, :created_at, :updated_at
   
   belongs_to :user

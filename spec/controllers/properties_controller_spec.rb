@@ -44,10 +44,10 @@ RSpec.describe PropertiesController, type: :controller do
       end
 
       it "change property attribute" do
-        patch :update, params: { id: property, property: attributes_for(:property, description: "NewDescription") }
+        patch :update, params: { id: property, property: attributes_for(:property, name: "Newname") }
         property.reload
 
-        expect(property.description).to eq 'NewDescription'
+        expect(property.name).to eq 'Newname'
       end
 
       it "redirect update property" do
@@ -63,8 +63,8 @@ RSpec.describe PropertiesController, type: :controller do
         patch :update, params: { id: property, property: attributes_for(:property, :invalid) }
         property.reload
 
-        expect(property.name).to eq 'MyString'
-        expect(property.description).to eq 'MyText'
+        expect(property.title).to eq 'MyString'
+        expect(property.name).to eq 'MyText'
       end
 
       it "re-render edit view" do

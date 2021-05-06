@@ -113,7 +113,7 @@ RSpec.describe ActivitiesController, type: :controller do
         patch :update, params: { id: activity, activity: attributes_for(:activity, :invalid) }
         activity.reload
 
-        expect(activity.name).to eq 'MyString'
+        expect(activity.title).to eq 'MyString'
         expect(activity.description).to eq 'MyText'
       end
 

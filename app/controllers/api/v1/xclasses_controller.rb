@@ -33,9 +33,9 @@ class Api::V1::XclassesController < Api::V1::BaseController
   end
 
   def xclass_params
-    params.require(:xclass).permit(:name, :description, 
+    params.require(:xclass).permit(:title, :description, 
       :synonym, :code, :version_date, :publish, :xtype, 
       :position, :parent_id,
-      properties_attributes: [:id, :name, :description, :activity_id, :_destroy])
+      properties_attributes: [:id, :title, :activity_id, :_destroy])
   end
 end

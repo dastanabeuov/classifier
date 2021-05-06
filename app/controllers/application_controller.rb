@@ -2,6 +2,7 @@ require "application_responder"
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
+  before_action :set_current_user
 
   around_action :switch_locale
 
@@ -16,5 +17,11 @@ class ApplicationController < ActionController::Base
       format.js { head :forbiddens }
       format.json { head :forbidden }
     end
+  end
+
+  private
+
+  def set_current_user
+    Current.user = current_user
   end
 end

@@ -6,5 +6,5 @@ RSpec.describe Xcategory, type: :model do
   it { should have_many(:xclasses).dependent(:destroy) }
   it { should have_many(:properties).dependent(:destroy).class_name('Property') }
 
-  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:title) }
 end

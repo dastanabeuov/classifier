@@ -16,8 +16,8 @@
 
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><%= link_to truncate(@xcategory.xroot.name, :lenth => 18), xroot_path(@xcategory.xroot) %></li>
-          <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xcategory.name, :length => 18) %></li>
+          <li class="breadcrumb-item"><%= link_to truncate(@xcategory.xroot.title, :lenth => 18), xroot_path(@xcategory.xroot) %></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xcategory.title, :length => 18) %></li>
         </ol>
       </nav>
       

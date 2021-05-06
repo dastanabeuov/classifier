@@ -1,8 +1,7 @@
 class CreateProperties < ActiveRecord::Migration[5.0]
   def up
     create_table :properties do |t|
-      t.string :name
-      t.text :description
+      t.string :title
       t.integer :activity_id
       t.belongs_to :propertyable, polymorphic: true
 
@@ -13,8 +12,7 @@ class CreateProperties < ActiveRecord::Migration[5.0]
 
   def down
     remove_table :properties do |t|
-      t.string :name
-      t.text :description
+      t.string :title
     t.integer :activity_id
       t.belongs_to :propertyable, polymorphic: true
 

@@ -15,43 +15,50 @@ nav class="navbar sticky-top navbar-expand-md navbar-dark mb-5"
           = link_to 'KZ', "?locale=kz", class: "dropdown-item"
           = link_to 'RU', "?locale=ru", class: "dropdown-item"
           = link_to 'EN', "?locale=en", class: "dropdown-item"
+    - if user_signed_in?
+      ul.navbar-nav.pull-xs-right
+        li.nav-tem.dropdown.ml-2
+          a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Upload from Excel"
+            = fa_icon('download')
+          .dropdown-menu aria-labelledby="navbarDropdown"
+            .dropdown-item
+              = form_tag import_xroots_path, multipart: true do
+                = file_field_tag :file
+                = submit_tag 'Import', class: 'btn btn-sm btn-outline-success'   
+        li.nav-item.dropdown.ml-2
+          a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tree Table"
+            = fa_icon "sitemap"
+          .dropdown-menu aria-labelledby="navbarDropdown"
+            = link_to "Root: #{count_xroots}", xroots_path, class: "dropdown-item"          
+            = link_to "Category: #{count_xcategories}", xroots_path, class: "dropdown-item"
+            = link_to "Classes: #{count_xclasses}", xroots_path, class: "dropdown-item"
+            = link_to "Properties: #{count_properties}", "#", class: "dropdown-item"
+            = link_to "Activities: #{count_activities}", activities_path, class: "dropdown-item"
 
-  - if user_signed_in?
-    ul.navbar-nav.pull-xs-right      
-      li.nav-item.dropdown.ml-2
-        a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tree Table"
-          = fa_icon "sitemap"
-        .dropdown-menu aria-labelledby="navbarDropdown"
-          = link_to "Root: #{count_xroots}", xroots_path, class: "dropdown-item"          
-          = link_to "Category: #{count_xcategories}", xroots_path, class: "dropdown-item"
-          = link_to "Classes: #{count_xclasses}", xroots_path, class: "dropdown-item"
-          = link_to "Properties: #{count_properties}", "#", class: "dropdown-item"
-          = link_to "Activities: #{count_activities}", activities_path, class: "dropdown-item"
-
-      li.nav-item.ml-2
-        = link_to fa_icon("plug"), "/api_docs/single_swagger_doc", class: "nav-link", target: :_blank, title: "API docs"
-      li.nav-item.ml-2
-        = link_to fa_icon("keyboard-o"), "/admin/", class: "nav-link", title: "Admin panel"
-      li.nav-item.dropdown.ml-2
-        a class="nav-link dropdown-toggle dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          = current_user.email
-          = " "
-          = fa_icon "user-circle", title: "User avatar", alt: "User image"
-        .dropleft.dropdown-menu aria-labelledby="navbarDropdown"
-          a href="#" class="dropdown-item dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Мои таблицы 
-          div.dropdown-menu aria-labelledby="dropdown01"
-            = link_to "Root: #{current_user_count_xroots}", xroots_path, class: "dropdown-item"          
-            = link_to "Category: #{current_user_count_xcategories}", xroots_path, class: "dropdown-item"
-            = link_to "Classes: #{current_user_count_xclasses}", xroots_path, class: "dropdown-item"
-            = link_to "Properties: #{current_user_count_properties}", "#", class: "dropdown-item"
-            = link_to "Activities: #{current_user_count_activities}", activities_path, class: "dropdown-item"
-          .dropdown-divider
-          = link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item"
-      li.nav-item.ml-2
-        = button_to t('user.signout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, title: "Sign out", alt: "Logout", class: "nav-link btn btn-sm btn-danger text-light"
-  - else
-    ul.navbar-nav.pull-xs-right
-      li.nav-item.ml-2
-        = button_to t('user.signin'), new_user_session_path, method: :get, class: "nav-link btn btn-sm btn-danger text-light"
-      li.nav-item.ml-2
-        = button_to t('user.signup'), new_user_registration_path, method: :get, class: "nav-link btn btn-sm btn-success text-light"
+        li.nav-item.ml-2
+          = link_to fa_icon("plug"), "/api_docs/single_swagger_doc", class: "nav-link", target: :_blank, title: "API docs"
+        li.nav-item.ml-2
+          = link_to fa_icon("keyboard-o"), "/admin/", class: "nav-link", title: "Admin panel"
+        li.nav-item.dropdown.ml-2
+          a class="nav-link dropdown-toggle dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            = current_user.email
+            = " "
+            = fa_icon "user-circle", title: "User avatar", alt: "User image"
+          .dropleft.dropdown-menu aria-labelledby="navbarDropdown"
+            a href="#" class="dropdown-item dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Мои таблицы 
+            div.dropdown-menu aria-labelledby="dropdown01"
+              = link_to "Root: #{current_user_count_xroots}", xroots_path, class: "dropdown-item"          
+              = link_to "Category: #{current_user_count_xcategories}", xroots_path, class: "dropdown-item"
+              = link_to "Classes: #{current_user_count_xclasses}", xroots_path, class: "dropdown-item"
+              = link_to "Properties: #{current_user_count_properties}", "#", class: "dropdown-item"
+              = link_to "Activities: #{current_user_count_activities}", activities_path, class: "dropdown-item"
+            .dropdown-divider
+            = link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item"
+        li.nav-item.ml-2
+          = button_to t('user.signout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, title: "Sign out", alt: "Logout", class: "nav-link btn btn-sm btn-danger text-light"
+    - else
+      ul.navbar-nav.pull-xs-right
+        li.nav-item.ml-2
+          = button_to t('user.signin'), new_user_session_path, method: :get, class: "nav-link btn btn-sm btn-danger text-light"
+        li.nav-item.ml-2
+          = button_to t('user.signup'), new_user_registration_path, method: :get, class: "nav-link btn btn-sm btn-success text-light"

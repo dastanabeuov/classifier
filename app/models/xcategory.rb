@@ -7,5 +7,5 @@ class Xcategory < ApplicationRecord
 
   accepts_nested_attributes_for :properties, reject_if: :all_blank, allow_destroy: true
 
-  validates :name, presence: true, length: { minimum: 2 }
+  validates :title, presence: true, length: { minimum: 2 }
 end

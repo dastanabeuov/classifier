@@ -1,9 +1,9 @@
 class CreateXroots < ActiveRecord::Migration[5.0]
   def up
     create_table :xroots do |t|
-      t.string :name
+      t.string :title
+      t.string :synonym
       t.text :description
-      t.text :synonym
       t.string :code
       t.date :version_date
       t.boolean :publish
@@ -16,9 +16,9 @@ class CreateXroots < ActiveRecord::Migration[5.0]
 
   def down
     remove_table :xroots do |t|
-      t.string :name
+      t.string :title
+      t.string :synonym
       t.text :description
-      t.text :synonym
       t.string :code
       t.date :version_date
       t.boolean :publish

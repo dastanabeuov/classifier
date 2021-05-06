@@ -3,20 +3,20 @@
     = render 'shared/errors', resource: @xroot
     .xroot
       .field.mt-3
-        = f.label :name
-        = f.text_field :name, class: 'form-control'
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+      
+      .field.mt-3
+        = f.label :synonym
+        = f.text_field :synonym, class: 'form-control'
 
       .field.mt-3
         = f.label :description
         = f.text_area :description, class: 'form-control'
 
       .field.mt-3
-        = f.label :synonym
-        = f.text_area :synonym, class: 'form-control'
-
-      .field.mt-3
         = f.label :code
-        = f.text_field :code, class: 'form-control'
+        = f.text_field :code
 
       .field.mt-3
         = f.label :version_date

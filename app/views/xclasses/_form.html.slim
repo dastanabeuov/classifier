@@ -4,16 +4,16 @@
 
     .xclass
       .field.mt-3
-        = f.label :name
-        = f.text_field :name, class: 'form-control'
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+
+      .field.mt-3
+        = f.label :synonym
+        = f.text_field :synonym, class: 'form-control'
 
       .field.mt-3
         = f.label :description
         = f.text_area :description, class: 'form-control'
-
-      .field.mt-3
-        = f.label :synonym
-        = f.text_area :synonym, class: 'form-control'
 
       .field.mt-3
         = f.label :code
@@ -37,7 +37,7 @@
 
       .field.mt-3
         = f.label :parent_id
-        = f.select :parent_id, Xclass.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true }
+        = f.select :parent_id, Xclass.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }
       
       hr
       .field.mt-5

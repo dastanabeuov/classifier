@@ -47,9 +47,9 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, 
+    params.require(:activity).permit(:title, :description, 
       :synonym, :code, :version_date, :publish, :position, 
       :parent_id,
-      properties_attributes: [:id, :name, :description, :activity_id, :_destroy])
+      properties_attributes: [:id, :title, :activity_id, :_destroy])
   end
 end

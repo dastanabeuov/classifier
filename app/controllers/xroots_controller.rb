@@ -19,6 +19,11 @@ class XrootsController < ApplicationController
 
   def edit; end
 
+  def import
+    Xroot.import(params[:file])
+    redirect_to xroots_path, notice: "Xroots imported."
+  end
+
   def new
     @xroot = Xroot.new
     @xroot.properties.new
@@ -66,8 +71,8 @@ class XrootsController < ApplicationController
   end
 
   def xroot_params
-    params.require(:xroot).permit(:name, :description, 
+    params.require(:xroot).permit(:title, :description, 
       :synonym, :code, :version_date, :publish,
-      properties_attributes: [:id, :name, :description, :activity_id, :_destroy])
+      properties_attributes: [:id, :title, :activity_id, :_destroy])
   end
 end
