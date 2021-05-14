@@ -23,13 +23,13 @@ Rails.application.routes.draw do
   end
 
   resources :xroots do
-    post :import, on: :collection
     patch :update_inline, on: :member
     
     resources :xcategories, except: :index do
       patch :update_inline, on: :member
       
       resources :xclasses, except: :index do
+        post :import, on: :collection
         patch :update_inline, on: :member
       end
     end

@@ -14,6 +14,12 @@ class XclassesController < ApplicationController
   
   def edit; end
 
+  def import
+    # @request = request.original_url
+    Xclass.import(params[:file])
+    redirect_to xroot_xcategory_path(@xroot, @xcategory), notice: "Xclasses imported."
+  end
+
   def new
     @xclass = @xcategory.xclasses.new
     @xclass.parent_id = params[:parent_id]
@@ -44,9 +50,11 @@ class XclassesController < ApplicationController
   def destroy
     @xclass.destroy if current_user.author_of?(@xclass)
     if @xclass.parent
-      respond_with(@xroot, @xcategory, @xclass.parent)
+      redirect_to xroot_xcategory_xclass_path(@xroot, @xcategory, @xclass.parent)
+      flash[:notice] = "Xclass was successfully destroyed."
     else
-      respond_with(@xroot, @xcategory)
+      redirect_to xroot_xcategory_path(@xroot, @xcategory)
+      flash[:notice] = "Xclass was successfully destroyed."
     end
   end
 

@@ -19,11 +19,6 @@ class XrootsController < ApplicationController
 
   def edit; end
 
-  def import
-    Xroot.import(params[:file])
-    redirect_to xroots_path, notice: "Xroots imported."
-  end
-
   def new
     @xroot = Xroot.new
     @xroot.properties.new

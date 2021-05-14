@@ -43,7 +43,8 @@ class XcategoriesController < ApplicationController
 
   def destroy
     @xcategory.destroy if current_user.author_of?(@xcategory)
-    respond_with @xcategory
+    redirect_to @xcategory.xroot
+    flash[:notice] = "Xcategory was successfully destroyed."
   end
 
   private

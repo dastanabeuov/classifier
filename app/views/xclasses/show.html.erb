@@ -44,6 +44,7 @@
       
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to 'Xroots', xroots_path %></li>
           <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.title, :length => 18), xroot_path(@xclass.xcategory.xroot) %></li>
           <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.title, :length => 18), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory) %></li>
           <% @xclass.ancestors.each do |ancestor| %>
