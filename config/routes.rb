@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       patch :update_inline, on: :member
       
       resources :xclasses, except: :index do
+        post :import, on: :collection
         patch :update_inline, on: :member
       end
     end

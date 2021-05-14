@@ -1,51 +1,44 @@
-.form-group
-  = form_for [@xroot, @xcategory, @xclass] do |f|
-    = render 'shared/errors', resource: @xclass
+= form_for [@xroot, @xcategory, @xclass] do |f|
+  = render 'shared/errors', resource: @xclass
 
-    .xclass
-      .field.mt-3
-        = f.label :name
-        = f.text_field :name, class: 'form-control'
+  .xclass
+    .field.form-group
+      = f.text_field :title, class: 'form-control', placeholder: 'Title'
 
-      .field.mt-3
-        = f.label :description
-        = f.text_area :description, class: 'form-control'
+    .field.form-group
+      = f.text_field :synonym, class: 'form-control', placeholder: 'Synonym'
 
-      .field.mt-3
-        = f.label :synonym
-        = f.text_area :synonym, class: 'form-control'
+    .field.form-group
+      = f.text_area :description, class: 'form-control', placeholder: 'Description'
 
-      .field.mt-3
-        = f.label :code
-        = f.text_field :code, class: 'form-control'
+    .field.form-group
+      = f.text_field :code, placeholder: 'Code'
 
-      .field.mt-3
-        = f.label :version_date
-        = f.date_select :version_date, class: 'form-control'
+    .field.form-group
+      = f.date_select :version_date
 
-      .field.mt-3
-        = f.label :publish
-        = f.check_box :publish, class: 'form-control'
+    .field.form-group
+      = f.check_box :publish
+      = f.label :publish, class: 'pl-2'
 
-      .field.mt-3
-        = f.label :xtype
-        = f.check_box :xtype, class: 'form-control'
+    .field.form-group
+      = f.check_box :xtype
+      = f.label :xtype, class: 'pl-2'
 
-      .field.mt-3
-        = f.label :position
-        = f.text_field :position, class: 'form-control'
+    .field.form-group
+      = f.text_field :position, placeholder: 'Position'
 
-      .field.mt-3
-        = f.label :parent_id
-        = f.select :parent_id, Xclass.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true }
-      
-      hr
-      .field.mt-5
-        h2 Additional properties
-        = f.fields_for :properties do |property|
-          = render 'properties/property_fields', f: property
-        p
-          = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
+    .field.form-group
+      = f.select :parent_id, Xclass.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }
+      = f.label :parent_id, class: 'pl-2'
+    
+    br/
+    h2 Additional properties
+    .field.form-group
+      = f.fields_for :properties do |property|
+        = render 'properties/property_fields', f: property
+    .field.form-group
+      = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
 
-    .actions
-      = f.submit class: "btn btn-sm btn-outline-success mt-5"
+  .actions
+    = f.submit class: "btn btn-sm btn-outline-success mt-5"

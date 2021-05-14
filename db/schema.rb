@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2021_04_22_040501) do
   enable_extension "plpgsql"
 
   create_table "activities", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "title"
+    t.string "synonym"
     t.text "description"
-    t.text "synonym"
     t.string "code"
     t.date "version_date"
     t.boolean "publish"
@@ -85,8 +85,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_040501) do
   end
 
   create_table "properties", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.string "title"
     t.integer "activity_id"
     t.string "propertyable_type"
     t.integer "propertyable_id"
@@ -118,9 +117,9 @@ ActiveRecord::Schema.define(version: 2021_04_22_040501) do
   end
 
   create_table "xcategories", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "title"
+    t.string "synonym"
     t.text "description"
-    t.text "synonym"
     t.string "code"
     t.date "version_date"
     t.boolean "publish"
@@ -133,9 +132,9 @@ ActiveRecord::Schema.define(version: 2021_04_22_040501) do
   end
 
   create_table "xclasses", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "title"
+    t.string "synonym"
     t.text "description"
-    t.text "synonym"
     t.string "code"
     t.date "version_date"
     t.boolean "publish"
@@ -153,9 +152,9 @@ ActiveRecord::Schema.define(version: 2021_04_22_040501) do
   end
 
   create_table "xroots", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "title"
+    t.string "synonym"
     t.text "description"
-    t.text "synonym"
     t.string "code"
     t.date "version_date"
     t.boolean "publish"

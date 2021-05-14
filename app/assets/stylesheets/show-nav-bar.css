@@ -220,3 +220,6 @@
   max-height: 460px;
   overflow-y: auto;
 }
+.form-group {
+  margin-bottom: 1rem !important;
+}

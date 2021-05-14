@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :xcategory do
-    name { "MyString" }
-    description { "MyText" }
-    synonym { "MyText" }
+    title { "MyString" }
+    synonym { "MyString" }
     code { "MyString" }
     version_date { "2020-06-08" }
     publish { false }
@@ -10,7 +9,7 @@ FactoryBot.define do
     user { nil }
 
     trait :invalid do
-      name { nil }
+      title { nil }
     end
   end
 end

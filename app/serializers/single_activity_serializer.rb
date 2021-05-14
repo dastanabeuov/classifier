@@ -1,5 +1,5 @@
 class SingleActivitySerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :synonym, 
+  attributes :id, :title, :description, :synonym, 
   :code, :version_date, :publish, :position, :ancestry, 
   :user_id, :created_at, :updated_at
   

@@ -1,12 +1,11 @@
 FactoryBot.define do
   factory :property do
-    name { "MyString" }
-    description { "MyText" }
+    title { "MyString" }
     propertyable { nil }
     activity_id { nil }
 
     trait :invalid do
-      name { nil }
+      title { nil }
     end
   end
 end

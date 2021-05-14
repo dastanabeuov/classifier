@@ -31,7 +31,7 @@ describe 'xclasses API', type: :request do
       end
 
       it 'returns all public fields' do
-        %w[id name describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
           expect(xclass_response[attr]).to eq xclass.send(attr).as_json
         end
       end
@@ -46,7 +46,7 @@ describe 'xclasses API', type: :request do
         end
 
         it 'returns all public fields xclass' do
-          %w[id name describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+          %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
             expect(xclass_response[attr]).to eq xclass.send(attr).as_json
           end
         end
@@ -73,7 +73,7 @@ describe 'xclasses API', type: :request do
       end
 
       context '- contains' do
-        %w[id name describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
           it "- #{attr}" do
             expect(response.body).to be_json_eql(xclass.send(attr.to_sym).to_json).at_path("#{attr}")
           end
@@ -101,7 +101,7 @@ describe 'xclasses API', type: :request do
 
     context 'Authorized' do
       let(:attrs) { attributes_for(:xclass, xcategory: xcategory, user: user) }
-      let(:invalid_attrs) { attributes_for(:xclass, name: :invalid, xcategory: xcategory, user: user) }
+      let(:invalid_attrs) { attributes_for(:xclass, title: :invalid, xcategory: xcategory, user: user) }
 
       context '- invalid attributes' do
         it '- returns 422 status' do
@@ -117,13 +117,13 @@ describe 'xclasses API', type: :request do
           expect(response).to have_http_status(201)
         end
   
-        %w[id name describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
           it "- contains #{attr}" do
             expect(response.body).to have_json_path(attr)
           end
         end
   
-        %w[name describtion].each do |attr|
+        %w[title describtion].each do |attr|
           it "- set #{attr}" do
             expect(response.body).to be_json_eql(attrs[attr.to_sym].to_json).at_path(attr)
           end

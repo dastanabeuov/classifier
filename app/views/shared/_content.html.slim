@@ -1,19 +1,19 @@
 = content_tag :div, class: 'card-block', data: { resource_id: resource.id } do
   h1 class="card-header"
     = fa_icon('file-text-o')
-    = t('show.name')
-    = resource.name
+    = t('show.title')
+    = resource.title
   .card-body
     .row.justify-content-md-center
       .col-md-12
         p 
           = fa_icon('align-left')
-          = t('show.description')
-          = resource.description
-        p 
-          = fa_icon('align-left')
           = t('show.synonym')
           = resource.synonym
+        p 
+          = fa_icon('align-left')
+          = t('show.description')
+          = resource.description
         p 
           = fa_icon('file-code-o')
           = t('show.code')

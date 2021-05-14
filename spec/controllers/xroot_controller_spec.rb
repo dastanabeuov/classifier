@@ -111,7 +111,7 @@ RSpec.describe XrootsController, type: :controller do
         patch :update, params: { id: xroot, xroot: attributes_for(:xroot, :invalid) }
         xroot.reload
 
-        expect(xroot.name).to eq 'MyString'
+        expect(xroot.title).to eq 'MyString'
         expect(xroot.description).to eq 'MyText'
       end
 

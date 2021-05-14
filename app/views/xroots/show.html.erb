@@ -14,7 +14,7 @@
             <% end %>
             </a>
 
-            <%= xcategory.code %> <%= truncate(xcategory.name, :length => 18) %>
+            <%= xcategory.code %> <%= truncate(xcategory.title, :length => 18) %>
 
             <% if xcategory.xclasses.present? %>
               <span class="arrow"></span>
@@ -37,7 +37,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link_to 'Xroots', xroots_path %></li>
-          <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.name, :length => 18) %></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xroot.title, :length => 18) %></li>
         </ol>
       </nav>
       

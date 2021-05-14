@@ -10,9 +10,9 @@
               table class="table table-bordered table-striped table-dark"
                 thead
                   tr
-                    th Name
-                    th Description
+                    th Title
                     th Synonym
+                    th Description
                     th Code
                     th Version date
                     th Publish
@@ -24,9 +24,9 @@
                 tbody
                   - @activities.each do |activity|
                     tr
-                      td = truncate("#{activity.name}", :length => 20)
-                      td = truncate("#{activity.description}", :length => 20)
+                      td = truncate("#{activity.title}", :length => 20)
                       td = truncate("#{activity.synonym}", :length => 20)
+                      td = truncate("#{activity.description}", :length => 20)
                       td = activity.code
                       td = activity.version_date
                       td = activity.publish

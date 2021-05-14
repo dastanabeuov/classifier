@@ -3,16 +3,16 @@
     .card.mt-5
       .card-block
         h1 class="card-header" 
-          = @activity.name
+          = @activity.title
         .card-body
           .row.justify-content-md-center
             .col-md-12
               p 
-                <b>Description: </b>
-                = @activity.description
-              p 
                 <b>Synonym: </b>
                 = @activity.synonym
+              p 
+                <b>Description: </b>
+                = @activity.description
               p 
                 <b>Code: </b>
                 = @activity.code

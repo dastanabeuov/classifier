@@ -22,17 +22,17 @@ resource 'xcategories' do
     route_summary 'This is used to create xcategories.'
 
     with_options scope: :xcategory, with_example: true do
-      parameter :name, 'Doodle IT', required: true
+      parameter :title, 'Doodle IT', required: true
       parameter :description, 'Doodling Information Technology'
     end
 
     with_options scope: :order do
-      response_field :name, 'Name', type: :string
+      response_field :title, 'title', type: :string
       response_field :description, 'Description', type: :string
     end
 
     context '200' do
-      let(:name) { 'Doodle IT' }
+      let(:title) { 'Doodle IT' }
       let(:description) { 'Doodling Information Technology' }
       let(:raw_post) { params.to_json }
 

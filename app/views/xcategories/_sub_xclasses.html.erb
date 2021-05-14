@@ -8,7 +8,7 @@
         <i class="fa fa-file fa-lg"></i>
       <% end %>
       </a>
-      <%= xclass.code %> <%= link_to_unless_current truncate(xclass.name, :length => 18) %>
+      <%= xclass.code %> <%= link_to_unless_current truncate(xclass.title, :length => 18) %>
 
       <% if xclass.children? %>
         <span class="arrow"></span>

@@ -26,8 +26,7 @@ class Ability
 
   def paid_abilities(user)
     guest_abilities
-    can :create, [Xroot, Xcategory, Xclass, Activity, Property]
-    can [:update, :update_inline, :destroy], [Xroot, Xcategory, Xclass, Activity, Property], user_id: @user.id
+    can [:create, :update, :update_inline, :import, :destroy], [Xroot, Xcategory, Xclass, Activity, Property], user_id: @user.id
   end
 
   def guest_abilities

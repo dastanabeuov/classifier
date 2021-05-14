@@ -99,7 +99,7 @@ RSpec.describe XclassesController, type: :controller do
         patch :update, params: { id: xclass, xclass: attributes_for(:xclass, :invalid) }
         xclass.reload
 
-        expect(xclass.name).to eq 'MyString'
+        expect(xclass.title).to eq 'MyString'
         expect(xclass.description).to eq 'MyText'
       end
 

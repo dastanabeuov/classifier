@@ -29,7 +29,7 @@ describe 'Activities API', type: :request do
       end
 
       it 'returns all public fields' do
-        %w[id name describtion synonym code version_date publish position ancestry user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish position ancestry user_id created_at updated_at].each do |attr|
           expect(activity_response[attr]).to eq activity.send(attr).as_json
         end
       end
@@ -58,7 +58,7 @@ describe 'Activities API', type: :request do
       end
 
       context '- contains' do
-        %w[id name describtion synonym code version_date publish position ancestry user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish position ancestry user_id created_at updated_at].each do |attr|
           it "- #{attr}" do
             expect(response.body).to be_json_eql(activity.send(attr.to_sym).to_json).at_path("#{attr}")
           end
@@ -73,7 +73,7 @@ describe 'Activities API', type: :request do
 
   describe 'POST /create' do
     let(:attrs) { attributes_for(:activity, user: user) }
-    let(:invalid_attrs) { attributes_for(:activity, name: :invalid, user: user) }
+    let(:invalid_attrs) { attributes_for(:activity, title: :invalid, user: user) }
 
     let(:api_path) { '/api/v1/activities' }
 
@@ -96,13 +96,13 @@ describe 'Activities API', type: :request do
           expect(response).to have_http_status(201)
         end
   
-        %w[id name describtion synonym code version_date publish position ancestry user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish position ancestry user_id created_at updated_at].each do |attr|
           it "- contains #{attr}" do
             expect(response.body).to have_json_path(attr)
           end
         end
   
-        %w[name describtion].each do |attr|
+        %w[title describtion].each do |attr|
           it "- set #{attr}" do
             expect(response.body).to be_json_eql(attrs[attr.to_sym].to_json).at_path(attr)
           end

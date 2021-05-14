@@ -1,9 +1,9 @@
 class CreateActivities < ActiveRecord::Migration[5.0]
   def up
     create_table :activities do |t|
-      t.string :name
+      t.string :title
+      t.string :synonym
       t.text :description
-      t.text :synonym
       t.string :code
       t.date :version_date
       t.boolean :publish
@@ -20,9 +20,9 @@ class CreateActivities < ActiveRecord::Migration[5.0]
 
   def down
     remove_table :activities do |t|
-      t.string :name
+      t.string :title
+      t.string :synonym
       t.text :description
-      t.text :synonym
       t.string :code
       t.date :version_date
       t.boolean :publish
