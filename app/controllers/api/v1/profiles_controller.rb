@@ -11,5 +11,5 @@ class Api::V1::ProfilesController < Api::V1::BaseController
 
   def other_resource_owners
     User.where.not(id: current_resource_owner.id) if doorkeeper_token
-  end 
+  end
 end

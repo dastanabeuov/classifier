@@ -3,6 +3,6 @@ class ApplicationMailer < ActionMailer::Base
 
   def send_welcome_email(user)
     @user = user
-    mail(:to => @user.email, :subject => "Welcome!")
+    mail(to: @user.email, subject: 'Welcome!')
   end
 end

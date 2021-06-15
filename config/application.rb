@@ -10,20 +10,20 @@ module Classifier
     config.time_zone = 'Almaty'
     config.i18n.fallbacks = true
     config.i18n.default_locale = :en
-    config.i18n.fallbacks =[:ru, :kz, :en]
+    config.i18n.fallbacks = %i[ru kz en]
     config.app_generators.scaffold_controller :responders_controller
     config.autoload_paths += [config.root.join('app')]
-    
+
     config.action_cable.disable_request_forgery_protection = false
 
     config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
 
     config.generators do |g|
       g.test_framework :rspec,
-                      view_specs: false,
-                      helper_specs: false,
-                      routng_specs: false,
-                      request_specs: false
+                       view_specs: false,
+                       helper_specs: false,
+                       routng_specs: false,
+                       request_specs: false
     end
   end
 end

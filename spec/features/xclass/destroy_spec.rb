@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-feature 'XCLASS DESTROY', %q{
+feature 'XCLASS DESTROY', '
   Authenticated user destroy
   Unauthenticated user destroy
   Is not author try destroy
-} do
-
+' do
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given(:xroot) { create(:xroot, user: user) }
@@ -16,7 +15,7 @@ feature 'XCLASS DESTROY', %q{
     sign_in(user)
     visit xroot_xcategory_xclass_path(xroot, xcategory, xclass)
 
-    find(:css, ".btn-danger").click
+    find(:css, '.btn-danger').click
 
     expect(page).to have_content 'Xclass was successfully destroyed.'
   end

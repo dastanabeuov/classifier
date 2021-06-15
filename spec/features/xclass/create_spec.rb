@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-feature 'XCLASS CREATE', %q{
+feature 'XCLASS CREATE', '
   Authenticated user create
   Authenticated user create with errors
-} do
-
+' do
   given(:user) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
   given!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
@@ -20,7 +19,7 @@ feature 'XCLASS CREATE', %q{
     click_on 'Create Xclass'
 
     expect(current_path).to eq xroot_xcategory_xclass_path(xroot, xcategory, Xclass.last)
-    expect(page).to have_content "Xclass was successfully created."
+    expect(page).to have_content 'Xclass was successfully created.'
     expect(page).to have_content 'My xclass'
   end
 
@@ -28,7 +27,7 @@ feature 'XCLASS CREATE', %q{
     sign_in(user)
     visit new_xroot_xcategory_xclass_path(xroot, xcategory)
 
-    find(:css, ".btn-success").click
+    find(:css, '.btn-success').click
     click_on 'Create Xclass'
 
     expect(page).to have_content "Name can't be blank"

@@ -27,9 +27,9 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
   private
 
   def activity_params
-    params.require(:activity).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish, :position, 
-      :parent_id,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:activity).permit(:title, :description,
+                                     :synonym, :code, :version_date, :publish, :position,
+                                     :parent_id,
+                                     properties_attributes: %i[id title activity_id _destroy])
   end
 end

@@ -1,16 +1,17 @@
 require 'rails_helper'
 
-feature 'USER CAN SIGHN_IN', %q{
+feature 'USER CAN SIGHN_IN', '
   User can register on system
   Registration user tries sign in
   User can logout system
   Unregistered user tries sign in
-} do
-
+' do
   given(:user) { create(:user) }
   given(:invalid_user) { attributes_for(:user, email: 'warning@example.com', password: '12345678') }
-  given(:unregistered_user) { attributes_for(:user, email: 'warning@example.com', password: '12345678', password_confirmation: '12345678') }
-  
+  given(:unregistered_user) do
+    attributes_for(:user, email: 'warning@example.com', password: '12345678', password_confirmation: '12345678')
+  end
+
   scenario 'Registration user tries sign in' do
     sign_in(user)
     expect(page).to have_content 'Signed in successfully.'

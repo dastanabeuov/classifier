@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def github_url(author, repo)
-    "https://github.com/#{ author }/#{ repo }"
+    "https://github.com/#{author}/#{repo}"
   end
 
   def flash_class(level)

@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-feature 'XROOT DESTROY', %q{
+feature 'XROOT DESTROY', '
   Authenticated user destroy
   Unauthenticated user destroy
   Is not author try destroy
-} do
-
+' do
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given(:xroot) { create(:xroot, user: user) }
@@ -14,7 +13,7 @@ feature 'XROOT DESTROY', %q{
     sign_in(user)
     visit xroot_path(xroot)
 
-    find(:css, ".btn-danger").click
+    find(:css, '.btn-danger').click
 
     expect(current_path).to eq xroots_path
     expect(page).to have_content 'Xroot was successfully destroyed.'

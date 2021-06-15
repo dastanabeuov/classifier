@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe 'Profiles API', type: :request do
-  let(:headers) {  { "CONTENT_TYPE" => "application/json", "ACCEPT" => 'application/json' } }
+  let(:headers) {  { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' } }
 
   describe 'GET /me' do
     let(:api_path) { '/api/v1/profiles/me' }
-    
+
     it_behaves_like 'API Authorizable' do
       let(:method) { :get }
     end
@@ -36,7 +36,7 @@ describe 'Profiles API', type: :request do
 
   describe 'GET /api/v1/profiles "/index"' do
     let(:api_path) { '/api/v1/profiles' }
-    
+
     it_behaves_like 'API Authorizable' do
       let(:method) { :get }
     end

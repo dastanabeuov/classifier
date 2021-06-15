@@ -18,7 +18,7 @@ class Api::V1::XcategoriesController < Api::V1::BaseController
 
   def update
     @xcategory.update(xcategory_params) if current_resource_owner.author_of?(@xcategory)
-    respond_with @xcategory, serializer: SingleXcategorySerializer  
+    respond_with @xcategory, serializer: SingleXcategorySerializer
   end
 
   def destroy
@@ -33,8 +33,8 @@ class Api::V1::XcategoriesController < Api::V1::BaseController
   end
 
   def xcategory_params
-    params.require(:xcategory).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:xcategory).permit(:title, :description,
+                                      :synonym, :code, :version_date, :publish,
+                                      properties_attributes: %i[id title activity_id _destroy])
   end
 end

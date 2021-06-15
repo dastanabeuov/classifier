@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :property do
-    title { "MyString" }
+    title { 'MyString' }
     propertyable { nil }
     activity_id { nil }
 

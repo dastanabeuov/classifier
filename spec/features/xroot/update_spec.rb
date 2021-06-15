@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-feature 'XROOT UPDATE', %q{
+feature 'XROOT UPDATE', '
   Author xroot try edit
   Not author try edit
-} do
-
+' do
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
@@ -13,16 +12,16 @@ feature 'XROOT UPDATE', %q{
     sign_in(user)
     visit xroots_path
 
-    find(:css, ".btn-warning").click
+    find(:css, '.btn-warning').click
 
-    fill_in "Name", with: "New xroot name"
-    fill_in "Description", with: "New xroot description"
-    click_on "Update Xroot"
-    
+    fill_in 'Name', with: 'New xroot name'
+    fill_in 'Description', with: 'New xroot description'
+    click_on 'Update Xroot'
+
     expect(current_path).to eq xroot_path(xroot)
-    expect(page).to have_content "Xroot was successfully updated."
-    expect(page).to have_content "New xroot name"
-    expect(page).to have_content "New xroot description"
+    expect(page).to have_content 'Xroot was successfully updated.'
+    expect(page).to have_content 'New xroot name'
+    expect(page).to have_content 'New xroot description'
   end
 
   scenario 'Not author try edit' do

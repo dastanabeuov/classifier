@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe 'xclasses API', type: :request do
-  let(:headers) { {"CONTENT_TYPE" => "application/json", "ACCEPT" => 'application/json'} }
+  let(:headers) { { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' } }
   let(:user) { create(:user) }
   let(:access_token) { create(:access_token, resource_owner_id: user.id) }
-  
+
   let(:xroot) { create(:xroot, user: user) }
   let(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
 
@@ -31,7 +31,8 @@ describe 'xclasses API', type: :request do
       end
 
       it 'returns all public fields' do
-        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+           created_at updated_at].each do |attr|
           expect(xclass_response[attr]).to eq xclass.send(attr).as_json
         end
       end
@@ -46,7 +47,8 @@ describe 'xclasses API', type: :request do
         end
 
         it 'returns all public fields xclass' do
-          %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+          %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+             created_at updated_at].each do |attr|
             expect(xclass_response[attr]).to eq xclass.send(attr).as_json
           end
         end
@@ -73,9 +75,10 @@ describe 'xclasses API', type: :request do
       end
 
       context '- contains' do
-        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+           created_at updated_at].each do |attr|
           it "- #{attr}" do
-            expect(response.body).to be_json_eql(xclass.send(attr.to_sym).to_json).at_path("#{attr}")
+            expect(response.body).to be_json_eql(xclass.send(attr.to_sym).to_json).at_path(attr.to_s)
           end
         end
       end
@@ -89,7 +92,7 @@ describe 'xclasses API', type: :request do
 
     def send_request(params = {})
       get api_path, params: { format: :json }.merge(params)
-    end 
+    end
   end
 
   describe 'POST /create' do
@@ -110,25 +113,26 @@ describe 'xclasses API', type: :request do
         end
       end
 
-      context "- valid attributes" do
+      context '- valid attributes' do
         before { post api_path, params: { access_token: access_token.token, xclass: attrs, format: :json } }
-    
+
         it '- returns status 201-Created' do
           expect(response).to have_http_status(201)
         end
-  
-        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id created_at updated_at].each do |attr|
+
+        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+           created_at updated_at].each do |attr|
           it "- contains #{attr}" do
             expect(response.body).to have_json_path(attr)
           end
         end
-  
+
         %w[title describtion].each do |attr|
           it "- set #{attr}" do
             expect(response.body).to be_json_eql(attrs[attr.to_sym].to_json).at_path(attr)
           end
         end
-  
+
         it '- set user_id' do
           expect(response.body).to be_json_eql(user.id.to_json).at_path('user_id')
         end
@@ -137,6 +141,6 @@ describe 'xclasses API', type: :request do
 
     def send_request(params = {})
       get api_path, params: { format: :json }.merge(params)
-    end 
+    end
   end
 end

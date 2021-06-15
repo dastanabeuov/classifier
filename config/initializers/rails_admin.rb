@@ -1,10 +1,10 @@
 RailsAdmin.config do |config|
-###Set Locales
+  # ##Set Locales
   I18n.default_locale = :ru
-  I18n.available_locales = [:ru, :kz, :en]   
+  I18n.available_locales = %i[ru kz en]
 
-###Base configuration dashboard
-  config.actions do    
+  # ##Base configuration dashboard
+  config.actions do
     dashboard # mandatory
     index # mandatory
     new
@@ -14,69 +14,61 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-    #With an audit adapter, you can add:
+    # With an audit adapter, you can add:
     # history_index
     # history_show
 
     ## Sortable nestable action for each model
     nestable do
       visible do
-        #Xroot Xcategory Xclass 
-        %w(Xclass Activity).include? bindings[:abstract_model].model_name
+        # Xroot Xcategory Xclass
+        %w[Xclass Activity].include? bindings[:abstract_model].model_name
       end
-    end     
+    end
   end
 
-###Neslable atrributes setting
+  # ##Neslable atrributes setting
   config.model 'Xclass' do
     nestable_tree({
-      position_field: :position,
-      max_depth: 999
-    })
+                    position_field: :position,
+                    max_depth: 999
+                  })
   end
 
   config.model 'Activity' do
     nestable_tree({
-      position_field: :position,
-      max_depth: 999
-    })
+                    position_field: :position,
+                    max_depth: 999
+                  })
   end
 
-  #config.model 'Xcategory' do
+  # config.model 'Xcategory' do
   #  nestable_list true
-  #end
+  # end
 
-  #config.model 'Xroot' do
+  # config.model 'Xroot' do
   #  nestable_tree({
   #    position_field: :position,
   #     max_depth: 999
   #   })
-  #end
+  # end
 
-  #config.model 'Xcategory' do
+  # config.model 'Xcategory' do
   #  nestable_tree({
   #    position_field: :position,
   #     max_depth: 999
   #   })
-  #end
+  # end
 
-  #config.model 'Property' do
+  # config.model 'Property' do
   #  nestable_tree({
   #    position_field: :position,
   #     max_depth: 999
   #   })
-  #end
+  # end
 
-###Display show atributes models
-  config.model 'Xroot' do    
-    list do
-      field :id
-      field :name
-      field :description
-    end
-  end
-  
-  config.model 'Xcategory' do    
+  # ##Display show atributes models
+  config.model 'Xroot' do
     list do
       field :id
       field :name
@@ -84,7 +76,15 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'Xclass' do    
+  config.model 'Xcategory' do
+    list do
+      field :id
+      field :name
+      field :description
+    end
+  end
+
+  config.model 'Xclass' do
     list do
       field :id
       field :name
@@ -106,7 +106,7 @@ RailsAdmin.config do |config|
       field :name
       field :description
     end
-  end  
+  end
 
   config.model 'User' do
     list do
@@ -119,14 +119,14 @@ RailsAdmin.config do |config|
     end
   end
 
-###Devise gems integration
+  # ##Devise gems integration
 
   config.authenticate_with do
-   warden.authenticate! scope: :user
+    warden.authenticate! scope: :user
   end
   config.current_user_method(&:current_user)
 
-  ###CancanCan
+  # ##CancanCan
   config.authorize_with :cancancan
 
   # ###Globalize

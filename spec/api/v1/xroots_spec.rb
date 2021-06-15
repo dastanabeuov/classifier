@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 describe 'Xroots API', type: :request do
-  let(:headers) {{"CONTENT_TYPE" => "application/json",
-                  "ACCEPT" => 'application/json'}}
+  let(:headers) do
+    { 'CONTENT_TYPE' => 'application/json',
+      'ACCEPT' => 'application/json' }
+  end
   let(:user) { create(:user) }
   let(:access_token) { create(:access_token, resource_owner_id: user.id) }
 
@@ -60,7 +62,7 @@ describe 'Xroots API', type: :request do
     let(:xroot) { create(:xroot, user: user) }
     let(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
     let(:activities) { create_list(:activity, 2, user: user) }
-    let(:activity) { activities.first }    
+    let(:activity) { activities.first }
     let(:properties) { create_list(:property, 2, propertyable: xroot, activity: activity, user: user) }
     let(:property) { properties.first }
 
@@ -80,7 +82,7 @@ describe 'Xroots API', type: :request do
       context '- contains' do
         %w[id title describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
           it "- #{attr}" do
-            expect(response.body).to be_json_eql(xroot.send(attr.to_sym).to_json).at_path("#{attr}")
+            expect(response.body).to be_json_eql(xroot.send(attr.to_sym).to_json).at_path(attr.to_s)
           end
         end
       end
@@ -94,7 +96,7 @@ describe 'Xroots API', type: :request do
 
     def send_request(params = {})
       get api_path, params: { format: :json }.merge(params)
-    end  
+    end
   end
 
   describe 'POST /create' do
@@ -115,25 +117,25 @@ describe 'Xroots API', type: :request do
         end
       end
 
-      context "- valid attributes" do
+      context '- valid attributes' do
         before { post api_path, params: { access_token: access_token.token, xroot: attrs, format: :json } }
-    
+
         it '- returns status 201-Created' do
           expect(response).to have_http_status(201)
         end
-  
+
         %w[id title describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
           it "- contains #{attr}" do
             expect(response.body).to have_json_path(attr)
           end
         end
-  
+
         %w[title describtion].each do |attr|
           it "- set #{attr}" do
             expect(response.body).to be_json_eql(attrs[attr.to_sym].to_json).at_path(attr)
           end
         end
-  
+
         it '- set user_id' do
           expect(response.body).to be_json_eql(user.id.to_json).at_path('user_id')
         end

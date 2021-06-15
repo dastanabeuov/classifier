@@ -2,8 +2,8 @@ class XcategoriesController < ApplicationController
   before_action :authenticate_user!
   authorize_resource
 
-  before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
-  before_action :set_xcategory, only: %i[show edit update destroy update_inline]
+  before_action :set_xroot, only:     %i[show edit update destroy new create update_inline import]
+  before_action :set_xcategory, only: %i[show edit update destroy update_inline import]
 
   after_action :publish_xcategory, only: [:create]
 
@@ -14,6 +14,17 @@ class XcategoriesController < ApplicationController
   end
 
   def edit; end
+
+  def import
+    count = @xcategory.xclasses.count
+    Xcategory.import(params[:file], @xcategory)
+    redirect_to xroot_xcategory_path(@xroot, @xcategory)
+    if @xcategory.xclasses.count > count
+      flash[:notice] = 'Xclasses imported.'
+    else
+      flash[:error] = 'Xclasses is not imported.'
+    end
+  end
 
   def new
     @xcategory = @xroot.xcategories.new
@@ -44,13 +55,14 @@ class XcategoriesController < ApplicationController
   def destroy
     @xcategory.destroy if current_user.author_of?(@xcategory)
     redirect_to @xcategory.xroot
-    flash[:notice] = "Xcategory was successfully destroyed."
+    flash[:notice] = 'Xcategory was successfully destroyed.'
   end
 
   private
 
   def publish_xcategory
     return if @xcategory.errors.any?
+
     ActionCable.server.broadcast(
       'xcategories',
       ApplicationController.render(
@@ -69,8 +81,8 @@ class XcategoriesController < ApplicationController
   end
 
   def xcategory_params
-    params.require(:xcategory).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:xcategory).permit(:title, :description,
+                                      :synonym, :code, :version_date, :publish,
+                                      properties_attributes: %i[id title activity_id _destroy])
   end
 end

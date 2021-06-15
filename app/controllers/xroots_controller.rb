@@ -3,9 +3,9 @@ class XrootsController < ApplicationController
   authorize_resource
 
   before_action :set_xroot, only: %i[show edit update destroy update_inline]
-  
+
   after_action :publish_xroot, only: [:create]
-  
+
   respond_to :html
 
   def index
@@ -52,6 +52,7 @@ class XrootsController < ApplicationController
 
   def publish_xroot
     return if @xroot.errors.any?
+
     ActionCable.server.broadcast(
       'xroots',
       ApplicationController.render(
@@ -66,8 +67,8 @@ class XrootsController < ApplicationController
   end
 
   def xroot_params
-    params.require(:xroot).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:xroot).permit(:title, :description,
+                                  :synonym, :code, :version_date, :publish,
+                                  properties_attributes: %i[id title activity_id _destroy])
   end
 end

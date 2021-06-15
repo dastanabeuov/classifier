@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-feature 'XROOT CREATE', %q{
+feature 'XROOT CREATE', '
   Authenticated user create xroot
   Authenticated user create xroot with errors
-} do
-
+' do
   given(:user) { create(:user) }
 
   scenario 'Authenticated user create xroot' do
@@ -13,7 +12,7 @@ feature 'XROOT CREATE', %q{
 
     # save_and_open_page
 
-    find(:css, ".btn-success").click
+    find(:css, '.btn-success').click
 
     within find('.xroot') do
       fill_in 'Name', with: 'My xroot'
@@ -31,13 +30,13 @@ feature 'XROOT CREATE', %q{
     sign_in(user)
     visit xroots_path
 
-    find(:css, ".btn-success").click
+    find(:css, '.btn-success').click
     click_on 'Create Xroot'
 
     expect(page).to have_content "Name can't be blank"
   end
 
-  context "Multiple session" do
+  context 'Multiple session' do
     scenario "Appears on another user's page xroot." do
       Capybara.using_session('user') do
         sign_in(user)

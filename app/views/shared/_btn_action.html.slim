@@ -13,15 +13,14 @@
           = link_to fa_icon('files-o'), new_xroot_xcategory_xclass_path(resource.xroot, resource), class: "btn btn-sm btn-outline-info"
           = link_to fa_icon('pencil'), edit_xroot_xcategory_path(resource.xroot, resource), data: { resource_id: resource.id }, class: 'form-inline-link btn btn-sm btn-outline-warning ml-5'
           = link_to fa_icon('trash'), xroot_xcategory_path(resource.xroot, resource), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-5'
-
+          
           a href="#" class="btn btn-outline-dark btn-sm dropdown-toggle ml-5" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Upload from Excel"
             = fa_icon('download')
           .dropdown-menu aria-labelledby="navbarDropdown"
             .dropdown-item
-              = form_tag import_xroot_xcategory_xclasses_path(@xroot, @xcategory), multipart: true do
+              = form_tag import_xroot_xcategory_path(@xroot, @xcategory), multipart: true do
                 = file_field_tag :file
                 = submit_tag 'Import', class: 'btn btn-sm btn-outline-success'
-                
       - else
         .mt-5.btn-group
         - if current_user.author_of?(resource)

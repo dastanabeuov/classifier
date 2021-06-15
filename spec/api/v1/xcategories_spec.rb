@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 describe 'Xcategories API', type: :request do
-  let(:headers) {{"CONTENT_TYPE" => "application/json",
-                  "ACCEPT" => 'application/json'}}
+  let(:headers) do
+    { 'CONTENT_TYPE' => 'application/json',
+      'ACCEPT' => 'application/json' }
+  end
   let(:user) { create(:user) }
   let(:access_token) { create(:access_token, resource_owner_id: user.id) }
 
@@ -18,7 +20,7 @@ describe 'Xcategories API', type: :request do
       let(:xcategory) { xcategories.first }
       let(:xcategory_response) { json['xcategories'].first }
 
-      before {get api_path, params: {access_token: access_token.token}, headers: headers}
+      before { get api_path, params: { access_token: access_token.token }, headers: headers }
 
       it 'returns 200 status' do
         expect(response).to be_successful
@@ -47,7 +49,8 @@ describe 'Xcategories API', type: :request do
         end
 
         it 'returns all public fields xcategory' do
-          %w[id title describtion synonym code version_date publish user_id xcategory_id created_at updated_at].each do |attr|
+          %w[id title describtion synonym code version_date publish user_id xcategory_id created_at
+             updated_at].each do |attr|
             expect(xcategory_response[attr]).to eq xcategory.send(attr).as_json
           end
         end
@@ -58,7 +61,7 @@ describe 'Xcategories API', type: :request do
   describe 'GET /show' do
     let!(:xroot) { create(:xroot, user: user) }
     let!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
-    let!(:activity) { create(:activity, user: user) } 
+    let!(:activity) { create(:activity, user: user) }
     let!(:properties) { create_list(:property, 2, propertyable: xcategory, activity: activity) }
     let(:property) { properties.first }
 
@@ -78,7 +81,7 @@ describe 'Xcategories API', type: :request do
       context '- contains' do
         %w[id title describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
           it "- #{attr}" do
-            expect(response.body).to be_json_eql(xcategory.send(attr.to_sym).to_json).at_path("#{attr}")
+            expect(response.body).to be_json_eql(xcategory.send(attr.to_sym).to_json).at_path(attr.to_s)
           end
         end
       end
@@ -113,25 +116,25 @@ describe 'Xcategories API', type: :request do
         end
       end
 
-      context "- valid attributes" do
+      context '- valid attributes' do
         before { post api_path, params: { access_token: access_token.token, xcategory: attrs, format: :json } }
-    
+
         it '- returns status 201-Created' do
           expect(response).to have_http_status(201)
         end
-  
+
         %w[id title describtion synonym code version_date publish user_id xroot_id created_at updated_at].each do |attr|
           it "- contains #{attr}" do
             expect(response.body).to have_json_path(attr)
           end
         end
-  
+
         %w[title describtion].each do |attr|
           it "- set #{attr}" do
             expect(response.body).to be_json_eql(attrs[attr.to_sym].to_json).at_path(attr)
           end
         end
-  
+
         it '- set user_id' do
           expect(response.body).to be_json_eql(user.id.to_json).at_path('user_id')
         end

@@ -11,14 +11,8 @@ class XclassesController < ApplicationController
   def show
     respond_with(@xclass)
   end
-  
-  def edit; end
 
-  def import
-    # @request = request.original_url
-    Xclass.import(params[:file])
-    redirect_to xroot_xcategory_path(@xroot, @xcategory), notice: "Xclasses imported."
-  end
+  def edit; end
 
   def new
     @xclass = @xcategory.xclasses.new
@@ -51,10 +45,10 @@ class XclassesController < ApplicationController
     @xclass.destroy if current_user.author_of?(@xclass)
     if @xclass.parent
       redirect_to xroot_xcategory_xclass_path(@xroot, @xcategory, @xclass.parent)
-      flash[:notice] = "Xclass was successfully destroyed."
+      flash[:notice] = 'Xclass was successfully destroyed.'
     else
       redirect_to xroot_xcategory_path(@xroot, @xcategory)
-      flash[:notice] = "Xclass was successfully destroyed."
+      flash[:notice] = 'Xclass was successfully destroyed.'
     end
   end
 
@@ -73,9 +67,9 @@ class XclassesController < ApplicationController
   end
 
   def xclass_params
-    params.require(:xclass).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish, :xtype, 
-      :position, :parent_id,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:xclass).permit(:title, :description,
+                                   :synonym, :code, :version_date, :publish, :xtype,
+                                   :position, :parent_id,
+                                   properties_attributes: %i[id title activity_id _destroy])
   end
 end

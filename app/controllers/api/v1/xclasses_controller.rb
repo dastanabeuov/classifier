@@ -8,7 +8,7 @@ class Api::V1::XclassesController < Api::V1::BaseController
 
   def show
     @xclass = Xclass.find(params[:id])
-    respond_with @xclass, serializer: SingleXclassSerializer  
+    respond_with @xclass, serializer: SingleXclassSerializer
   end
 
   def create
@@ -33,9 +33,9 @@ class Api::V1::XclassesController < Api::V1::BaseController
   end
 
   def xclass_params
-    params.require(:xclass).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish, :xtype, 
-      :position, :parent_id,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:xclass).permit(:title, :description,
+                                   :synonym, :code, :version_date, :publish, :xtype,
+                                   :position, :parent_id,
+                                   properties_attributes: %i[id title activity_id _destroy])
   end
 end

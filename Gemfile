@@ -5,65 +5,71 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-#default
-gem 'rails', '~> 5.2.0'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+# default
+gem 'bootsnap', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
+gem 'pg', '~> 0.18'
+gem 'puma', '~> 3.0'
+gem 'rails', '~> 5.2.0'
+gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
-gem 'bootsnap', require: false
+gem 'uglifier', '>= 1.3.0'
 
-#theme style
+# theme style
+gem 'bootstrap', '~> 4.6.0'
+gem 'font-awesome-rails'
 gem 'slim'
-gem 'bootstrap'
-gem "font-awesome-rails"
 
-#function
-gem 'cocoon'
-gem 'ancestry'
-gem 'rails-i18n'
-gem 'responders'
-gem 'redis-rails'
-gem 'devise', github: 'heartcombo/devise', branch: 'master'
-gem 'omniauth'
-gem 'omniauth-rails_csrf_protection'
-gem 'omniauth-github'
-gem 'cancancan'
-gem 'doorkeeper', '5.1.0'
+# function
 gem 'active_model_serializers', '0.10.12'
+gem 'activerecord-import'
+gem 'ancestry'
+gem 'cancancan'
+gem 'cocoon'
+gem 'devise', github: 'heartcombo/devise', branch: 'master'
+gem 'doorkeeper', '5.1.0'
 gem 'oj'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+gem 'rails-i18n'
+gem 'redis-rails'
+gem 'responders'
 gem 'roo'
-#admin dashboard
+
+# admin dashboard
 gem 'rails_admin'
 gem 'rails_admin_nestable'
 
-#api docs
-gem 'swagger_ui_engine'
+# api docs
 gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
+gem 'swagger_ui_engine'
+
+# style guides
+gem 'rubocop', require: false
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  gem 'shoulda-matchers'
-  gem 'rails-controller-testing'
   gem 'launchy'
+  gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
 
 group :development do
-  gem 'web-console'
   gem 'listen', '~> 3.0.5'
+  gem 'pry'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console'
 end
 
 group :heroku do

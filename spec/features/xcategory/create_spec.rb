@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-feature 'XCATEGORY CREATE', %q{
+feature 'XCATEGORY CREATE', '
   Authenticated user create
   Authenticated user create with errors
-} do
-
+' do
   given(:user) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
 
@@ -19,7 +18,7 @@ feature 'XCATEGORY CREATE', %q{
     click_on 'Create Xcategory'
 
     expect(current_path).to eq xroot_xcategory_path(xroot, Xcategory.last)
-    expect(page).to have_content "Xcategory was successfully created."
+    expect(page).to have_content 'Xcategory was successfully created.'
     expect(page).to have_content 'My xcategory'
   end
 
@@ -32,7 +31,7 @@ feature 'XCATEGORY CREATE', %q{
     expect(page).to have_content "Name can't be blank"
   end
 
-  context "Multiple session" do
+  context 'Multiple session' do
     scenario "Appears on another user's page xcategory." do
       Capybara.using_session('user') do
         sign_in(user)

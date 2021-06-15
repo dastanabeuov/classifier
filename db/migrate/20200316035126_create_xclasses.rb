@@ -41,5 +41,5 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
     remove_index :xclasses, :xcategory_id
     remove_index :xclasses, :position
     remove_index :xclasses, :ancestry
-  end 
+  end
 end

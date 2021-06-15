@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :profiles, only: :index do
         get :me, on: :collection
       end
-      
+
       resources :activities do
       end
 
@@ -24,12 +24,12 @@ Rails.application.routes.draw do
 
   resources :xroots do
     patch :update_inline, on: :member
-    
+
     resources :xcategories, except: :index do
+      post :import, on: :member
       patch :update_inline, on: :member
-      
+
       resources :xclasses, except: :index do
-        post :import, on: :collection
         patch :update_inline, on: :member
       end
     end
@@ -43,10 +43,10 @@ Rails.application.routes.draw do
   get 'front_pages/help'
   get 'front_pages/contact'
 
-  authenticate :user, lambda { |u| u.admin? || u.paid_user? } do
-    mount SwaggerUiEngine::Engine, at: "/api_docs"
+  authenticate :user, ->(u) { u.admin? || u.paid_user? } do
+    mount SwaggerUiEngine::Engine, at: '/api_docs'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
-  
+
   mount ActionCable.server => '/cable'
 end

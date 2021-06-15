@@ -2,11 +2,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'classifier-beta-version.herokuapp.com' }
 
   config.action_mailer.smtp_settings = {
-    user_name:      ENV['USERNAME'],
-    password:       ENV['PASSWORD'],
-    domain:         'gmail.com',
-    address:       'smtp.gmail.com',
-    port:          '587',
+    user_name: ENV['USERNAME'],
+    password: ENV['PASSWORD'],
+    domain: 'gmail.com',
+    address: 'smtp.gmail.com',
+    port: '587',
     authentication: :plain,
     enable_starttls_auto: true
   }
@@ -29,7 +29,7 @@ Rails.application.configure do
 
   config.log_level = :debug
 
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   config.action_mailer.perform_caching = false
 
@@ -39,7 +39,7 @@ Rails.application.configure do
 
   config.log_formatter = ::Logger::Formatter.new
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -47,6 +47,6 @@ Rails.application.configure do
 
   config.active_record.dump_schema_after_migration = false
 
-  config.web_socket_server_url = "wss://classifier-beta-version.herokuapp.com/cable"
+  config.web_socket_server_url = 'wss://classifier-beta-version.herokuapp.com/cable'
   config.action_cable.allowed_request_origins = ['https://classifier-beta-version.herokuapp.com', 'http://classifier-beta-version.herokuapp.com']
 end

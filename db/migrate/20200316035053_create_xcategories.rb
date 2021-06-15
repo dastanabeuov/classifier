@@ -26,7 +26,7 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
       t.boolean :publish
       t.integer :xroot_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true
-      
+
       t.timestamps
     end
     remove_index :xcategories, :user_id

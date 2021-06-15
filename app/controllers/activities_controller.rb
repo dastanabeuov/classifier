@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   authorize_resource
-  
+
   before_action :set_activity, only: %i[show edit update destroy]
 
   respond_to :html
@@ -42,14 +42,14 @@ class ActivitiesController < ApplicationController
 
   private
 
-  def set_activity  
+  def set_activity
     @activity ||= Activity.find(params[:id])
   end
 
   def activity_params
-    params.require(:activity).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish, :position, 
-      :parent_id,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:activity).permit(:title, :description,
+                                     :synonym, :code, :version_date, :publish, :position,
+                                     :parent_id,
+                                     properties_attributes: %i[id title activity_id _destroy])
   end
 end

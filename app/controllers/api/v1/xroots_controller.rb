@@ -27,8 +27,8 @@ class Api::V1::XrootsController < Api::V1::BaseController
   private
 
   def xroot_params
-    params.require(:xroot).permit(:title, :description, 
-      :synonym, :code, :version_date, :publish,
-      properties_attributes: [:id, :title, :activity_id, :_destroy])
+    params.require(:xroot).permit(:title, :description,
+                                  :synonym, :code, :version_date, :publish,
+                                  properties_attributes: %i[id title activity_id _destroy])
   end
 end

@@ -29,11 +29,11 @@ class CreateActivities < ActiveRecord::Migration[5.0]
       t.string :position
       t.string :ancestry
       t.integer :user_id, null: false, foreign_key: true
-      
+
       t.timestamps
     end
     remove_index :activities, :user_id
     remove_index :activities, :position
     remove_index :activities, :ancestry
-  end  
+  end
 end

@@ -5,7 +5,7 @@ module XcategoriesHelper
 
   def current_user_count_xcategories
     xcategories = []
-    
+
     current_user.xroots.each do |xroot|
       xcategories << xroot.xcategories.all.count
     end

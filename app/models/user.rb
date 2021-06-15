@@ -1,15 +1,15 @@
 class User < ApplicationRecord
-  has_many :xroots, dependent: :destroy  
+  has_many :xroots, dependent: :destroy
   has_many :xcategories, dependent: :destroy
   has_many :xclasses, dependent: :destroy
-  has_many :activities, dependent: :destroy  
+  has_many :activities, dependent: :destroy
   has_many :authorizations, dependent: :destroy
 
-  validates :email, exclusion: { in: %w(admin@classifier.kazniisa.kz 
-                                        moderator@classifier.kazniisa.kz 
+  validates :email, exclusion: { in: %w[admin@classifier.kazniisa.kz
+                                        moderator@classifier.kazniisa.kz
                                         paid_user@classifier.kazniisa.kz
-                                        guest@classifier.kazniisa.kz), 
-                                        message: "%{value} has already been taken." }
+                                        guest@classifier.kazniisa.kz],
+                                 message: '%{value} has already been taken.' }
 
   validates :password, length: { in: 6..20 }
 
@@ -17,8 +17,8 @@ class User < ApplicationRecord
 
   devise :database_authenticatable,
          :registerable,
-         :recoverable, 
-         :rememberable, 
+         :recoverable,
+         :rememberable,
          :validatable,
          :confirmable,
          :omniauthable, omniauth_providers: [:github]
@@ -28,12 +28,12 @@ class User < ApplicationRecord
   end
 
   def create_authorization(auth)
-    self.authorizations.create(provider: auth.provider, uid: auth.uid)
+    authorizations.create(provider: auth.provider, uid: auth.uid)
   end
 
   def send_admin_mail
     UserMailer.send_welcome_email(self).deliver_later
-  end 
+  end
 
   def author_of?(resource)
     resource.user_id == id
