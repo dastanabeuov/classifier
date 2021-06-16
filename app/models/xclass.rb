@@ -6,7 +6,7 @@ class Xclass < ApplicationRecord
 
   accepts_nested_attributes_for :properties, reject_if: :all_blank, allow_destroy: true
 
-  has_ancestry
+  has_ancestry cache_depth: true
 
   validates :title, presence: true, length: { minimum: 2 }
 end

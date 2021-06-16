@@ -13,19 +13,15 @@ class Xcategory < ApplicationRecord
     accessible_attributes = %w[title synonym description]
     sheet = open_spreadsheet(file)
     header = sheet.row(1)
-
     (2..sheet.last_row).each do |row|
       ready_record = Hash[[header.map(&:downcase), sheet.row(row)].transpose]
       record = [header.map(&:downcase), sheet.row(row)].transpose
-      
       sort = []
-      record.each {|data| sort << data if data[0] == 'class'}
-      
+      record.each {|data| sort << data if data[0] == 'class'}      
       full_code = sort.map do |data|
         next if data[1].nil?
         data[1].chomp('_')
       end
-
       join_code = full_code.join
 
       if join_code.length == 1
@@ -44,8 +40,14 @@ class Xcategory < ApplicationRecord
         xclass.code = join_code[-1]
         xclass.save!
       elsif join_code.length >= 3
-        root = Xcategory.xclasses.roots.find_by(code: full_code[0].last)
-        child = root.children.find_by(code: full_code[1])
+        root = xcategory.xclasses.roots.find_by_code(join_code[0])
+        parent = root.descendants.at_depth(join_code.length - 2).find_by_code(join_code[-2])
+        xclass = parent.children.new
+        xclass.attributes = ready_record.to_h.slice(*accessible_attributes)
+        xclass.user_id = Current.user.id
+        xclass.xcategory_id = xcategory.id
+        xclass.code = join_code[-1]
+        xclass.save!
       else
         nil
       end

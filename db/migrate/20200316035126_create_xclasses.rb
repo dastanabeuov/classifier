@@ -10,6 +10,7 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.boolean :xtype
       t.string :position
       t.string :ancestry
+      t.integer :ancestry_depth, :default => 0
       t.integer :xcategory_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true
 
@@ -32,6 +33,7 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.boolean :xtype
       t.string :position
       t.string :ancestry
+      t.integer :ancestry_depth, :default => 0
       t.integer :xcategory_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true
 
