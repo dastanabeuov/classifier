@@ -2,11 +2,13 @@ class XrootsController < ApplicationController
   before_action :authenticate_user!
   authorize_resource
 
-  before_action :set_xroot, only: %i[show edit update destroy update_inline]
+  before_action :set_xroot, only: %i[show edit update destroy update_inline xcategories_xcategory]
 
   after_action :publish_xroot, only: [:create]
 
-  respond_to :html
+  respond_to :html, :js
+
+  def xcategories_xcategory; end
 
   def index
     @xroots = Xroot.all

@@ -1,4 +1,4 @@
-- if resource.properties.present?
+- if resource.properties.exists?
   - resource.properties.each do |property|
       p
         = property.title

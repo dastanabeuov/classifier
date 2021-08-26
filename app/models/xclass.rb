@@ -9,4 +9,5 @@ class Xclass < ApplicationRecord
   has_ancestry cache_depth: true
 
   validates :title, presence: true, length: { minimum: 2 }
+  validates :full_code, uniqueness: true
 end

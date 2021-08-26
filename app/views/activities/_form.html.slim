@@ -19,7 +19,7 @@
       = f.text_field :code, class: 'form-control'
 
     .field.mt-3
-      = f.label :version_date
+      = f.label :version_date, class: 'pr-3'
       = f.date_select :version_date, class: 'form-control'
 
     .field.mt-3
@@ -30,9 +30,9 @@
       = f.label :position
       = f.text_field :position, class: 'form-control'
 
-    field.mt-3
-      = f.label :parent_id
-      = f.select :parent_id, current_user.activities.order(:id).collect {|p| [ p.name, p.id ] }, { include_blank: true }
+    .field.mt-3
+      = f.label :parent_id, class: 'pr-3'
+      = f.select :parent_id, current_user.activities.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }
 
     hr
     .field.mt-5

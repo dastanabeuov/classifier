@@ -43,6 +43,7 @@ ru:
     description: " описание: "
     synonym: " синоним: "
     code: " код: "
+    full_code: " полный код: "
     version_date: " дата версии: "
     publish: " публиковать: "
     properties: " характеристики: "

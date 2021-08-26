@@ -4,51 +4,41 @@
       <%= render 'shared/btn_brand' %>
       <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
-          <% @xclass.xcategory.xroot.xcategories.each do |xcategory| %>
+          <% @xroot.xcategories.find_each(batch_size: 1000) do |xcategory| %>
             <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if @xclass.xcategory == xcategory %>">
+              
               <a class="file" href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
-              <% if xcategory.xclasses %>
+              <% if xcategory.xclasses.exists? %>
                 <i class="fa fa-folder fa-lg"></i>
               <% else %>
                 <i class="fa fa-file fa-lg"></i>
               <% end %>
+                <span class="pl-2"><%= xcategory.code %> <%= truncate(xcategory.title, :length => 18) %></span>
               </a>
-
-              <%= xcategory.code %> <%= truncate(xcategory.title, :length => 18) %>
               
-              <% if xcategory.xclasses.present? %>
+              <% if xcategory.xclasses.exists? %>
                 <span class="arrow"></span>
               <% end %>
             </li>
 
-            <% if xcategory.xclasses.present? %>
-              <% if @xclass.xcategory == xcategory %>
-                <ul class="sub-menu collapse pl-2 show" id="xcategory-<%= xcategory.id %>">
-              <% else %>
-                <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
-              <% end %>
-                <% xcategory.xclasses.each do |xclass| %>
-                  <% if xclass.root? %>
-                    <%= render 'xclasses/xclass', xclass: xclass %>
-                  <% end %>
-                <% end %>
-              </ul>
-            <% end %>
+            <ul class="tree sub-menu collapse pl-2 <%= 'show' if @xclass.xcategory == xcategory %>" id="xcategory-<%= xcategory.id %>">
+              <%= render xcategory.xclasses.roots if xcategory.xclasses.exists? %>
+            </ul>
           <% end %>
         </ul>
       </div>
     </div>
 
     <div class="content">
-      <%= render 'xroots/example_info_0', xroot: @xclass.xcategory.xroot %>
+      <%= render 'xroots/example_info_0', xroot: @xroot %>
       
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link_to 'Xroots', xroots_path %></li>
-          <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.xroot.title, :length => 18), xroot_path(@xclass.xcategory.xroot) %></li>
-          <li class="breadcrumb-item"><%= link_to truncate(@xclass.xcategory.title, :length => 18), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory) %></li>
+          <li class="breadcrumb-item"><%= link_to truncate(@xroot.title, :length => 18), xroot_path(@xroot) %></li>
+          <li class="breadcrumb-item"><%= link_to truncate(@xcategory.title, :length => 18), xroot_xcategory_path(@xroot, @xcategory) %></li>
           <% @xclass.ancestors.each do |ancestor| %>
-            <li class="breadcrumb-item"><%= link_to truncate(ancestor.title, :length => 18), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, ancestor) %></li>
+            <li class="breadcrumb-item"><%= link_to truncate(ancestor.title, :length => 18), xroot_xcategory_xclass_path(@xroot, @xcategory, ancestor) %></li>
           <% end %>
           <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xclass.title, :length => 18) %></li>
         </ol>

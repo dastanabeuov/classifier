@@ -1,25 +1,17 @@
 <li data-toggle="collapse" data-target="#xclass-<%= xclass.id %>" class="collapsed <%= 'active' if xclass == @xclass %>">
+
   <a class="file" href="<%= xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) %>">
   <% if xclass.children? %>
     <i class="fa fa-folder fa-lg"></i>
   <% else %>
     <i class="fa fa-file fa-lg"></i>
   <% end %>
+    <span class="pl-2"><%= truncate(xclass.code, :length => 10) %> <%= truncate(xclass.title, :length => 18) %></span>
   </a>
-
-  <%= xclass.code %> <%= truncate(xclass.title, :length => 18) %>
   
-  <% if xclass.children.present? %>
-    <span class="arrow"></span>
+  <% if xclass.children? %>
+    <span class="arrow xclass-children-link" data-xroot-id="<%= xclass.xcategory.xroot.id %>" data-xcategory-id="<%= xclass.xcategory.id %>" data-xclass-id="<%= xclass.id %>"></span>
   <% end %>
 </li>
 
-<% if xclass.children? %>
-  <% if @xclass.ancestors.include?(xclass) %>
-  <ul class="sub-menu collapse pl-2 show" id="xclass-<%= xclass.id %>">
-  <% else %>
-  <ul class="sub-menu collapse pl-2" id="xclass-<%= xclass.id %>">
-  <% end %>
-    <%= render 'xclasses/children', xclass: xclass %>
-  </ul>
-<% end %>
+<ul class="tree sub-menu collapse pl-2 <%= 'show' if @xclass.ancestors.include?(xclass) %> xclass-children-<%= xclass.id %>" id="xclass-<%= xclass.id %>"></ul>

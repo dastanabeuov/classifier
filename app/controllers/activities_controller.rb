@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: %i[show edit update destroy]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @activities = Activity.all

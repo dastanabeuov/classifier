@@ -18,6 +18,13 @@
           = fa_icon('file-code-o')
           = t('show.code')
           = resource.code
+
+        - if resource_name(resource) == 'xclass'
+          p 
+            = fa_icon('file-code-o')
+            = t('show.full_code')
+            = resource.full_code
+        
         p 
           = fa_icon('calendar')
           = t('show.version_date')

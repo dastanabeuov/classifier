@@ -4,9 +4,7 @@
       <%= render 'shared/btn_brand' %>
       <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
-        <% @xcategory.xroot.xcategories.each do |xcategory| %>  
-          <%= render 'xcategories/xcategory', xcategory: xcategory %>
-        <% end %>
+          <%= render @xroot.xcategories %>
         </ul>
       </div>
     </div>
@@ -17,7 +15,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><%= link_to 'Xroots', xroots_path %></li>
-          <li class="breadcrumb-item"><%= link_to truncate(@xcategory.xroot.title, :length => 18), xroot_path(@xcategory.xroot) %></li>
+          <li class="breadcrumb-item"><%= link_to truncate(@xroot.title, :length => 18), xroot_path(@xroot) %></li>
           <li class="breadcrumb-item active" aria-current="page"><%= truncate(@xcategory.title, :length => 18) %></li>
         </ol>
       </nav>

@@ -5,8 +5,23 @@ class XclassesController < ApplicationController
   before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
   before_action :set_xcategory, only: %i[show edit update destroy new create update_inline]
   before_action :set_xclass, only:    %i[show edit update destroy update_inline]
+  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child xclass_children xclass_child]
 
-  respond_to :html
+  respond_to :html, :js
+
+  def xcategories_sub_children; end
+
+  def xcategories_sub_child; end
+
+  def xclass_children; end
+
+  def xclass_child; end
+
+  def set_resources
+    set_xroot
+    set_xcategory
+    set_xclass
+  end
 
   def show
     respond_with(@xclass)
@@ -68,7 +83,7 @@ class XclassesController < ApplicationController
 
   def xclass_params
     params.require(:xclass).permit(:title, :description,
-                                   :synonym, :code, :version_date, :publish, :xtype,
+                                   :synonym, :code, :full_code, :version_date, :publish, :xtype,
                                    :position, :parent_id,
                                    properties_attributes: %i[id title activity_id _destroy])
   end

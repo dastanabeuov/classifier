@@ -2,12 +2,14 @@ class XcategoriesController < ApplicationController
   before_action :authenticate_user!
   authorize_resource
 
-  before_action :set_xroot, only:     %i[show edit update destroy new create update_inline import]
-  before_action :set_xcategory, only: %i[show edit update destroy update_inline import]
+  before_action :set_xroot, only:     %i[show edit update destroy new create update_inline import xcategories_sub_xclasses]
+  before_action :set_xcategory, only: %i[show edit update destroy update_inline import xcategories_sub_xclasses]
 
   after_action :publish_xcategory, only: [:create]
 
-  respond_to :html
+  respond_to :html, :js
+
+  def xcategories_sub_xclasses; end
 
   def show
     respond_with(@xcategory)

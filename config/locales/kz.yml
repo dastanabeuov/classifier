@@ -44,6 +44,7 @@ kz:
     description: " сипаттама: "
     synonym: " синоним: "
     code: " код: "
+    full_code: " толық код: "
     version_date: " нұсқа күні: "
     publish: " жариялау: "
     properties: " қасиеттері: "

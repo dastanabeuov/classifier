@@ -31,7 +31,7 @@ describe 'xclasses API', type: :request do
       end
 
       it 'returns all public fields' do
-        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+        %w[id title describtion synonym code full_code version_date publish xtype position ancestry xcategory_id user_id
            created_at updated_at].each do |attr|
           expect(xclass_response[attr]).to eq xclass.send(attr).as_json
         end
@@ -47,7 +47,7 @@ describe 'xclasses API', type: :request do
         end
 
         it 'returns all public fields xclass' do
-          %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+          %w[id title describtion synonym code full_code version_date publish xtype position ancestry xcategory_id user_id
              created_at updated_at].each do |attr|
             expect(xclass_response[attr]).to eq xclass.send(attr).as_json
           end
@@ -75,7 +75,7 @@ describe 'xclasses API', type: :request do
       end
 
       context '- contains' do
-        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+        %w[id title describtion synonym code full_code version_date publish xtype position ancestry xcategory_id user_id
            created_at updated_at].each do |attr|
           it "- #{attr}" do
             expect(response.body).to be_json_eql(xclass.send(attr.to_sym).to_json).at_path(attr.to_s)
@@ -120,7 +120,7 @@ describe 'xclasses API', type: :request do
           expect(response).to have_http_status(201)
         end
 
-        %w[id title describtion synonym code version_date publish xtype position ancestry xcategory_id user_id
+        %w[id title describtion synonym code full_code version_date publish xtype position ancestry xcategory_id user_id
            created_at updated_at].each do |attr|
           it "- contains #{attr}" do
             expect(response.body).to have_json_path(attr)

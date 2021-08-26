@@ -4,12 +4,6 @@ module XclassesHelper
   end
 
   def current_user_count_xclasses
-    xclasses = []
-    current_user.xroots.each do |xroot|
-      xroot.xcategories.each do |xcategory|
-        xclasses << xcategory.xclasses.all.count
-      end
-    end
-    xclasses.size
+    current_user.xclasses.size
   end
 end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  use_doorkeeper
   root 'front_pages#home'
 
   devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks' }
@@ -23,13 +22,19 @@ Rails.application.routes.draw do
   end
 
   resources :xroots do
+    get :xcategories_xcategory, on: :member
     patch :update_inline, on: :member
 
     resources :xcategories, except: :index do
+      get :xcategories_sub_xclasses, on: :member
       post :import, on: :member
       patch :update_inline, on: :member
 
       resources :xclasses, except: :index do
+        get :xcategories_sub_children, on: :member
+        get :xcategories_sub_child, on: :member
+        get :xclass_children, on: :member
+        get :xclass_child, on: :member
         patch :update_inline, on: :member
       end
     end
@@ -42,10 +47,14 @@ Rails.application.routes.draw do
   get 'front_pages/service'
   get 'front_pages/help'
   get 'front_pages/contact'
-
+  
   authenticate :user, ->(u) { u.admin? || u.paid_user? } do
     mount SwaggerUiEngine::Engine, at: '/api_docs'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
+
+  authenticate :user, ->(u) { u.admin? } do
+    use_doorkeeper
   end
 
   mount ActionCable.server => '/cable'

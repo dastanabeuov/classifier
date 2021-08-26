@@ -43,6 +43,7 @@ en:
     description: " description: "
     synonym: " synonym: "
     code: " code: "
+    full_code: " full code: "
     version_date: " version date: "
     publish: " publish: "
     properties: " properties: "

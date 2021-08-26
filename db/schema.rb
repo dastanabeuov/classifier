@@ -136,11 +136,12 @@ ActiveRecord::Schema.define(version: 2021_04_22_040501) do
     t.string "synonym"
     t.text "description"
     t.string "code"
+    t.text "full_code"
     t.date "version_date"
     t.boolean "publish"
     t.boolean "xtype"
     t.string "position"
-    t.string "ancestry"
+    t.text "ancestry"
     t.integer "ancestry_depth", default: 0
     t.integer "xcategory_id", null: false
     t.integer "user_id", null: false

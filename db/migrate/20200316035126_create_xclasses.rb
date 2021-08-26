@@ -5,11 +5,12 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.string :synonym
       t.text :description
       t.string :code
+      t.text :full_code, unique: true
       t.date :version_date
       t.boolean :publish
       t.boolean :xtype
       t.string :position
-      t.string :ancestry
+      t.text :ancestry
       t.integer :ancestry_depth, :default => 0
       t.integer :xcategory_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true
@@ -28,11 +29,12 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.string :synonym
       t.text :description
       t.string :code
+      t.text :full_code, unique: true
       t.date :version_date
       t.boolean :publish
       t.boolean :xtype
       t.string :position
-      t.string :ancestry
+      t.text :ancestry
       t.integer :ancestry_depth, :default => 0
       t.integer :xcategory_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true

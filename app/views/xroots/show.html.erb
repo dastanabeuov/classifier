@@ -1,35 +1,5 @@
 <% cache @xroot do %>
   <div class="show-xroot">
-    <div class="nav-side-menu">
-      <%= render 'shared/btn_brand' %>
-      <div class="menu-list">
-        <ul id="menu-content" class="menu-content collapse out xcategories-list">
-        <% @xroot.xcategories.each do |xcategory| %>
-          <li data-toggle="collapse" data-target="#xcategory-<%= xcategory.id %>" class="collapsed <%= 'active' if xcategory == @xcategory %>">
-            <a class="file" href="<%= xroot_xcategory_path(xcategory.xroot, xcategory) %>">
-            <% if xcategory.xclasses.present? %>
-              <i class="fa fa-folder fa-lg"></i>
-            <% else %>
-              <i class="fa fa-file fa-lg"></i>
-            <% end %>
-            </a>
-
-            <%= xcategory.code %> <%= truncate(xcategory.title, :length => 18) %>
-
-            <% if xcategory.xclasses.present? %>
-              <span class="arrow"></span>
-            <% end %>
-          </li>
-
-          <% if xcategory.xclasses.present? %>
-            <ul class="sub-menu collapse pl-2" id="xcategory-<%= xcategory.id %>">
-              <%= render 'xcategories/sub_xclasses', xcategory: xcategory %>
-            </ul>
-          <% end %>
-        <% end %>
-        </ul>
-      </div>
-    </div>
 
     <div class="content">
       <%= render 'example_info_2' %>
@@ -49,5 +19,16 @@
         <%= render 'shared/content', resource: @xroot %>
       </div>
       <%= render 'shared/btn_action', resource: @xroot %>
+    </div>    
+
+    <div class="nav-side-menu">
+      <%= render 'shared/btn_brand' %>
+      <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out xcategories-list">
+          <%= render @xroot.xcategories %>
+        </ul>
+      </div>
+    </div>
+    
   </div>
 <% end %>
