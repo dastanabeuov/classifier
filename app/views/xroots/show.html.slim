@@ -1,0 +1,30 @@
+- cache @xroot do
+  div.show-xroot
+
+    div.content
+      = render 'example_info_2'
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            = link_to 'Xroots', xroots_path
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">#{ truncate(@xroot.title, :length => 18) }</li>
+        </ol>
+      </nav>
+      
+      div.show-errors
+        = render 'shared/errors', resource: @xroot
+
+      div.resource-show.card
+        = render 'form_inline', xroot: @xroot
+        = render 'shared/content', resource: @xroot
+
+      = render 'shared/btn_action', resource: @xroot
+
+    div.nav-side-menu
+      = render 'shared/btn_brand'
+      div.menu-list
+        <ul id="menu-content" class="menu-content collapse out xcategories-list">
+          = render @xroot.xcategories
+        </ul>

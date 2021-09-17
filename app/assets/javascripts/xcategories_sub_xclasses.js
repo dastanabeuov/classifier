@@ -1,5 +1,5 @@
 //xcategories_sub_xclasses
-$(document).on('turbolinks:load', 'click', '.xcategories-sub-xclasses-link', function () {
+$(document).on('click', '.xcategories-sub-xclasses-load', function () {
   const xroot_id = $(this).attr('data-xroot-id')
   const xcategory_id = $(this).attr('data-xcategory-id')
   const current_url = window.location.pathname
@@ -8,19 +8,15 @@ $(document).on('turbolinks:load', 'click', '.xcategories-sub-xclasses-link', fun
 
 function fetchXcategoriesSubXclassesNodes(xroot_id, xcategory_id, current_url) {
   if (current_url == `/xroots`) {
-    alert('0')
     url = current_url + `/${xroot_id}/xcategories/${xcategory_id}/xcategories_sub_xclasses`
 
   } else if (current_url == `/xroots/${xroot_id}`) {
-    alert('1');
     url = current_url + `/xcategories/${xcategory_id}/xcategories_sub_xclasses`;
 
   } else if (current_url == `/xroots/${xroot_id}/xcategories/${xcategory_id}`) {
-    alert('2');
     url = current_url + `/xcategories_sub_xclasses`
   
   } else {
-    alert('3');
     url = `/xroots/${xroot_id}/xcategories/${xcategory_id}/xcategories_sub_xclasses`;
   }
 
@@ -28,8 +24,11 @@ function fetchXcategoriesSubXclassesNodes(xroot_id, xcategory_id, current_url) {
     method: "GET",
     dataType: "script",
     url: url,
-    success: function(data) {
-      
+    cache: false,
+    success: function(data) {  
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      alert("XHR:"+xhr.status+"Error:"+thrownError);
     }
   })
 }

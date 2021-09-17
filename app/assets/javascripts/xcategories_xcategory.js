@@ -1,5 +1,5 @@
 //xcategories_xcategory
-$(document).on('turbolinks:load', 'click', '.xcategories-xcategory-link', function () {
+$(document).on('click', '.xcategories-xcategory-load', function () {
   const xroot_id = $(this).attr('data-xroot-id')
   const current_url = window.location.pathname
   fetchXcategoriesXcategoryNodes(xroot_id, current_url)
@@ -7,7 +7,6 @@ $(document).on('turbolinks:load', 'click', '.xcategories-xcategory-link', functi
 
 function fetchXcategoriesXcategoryNodes(xroot_id, current_url) {
   if (current_url == `/xroots`) {
-    alert('0');
     url = current_url + `/${xroot_id}/xcategories_xcategory`;
   }
   
@@ -15,8 +14,11 @@ function fetchXcategoriesXcategoryNodes(xroot_id, current_url) {
     method: "GET",
     dataType: "script",
     url: url,
+    cache: false,
     success: function(data) {
-      
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      alert("XHR:"+xhr.status+"Error:"+thrownError);
     }
   })
 }

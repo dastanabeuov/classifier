@@ -1,5 +1,5 @@
 //xclass_child
-$(document).on('turbolinks:load', 'click', '.xclass-child-link', function () {
+$(document).on('click', '.xclass-child-load', function () {
   const xroot_id = $(this).attr('data-xroot-id')
   const xcategory_id = $(this).attr('data-xcategory-id')
   const child_id = $(this).attr('data-child-id')
@@ -9,23 +9,18 @@ $(document).on('turbolinks:load', 'click', '.xclass-child-link', function () {
 
 function fetchXclassChildNodes(xroot_id, xcategory_id, child_id, current_url) {
   if (current_url == `/xroots`) {
-    alert('0');
     url = current_url + `/${xroot_id}/xcategories/${xcategory_id}/xclasses/${child_id}/xclass_child`;
   
   } else if (current_url == `/xroots/${xroot_id}`) {
-    alert('1');
     url = current_url + `/xcategories/${xcategory_id}/xclasses/${child_id}/xclass_child`;
 
   } else if (current_url == `/xroots/${xroot_id}/xcategories/${xcategory_id}`) {
-    alert('2');
     url =  current_url + `/xclasses/${child_id}/xclass_child`
 
   } else if (current_url == `/xroots/${xroot_id}/xcategories/${xcategory_id}/xclasses/${child_id}`) {
-    alert('3');
     url = current_url + `/xclass_child`;
   
   } else {
-    alert('4');
     url = `/xroots/${xroot_id}/xcategories/${xcategory_id}/xclasses/${child_id}/xclass_child`;
   }
 
@@ -33,8 +28,12 @@ function fetchXclassChildNodes(xroot_id, xcategory_id, child_id, current_url) {
     method: "GET",
     dataType: "script",
     url: url,
+    cache: false,
     success: function(data) {
 
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      alert("XHR:"+xhr.status+"Error:"+thrownError);
     }
   })
 }

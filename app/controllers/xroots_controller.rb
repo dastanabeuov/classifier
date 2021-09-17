@@ -15,9 +15,7 @@ class XrootsController < ApplicationController
     respond_with(@xroots)
   end
 
-  def show
-    respond_with(@xroot)
-  end
+  def show; end
 
   def edit; end
 

@@ -23,9 +23,7 @@ class XclassesController < ApplicationController
     set_xclass
   end
 
-  def show
-    respond_with(@xclass)
-  end
+  def show; end
 
   def edit; end
 

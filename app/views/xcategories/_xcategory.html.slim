@@ -1,0 +1,16 @@
+<li data-toggle="collapse" data-target="#xcategory-#{ xcategory.id }" class="collapsed #{ 'active' if xcategory == @xcategory }">
+  
+  <a class="file" href="#{ xroot_xcategory_path(xcategory.xroot, xcategory) }">
+    - if xcategory.xclasses.exists?
+      <i class="fa fa-folder fa-lg"></i>
+    - else
+      <i class="fa fa-file fa-lg"></i>
+
+    span.pl-2 #{ truncate(xcategory.code, :length => 10) } #{ truncate(xcategory.title, :length => 18) }
+  </a>
+
+  - if xcategory.xclasses.exists?
+    <span class="arrow xcategories-sub-xclasses-load" data-xcategory-id="#{ xcategory.id }" data-xroot-id="#{ xcategory.xroot.id }"></span>
+</li>
+
+<ul class="sub-menu collapse pl-2 xcategories-sub-xclasses-#{ xcategory.id }" id="xcategory-#{ xcategory.id }"></ul>

@@ -11,9 +11,7 @@ class XcategoriesController < ApplicationController
 
   def xcategories_sub_xclasses; end
 
-  def show
-    respond_with(@xcategory)
-  end
+  def show; end
 
   def edit; end
 
