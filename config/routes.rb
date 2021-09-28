@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   root 'front_pages#home'
-
   devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks' }
+  
+  use_doorkeeper
+
+  mount ActionCable.server => '/cable'
+  
+  authenticate :user, ->(u) { u.admin? || u.paid_user? } do
+    mount SwaggerUiEngine::Engine, at: '/api_docs'
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
 
   namespace :api do
     namespace :v1 do
@@ -47,15 +55,4 @@ Rails.application.routes.draw do
   get 'front_pages/service'
   get 'front_pages/help'
   get 'front_pages/contact'
-  
-  authenticate :user, ->(u) { u.admin? || u.paid_user? } do
-    mount SwaggerUiEngine::Engine, at: '/api_docs'
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  end
-
-  authenticate :user, ->(u) { u.admin? } do
-    use_doorkeeper
-  end
-
-  mount ActionCable.server => '/cable'
 end

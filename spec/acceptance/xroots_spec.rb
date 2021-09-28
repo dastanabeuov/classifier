@@ -1,4 +1,4 @@
-arequire 'rails_helper'
+require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource 'xroots' do

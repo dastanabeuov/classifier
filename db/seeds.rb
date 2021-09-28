@@ -1,9 +1,9 @@
 Xroot.create!([
-  {title: "XRoot", synonym: "", description: "", code: "", version_date: "2021-05-05", publish: false, user_id: User.last.id}
+  {title: "XRoot", synonym: "", description: "", code: "", version_date: "", publish: false, user_id: User.last.id}
 ])
 
 Xcategory.create!([
-  {title: "XCategory", synonym: "", description: "", code: "", version_date: "2021-08-05", publish: false, xroot_id: Xroot.last.id, user_id: User.last.id}
+  {title: "XCategory", synonym: "", description: "", code: "", version_date: "", publish: false, xroot_id: Xroot.last.id, user_id: User.last.id}
 ])
 
 Xclass.create!([

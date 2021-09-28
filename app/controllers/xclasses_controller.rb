@@ -1,5 +1,4 @@
 class XclassesController < ApplicationController
-  before_action :authenticate_user!
   authorize_resource
 
   before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]

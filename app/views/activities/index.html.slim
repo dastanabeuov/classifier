@@ -36,11 +36,11 @@
                       td
                         span class="badge badge-info badge-pill"
                           = activity.children.size
-                      td = link_to fa_icon('eye'), activity, class: 'btn btn-sm btn-info'
+                      td = link_to fa_icon('eye'), activity, class: 'btn btn-sm btn-outline-info'
                       - if current_user.author_of?(activity)
-                        td = link_to fa_icon('pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-warning'
-                        td = link_to fa_icon('trash'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+                        td = link_to fa_icon('pencil'), edit_activity_path(activity), class: 'btn btn-sm btn-outline-warning'
+                        td = link_to fa_icon('trash'), activity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger'
                       
 
-    .btn-group.mt-5
-      = link_to fa_icon('file'), new_activity_path, class: 'btn btn-sm btn-success mt-2'
+    .btn-group.mt-5.mb-5
+      = link_to fa_icon('file'), new_activity_path, class: 'btn btn-sm btn-outline-success mt-2'

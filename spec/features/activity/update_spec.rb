@@ -1,32 +1,31 @@
 require 'rails_helper'
 
 feature 'ACTIVITY UPDATE', '
-  Author activity try edit
-  Is not author try edit
+  Author edit
+  Not author try edit
 ' do
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given!(:activity) { create(:activity, user: user) }
 
-  scenario 'Author activity try edit' do
+  scenario 'Author edit' do
     sign_in(user)
     visit activity_path(activity)
 
-    find(:css, '.btn-warning').click
-    fill_in 'Name',  with: 'New activity name'
-    fill_in 'Description', with: 'New activity description'
+    find(:css, '.btn-outline-warning').click
+    fill_in 'Title',  with: 'NewString'
+    fill_in 'Description', with: 'NewText'
     click_on 'Update Activity'
 
-    expect(current_path).to eq activity_path(activity)
     expect(page).to have_content 'Activity was successfully updated.'
-    expect(page).to have_content 'New activity name'
-    expect(page).to have_content 'New activity description'
+    expect(page).to have_content 'NewString'
+    expect(page).to have_content 'NewText'
   end
 
-  scenario 'Is not author try edit' do
+  scenario 'Not author try edit' do
     sign_in(user2)
     visit activity_path(activity)
 
-    expect(page).to_not have_link 'Edit question'
+    expect(page).to_not have_link('btn-outline-warning', exact: true)
   end
 end

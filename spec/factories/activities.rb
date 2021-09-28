@@ -9,9 +9,5 @@ FactoryBot.define do
     position { 'MyString' }
     ancestry { nil }
     user { nil }
-
-    trait :invalid do
-      title { nil }
-    end
   end
 end

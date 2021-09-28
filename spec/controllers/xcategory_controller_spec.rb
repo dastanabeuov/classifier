@@ -5,8 +5,10 @@ RSpec.describe XcategoriesController, type: :controller do
   let(:xroot) { create(:xroot, user: user) }
   let(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
 
+  before { login(user) }
+
   describe 'GET #SHOW' do
-    before { get :show, params: { id: xcategory } }
+    before { get :show, params: { id: xcategory, xroot_id: xroot } }
 
     it 'request show xcategory to xcategory' do
       expect(assigns(:xcategory)).to eq xcategory
@@ -18,7 +20,7 @@ RSpec.describe XcategoriesController, type: :controller do
   end
 
   describe 'GET #NEW' do
-    before { get :new }
+    before { get :new, params: { xroot_id: xroot } }
 
     it 'request new xcategory to xcategory' do
       expect(assigns(:xcategory)).to be_a_new(Xcategory)
@@ -30,7 +32,7 @@ RSpec.describe XcategoriesController, type: :controller do
   end
 
   describe 'GET #EDIT' do
-    before { get :edit, params: { id: xcategory } }
+    before { get :edit, params: { id: xcategory, xroot_id: xroot } }
 
     it 'request edit xcategory to xcategory' do
       expect(assigns(:xcategory)).to eq xcategory
@@ -45,26 +47,26 @@ RSpec.describe XcategoriesController, type: :controller do
     context 'valid attribute' do
       it 'save new xcategory' do
         count = Xcategory.count
-        post :create, params: { xcategory: attributes_for(:xcategory) }
+        post :create, params: { xcategory: attributes_for(:xcategory), xroot_id: xroot }
         expect(Xcategory.count).to eq count + 1
       end
 
       it 'redirect to show view' do
-        post :create, params: { xcategory: attributes_for(:xcategory) }
+        post :create, params: { xcategory: attributes_for(:xcategory), xroot_id: xroot }
 
-        expect(response).to redirect_to xroot_xcategory_path(Xcategory.last.xroot, Xcategory.last)
+        expect(response).to redirect_to xroot_xcategory_path(xroot, Xcategory.last)
       end
     end
 
     context 'invalid attribute' do
       it 'is not save xcategory' do
         count = Xcategory.count
-        post :create, params: { xcategory: attributes_for(:xcategory, :invalid) }
+        post :create, params: { xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
         expect(Xcategory.count).to eq count
       end
 
       it 'render show new' do
-        post :create, params: { xcategory: attributes_for(:xcategory, :invalid) }
+        post :create, params: { xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
         expect(response).to render_template :new
       end
     end
@@ -73,19 +75,19 @@ RSpec.describe XcategoriesController, type: :controller do
   describe 'PUT #UPDATE' do
     context 'valid attribute' do
       it 'update xcategory to xcategory' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory) }
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory), xroot_id: xroot }
         expect(assigns(:xcategory)).to eq xcategory
       end
 
       it 'change xcategory attribute' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, description: 'NewDescription') }
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, title: 'NewString'), xroot_id: xroot }
         xcategory.reload
 
-        expect(xcategory.description).to eq 'NewDescription'
+        expect(xcategory.title).to eq 'NewString'
       end
 
       it 'redirect update xcategory' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory) }
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory), xroot_id: xroot }
         expect(response).to redirect_to xroot_xcategory_path(xroot, xcategory)
       end
     end
@@ -94,15 +96,14 @@ RSpec.describe XcategoriesController, type: :controller do
       render_views
 
       it 'does not change xcategory' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, :invalid) }
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
         xcategory.reload
 
         expect(xcategory.title).to eq 'MyString'
-        expect(xcategory.description).to eq 'MyText'
       end
 
       it 're-render edit view' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, :invalid) }
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
         expect(response).to render_template :edit
       end
     end
@@ -113,13 +114,13 @@ RSpec.describe XcategoriesController, type: :controller do
 
     it 'delete xcategory' do
       count = Xcategory.count
-      delete :destroy, params: { id: xcategory }
+      delete :destroy, params: { id: xcategory, xroot_id: xroot }
       expect(Xcategory.count).to eq count - 1
     end
 
     it 'redirect index' do
-      delete :destroy, params: { id: xcategory }
-      expect(response).to redirect_to xcategories_path(xcategory.xroot)
+      delete :destroy, params: { id: xcategory, xroot_id: xroot }
+      expect(response).to redirect_to xroot_path(xroot)
     end
   end
 end

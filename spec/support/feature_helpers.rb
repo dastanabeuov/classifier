@@ -11,8 +11,8 @@ module FeatureHelpers
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     fill_in 'Password confirmation', with: user.password_confirmation
-    click_on 'Sign up'
+    find(:css, '.btn-outline-primary').click
     visit user_confirmation_path(confirmation_token: email_token)
-    click_on 'Log in'
+    find(:css, '.btn-outline-primary').click
   end
 end

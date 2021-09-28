@@ -4,12 +4,15 @@ RSpec.describe XrootsController, type: :controller do
   let(:user) { create(:user) }
   let(:xroot) { create(:xroot, user: user) }
 
+  before { login(user) }
+
   describe 'GET #INDEX' do
-    let(:xroot) { create_list(:xroot, 3, user: user) }
+
+    let(:xroots) { create_list(:xroot, 3, user: user) }
 
     before { get :index }
 
-    it 'array all xroots' do
+    it 'All xroots' do
       expect(assigns(:xroots)).to match_array(xroots)
     end
 
@@ -21,7 +24,7 @@ RSpec.describe XrootsController, type: :controller do
   describe 'GET #SHOW' do
     before { get :show, params: { id: xroot } }
 
-    it 'request show xroot to xroot' do
+    it 'request show xroot' do
       expect(assigns(:xroot)).to eq xroot
     end
 
@@ -33,7 +36,7 @@ RSpec.describe XrootsController, type: :controller do
   describe 'GET #NEW' do
     before { get :new }
 
-    it 'request new xroot to xroot' do
+    it 'request new xroot' do
       expect(assigns(:xroot)).to be_a_new(xroot)
     end
 
@@ -45,7 +48,7 @@ RSpec.describe XrootsController, type: :controller do
   describe 'GET #EDIT' do
     before { get :edit, params: { id: xroot } }
 
-    it 'request edit xroot to xroot' do
+    it 'request edit xroot' do
       expect(assigns(:xroot)).to eq xroot
     end
 
@@ -62,7 +65,7 @@ RSpec.describe XrootsController, type: :controller do
         expect(Xroot.count).to eq count + 1
       end
 
-      it 'redirect to show view' do
+      it 'redirect show view' do
         post :create, params: { xroot: attributes_for(:xroot) }
 
         expect(response).to redirect_to xroot_path(Xroot.last)
@@ -72,12 +75,12 @@ RSpec.describe XrootsController, type: :controller do
     context 'invalid attribute' do
       it 'is not save xroot' do
         count = Xroot.count
-        post :create, params: { xroot: attributes_for(:xroot, :invalid) }
+        post :create, params: { xroot: attributes_for(:xroot, title: '') }
         expect(Xroot.count).to eq count
       end
 
       it 'render show new' do
-        post :create, params: { xroot: attributes_for(:xroot, :invalid) }
+        post :create, params: { xroot: attributes_for(:xroot, title: '') }
         expect(response).to render_template :new
       end
     end
@@ -85,7 +88,7 @@ RSpec.describe XrootsController, type: :controller do
 
   describe 'PUT #UPDATE' do
     context 'valid attribute' do
-      it 'update xclass to xroot' do
+      it 'update xclass' do
         patch :update, params: { id: xroot, xroot: attributes_for(:xroot) }
         expect(assigns(:xroot)).to eq xroot
       end
@@ -107,7 +110,7 @@ RSpec.describe XrootsController, type: :controller do
       render_views
 
       it 'does not change xroot' do
-        patch :update, params: { id: xroot, xroot: attributes_for(:xroot, :invalid) }
+        patch :update, params: { id: xroot, xroot: attributes_for(:xroot, title: '') }
         xroot.reload
 
         expect(xroot.title).to eq 'MyString'
@@ -115,7 +118,7 @@ RSpec.describe XrootsController, type: :controller do
       end
 
       it 're-render edit view' do
-        patch :update, params: { id: xroot, xroot: attributes_for(:xroot, :invalid) }
+        patch :update, params: { id: xroot, xroot: attributes_for(:xroot, title: '') }
         expect(response).to render_template :edit
       end
     end

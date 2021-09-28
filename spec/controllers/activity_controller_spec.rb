@@ -4,7 +4,7 @@ RSpec.describe ActivitiesController, type: :controller do
   let(:user) { create(:user) }
   let(:activity) { create(:activity, user: user) }
 
-  before { sign_in(user) }
+  before { login(user) }
 
   describe 'GET #INDEX' do
     let(:activities) { create_list(:activity, 3, user: user) }
@@ -74,12 +74,12 @@ RSpec.describe ActivitiesController, type: :controller do
     context 'invalid attribute' do
       it 'is not save activity' do
         count = Activity.count
-        post :create, params: { activity: attributes_for(:activity, :invalid) }
+        post :create, params: { activity: attributes_for(:activity, title: '') }
         expect(Activity.count).to eq count
       end
 
       it 'render show new' do
-        post :create, params: { activity: attributes_for(:activity, :invalid) }
+        post :create, params: { activity: attributes_for(:activity, title: '') }
         expect(response).to render_template :new
       end
     end
@@ -109,7 +109,7 @@ RSpec.describe ActivitiesController, type: :controller do
       render_views
 
       it 'does not change activity' do
-        patch :update, params: { id: activity, activity: attributes_for(:activity, :invalid) }
+        patch :update, params: { id: activity, activity: attributes_for(:activity, title: '') }
         activity.reload
 
         expect(activity.title).to eq 'MyString'
@@ -117,7 +117,7 @@ RSpec.describe ActivitiesController, type: :controller do
       end
 
       it 're-render edit view' do
-        patch :update, params: { id: activity, activity: attributes_for(:activity, :invalid) }
+        patch :update, params: { id: activity, activity: attributes_for(:activity, title: '') }
         expect(response).to render_template :edit
       end
     end

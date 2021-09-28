@@ -1,39 +1,38 @@
 require 'rails_helper'
 
 feature 'XROOT CREATE', '
-  Authenticated user create xroot
-  Authenticated user create xroot with errors
+  Authenticated user create
+  Authenticated user create with errors
 ' do
-  given(:user) { create(:user) }
 
-  scenario 'Authenticated user create xroot' do
+  given(:user) { create(:user) }
+  given(:guest) { create(:user) }
+
+  scenario 'Authenticated user create' do
     sign_in(user)
     visit xroots_path
 
-    # save_and_open_page
-
-    find(:css, '.btn-success').click
-
-    within find('.xroot') do
-      fill_in 'Name', with: 'My xroot'
-      fill_in 'Description', with: 'My text'
-    end
+    find(:css, '.btn-outline-success').click
+    
+    fill_in 'xroot[title]', with: 'MyString'
+    fill_in 'xroot[description]', with: 'MyText'
     click_on 'Create Xroot'
 
-    expect(current_path).to eq xroot_path(Xroot.last)
     expect(page).to have_content 'Xroot was successfully created.'
-    expect(page).to have_content 'My xroot'
-    expect(page).to have_content 'My text'
+    expect(page).to have_content 'MyString'
+    expect(page).to have_content 'MyText'
   end
 
-  scenario 'Authenticated user create xroot with errors' do
+  scenario 'Authenticated user create with errors' do
     sign_in(user)
     visit xroots_path
 
-    find(:css, '.btn-success').click
+    find(:css, '.btn-outline-success').click
     click_on 'Create Xroot'
 
-    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Xroot could not be created."
+    expect(page).to have_content "Title can't be blank"
+    expect(page).to have_content "Title is too short (minimum is 2 characters)"
   end
 
   context 'Multiple session' do
@@ -49,15 +48,18 @@ feature 'XROOT CREATE', '
       end
 
       Capybara.using_session('user') do
-        fill_in 'Name', with: 'MyString'
-        fill_in 'Description', with: 'MyText'
-        click_on 'Save xroot'
+        fill_in 'xroot[title]', with: 'MyString'
+        fill_in 'xroot[description]', with: 'MyText'
+        find(:css, '.btn-outline-success').click
 
+        expect(page).to have_content 'Xroot was successfully created.'
         expect(page).to have_content 'MyString'
         expect(page).to have_content 'MyText'
       end
 
       Capybara.using_session('guest') do
+        visit xroots_path
+
         expect(page).to have_content 'MyString'
       end
     end

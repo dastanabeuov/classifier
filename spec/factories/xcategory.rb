@@ -7,9 +7,5 @@ FactoryBot.define do
     publish { false }
     xroot_id { nil }
     user { nil }
-
-    trait :invalid do
-      title { nil }
-    end
   end
 end

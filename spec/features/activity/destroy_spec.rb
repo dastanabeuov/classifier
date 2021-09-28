@@ -1,25 +1,25 @@
 require 'rails_helper'
 
 feature 'ACTIVITY DESTROY', '
-  Authenticated user destroy
-  Unauthenticated user destroy
-  Is not author try destroy
+  Author destroy
+  Not author try destroy
 ' do
+
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given!(:activity) { create(:activity, user: user) }
 
-  scenario 'Authenticated user destroy' do
+  scenario 'Author destroy' do
     sign_in(user)
     visit activities_path
 
-    find(:css, '.btn-danger').click
+    find(:css, '.btn-outline-danger').click
 
     expect(current_path).to eq activities_path
     expect(page).to have_content 'Activity was successfully destroyed.'
   end
 
-  scenario 'Unauthenticated user destroy' do
+  scenario 'Not author try destroy' do
     sign_in(user)
     visit activities_path
 

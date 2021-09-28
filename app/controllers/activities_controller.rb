@@ -1,5 +1,4 @@
 class ActivitiesController < ApplicationController
-  before_action :authenticate_user!
   authorize_resource
 
   before_action :set_activity, only: %i[show edit update destroy]
