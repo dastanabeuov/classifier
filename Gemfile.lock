@@ -253,7 +253,8 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (4.0.6)
-    puma (3.12.6)
+    puma (4.3.9)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-pjax (1.1.0)
@@ -485,7 +486,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pg (~> 0.18)
   pry
-  puma (~> 3.0)
+  puma (~> 4.3)
   rails (~> 5.2.0)
   rails-controller-testing
   rails-i18n
