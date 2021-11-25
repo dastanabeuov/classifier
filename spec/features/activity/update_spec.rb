@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'ACTIVITY UPDATE', '
@@ -13,7 +15,7 @@ feature 'ACTIVITY UPDATE', '
     visit activity_path(activity)
 
     find(:css, '.btn-outline-warning').click
-    fill_in 'Title',  with: 'NewString'
+    fill_in 'Title', with: 'NewString'
     fill_in 'Description', with: 'NewText'
     click_on 'Update Activity'
 

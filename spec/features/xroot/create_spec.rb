@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'XROOT CREATE', '
   Authenticated user create
   Authenticated user create with errors
 ' do
-
   given(:user) { create(:user) }
   given(:guest) { create(:user) }
 
@@ -13,7 +14,7 @@ feature 'XROOT CREATE', '
     visit xroots_path
 
     find(:css, '.btn-outline-success').click
-    
+
     fill_in 'xroot[title]', with: 'MyString'
     fill_in 'xroot[description]', with: 'MyText'
     click_on 'Create Xroot'
@@ -30,9 +31,9 @@ feature 'XROOT CREATE', '
     find(:css, '.btn-outline-success').click
     click_on 'Create Xroot'
 
-    expect(page).to have_content "Xroot could not be created."
+    expect(page).to have_content 'Xroot could not be created.'
     expect(page).to have_content "Title can't be blank"
-    expect(page).to have_content "Title is too short (minimum is 2 characters)"
+    expect(page).to have_content 'Title is too short (minimum is 2 characters)'
   end
 
   context 'Multiple session' do

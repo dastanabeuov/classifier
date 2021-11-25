@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'XCATEGORY CREATE', '
   Authenticated user create
   Authenticated user create with errors
 ' do
-
   given(:user) { create(:user) }
   given(:guest) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
@@ -30,8 +31,8 @@ feature 'XCATEGORY CREATE', '
 
     click_on 'Create Xcategory'
 
-    expect(page).to have_content "Xcategory could not be created."
+    expect(page).to have_content 'Xcategory could not be created.'
     expect(page).to have_content "Title can't be blank"
-    expect(page).to have_content "Title is too short (minimum is 2 characters)"
+    expect(page).to have_content 'Title is too short (minimum is 2 characters)'
   end
 end

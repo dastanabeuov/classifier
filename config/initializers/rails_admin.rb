@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RailsAdmin.config do |config|
   # ##Set Locales
   I18n.default_locale = :ru

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivitiesController, type: :controller do
@@ -61,6 +63,7 @@ RSpec.describe ActivitiesController, type: :controller do
       it 'save new activity' do
         count = Activity.count
         post :create, params: { activity: attributes_for(:activity) }
+
         expect(Activity.count).to eq count + 1
       end
 
@@ -74,12 +77,14 @@ RSpec.describe ActivitiesController, type: :controller do
     context 'invalid attribute' do
       it 'is not save activity' do
         count = Activity.count
-        post :create, params: { activity: attributes_for(:activity, title: '') }
+        post :create, params: { activity: attributes_for(:activity, :invalid) }
+
         expect(Activity.count).to eq count
       end
 
       it 'render show new' do
-        post :create, params: { activity: attributes_for(:activity, title: '') }
+        post :create, params: { activity: attributes_for(:activity, :invalid) }
+
         expect(response).to render_template :new
       end
     end
@@ -89,6 +94,7 @@ RSpec.describe ActivitiesController, type: :controller do
     context 'valid attribute' do
       it 'update activity to activity' do
         patch :update, params: { id: activity, activity: attributes_for(:activity) }
+
         expect(assigns(:activity)).to eq activity
       end
 
@@ -101,6 +107,7 @@ RSpec.describe ActivitiesController, type: :controller do
 
       it 'redirect update activity' do
         patch :update, params: { id: activity, activity: attributes_for(:activity) }
+
         expect(response).to redirect_to activity
       end
     end
@@ -109,15 +116,16 @@ RSpec.describe ActivitiesController, type: :controller do
       render_views
 
       it 'does not change activity' do
-        patch :update, params: { id: activity, activity: attributes_for(:activity, title: '') }
+        put :update, params: { id: activity, activity: attributes_for(:activity, :invalid) }
         activity.reload
 
-        expect(activity.title).to eq 'MyString'
-        expect(activity.description).to eq 'MyText'
+        expect(activity.title).to have_text 'MyString'
+        expect(activity.description).to have_text 'MyText'
       end
 
       it 're-render edit view' do
-        patch :update, params: { id: activity, activity: attributes_for(:activity, title: '') }
+        patch :update, params: { id: activity, activity: attributes_for(:activity, :invalid) }
+
         expect(response).to render_template :edit
       end
     end
@@ -129,11 +137,13 @@ RSpec.describe ActivitiesController, type: :controller do
     it 'delete activity' do
       count = Activity.count
       delete :destroy, params: { id: activity }
+
       expect(Activity.count).to eq count - 1
     end
 
     it 'redirect index' do
       delete :destroy, params: { id: activity }
+
       expect(response).to redirect_to activities_path
     end
   end

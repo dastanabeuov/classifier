@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :xroots, dependent: :destroy
   has_many :xcategories, dependent: :destroy

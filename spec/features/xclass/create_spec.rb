@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'XCLASS CREATE', '
   Authenticated user create
   Authenticated user create with errors
 ' do
-
   given(:user) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
   given!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
@@ -32,8 +33,8 @@ feature 'XCLASS CREATE', '
     find(:css, '.btn-outline-success').click
     click_on 'Create Xclass'
 
-    expect(page).to have_content "Xclass could not be created."
+    expect(page).to have_content 'Xclass could not be created.'
     expect(page).to have_content "Title can't be blank"
-    expect(page).to have_content "Title is too short (minimum is 2 characters)"
+    expect(page).to have_content 'Title is too short (minimum is 2 characters)'
   end
 end

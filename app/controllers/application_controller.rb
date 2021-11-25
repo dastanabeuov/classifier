@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'application_responder'
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
-  
+
   before_action :authenticate_user!
   before_action :set_current_user
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Xclass < ApplicationRecord
   belongs_to :user
   belongs_to :xcategory, touch: true

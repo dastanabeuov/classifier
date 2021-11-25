@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -43,8 +45,7 @@ gem 'rails_admin'
 gem 'rails_admin_nestable'
 
 # api docs
-gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
-gem 'swagger_ui_engine'
+gem 'rswag'
 
 # style guides
 gem 'rubocop', require: false
@@ -56,7 +57,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
   gem 'chromedriver-helper'
   gem 'launchy'
   gem 'rails-controller-testing'
@@ -65,14 +66,14 @@ group :test do
 end
 
 group :development do
+  gem 'bullet'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'listen', '~> 3.0.5'
   gem 'pry'
+  gem 'seed_dump'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console'
-  gem 'bullet'
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-  gem 'seed_dump'
 end
 
 group :heroku do

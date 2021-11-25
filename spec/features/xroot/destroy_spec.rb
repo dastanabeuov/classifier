@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'XROOT DESTROY', '
   Author destroy
   Not author try destroy
 ' do
-
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given(:xroot) { create(:xroot, user: user) }

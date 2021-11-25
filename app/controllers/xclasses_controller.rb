@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class XclassesController < ApplicationController
   authorize_resource
 
@@ -57,11 +59,10 @@ class XclassesController < ApplicationController
     @xclass.destroy if current_user.author_of?(@xclass)
     if @xclass.parent
       redirect_to xroot_xcategory_xclass_path(@xroot, @xcategory, @xclass.parent)
-      flash[:notice] = 'Xclass was successfully destroyed.'
     else
       redirect_to xroot_xcategory_path(@xroot, @xcategory)
-      flash[:notice] = 'Xclass was successfully destroyed.'
     end
+    flash[:notice] = 'Xclass was successfully destroyed.'
   end
 
   private

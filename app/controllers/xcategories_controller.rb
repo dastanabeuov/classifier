@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class XcategoriesController < ApplicationController
   authorize_resource
 
-  before_action :set_xroot, only:     %i[show edit update destroy new create update_inline import xcategories_sub_xclasses]
+  before_action :set_xroot,
+                only: %i[show edit update destroy new create update_inline import xcategories_sub_xclasses]
   before_action :set_xcategory, only: %i[show edit update destroy update_inline import xcategories_sub_xclasses]
 
   after_action :publish_xcategory, only: [:create]

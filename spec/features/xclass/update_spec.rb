@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'XCLASS UPDATE', '
   Author edit
   Not author try edit
 ' do
-
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
   given!(:xroot) { create(:xroot, user: user) }
@@ -17,7 +18,7 @@ feature 'XCLASS UPDATE', '
 
     find(:css, '.btn-outline-warning').click
 
-    fill_in 'Title',  with: 'NewString'
+    fill_in 'Title', with: 'NewString'
     fill_in 'Description', with: 'NewText'
     click_on 'Update Xclass'
 

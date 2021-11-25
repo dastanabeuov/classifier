@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'USER CAN (SIGHN_IN / SIGN_OUT / REGISTRATION or NOT)', '
@@ -6,7 +8,6 @@ feature 'USER CAN (SIGHN_IN / SIGN_OUT / REGISTRATION or NOT)', '
   Unregistered user not sign in
   User can register on system
 ' do
-
   given(:user) { create(:user) }
 
   scenario 'Registration user can sign in' do
@@ -39,7 +40,7 @@ feature 'USER CAN (SIGHN_IN / SIGN_OUT / REGISTRATION or NOT)', '
   #   fill_in 'Password confirmation', with: '123456'
   #   find(:css, '.btn-outline-primary').click
   #   visit user_confirmation_path(confirmation_token: email_token)
-  #   find(:css, '.btn-outline-primary').click    
+  #   find(:css, '.btn-outline-primary').click
 
   #   ### I can't find, how type confirmation token from user!!!
 

@@ -44,7 +44,6 @@ nav class="navbar sticky-top navbar-expand-md navbar-dark mb-5"
               = link_to "Root: #{current_user_count_xroots}", xroots_path, class: "dropdown-item"          
               = link_to "Category: #{current_user_count_xcategories}", xroots_path, class: "dropdown-item"
               = link_to "Classes: #{current_user_count_xclasses}", xroots_path, class: "dropdown-item"
-              = link_to "Properties: #{current_user_count_properties}", "#", class: "dropdown-item"
               = link_to "Activities: #{current_user_count_activities}", activities_path, class: "dropdown-item"
             .dropdown-divider
             = link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item"

@@ -1,19 +1,25 @@
-class Api::V1::BaseController < ApplicationController
-  before_action :doorkeeper_authorize!
-  
-  skip_before_action :authenticate_user!
-  
-  authorize_resource
+# frozen_string_literal: true
 
-  respond_to :json
+module Api
+  module V1
+    class BaseController < ApplicationController
+      before_action :doorkeeper_authorize!
 
-  private
+      skip_before_action :authenticate_user!
 
-  def current_resource_owner
-    @current_resource_owner ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
-  end
+      authorize_resource
 
-  def current_user
-    current_resource_owner
+      respond_to :json
+
+      private
+
+      def current_resource_owner
+        @current_resource_owner ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+      end
+
+      def current_user
+        current_resource_owner
+      end
+    end
   end
 end

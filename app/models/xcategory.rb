@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Xcategory < ApplicationRecord
   belongs_to :user
   belongs_to :xroot, touch: true
@@ -18,9 +20,11 @@ class Xcategory < ApplicationRecord
       ready_record = Hash[[header.map(&:downcase), sheet.row(row)].transpose]
       record = [header.map(&:downcase), sheet.row(row)].transpose
       sort = []
-      record.each {|data| sort << data if data[0] == 'class'}      
+      record.each { |data| sort << data if data[0] == 'class' }
+
       full_code = sort.map do |data|
         next if data[1].nil?
+
         data[1].chomp('_')
       end.compact.join
 
@@ -42,7 +46,7 @@ class Xcategory < ApplicationRecord
       elsif full_code.length >= 3
         parent_code = full_code[0..-2]
         root = xcategory.xclasses.roots.find_by_code(full_code[0])
-        parent = root.descendants.at_depth(full_code.length - 2).find_by_full_code(parent_code)        
+        parent = root.descendants.at_depth(full_code.length - 2).find_by_full_code(parent_code)
         parent.children.find_or_create_by(full_code: full_code) do |xclass|
           xclass.attributes = ready_record.to_h.slice(*accessible_attributes)
           xclass.user_id = Current.user.id

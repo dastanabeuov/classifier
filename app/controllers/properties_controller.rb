@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PropertiesController < ApplicationController
   authorize_resource
 

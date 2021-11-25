@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe XcategoriesController, type: :controller do
@@ -48,6 +50,7 @@ RSpec.describe XcategoriesController, type: :controller do
       it 'save new xcategory' do
         count = Xcategory.count
         post :create, params: { xcategory: attributes_for(:xcategory), xroot_id: xroot }
+
         expect(Xcategory.count).to eq count + 1
       end
 
@@ -61,12 +64,14 @@ RSpec.describe XcategoriesController, type: :controller do
     context 'invalid attribute' do
       it 'is not save xcategory' do
         count = Xcategory.count
-        post :create, params: { xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
+        post :create, params: { xcategory: attributes_for(:xcategory, :invalid), xroot_id: xroot }
+
         expect(Xcategory.count).to eq count
       end
 
       it 'render show new' do
-        post :create, params: { xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
+        post :create, params: { xcategory: attributes_for(:xcategory, :invalid), xroot_id: xroot }
+
         expect(response).to render_template :new
       end
     end
@@ -76,11 +81,13 @@ RSpec.describe XcategoriesController, type: :controller do
     context 'valid attribute' do
       it 'update xcategory to xcategory' do
         patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory), xroot_id: xroot }
+
         expect(assigns(:xcategory)).to eq xcategory
       end
 
       it 'change xcategory attribute' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, title: 'NewString'), xroot_id: xroot }
+        patch :update,
+              params: { id: xcategory, xcategory: attributes_for(:xcategory, title: 'NewString'), xroot_id: xroot }
         xcategory.reload
 
         expect(xcategory.title).to eq 'NewString'
@@ -88,6 +95,7 @@ RSpec.describe XcategoriesController, type: :controller do
 
       it 'redirect update xcategory' do
         patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory), xroot_id: xroot }
+
         expect(response).to redirect_to xroot_xcategory_path(xroot, xcategory)
       end
     end
@@ -96,14 +104,16 @@ RSpec.describe XcategoriesController, type: :controller do
       render_views
 
       it 'does not change xcategory' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, :invalid), xroot_id: xroot }
         xcategory.reload
 
-        expect(xcategory.title).to eq 'MyString'
+        expect(xcategory.title).to have_text 'MyString'
+        expect(xcategory.description).to have_text 'MyText'
       end
 
       it 're-render edit view' do
-        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, title: ''), xroot_id: xroot }
+        patch :update, params: { id: xcategory, xcategory: attributes_for(:xcategory, :invalid), xroot_id: xroot }
+
         expect(response).to render_template :edit
       end
     end
@@ -115,11 +125,13 @@ RSpec.describe XcategoriesController, type: :controller do
     it 'delete xcategory' do
       count = Xcategory.count
       delete :destroy, params: { id: xcategory, xroot_id: xroot }
+
       expect(Xcategory.count).to eq count - 1
     end
 
     it 'redirect index' do
       delete :destroy, params: { id: xcategory, xroot_id: xroot }
+
       expect(response).to redirect_to xroot_path(xroot)
     end
   end

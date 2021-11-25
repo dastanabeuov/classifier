@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def collection_cache_key_for(model)
     klass = model.to_s.capitalize.constantize
@@ -7,11 +9,13 @@ module ApplicationHelper
   end
 
   def current_year
-    "© #{Time.current.year} "
+    current_year ||= "© #{Time.current.year} "
+    current_year
   end
 
   def github_url(author, repo)
-    "https://github.com/#{author}/#{repo}"
+    author_repo ||= "https://github.com/#{author}/#{repo}"
+    author_repo
   end
 
   def flash_class(level)

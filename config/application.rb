@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 require 'rails/all'
 require 'csv'
@@ -22,8 +24,7 @@ module Classifier
       g.test_framework :rspec,
                        view_specs: false,
                        helper_specs: false,
-                       routng_specs: false,
-                       request_specs: false
+                       routng_specs: false
     end
   end
 end

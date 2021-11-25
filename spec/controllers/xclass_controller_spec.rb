@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe XclassesController, type: :controller do
   let(:user) { create(:user) }
+  before { login(user) }
   let(:xroot) { create(:xroot, user: user) }
   let(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
   let(:xclass) { create(:xclass, xcategory: xcategory, user: user) }
 
-  before { login(user) }
-
   describe 'GET #SHOW' do
-    before { get :show , params: { xroot_id: xroot, xcategory_id: xcategory, id: xclass } }
+    before { get :show, params: { xroot_id: xroot, xcategory_id: xcategory, id: xclass } }
 
     it 'request show xclass' do
       expect(assigns(:xclass)).to eq xclass
@@ -22,9 +23,9 @@ RSpec.describe XclassesController, type: :controller do
 
   describe 'GET #NEW' do
     before { get :new, params: { xroot_id: xroot, xcategory_id: xcategory } }
-    
+
     it 'request new xclass' do
-      expect(assigns(:xclass)).to be_a_new(xclass)
+      expect(assigns(:xclass)).to be_a_new(Xclass)
     end
 
     it 'render new view' do
@@ -54,7 +55,7 @@ RSpec.describe XclassesController, type: :controller do
       end
 
       it 'redirect to show view' do
-        post :create, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, full_code: '001') }
+        post :create, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass) }
 
         expect(response).to redirect_to xroot_xcategory_xclass_path(xroot, xcategory, Xclass.last)
       end
@@ -63,13 +64,13 @@ RSpec.describe XclassesController, type: :controller do
     context 'invalid attribute' do
       it 'is not save xclass' do
         count = Xclass.count
-        post :create, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, title: '') }
+        post :create, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, :invalid) }
 
         expect(Xclass.count).to eq count
       end
 
-      it 'render show new' do
-        post :create, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, title: '') }
+      it 'render new' do
+        post :create, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, :invalid) }
 
         expect(response).to render_template :new
       end
@@ -78,40 +79,35 @@ RSpec.describe XclassesController, type: :controller do
 
   describe 'PUT #UPDATE' do
     context 'valid attribute' do
-      it 'update xclass' do
-        put :update, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass) }
+      it 'update attribute xclass' do
+        put :update,
+            params: { xroot_id: xroot, xcategory_id: xcategory, id: xclass,
+                      xclass: attributes_for(:xclass, title: 'NewString') }
 
         expect(assigns(:xclass)).to eq xclass
       end
 
-      it 'change xclass attribute' do
-        put :update, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, description: 'NewText') }
-        xclass.reload
-
-        expect(xclass.description).to eq 'NewText'
-      end
-
       it 'redirect update xclass' do
-        put :update, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass) }
+        put :update, params: { xroot_id: xroot, xcategory_id: xcategory, id: xclass, xclass: attributes_for(:xclass) }
 
         expect(response).to redirect_to xroot_xcategory_xclass_path(xroot, xcategory, xclass)
       end
     end
 
-    context 'invalid attribute' do
-      render_views
-
-      it 'does not change xclass' do
-        put :update, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, title: '') }
-        xclass.reload
-
-        expect(xclass.title).to eq 'MyString'
-        expect(xclass.description).to eq 'MyText'
+    context 'with invalid attributes' do
+      before do
+        put :update,
+            params: { xroot_id: xroot, xcategory_id: xcategory, id: xclass, xclass: attributes_for(:xclass, :invalid) }
       end
 
-      it 're-render edit view' do
-        put :update, params: { xroot_id: xroot, xcategory_id: xcategory, xclass: attributes_for(:xclass, title: '') }
+      it 'does not change question' do
+        xclass.reload
 
+        expect(xclass.title).to have_text 'MyString'
+        expect(xclass.description).to have_text 'MyText'
+      end
+
+      it 'renders edit' do
         expect(response).to render_template :edit
       end
     end
