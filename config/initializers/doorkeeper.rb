@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (requires ORM extensions installed).
   # Check the list of supported ORMs here: https://github.com/doorkeeper-gem/doorkeeper#orms
@@ -16,7 +18,7 @@ Doorkeeper.configure do
   admin_authenticator do
     # Put your admin authentication logic here.
     # Example implementation:
-  
+
     if current_user
       head :forbidden unless current_user.admin?
     else

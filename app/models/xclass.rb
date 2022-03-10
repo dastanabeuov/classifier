@@ -2,7 +2,7 @@
 
 class Xclass < ApplicationRecord
   include Propertyable
-  
+
   belongs_to :user
   belongs_to :xcategory, touch: true
 

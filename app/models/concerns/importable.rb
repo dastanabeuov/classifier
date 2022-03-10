@@ -1,8 +1,11 @@
-module Import
+# frozen_string_literal: true
+
+module Importable
   extend ActiveSupport::Concern
 
   included do
-    def self.import(file, xcategory)
+    # This method imported tree data from 'xcategory' <= 'xclasses_tree_data'
+    def self.import(file, xcategory, user)
       accessible_attributes = %w[title synonym description]
 
       sheet = open_spreadsheet(file)
@@ -24,7 +27,7 @@ module Import
         if full_code.length == 1
           Xclass.find_or_create_by(full_code: full_code) do |xclass|
             xclass.attributes = ready_record.to_h.slice(*accessible_attributes)
-            xclass.user_id = Current.user.id
+            xclass.user_id = user.id
             xclass.xcategory_id = xcategory.id
             xclass.code = full_code
           end
@@ -32,7 +35,7 @@ module Import
           root = xcategory.xclasses.roots.find_by(code: full_code[0])
           root.children.find_or_create_by(full_code: full_code) do |xclass|
             xclass.attributes = ready_record.to_h.slice(*accessible_attributes)
-            xclass.user_id = Current.user.id
+            xclass.user_id = user.id
             xclass.xcategory_id = xcategory.id
             xclass.code = full_code[-1]
           end
@@ -42,7 +45,7 @@ module Import
           parent = root.descendants.at_depth(full_code.length - 2).find_by(full_code: parent_code)
           parent.children.find_or_create_by(full_code: full_code) do |xclass|
             xclass.attributes = ready_record.to_h.slice(*accessible_attributes)
-            xclass.user_id = Current.user.id
+            xclass.user_id = user.id
             xclass.xcategory_id = xcategory.id
             xclass.code = full_code[-1]
           end
@@ -52,6 +55,7 @@ module Import
       end
     end
 
+    # This method open file if supported format
     def self.open_spreadsheet(file)
       case File.extname(file.original_filename)
       when '.csv' then Roo::Csv.new(file.path)

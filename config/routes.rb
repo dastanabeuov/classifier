@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # devise_for :users, skip: [:session, :password, :registration], 
+  # devise_for :users, skip: [:session, :password, :registration],
   #         controllers: { omniauth_callbacks: 'oauth_callbacks' }
-  
-  #scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
+
+  # scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
   root 'front_pages#home'
 
   # devise_for :users, skip: [:omniauth_callbacks]
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get 'front_pages/service'
   get 'front_pages/help'
   get 'front_pages/contact'
-  #end
+  # end
 
   namespace :api do
     namespace :v1 do

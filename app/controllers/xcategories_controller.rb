@@ -18,7 +18,8 @@ class XcategoriesController < ApplicationController
 
   def import
     count = @xcategory.xclasses.count
-    Xcategory.import(params[:file], @xcategory)
+    @user = current_user
+    Xcategory.import(params[:file], @xcategory, @user)
     redirect_to xroot_xcategory_path(@xroot, @xcategory)
     if @xcategory.xclasses.count > count
       flash[:notice] = 'Xclasses imported.'
@@ -83,6 +84,6 @@ class XcategoriesController < ApplicationController
     params.require(:xcategory).permit(:title, :description,
                                       :synonym, :code, :version_date, :publish,
                                       properties_attributes: %i[id title activity_id _destroy])
-                                      .merge(user: current_user)
+          .merge(user: current_user)
   end
 end

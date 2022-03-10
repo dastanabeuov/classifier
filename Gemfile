@@ -18,7 +18,7 @@ gem 'sass-rails', '~> 5.0'
 
 # minimize js
 gem 'uglifier', '~> 4.2.0'
-gem 'mini_racer', '~> 0.6'
+# gem 'mini_racer', '~> 0.6'
 
 # theme style
 gem 'bootstrap', '~> 4.6'
@@ -64,8 +64,8 @@ gem 'sidekiq', '~> 6'
 gem 'whenever', '~> 1.0', require: false
 
 # Search
-gem 'thinking-sphinx', '~> 5.4'
 gem 'mysql2', '~> 0.5'
+gem 'thinking-sphinx', '~> 5.4'
 
 group :development, :test do
   gem 'byebug', '~> 11', platforms: %i[mri mingw x64_mingw]

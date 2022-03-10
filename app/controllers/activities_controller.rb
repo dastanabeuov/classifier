@@ -52,6 +52,6 @@ class ActivitiesController < ApplicationController
                                      :synonym, :code, :version_date, :publish, :position,
                                      :parent_id,
                                      properties_attributes: %i[id title activity_id _destroy])
-                                     .merge(user: current_user)
+          .merge(user: current_user)
   end
 end

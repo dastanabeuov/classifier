@@ -72,13 +72,13 @@ RailsAdmin.config do |config|
       field :user do
         searchable :email
         pretty_value do
-            value.try(:email)
+          value.try(:email)
         end
       end
       field :properties do
         searchable :title
         pretty_value do
-            value.try(:title)
+          value.try(:title)
         end
       end
       field :created_at

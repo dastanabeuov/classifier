@@ -4,12 +4,11 @@ require 'application_responder'
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
-  
+
   include ErrorHandling
   include Internationalization
 
   before_action :authenticate_user!
-  before_action :set_current_user
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -17,11 +16,5 @@ class ApplicationController < ActionController::Base
       format.js { head :forbiddens }
       format.json { head :forbidden }
     end
-  end
-
-  private
-
-  def set_current_user
-    Current.user = current_user
   end
 end

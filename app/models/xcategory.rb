@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Xcategory < ApplicationRecord
-  include Import
+  include Importable
   include Propertyable
 
   belongs_to :user
