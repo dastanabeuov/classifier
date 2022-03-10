@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
   respond_to :html, :js
 
   def create
-    @property = propertyable.properties.build(property_params)
+    @property = propertyable.properties.create(property_params)
     respond_with(@property)
   end
 

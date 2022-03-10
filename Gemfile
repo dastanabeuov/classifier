@@ -1,81 +1,112 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
-  "https://github.com/#{repo_name}.git"
-end
+### (-: Boot large ruby/rails apps faster :-)
+ruby '2.7.0'
 
-# default
-gem 'bootsnap', require: false
-gem 'coffee-rails', '~> 4.2'
-gem 'jquery-rails'
+gem 'bootsnap', '~> 1.7', require: false
 gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.2.0'
-gem 'sass-rails', '~> 5.0'
+gem 'puma', '~> 5.6'
+gem 'rails', '~> 5.2.6'
 gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
+
+# additional format suport
+gem 'jquery-rails', '~> 4.4.0'
+gem 'sass-rails', '~> 5.0'
+
+# minimize js
+gem 'uglifier', '~> 4.2.0'
+gem 'mini_racer', '~> 0.6'
 
 # theme style
-gem 'bootstrap', '~> 4.6.0'
-gem 'font-awesome-rails'
-gem 'slim'
+gem 'bootstrap', '~> 4.6'
+gem 'font-awesome-rails', '~> 4'
+gem 'slim', '~> 4.1'
 
-# function
-gem 'active_model_serializers', '0.10.12'
-gem 'activerecord-import'
-gem 'ancestry'
-gem 'cancancan'
-gem 'cocoon'
-gem 'devise', github: 'heartcombo/devise', branch: 'master'
+# tree date
+gem 'ancestry', '~> 4'
+gem 'cocoon', '~> 1.2.15'
+
+# authorize
+gem 'cancancan', '~> 3.2'
+gem 'devise', '~> 4.8'
 gem 'doorkeeper', '5.1.0'
-gem 'oj'
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'omniauth-rails_csrf_protection'
-gem 'rails-i18n'
-gem 'redis-rails'
-gem 'responders'
-gem 'roo'
+
+# oauth2
+gem 'omniauth', '~> 2.0'
+gem 'omniauth-github', '~> 2.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+# localize
+gem 'rails-i18n', '~> 5'
+
+# serializer json
+gem 'active_model_serializers', '~> 0.10'
+gem 'oj', '~> 3.11'
+gem 'responders', '~> 3'
+
+# importer xlsx
+gem 'activerecord-import', '~> 1.1'
+gem 'roo', '~> 2.8'
 
 # admin dashboard
-gem 'rails_admin'
-gem 'rails_admin_nestable'
+gem 'rails_admin', '~> 2'
+gem 'rails_admin_nestable', '~> 0.3'
 
 # api docs
-gem 'rswag'
+gem 'rswag', '~> 2'
 
-# style guides
-gem 'rubocop', require: false
+# job
+gem 'redis-rails', '~> 5'
+gem 'sidekiq', '~> 6'
+gem 'whenever', '~> 1.0', require: false
+
+# Search
+gem 'thinking-sphinx', '~> 5.4'
+gem 'mysql2', '~> 0.5'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
-end
+  gem 'byebug', '~> 11', platforms: %i[mri mingw x64_mingw]
 
-group :test do
-  gem 'capybara'
-  gem 'chromedriver-helper'
-  gem 'launchy'
-  gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
-  gem 'shoulda-matchers'
+  gem 'factory_bot_rails', '~> 6'
+  gem 'faker', '~> 2'
+  gem 'rspec-rails', '~> 5'
 end
 
 group :development do
-  gem 'bullet'
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
-  gem 'listen', '~> 3.0.5'
-  gem 'pry'
-  gem 'seed_dump'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console'
+  gem 'bullet', '~> 6'
+
+  gem 'listen', '~> 3.7'
+  gem 'spring', '~> 2.1.1'
+  gem 'spring-watcher-listen', '~> 2.0.1'
+  gem 'web-console', '~> 3.7.0'
+
+  gem 'rubocop', '~> 1.16', require: false
+  gem 'rubocop-i18n', '~> 3.0', require: false
+  gem 'rubocop-performance', '~> 1.13', require: false
+  gem 'rubocop-rails', '~> 2.13', require: false
+  gem 'rubocop-rspec', '~> 2.8', require: false
 end
 
-group :heroku do
+group :test do
+  gem 'capybara', '~> 3'
+  gem 'chromedriver-helper', '~> 2'
+  gem 'launchy', '~> 2'
+  gem 'selenium-webdriver', '~> 3'
+
+  gem 'rails-controller-testing', '~> 1'
+  gem 'shoulda-matchers', '~> 4'
+
+  gem 'database_cleaner', '~> 2'
+  gem 'database_cleaner-active_record', '~> 2'
+  gem 'database_cleaner-core', '~> 2'
+end
+
+group :production do
   gem 'rails_12factor'
 end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

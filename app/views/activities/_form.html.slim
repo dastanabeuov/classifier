@@ -4,7 +4,7 @@
 
     .field.mt-3
       = f.label :title
-      = f.text_field :title, class: 'form-control'
+      = f.text_field :title, required: true, minlegth: 2, class: 'form-control'
     
     .field.mt-3
       = f.label :synonym

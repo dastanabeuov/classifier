@@ -19,7 +19,7 @@ describe 'Profiles API', type: :request do
     end
 
     context 'authorized' do
-      before { get api_path, params: { access_token: access_token.token }, headers: headers }
+      before { get api_path, params: { access_token: access_token.token, format: :json }, headers: headers }
 
       it 'returns 200 status' do
         expect(response).to be_successful
@@ -33,7 +33,7 @@ describe 'Profiles API', type: :request do
 
       it 'does not return private fields' do
         %w[password encrypted_password].each do |attr|
-          expect(json).to_not have_key(attr)
+          expect(json).not_to have_key(attr)
         end
       end
     end

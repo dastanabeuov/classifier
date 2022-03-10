@@ -4,10 +4,11 @@ require 'rails_helper'
 
 RSpec.describe XclassesController, type: :controller do
   let(:user) { create(:user) }
-  before { login(user) }
   let(:xroot) { create(:xroot, user: user) }
   let(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
   let(:xclass) { create(:xclass, xcategory: xcategory, user: user) }
+
+  before { login(user) }
 
   describe 'GET #SHOW' do
     before { get :show, params: { xroot_id: xroot, xcategory_id: xcategory, id: xclass } }

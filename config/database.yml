@@ -21,4 +21,6 @@ production:
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
+  username: postgres
   database: classifier_production
+  password: <%= ENV['CLASSIFIER_DATABASE_PASSWORD'] %>

@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-feature 'ACTIVITY UPDATE', '
+describe 'ACTIVITY UPDATE', '
   Author edit
   Not author try edit
 ' do
-  given(:user) { create(:user) }
-  given(:user2) { create(:user) }
-  given!(:activity) { create(:activity, user: user) }
+  let(:user) { create(:user) }
+  let(:user2) { create(:user) }
+  let!(:activity) { create(:activity, user: user) }
 
-  scenario 'Author edit' do
+  it 'Author edit' do
     sign_in(user)
     visit activity_path(activity)
 
@@ -24,10 +24,10 @@ feature 'ACTIVITY UPDATE', '
     expect(page).to have_content 'NewText'
   end
 
-  scenario 'Not author try edit' do
+  it 'Not author try edit' do
     sign_in(user2)
     visit activity_path(activity)
 
-    expect(page).to_not have_link('btn-outline-warning', exact: true)
+    expect(page).not_to have_link('btn-outline-warning', exact: true)
   end
 end

@@ -6,7 +6,8 @@ class XclassesController < ApplicationController
   before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
   before_action :set_xcategory, only: %i[show edit update destroy new create update_inline]
   before_action :set_xclass, only:    %i[show edit update destroy update_inline]
-  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child xclass_children xclass_child]
+  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child]
+  #  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child xclass_children xclass_child]
 
   respond_to :html, :js
 
@@ -14,9 +15,9 @@ class XclassesController < ApplicationController
 
   def xcategories_sub_child; end
 
-  def xclass_children; end
+  # def xclass_children; end
 
-  def xclass_child; end
+  # def xclass_child; end
 
   def set_resources
     set_xroot
@@ -36,9 +37,7 @@ class XclassesController < ApplicationController
   end
 
   def create
-    @xclass = @xcategory.xclasses.build(xclass_params)
-    @xclass.user = current_user
-    @xclass.save
+    @xclass = @xcategory.xclasses.create(xclass_params)
     respond_with(@xroot, @xcategory, @xclass)
   end
 
@@ -84,5 +83,6 @@ class XclassesController < ApplicationController
                                    :synonym, :code, :full_code, :version_date, :publish, :xtype,
                                    :position, :parent_id,
                                    properties_attributes: %i[id title activity_id _destroy])
+                                   .merge(user: current_user)
   end
 end

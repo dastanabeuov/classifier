@@ -13,4 +13,6 @@
     <span class="arrow xclass-children-load" data-xroot-id="#{ xclass.xcategory.xroot.id }" data-xcategory-id="#{ xclass.xcategory.id }" data-xclass-id="#{ xclass.id }"></span>
 </li>
 
-<ul class="tree sub-menu collapse pl-2 #{ 'show' if @xclass.ancestors.include?(xclass) } xclass-children-#{ xclass.id }" id="xclass-#{ xclass.id }"></ul>
+<ul class="tree sub-menu collapse pl-2 #{ 'show' if @xclass.ancestors.include?(xclass) } xclass-children-#{ xclass.id }" id="xclass-#{ xclass.id }">
+  = render 'children', xclass: xclass
+</ul>

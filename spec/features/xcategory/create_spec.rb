@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-feature 'XCATEGORY CREATE', '
+describe 'XCATEGORY CREATE', '
   Authenticated user create
   Authenticated user create with errors
 ' do
-  given(:user) { create(:user) }
-  given(:guest) { create(:user) }
-  given!(:xroot) { create(:xroot, user: user) }
+  let(:user) { create(:user) }
+  let(:guest) { create(:user) }
+  let!(:xroot) { create(:xroot, user: user) }
 
-  scenario 'Authenticated user create' do
+  it 'Authenticated user create' do
     sign_in(user)
     visit new_xroot_xcategory_path(xroot)
 
@@ -25,7 +25,7 @@ feature 'XCATEGORY CREATE', '
     expect(page).to have_content 'MyText'
   end
 
-  scenario 'Authenticated user create with errors' do
+  it 'Authenticated user create with errors' do
     sign_in(user)
     visit new_xroot_xcategory_path(xroot)
 

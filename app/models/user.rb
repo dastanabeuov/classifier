@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  enum role: { guest: 0, moderator: 1, paid_user: 2, admin: 3 }#, _suffix: :role
+  
   has_many :xroots, dependent: :destroy
   has_many :xcategories, dependent: :destroy
   has_many :xclasses, dependent: :destroy

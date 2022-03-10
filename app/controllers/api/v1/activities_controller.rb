@@ -15,7 +15,7 @@ module Api
       end
 
       def create
-        @activity = current_resource_owner.activities.create(activity_params)
+        @activity = Activity.create(activity_params)
         respond_with @activity, serializer: ActivitySerializer
       end
 
@@ -40,6 +40,7 @@ module Api
                                          :synonym, :code, :version_date, :publish, :position,
                                          :parent_id,
                                          properties_attributes: %i[id title activity_id _destroy])
+                                         .merge(user: current_resource_owner)
       end
     end
   end

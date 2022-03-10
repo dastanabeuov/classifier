@@ -2,16 +2,12 @@
 
 class AddRolesToUsers < ActiveRecord::Migration[5.0]
   def up
-    add_column :users, :admin, :boolean, default: false
-    add_column :users, :moderator, :boolean, default: false
-    add_column :users, :paid_user, :boolean, default: false
-    add_column :users, :guest, :boolean, default: true
+    add_column :users, :role, :integer, default: 0, null: false
+    add_index :users, :role
   end
 
   def down
-    remove_column :users, :admin, :boolean, default: false
-    remove_column :users, :moderator, :boolean, default: false
-    remove_column :users, :paid_user, :boolean, default: false
-    remove_column :users, :guest, :boolean, default: true
+    remove_column :users, :role, :integer, default: 0, null: false
+    remove_index :users, :role
   end
 end

@@ -8,13 +8,16 @@ nav class="navbar sticky-top navbar-expand-md navbar-dark mb-5"
 
   .collapse.navbar-collapse id="navbarSupportedContent"
     ul.navbar-nav.mr-auto
+
       li.nav-item.dropdown.ml-2
-        a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Change locale"
-          = fa_icon "globe"
-        .dropdown-menu aria-labelledby="navbarDropdown"
-          = link_to 'Қазақша', root_path(locale: :kz), class: "dropdown-item"
-          = link_to 'Русский', root_path(locale: :ru), class: "dropdown-item"
-          = link_to 'English', root_path(locale: :en), class: "dropdown-item"
+        a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          = t I18n.locale
+        ul.dropdown-menu aria-labelledby="navbarDropdown"
+          - I18n.available_locales.each do |locale|
+            li
+              - unless I18n.locale == locale
+                = link_to t(locale), url_for(locale: locale), class: 'dropdown-item'
+
     - if user_signed_in?
       ul.navbar-nav.pull-xs-right
         li.nav-item.dropdown.ml-2
@@ -30,7 +33,7 @@ nav class="navbar sticky-top navbar-expand-md navbar-dark mb-5"
         li.nav-item.ml-2
           = link_to fa_icon("server"), "/oauth/applications", class: "nav-link", target: :_blank, title: "Applications"
         li.nav-item.ml-2
-          = link_to fa_icon("plug"), "/api_docs/single_swagger_doc", class: "nav-link", target: :_blank, title: "API docs"
+          = link_to fa_icon("plug"), "/api-docs/index.html", class: "nav-link", target: :_blank, title: "API docs"
         li.nav-item.ml-2
           = link_to fa_icon("keyboard-o"), "/admin/", class: "nav-link", title: "Admin panel"
         li.nav-item.dropdown.ml-2

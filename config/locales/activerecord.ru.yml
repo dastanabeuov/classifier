@@ -1,21 +1,44 @@
 ru:
   activerecord:
-   attributes:
-     xtypes:
-       name: "Название"
-       description: "Описание"
-   forms:
-    messages:
-      success: "Операция была успешно выполнена!"
-    buttons:
-     edit: "Редактировать"
-     submit: "Отправить"
-   menu:
-    new_xtype: "Добавить xtypes"
-   xtypes:
-    index:
-      title: "Список xtypes"
-    edit:
-      title: "Редактировать xtypes"
-    new:
-      title: "Добавить xtypes"
+    models:
+      xroot: Корень
+      xcategory: Категория
+      xclass: Класс
+      property: Свойство
+      activity: Деятельность
+    attributes:
+      xroot:
+        title: "Название"
+        synosym: "Синоним"
+        description: "Описание"
+        code: "Код"
+        version_date: "Дата"
+        publish: "Опубликовать"
+      xcategory:
+        title: "Название"
+        synosym: "Синоним"
+        description: "Описание"
+        code: "Код"
+        version_date: "Дата"
+        publish: "Опубликовать"
+      xclass:
+        title: "Название"
+        synosym: "Синоним"
+        description: "Описание"
+        code: "Код"
+        version_date: "Дата"
+        publish: "Опубликовать"
+        position: "Позиция"
+        ancestry: "Родословная"
+        xtype: "XТип"
+      activity:
+        title: "Название"
+        synosym: "Синоним"
+        description: "Описание"
+        code: "Код"
+        version_date: "Дата"
+        publish: "Опубликовать"
+        position: "Позиция"
+        ancestry: "Родословная"
+      property:
+        title: "Название"

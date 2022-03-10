@@ -1,21 +1,44 @@
 en:
   activerecord:
+    models:
+      xroot: Xroot
+      xcategory: Xcategory
+      xclass: Xclass
+      property: Property
+      activity: Activity
     attributes:
-      xtypes:
-        name: "Name"
+      xroot:
+        title: "Title"
+        synosym: "Synonym"
         description: "Description"
-  forms:
-    messages:
-      success: "Operation succeeded!"
-    buttons:
-      edit: "Edit"
-      submit: "Submit"
-  menu:
-    new_xtype: "Add an xtype"
-  xtypes:
-    index:
-      title: "List of xtypes"
-    edit:
-      title: "Add xtypes"
-    new:
-      title: "New xtypes"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+      xcategory:
+        title: "Title"
+        synosym: "Synonym"
+        description: "Description"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+      xclass:
+        title: "Title"
+        synosym: "Synonym"
+        description: "Description"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+        position: "Position"
+        ancestry: "Ancestry"
+        xtype: "Xtype"
+      activity:
+        title: "Title"
+        synosym: "Synonym"
+        description: "Description"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+        position: "Position"
+        ancestry: "Ancestry"
+      property:
+        title: "Title"

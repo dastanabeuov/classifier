@@ -15,4 +15,5 @@
   </li>
 
   <ul class="tree sub-menu collapse pl-2 #{ 'show' if @xclass.ancestors.include?(child) } xclass-child-#{ child.id }" id="child-#{ child.id }">
+    = render 'child', child: child
   </ul>

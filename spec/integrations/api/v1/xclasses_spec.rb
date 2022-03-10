@@ -2,8 +2,8 @@
 
 require 'swagger_helper'
 
-RSpec.describe 'Xroots', type: :request do
-  path '/api/v1/xroots/{id}' do
+RSpec.describe 'Api::V1::Xclases', type: :request do
+  path '/api/v1/xroots/{id}/xcategories/{id}/xclasses' do
     get 'show' do
       consumes 'application/json'
       produces 'application/json'
@@ -12,7 +12,6 @@ RSpec.describe 'Xroots', type: :request do
 
       parameter name: :id, in: :path, type: :string
 
-      let(:user) { create(:user) }
       let(:id) { create(:xroot, user: user).id }
 
       response '200', 'Xroot show' do

@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-feature 'XROOT CREATE', '
+describe 'XROOT CREATE', '
   Authenticated user create
   Authenticated user create with errors
 ' do
-  given(:user) { create(:user) }
-  given(:guest) { create(:user) }
+  let(:user) { create(:user) }
+  let(:guest) { create(:user) }
 
-  scenario 'Authenticated user create' do
+  it 'Authenticated user create' do
     sign_in(user)
     visit xroots_path
 
@@ -24,7 +24,7 @@ feature 'XROOT CREATE', '
     expect(page).to have_content 'MyText'
   end
 
-  scenario 'Authenticated user create with errors' do
+  it 'Authenticated user create with errors' do
     sign_in(user)
     visit xroots_path
 
@@ -37,7 +37,7 @@ feature 'XROOT CREATE', '
   end
 
   context 'Multiple session' do
-    scenario "Appears on another user's page xroot." do
+    it "Appears on another user's page xroot." do
       Capybara.using_session('user') do
         sign_in(user)
         visit new_xroot_path

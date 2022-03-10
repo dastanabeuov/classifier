@@ -15,7 +15,7 @@ module Api
       end
 
       def create
-        @xroot = current_resource_owner.xroots.create(xroot_params)
+        @xroot = Xroot.create(xroot_params)
         respond_with @xroot, serializer: XrootSerializer
       end
 
@@ -39,6 +39,7 @@ module Api
         params.require(:xroot).permit(:title, :description,
                                       :synonym, :code, :version_date, :publish,
                                       properties_attributes: %i[id title activity_id _destroy])
+                                      .merge(user: current_resource_owner)
       end
     end
   end

@@ -11,7 +11,7 @@ module Api
       end
 
       def create
-        @xcategory = @xroot.xcategories.create(xcategory_params.merge(user: current_resource_owner))
+        @xcategory = @xroot.xcategories.create(xcategory_params)
         respond_with @xroot, @xcategory, serializer: XcategorySerializer
       end
 
@@ -39,6 +39,7 @@ module Api
         params.require(:xcategory).permit(:title, :description,
                                           :synonym, :code, :version_date, :publish,
                                           properties_attributes: %i[id title activity_id _destroy])
+                                          .merge(user: current_resource_owner)
       end
     end
   end

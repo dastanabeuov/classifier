@@ -45,7 +45,7 @@ RSpec.describe OauthCallbacksController, type: :controller do
       end
 
       it 'does not login user' do
-        expect(subject.current_user).to_not be
+        expect(subject.current_user).not_to be
       end
     end
   end

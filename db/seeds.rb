@@ -1,28 +1,25 @@
 # frozen_string_literal: true
 
-Xroot.create!([
-                { title: 'XRoot', synonym: '', description: '', code: '', version_date: '', publish: false,
-                  user_id: User.last.id }
-              ])
+3.times do
+  Xroot.create({ title: Faker::Address.city, user_id: User.last.id })
+  
+  3.times do
+    Xcategory.create({ title: Faker::Ancient.god, xroot_id: Xroot.last.id, user_id: User.last.id })
 
-Xcategory.create!([
-                    { title: 'XCategory', synonym: '', description: '', code: '', version_date: '', publish: false,
-                      xroot_id: Xroot.last.id, user_id: User.last.id }
-                  ])
+    3.times do
+      Xclass.create({ title: Faker::App.name, full_code: Faker::Alphanumeric.alpha(number: 10), xcategory_id: Xcategory.last.id, user_id: User.last.id })
+    end
+  end
+end
 
-Xclass.create!([
-                 { title: '1A Xclass', synonym: nil, description: nil, code: 'A', full_code: '1A', version_date: nil, publish: nil,
-                   xtype: nil, position: nil, ancestry: nil, ancestry_depth: 0, xcategory_id: Xcategory.last.id, user_id: User.last.id }
-               ])
+500.times do
+  Xclass.create({ title: Faker::Beer.brand, full_code: Faker::Alphanumeric.alpha(number: 20), parent_id: Xclass.first.id, xcategory_id: Xcategory.last.id, user_id: User.last.id })
+end
 
-Xclass.create!([
-                 { title: '2B Xclass', synonym: nil, description: nil, code: 'B', full_code: '2B', version_date: nil, publish: nil,
-                   xtype: nil, position: nil, parent_id: Xclass.first.id, ancestry_depth: 0, xcategory_id: Xcategory.last.id, user_id: User.last.id }
-               ])
+500.times do
+  Xclass.create({ title: Faker::Beer.brand, full_code: Faker::Alphanumeric.alpha(number: 20), parent_id: Xclass.second.id, xcategory_id: Xcategory.last.id, user_id: User.last.id })
+end
 
-500.times do |index|
-  Xclass.last.children.create!([
-                                 { title: "#{index}C Xclass", synonym: nil, description: nil, code: 'C', full_code: "#{index}C", version_date: nil,
-                                   publish: nil, xtype: nil, position: nil, parent_id: Xclass.second.id, ancestry_depth: 0, xcategory_id: Xcategory.last.id, user_id: User.last.id }
-                               ])
+500.times do
+  Xclass.create({ title: Faker::Beer.brand, full_code: Faker::Alphanumeric.alpha(number: 20), parent_id: Xclass.last.id, xcategory_id: Xcategory.last.id, user_id: User.last.id })
 end

@@ -63,7 +63,7 @@ describe 'xclasses API', type: :request do
       context '- invalid attributes' do
         it '- returns 422 status' do
           post api_path, params: { xclass: invalid_attrs, access_token: access_token.token, format: :json }
-          expect(response).to have_http_status(422)
+          expect(response).to have_http_status(:unprocessable_entity)
         end
       end
 

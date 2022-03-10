@@ -2,7 +2,7 @@
   .form-inline.hidden data-resource-id="#{xcategory.id}"
     = form_with model: [xcategory], url: update_inline_xroot_xcategory_path(xcategory.xroot, xcategory), class: "form-update-inline" do |f|
       h1 class="card-header"
-        = f.text_field :title, class: 'form-control', placeholder: 'Title'
+        = f.text_field :title, required: true, minlegth: 2, class: 'form-control', placeholder: 'Title'
 
       .card-body
         .field.form-group

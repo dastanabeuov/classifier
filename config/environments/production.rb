@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: 'classifier-beta-version.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'classifier-beta-version.herokuapp.com' }
 
   config.action_mailer.smtp_settings = {
-    user_name: ENV['USERNAME'],
-    password: ENV['PASSWORD'],
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
     domain: 'gmail.com',
     address: 'smtp.gmail.com',
     port: '587',
@@ -23,7 +24,7 @@ Rails.application.configure do
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
 
   config.assets.compile = false
 

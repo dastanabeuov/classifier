@@ -1,0 +1,148 @@
+ru:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: 'Имя'
+        redirect_uri: 'URI перенаправления'
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: 'не может содержать фрагмент.'
+              invalid_uri: 'должен быть действительным URI.'
+              unspecified_scheme: 'необходимо указать схему.'
+              relative_uri: 'должен быть абсолютным URI.'
+              secured_uri: 'должен быть HTTPS/SSL URI.'
+              forbidden_uri: 'запрещено сервером.'
+            scopes:
+              not_match_configured: "не соответствует настроенному на сервере."
+
+  doorkeeper:
+    applications:
+      confirmations:
+        destroy: 'Уверены ли вы?'
+      buttons:
+        edit: 'Редактировать'
+        destroy: 'Уничтожить'
+        submit: 'Отправить'
+        cancel: 'Отмена'
+        authorize: 'Авторизоваться'
+      form:
+        error: 'Упс! Проверьте форму на возможные ошибки'
+      help:
+        confidential: 'Приложение будет использоваться там, где секрет клиента может быть конфиденциальным. Нативные мобильные приложения и одностраничные приложения считаются неконфиденциальными.'
+        redirect_uri: 'Используйте одну строку для каждого URI'
+        blank_redirect_uri: "Оставьте это поле пустым, если вы настроили своего провайдера для использования учетных данных клиента, учетных данных владельца ресурса или любого другого типа предоставления, который не требует URI перенаправления."
+        scopes: 'Разделяйте области пробелами. Оставьте пустым, чтобы использовать области по умолчанию.'
+      edit:
+        title: 'Изменить приложение'
+      index:
+        title: 'Ваши приложения'
+        new: 'Новое приложение'
+        name: 'Имя'
+        callback_url: 'URL-адрес обратного вызова'
+        confidential: 'Конфиденциально?'
+        actions: 'Действия'
+        confidentiality:
+          'Да': 'Да'
+          'Нет': 'Нет'
+      new:
+        title: 'Новое приложение'
+      show:
+        title: 'Имя приложения %{name}'
+        application_id: 'UID'
+        secret: 'Секрет'
+        secret_hashed: 'Секретный хэш'
+        scopes: 'Scopes'
+        confidential: 'Конфиденциально'
+        callback_urls: 'URL обратного вызова'
+        actions: 'Действия'
+        not_defined: 'Не определено'
+
+    authorizations:
+      buttons:
+        authorize: 'Разрешить'
+        deny: 'Отрицать'
+      error:
+        title: 'произошла ошибка'
+      new:
+        title: 'Требуется Авторизация'
+        prompt: 'Разрешить % {client_name} использовать ваш аккаунт?'
+        able_to: 'Это приложение сможет'
+      show:
+        title: 'Код авторизации'
+      form_post:
+        title: 'Отправить эту форму'
+
+    authorized_applications:
+      confirmations:
+        revoke: 'Уверены ли вы?'
+      buttons:
+        revoke: 'Отозвать'
+      index:
+        title: 'Ваши авторизованные приложения'
+        application: 'Приложение'
+        created_at: 'Создано в'
+        date_format: '%Y-%m-%d %H:%M:%S'
+
+    pre_authorization:
+      status: 'Предварительная авторизация'
+
+    errors:
+      messages:
+        # Common error messages
+        invalid_request:
+          unknown: 'В запросе отсутствует обязательный параметр, он содержит неподдерживаемое значение параметра или имеет иной неверный формат.'
+          missing_param: 'Отсутствует обязательный параметр: %{value}.'
+          request_not_authorized: 'Запрос должен быть авторизован. Обязательный параметр для запроса авторизации отсутствует или недействителен.'
+        invalid_redirect_uri: "Запрошенный URI перенаправления имеет неверный формат или не соответствует URI перенаправления клиента."
+        unauthorized_client: 'Клиент не авторизован для выполнения этого запроса с использованием этого метода.'
+        access_denied: 'Владелец ресурса или сервер авторизации отклонил запрос.'
+        invalid_scope: 'Запрошенная область недействительна, неизвестна или имеет неверный формат.'
+        invalid_code_challenge_method: 'Метод запроса кода должен быть простым или S256.'
+        server_error: 'Сервер авторизации столкнулся с непредвиденной ситуацией, из-за которой он не смог выполнить запрос.'
+        temporarily_unavailable: 'Сервер авторизации в настоящее время не может обработать запрос из-за временной перегрузки или технического обслуживания сервера.'
+
+        # Configuration error messages
+        credential_flow_not_configured: 'Сбой потока учетных данных пароля владельца ресурса из-за того, что Doorkeeper.configure.resource_owner_from_credentials не настроен.'
+        resource_owner_authenticator_not_configured: 'Не удалось найти владельца ресурса из-за того, что Doorkeeper.configure.resource_owner_authenticator не настроен.'
+        admin_authenticator_not_configured: 'Доступ к панели администратора запрещен из-за того, что Doorkeeper.configure.admin_authenticator не настроен.'
+
+        # Access grant errors
+        unsupported_response_type: 'Сервер авторизации не поддерживает этот тип ответа.'
+        unsupported_response_mode: 'Сервер авторизации не поддерживает этот режим ответа.'
+
+        # Access token errors
+        invalid_client: 'Ошибка аутентификации клиента из-за неизвестного клиента, отсутствия аутентификации клиента или неподдерживаемого метода аутентификации.'
+        invalid_grant: 'Предоставленное разрешение на авторизацию недействительно, просрочено, отозвано, не соответствует URI перенаправления, используемому в запросе на авторизацию, или было выдано другому клиенту.'
+        unsupported_grant_type: 'Тип предоставления авторизации не поддерживается сервером авторизации.'
+
+        invalid_token:
+          revoked: "Маркер доступа был отозван"
+          expired: "Срок действия токена доступа истек"
+          unknown: "Маркер доступа недействителен"
+        revoke:
+          unauthorized: "У вас нет прав на отзыв этого токена"
+
+    flash:
+      applications:
+        create:
+          notice: 'Приложение создано.'
+        destroy:
+          notice: 'Приложение удалено.'
+        update:
+          notice: 'Приложение обновлено.'
+      authorized_applications:
+        destroy:
+          notice: 'Заявление отозвано.'
+
+    layouts:
+      admin:
+        title: 'Doorkeeper'
+        nav:
+          oauth2_provider: 'OAuth2 Провайдер'
+          applications: 'Приложения'
+          home: 'Домой'
+      application:
+        title: 'OAuth требуется авторизация'

@@ -1,0 +1,148 @@
+kz:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: 'Атауы'
+        redirect_uri: 'URI қайта бағыттау'
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: 'фрагментті қамтуы мүмкін емес.'
+              invalid_uri: 'жарамды URI болуы керек.'
+              unspecified_scheme: 'схемасы көрсетілуі керек.'
+              relative_uri: 'абсолютті URI болуы керек.'
+              secured_uri: 'HTTPS/SSL URI болуы керек.'
+              forbidden_uri: 'сервер тыйым салған.'
+            scopes:
+              not_match_configured: "серверде конфигурацияланғанға сәйкес келмейді."
+
+  doorkeeper:
+    applications:
+      confirmations:
+        destroy: 'Сіз сенімдісіз бе?'
+      buttons:
+        edit: 'Өңдеу'
+        destroy: 'Жою'
+        submit: 'жіберу'
+        cancel: 'Болдырмау'
+        authorize: 'Жүйеге кіру'
+      form:
+        error: 'Ой! Мүмкін қателер үшін пішінді тексеріңіз'
+      help:
+        confidential: 'Қолданба клиенттің құпиясы маңызды болуы мүмкін жерде пайдаланылады. Жергілікті мобильді қолданбалар мен бір беттік қолданбалар құпия емес болып саналады.'
+        redirect_uri: 'Әр URI үшін бір жолды пайдаланыңыз'
+        blank_redirect_uri: "Провайдеріңізді клиент тіркелгі деректерін, ресурс иесінің тіркелгі деректерін немесе қайта бағыттау URI қажет етпейтін кез келген басқа грант түрін пайдалану үшін теңшеген болсаңыз, бұл өрісті бос қалдырыңыз."
+        scopes: 'Аймақтарды бос орындармен бөліңіз. Әдепкі аумақтарды пайдалану үшін бос қалдырыңыз.'
+      edit:
+        title: 'Қосымшаны өзгерту'
+      index:
+        title: 'қосымшаларыңыз'
+        new: 'Жаңа Қосымша'
+        name: 'Атауы'
+        callback_url: 'URL-кері қоңырау шалу мекенжайы'
+        confidential: 'Құпия ма?'
+        actions: 'Әрекеттер'
+        confidentiality:
+          'Ия': 'Ия'
+          'Жоқ': 'Жоқ'
+      new:
+        title: 'Жаңа Қосымша'
+      show:
+        title: 'Қосымша атауы %{name}'
+        application_id: 'UID'
+        secret: 'Құпия'
+        secret_hashed: 'Құпия хэш'
+        scopes: 'Scopes'
+        confidential: 'Құпия түрде'
+        callback_urls: 'URL қайта қоңырау соғу'
+        actions: 'Әрекеттер'
+        not_defined: 'Белгісіз'
+
+    authorizations:
+      buttons:
+        authorize: 'рұқсат ету'
+        deny: 'Бас тарту'
+      error:
+        title: 'Қате орын алды'
+      new:
+        title: 'Авторизация қажет'
+        prompt: '%{client_name} қолданбасына есептік жазбаңызды пайдалануға рұқсат бересіз бе?'
+        able_to: 'Бұл қолданба мүмкін'
+      show:
+        title: 'Авторизация коды'
+      form_post:
+        title: 'Осы пішінді жіберіңіз'
+
+    authorized_applications:
+      confirmations:
+        revoke: 'Сіз сенімдісіз бе?'
+      buttons:
+        revoke: 'қайтарып алу'
+      index:
+        title: 'Сіздің рұқсат етілген қосымшаларыңыз'
+        application: 'Қосымша'
+        created_at: 'Құрылған'
+        date_format: '%Y-%m-%d %H:%M:%S'
+
+    pre_authorization:
+      status: 'Алдын ала рұқсат беру'
+
+    errors:
+      messages:
+        # Common error messages
+        invalid_request:
+          unknown: 'Сұрауда қажетті параметр жоқ, қолдау көрсетілмейтін параметр мәні бар немесе басқаша дұрыс пішімделген.'
+          missing_param: 'Міндетті параметр жоқ: %{value}.'
+          request_not_authorized: 'Өтінім рұқсат етілген болуы керек. Авторизация сұрауы үшін қажетті параметр жоқ немесе жарамсыз.'
+        invalid_redirect_uri: "Сұралған қайта бағыттау URI қате пішімделген немесе клиенттің қайта бағыттау URI мекенжайына сәйкес келмейді."
+        unauthorized_client: 'Клиенттің осы әдісті пайдаланып бұл сұрауды жасауға рұқсаты жоқ.'
+        access_denied: 'Ресурс иесі немесе авторизация сервері сұрауды қабылдамады.'
+        invalid_scope: 'Сұралған аумақ жарамсыз, белгісіз немесе дұрыс емес.'
+        invalid_code_challenge_method: 'Кодты сұрау әдісі қарапайым немесе S256 болуы керек.'
+        server_error: 'Авторизация сервері сұрауды орындауға кедергі келтірген күтпеген жағдайға тап болды.'
+        temporarily_unavailable: 'Уақытша шамадан тыс жүктелу немесе серверге техникалық қызмет көрсету себебінен авторизация сервері қазір сұрауды өңдей алмайды.'
+
+        # Configuration error messages
+        credential_flow_not_configured: 'Doorkeeper.configure.resource_owner_from_credentials конфигурацияланбағандықтан, ресурс иесінің құпия сөзі тіркелгі деректерінің ағыны сәтсіз аяқталды.'
+        resource_owner_authenticator_not_configured: 'Ресурс иесі табылмады, себебі Doorkeeper.configure.resource_owner_authenticator конфигурацияланбаған.'
+        admin_authenticator_not_configured: 'Doorkeeper.configure.admin_authenticator конфигурацияланбағандықтан, әкімші панеліне кіруге тыйым салынады.'
+
+        # Access grant errors
+        unsupported_response_type: 'Авторизация сервері бұл жауап түрін қолдамайды.'
+        unsupported_response_mode: 'Авторизация сервері бұл жауап режимін қолдамайды.'
+
+        # Access token errors
+        invalid_client: 'Клиент аутентификациясы белгісіз клиентке, клиенттің аутентификациясының жоқтығына немесе қолдау көрсетілмейтін аутентификация әдісіне байланысты орындалмады.'
+        invalid_grant: 'Берілген авторизация рұқсаты жарамсыз, мерзімі өтіп кеткен, күші жойылған, авторизация сұрауында пайдаланылған қайта бағыттау URI мекенжайына сәйкес келмейді немесе басқа клиентке берілген.'
+        unsupported_grant_type: 'Авторизация беру түріне авторизация сервері қолдау көрсетпейді.'
+
+        invalid_token:
+          revoked: "Кіру таңбалауышы кері қайтарылды"
+          expired: "Қатынас токенінің мерзімі аяқталды"
+          unknown: "Қатынас таңбалауышы жарамсыз"
+        revoke:
+          unauthorized: "Бұл белгіні қайтарып алуға құқығыңыз жоқ"
+
+    flash:
+      applications:
+        create:
+          notice: 'Қосымша жасалды.'
+        destroy:
+          notice: 'Қосымша жойылды.'
+        update:
+          notice: 'Қосымша жаңартылды.'
+      authorized_applications:
+        destroy:
+          notice: 'Өтініш қайтарып алынды.'
+
+    layouts:
+      admin:
+        title: 'Doorkeeper'
+        nav:
+          oauth2_provider: 'OAuth2 Провайдер'
+          applications: 'Қосымшалар'
+          home: 'Үй'
+      application:
+        title: 'OAuth рұқсат қажет'

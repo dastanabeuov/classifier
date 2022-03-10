@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-feature 'ACTIVITY CREATE', '
+describe 'ACTIVITY CREATE', '
   Authenticated user create
   Authenticated user creates with errors
 ' do
-  given(:user) { create(:user) }
+  let(:user) { create(:user) }
 
-  scenario 'Authenticated user create' do
+  it 'Authenticated user create' do
     sign_in(user)
     visit activities_path
 
@@ -22,7 +22,7 @@ feature 'ACTIVITY CREATE', '
     expect(page).to have_content 'MyText'
   end
 
-  scenario 'Authenticated user creates with errors' do
+  it 'Authenticated user creates with errors' do
     sign_in(user)
     visit activities_path
 

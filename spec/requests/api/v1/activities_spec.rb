@@ -81,7 +81,7 @@ describe 'Activities API', type: :request do
       context '- invalid attributes' do
         it '- returns 422 status' do
           post api_path, params: { activity: invalid_attrs, access_token: access_token.token, format: :json }
-          expect(response).to have_http_status(422)
+          expect(response).to have_http_status(:unprocessable_entity)
         end
       end
 
@@ -110,7 +110,7 @@ describe 'Activities API', type: :request do
     context 'Authorized' do
       it '- returns 200 status' do
         put api_path, params: { activity: valid_attrs, access_token: access_token.token, format: :json }
-        expect(response).to have_http_status(204)
+        expect(response).to have_http_status(:no_content)
       end
     end
 

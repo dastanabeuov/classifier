@@ -3,7 +3,7 @@
 
   .xclass
     .field.form-group
-      = f.text_field :title, class: 'form-control', placeholder: 'Title'
+      = f.text_field :title, required: true, minlegth: 2, class: 'form-control', placeholder: 'Title'
 
     .field.form-group
       = f.text_field :synonym, class: 'form-control', placeholder: 'Synonym'

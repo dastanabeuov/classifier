@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { should have_many(:activities).dependent(:destroy) }
-  it { should have_many(:xroots).dependent(:destroy) }
-  it { should have_many(:xcategories).dependent(:destroy) }
-  it { should have_many(:xclasses).dependent(:destroy) }
+  it { is_expected.to have_many(:activities).dependent(:destroy) }
+  it { is_expected.to have_many(:xroots).dependent(:destroy) }
+  it { is_expected.to have_many(:xcategories).dependent(:destroy) }
+  it { is_expected.to have_many(:xclasses).dependent(:destroy) }
 
-  it { should validate_presence_of(:email) }
-  it { should validate_presence_of(:password) }
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to validate_presence_of(:password) }
 
   describe '.author_of?(resource)' do
     let(:user)  { create(:user) }
@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'invalid author' do
-      expect(user2).to_not be_author_of(xroot)
+      expect(user2).not_to be_author_of(xroot)
     end
   end
 end

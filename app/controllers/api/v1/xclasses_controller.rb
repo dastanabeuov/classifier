@@ -11,7 +11,7 @@ module Api
       end
 
       def create
-        @xclass = @xcategory.xclasses.create(xclass_params.merge(user: current_resource_owner))
+        @xclass = @xcategory.xclasses.create(xclass_params)
         respond_with @xcategory.xroot, @xcategory, @xclass, serializer: XclassSerializer
       end
 
@@ -37,9 +37,11 @@ module Api
 
       def xclass_params
         params.require(:xclass).permit(:title, :description,
-                                       :synonym, :code, :version_date, :publish, :xtype,
-                                       :position, :parent_id,
+                                       :synonym, :code, :full_code,
+                                       :version_date, :publish, 
+                                       :xtype, :position, :parent_id,
                                        properties_attributes: %i[id title activity_id _destroy])
+                                       .merge(user: current_resource_owner)
       end
     end
   end

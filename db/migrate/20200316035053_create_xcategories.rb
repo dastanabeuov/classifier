@@ -3,7 +3,7 @@
 class CreateXcategories < ActiveRecord::Migration[5.0]
   def up
     create_table :xcategories do |t|
-      t.string :title
+      t.string :title, null: false
       t.string :synonym
       t.text :description
       t.string :code
@@ -20,7 +20,7 @@ class CreateXcategories < ActiveRecord::Migration[5.0]
 
   def down
     remove_table :xcategories do |t|
-      t.string :title
+      t.string :title, null: false
       t.string :synonym
       t.text :description
       t.string :code

@@ -9,7 +9,7 @@ class XrootsController < ApplicationController
 
   respond_to :html, :js
 
-  def xcategories_xcategory; end
+def xcategories_xcategory; end
 
   def index
     @xroots = Xroot.all
@@ -27,7 +27,7 @@ class XrootsController < ApplicationController
   end
 
   def create
-    @xroot = current_user.xroots.create(xroot_params)
+    @xroot = Xroot.create(xroot_params)
     respond_with(@xroot)
   end
 
@@ -71,5 +71,6 @@ class XrootsController < ApplicationController
     params.require(:xroot).permit(:title, :description,
                                   :synonym, :code, :version_date, :publish,
                                   properties_attributes: %i[id title activity_id _destroy])
+                                  .merge(user: current_user)
   end
 end

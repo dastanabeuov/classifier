@@ -22,3 +22,7 @@
 /config/database.yml
 /config/development.sphinx.conf
 /db/sphinx
+
+#api docs swagger
+/swagger/api/* linguist-generated=true
+/swagger/api/* -diff

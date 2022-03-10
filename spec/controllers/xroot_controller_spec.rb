@@ -4,8 +4,9 @@ require 'rails_helper'
 
 RSpec.describe XrootsController, type: :controller do
   let(:user) { create(:user) }
-  before { login(user) }
   let(:xroot) { create(:xroot, user: user) }
+
+  before { login(user) }
 
   describe 'GET #INDEX' do
     let(:xroot_1) { create(:xroot, user: user) }

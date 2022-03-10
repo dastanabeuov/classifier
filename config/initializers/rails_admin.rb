@@ -31,17 +31,11 @@ RailsAdmin.config do |config|
 
   # ##Neslable atrributes setting
   config.model 'Xclass' do
-    nestable_tree({
-                    position_field: :position,
-                    max_depth: 999
-                  })
+    nestable_tree({ position_field: :position, max_depth: 999 })
   end
 
   config.model 'Activity' do
-    nestable_tree({
-                    position_field: :position,
-                    max_depth: 999
-                  })
+    nestable_tree({ position_field: :position, max_depth: 999 })
   end
 
   # config.model 'Xcategory' do
@@ -73,15 +67,29 @@ RailsAdmin.config do |config|
   config.model 'Xroot' do
     list do
       field :id
-      field :name
+      field :title
       field :description
+      field :user do
+        searchable :email
+        pretty_value do
+            value.try(:email)
+        end
+      end
+      field :properties do
+        searchable :title
+        pretty_value do
+            value.try(:title)
+        end
+      end
+      field :created_at
+      field :updated_at
     end
   end
 
   config.model 'Xcategory' do
     list do
       field :id
-      field :name
+      field :title
       field :description
     end
   end
@@ -89,7 +97,7 @@ RailsAdmin.config do |config|
   config.model 'Xclass' do
     list do
       field :id
-      field :name
+      field :title
       field :description
     end
   end
@@ -97,7 +105,7 @@ RailsAdmin.config do |config|
   config.model 'Property' do
     list do
       field :id
-      field :name
+      field :title
       field :description
     end
   end
@@ -105,7 +113,7 @@ RailsAdmin.config do |config|
   config.model 'Activity' do
     list do
       field :id
-      field :name
+      field :title
       field :description
     end
   end
@@ -114,10 +122,7 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :email
-      field :admin
-      field :moderator
-      field :paid_user
-      field :guest
+      field :role
     end
   end
 
@@ -126,6 +131,7 @@ RailsAdmin.config do |config|
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
+
   config.current_user_method(&:current_user)
 
   # ##CancanCan

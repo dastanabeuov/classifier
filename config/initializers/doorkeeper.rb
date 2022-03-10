@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (requires ORM extensions installed).
   # Check the list of supported ORMs here: https://github.com/doorkeeper-gem/doorkeeper#orms
@@ -7,16 +5,18 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    current_user || warden.authenticate!(scopes: :user)
-    # User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
+    current_user || warden.authenticate!(scope: :user)
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
   # file then you need to declare this block in order to restrict access to the web interface for
   # adding oauth authorized applications. In other case it will return 403 Forbidden response
   # every time somebody will try to access the admin web interface.
-
+  #
   admin_authenticator do
+    # Put your admin authentication logic here.
+    # Example implementation:
+  
     if current_user
       head :forbidden unless current_user.admin?
     else
@@ -83,7 +83,7 @@ Doorkeeper.configure do
 
   # Authorization Code expiration time (default: 10 minutes).
   #
-  authorization_code_expires_in 10.minutes
+  authorization_code_expires_in 2.hours
 
   # Access token expiration time (default: 2 hours).
   # If you want to disable expiration, set this to `nil`.
@@ -98,13 +98,12 @@ Doorkeeper.configure do
   #
   # `context` has the following properties available:
   #
-  #   * `client` - the OAuth client application (see Doorkeeper::OAuth::Client)
-  #   * `grant_type` - the grant type of the request (see Doorkeeper::OAuth)
-  #   * `scopes` - the requested scopes (see Doorkeeper::OAuth::Scopes)
-  #   * `resource_owner` - authorized resource owner instance (if present)
+  # `client` - the OAuth client application (see Doorkeeper::OAuth::Client)
+  # `grant_type` - the grant type of the request (see Doorkeeper::OAuth)
+  # `scopes` - the requested scopes (see Doorkeeper::OAuth::Scopes)
   #
   # custom_access_token_expires_in do |context|
-  #   context.client.additional_settings.implicit_oauth_expiration
+  #   context.client.application.additional_settings.implicit_oauth_expiration
   # end
 
   # Use a custom class for generating the access token.
@@ -163,7 +162,8 @@ Doorkeeper.configure do
   # since plain values can no longer be retrieved.
   #
   # Note: If you are already a user of doorkeeper and have existing tokens
-  # in your installation, they will be invalid without adding 'fallback: :plain'.
+  # in your installation, they will be invalid without enabling the additional
+  # setting `fallback_to_plain_secrets` below.
   #
   # hash_token_secrets
   # By default, token secrets will be hashed using the
@@ -197,9 +197,7 @@ Doorkeeper.configure do
   # This will ensure that old access tokens and secrets
   # will remain valid even if the hashing above is enabled.
   #
-  # This can be done by adding 'fallback: plain', e.g. :
-  #
-  # hash_application_secrets using: '::Doorkeeper::SecretStoring::BCrypt', fallback: :plain
+  # fallback_to_plain_secrets
 
   # Issue access tokens with refresh token (disabled by default), you may also
   # pass a block which accepts `context` to customize when to give a refresh

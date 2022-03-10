@@ -1,4 +1,4 @@
-- xcategory.xclasses.roots.find_each(batch_size: 1000) do |xclass|
+- xcategory.xclasses.roots.find_each(batch_size: 50) do |xclass|
   <li data-toggle="collapse" data-target="#xclass-#{ xclass.id }" class="collapsed">
     
     <a class="file" href="#{ xroot_xcategory_xclass_path(xclass.xcategory.xroot, xclass.xcategory, xclass) }">
@@ -14,5 +14,5 @@
       <span class="arrow xcategories-sub-children-load" data-xroot-id="#{ xclass.xcategory.xroot.id }" data-xcategory-id="#{ xclass.xcategory.id }" data-xclass-id="#{ xclass.id }"></span>
   </li>
     
-  <ul class="sub-menu collapse pl-2 xcategories-sub-children-#{ xclass.id }" id="xclass-#{ xclass.id }">
+  <ul class="tree sub-menu collapse pl-2 xcategories-sub-children-#{ xclass.id }" id="xclass-#{ xclass.id }">
   </ul>

@@ -3,11 +3,11 @@
 class CreateXclasses < ActiveRecord::Migration[5.0]
   def up
     create_table :xclasses do |t|
-      t.string :title
+      t.string :title, null: false
       t.string :synonym
       t.text :description
       t.string :code
-      t.text :full_code, unique: true
+      t.text :full_code, null: false, unique: true
       t.date :version_date
       t.boolean :publish
       t.boolean :xtype
@@ -27,11 +27,11 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
 
   def down
     remove_table :xclasses do |t|
-      t.string :title
+      t.string :title, null: false
       t.string :synonym
       t.text :description
       t.string :code
-      t.text :full_code, unique: true
+      t.text :full_code, null: false, unique: true
       t.date :version_date
       t.boolean :publish
       t.boolean :xtype

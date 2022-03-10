@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'database_cleaner'
+
 require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -20,22 +22,41 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
+  config.backtrace_inclusion_patterns = [/app|spec/]
+  # Example records
   config.include FactoryBot::Syntax::Methods
+  # Devise engine require from controllers
   config.include Devise::Test::ControllerHelpers, type: :controller
+  # require /support/*.rb
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
   config.include RequestHelpers, type: :request
 
+  # capybara from interface testing
   Capybara.javascript_driver = :selenium_chrome_headless
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
   config.after(:all) do
     FileUtils.rm_rf("#{Rails.root}/tmp/storage")
   end
+
+  # database_cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
+# DSL from testing rspec
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec

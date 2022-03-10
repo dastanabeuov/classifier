@@ -4,7 +4,7 @@
       = render 'shared/btn_brand'
       div.menu-list
         <ul id="menu-content" class="menu-content collapse out">
-          - @xroot.xcategories.find_each(batch_size: 1000) do |xcategory|
+          - @xroot.xcategories.find_each(batch_size: 50) do |xcategory|
             <li data-toggle="collapse" data-target="#xcategory-#{ xcategory.id }" class="collapsed #{ 'active' if @xclass.xcategory == xcategory }">
               
               <a class="file" href="#{ xroot_xcategory_path(xcategory.xroot, xcategory) }">
@@ -28,7 +28,7 @@
         </ul>
 
     div.content
-      = render 'xroots/example_info_0', xroot: @xroot
+      = render 'xroots/examples/example_info_0', xroot: @xroot
       
       nav aria-label="breadcrumb"
         <ol class="breadcrumb">

@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Property, type: :model do
-  it { should belong_to(:propertyable) }
-  it { should belong_to(:activity) }
-
-  it { should validate_presence_of(:title) }
+  it { is_expected.to belong_to(:propertyable) }
+  it { is_expected.to belong_to(:activity) }
 end

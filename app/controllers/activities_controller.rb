@@ -26,7 +26,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = current_user.activities.build(activity_params)
+    @activity = Activity.create(activity_params)
     @activity.save
     respond_with(@activity)
   end
@@ -52,5 +52,6 @@ class ActivitiesController < ApplicationController
                                      :synonym, :code, :version_date, :publish, :position,
                                      :parent_id,
                                      properties_attributes: %i[id title activity_id _destroy])
+                                     .merge(user: current_user)
   end
 end
