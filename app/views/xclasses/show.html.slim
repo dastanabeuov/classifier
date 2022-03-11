@@ -18,13 +18,16 @@
                   = truncate(xcategory.title, :length => 18)
               </a>
               
-              - if xcategory.xclasses.exists?
-                span.arrow
+              - if @xclass.xcategory != xcategory && xcategory.xclasses.exists?
+                <span class="arrow xcategories-sub-xclasses-load" data-xcategory-id="#{ xcategory.id }" data-xroot-id="#{ xcategory.xroot.id }"></span>
             </li>
-
-            <ul class="tree sub-menu collapse pl-2 #{ 'show' if @xclass.xcategory == xcategory }" id="xcategory-#{ xcategory.id }">
-              = render xcategory.xclasses.roots if xcategory.xclasses.exists?
-            </ul>
+            
+            - if @xclass.xcategory == xcategory
+              <ul class="tree sub-menu collapse pl-2 show" id="xcategory-#{ xcategory.id }">
+                = render xcategory.xclasses.roots if xcategory.xclasses.exists?
+              </ul>
+            - else
+              <ul class="tree sub-menu collapse pl-2 xcategories-sub-xclasses-#{ xcategory.id }" id="xcategory-#{ xcategory.id }"></ul>
         </ul>
 
     div.content

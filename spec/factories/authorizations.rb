@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :authorization do
     user { nil }
-    provider { "MyString" }
-    uid { "" }
+    provider { 'MyString' }
+    uid { '' }
   end
 end
