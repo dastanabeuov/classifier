@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'sidekiq/web'
 
 Rails.application.routes.draw do
   # devise_for :users, skip: [:session, :password, :registration],
@@ -60,8 +61,12 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
-  authenticate :user, ->(u) { u.admin? || u.paid_user? } do
+  authenticate :user, lambda { u.admin? || u.paid_user? } do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   use_doorkeeper
