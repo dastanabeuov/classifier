@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Xcategory < ApplicationRecord
-  include Importable
   include Propertyable
 
   belongs_to :user
@@ -10,4 +9,8 @@ class Xcategory < ApplicationRecord
   has_many :xclasses, dependent: :destroy
 
   validates :title, presence: true, length: { minimum: 2 }
+
+  def self.start_import(file, xcategory, user)
+    Services::ImportForXcategory.new(file, xcategory, user).import
+  end
 end

@@ -19,8 +19,9 @@ class XcategoriesController < ApplicationController
   def import
     count = @xcategory.xclasses.count
     @user = current_user
-    Xcategory.import(params[:file], @xcategory, @user)
+    Xcategory.start_import(params[:file], @xcategory, @user)
     redirect_to xroot_xcategory_path(@xroot, @xcategory)
+    
     if @xcategory.xclasses.count > count
       flash[:notice] = 'Xclasses imported.'
     else
