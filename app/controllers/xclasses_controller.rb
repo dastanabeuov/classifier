@@ -9,7 +9,7 @@ class XclassesController < ApplicationController
   before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child]
   #  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child xclass_children xclass_child]
 
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def xcategories_sub_children; end
 

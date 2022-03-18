@@ -1,4 +1,7 @@
 en:
+  search:
+    placeholder: "Search"
+    select: "All"
   info:
     size: "Size"
   classifier:  

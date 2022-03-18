@@ -1,4 +1,7 @@
 kz:
+  search:
+    placeholder: "Іздеу"
+    select: "Барлығы"
   info:
     size: "Мөлшері"
   classifier:

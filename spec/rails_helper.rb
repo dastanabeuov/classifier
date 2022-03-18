@@ -31,6 +31,7 @@ RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
   config.include RequestHelpers, type: :request
+  #config.include SphinxHelpers, type: :feature
 
   # capybara from interface testing
   Capybara.javascript_driver = :selenium_chrome_headless
