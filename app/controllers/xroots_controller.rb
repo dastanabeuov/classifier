@@ -7,7 +7,7 @@ class XrootsController < ApplicationController
 
   after_action :publish_xroot, only: [:create]
 
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def xcategories_xcategory; end
 

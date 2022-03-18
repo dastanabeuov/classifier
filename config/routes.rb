@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   # scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
   root 'front_pages#home'
+  get :search, to: 'search#index'
 
   # devise_for :users, skip: [:omniauth_callbacks]
 
@@ -57,11 +58,11 @@ Rails.application.routes.draw do
     end
   end
 
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
-  authenticate :user, lambda { u.admin? || u.paid_user? } do
+  authenticate :user, lambda { |u| u.admin? || u.paid_user? } do
+    mount Rswag::Ui::Engine => '/api-docs'
+    mount Rswag::Api::Engine => '/api-docs'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
 

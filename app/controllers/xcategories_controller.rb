@@ -8,7 +8,7 @@ class XcategoriesController < ApplicationController
 
   after_action :publish_xcategory, only: [:create]
 
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def xcategories_sub_xclasses; end
 

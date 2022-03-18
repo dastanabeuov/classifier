@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
 
   before_action :set_property, only: %i[update destroy]
 
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def create
     @property = propertyable.properties.create(property_params)

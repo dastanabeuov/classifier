@@ -1,4 +1,7 @@
 ru:
+  search:
+    placeholder: "Поиск"
+    select: "Все"
   info:
     size: "Размер"
   classifier:  
