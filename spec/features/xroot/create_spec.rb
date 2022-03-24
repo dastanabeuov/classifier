@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'XROOT CREATE', '
+feature 'XROOT CREATE', %q(
   Authenticated user create
   Authenticated user create with errors
-' do
+) do
+
   let(:user) { create(:user) }
   let(:guest) { create(:user) }
 

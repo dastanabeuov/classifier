@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'XCATEGORY DESTROY', '
+feature 'XCATEGORY DESTROY', %q(
   Author destroy
   Not author try destroy
-' do
+) do
+
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let!(:xroot) { create(:xroot, user: user) }

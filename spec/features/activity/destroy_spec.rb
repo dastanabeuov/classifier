@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'ACTIVITY DESTROY', '
+feature 'ACTIVITY DESTROY', %q(
   Author destroy
   Not author try destroy
-' do
+) do
+
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let!(:activity) { create(:activity, user: user) }

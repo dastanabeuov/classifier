@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'XCLASS UPDATE', '
+feature 'XCLASS UPDATE', %q(
   Author edit
   Not author try edit
-' do
+) do
+
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let!(:xroot) { create(:xroot, user: user) }

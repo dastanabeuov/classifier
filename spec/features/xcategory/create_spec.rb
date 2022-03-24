@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'XCATEGORY CREATE', '
+feature 'XCATEGORY CREATE', %q(
   Authenticated user create
   Authenticated user create with errors
-' do
+) do
+
   let(:user) { create(:user) }
   let(:guest) { create(:user) }
   let!(:xroot) { create(:xroot, user: user) }
