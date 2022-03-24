@@ -2,11 +2,12 @@
 
 require 'rails_helper'
 
-describe 'USER CAN (SIGHN_IN / SIGN_OUT / REGISTRATION or NOT)', '
+feature 'USER CAN (SIGHN_IN / SIGN_OUT / REGISTRATION or NOT)', %q(
   Registration user can sign in
   User can sign out system
   Unregistered user not sign in
-' do
+) do
+
   let(:user) { create(:user) }
 
   it 'Registration user can sign in' do

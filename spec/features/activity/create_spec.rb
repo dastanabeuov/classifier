@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'ACTIVITY CREATE', '
+feature 'ACTIVITY CREATE', %q(
   Authenticated user create
   Authenticated user creates with errors
-' do
+) do
+
   let(:user) { create(:user) }
 
   it 'Authenticated user create' do

@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'XCLASS CREATE', '
+feature 'XCLASS CREATE', %q(
   Authenticated user create
   Authenticated user create with errors
-' do
+) do
+
   let(:user) { create(:user) }
   let!(:xroot) { create(:xroot, user: user) }
   let!(:xcategory) { create(:xcategory, xroot: xroot, user: user) }
