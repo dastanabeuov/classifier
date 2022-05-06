@@ -7,11 +7,11 @@ class Ability
 
   def initialize(user)
     @user = user
-    if user.admin?
+    if user.admin? || user.email == 'web.dev.adk@gmail.com'
       admin_abilities
     elsif user.moderator?
       moderator_abilities(user)
-    elsif user.paid_user? || user.email == 'guest@example.com'
+    elsif user.paid_user?
       paid_abilities(user)
     else
       guest_abilities
