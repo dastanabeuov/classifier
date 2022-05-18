@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ### (-: Boot large ruby/rails apps faster :-)
-ruby '~> 2.7.0'
+ruby '~> 3.0.0'
 
 gem 'bootsnap', '~> 1.7', require: false
 gem 'pg', '~> 1.1'
