@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Services::DigestXcategory do
+RSpec.describe DigestXcategory do
   let(:users) {create_list(:user, 3)}
 
   it 'sends digest xcategory to all users' do
