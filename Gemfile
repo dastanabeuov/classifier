@@ -7,9 +7,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '~> 2.7.0'
 
 gem 'bootsnap', '~> 1.7', require: false
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.6'
-gem 'rails', '~> 5.2.6'
+gem 'rails', '~> 6'
 gem 'turbolinks', '~> 5'
 
 # additional format suport
@@ -32,7 +32,7 @@ gem 'cocoon', '~> 1.2.15'
 # authorize
 gem 'cancancan', '~> 3.2'
 gem 'devise', '~> 4.8'
-gem 'doorkeeper', '5.1.0'
+gem 'doorkeeper', '5.5.4'
 
 # oauth2
 gem 'omniauth', '~> 2.0'
@@ -40,7 +40,7 @@ gem 'omniauth-github', '~> 2.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 # localize
-gem 'rails-i18n', '~> 5'
+gem 'rails-i18n', '~> 6'
 
 # serializer json
 gem 'active_model_serializers', '~> 0.10'
