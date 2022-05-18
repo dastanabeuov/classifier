@@ -14,6 +14,8 @@ module Classifier
     config.i18n.default_locale = :en
     config.i18n.fallbacks = %i[ru kz en]
 
+    config.active_record.cache_versioning = false
+
     config.app_generators.scaffold_controller :responders_controller
     config.autoload_paths += [config.root.join('app')]
 
