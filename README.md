@@ -1,14 +1,12 @@
-Добро пожаловать!
-BIM (англ. Building Information Model или Modeling) — информационная модель (или моделирование) зданий и сооружений, под которыми в широком смысле понимают любые объекты инфраструктуры, например инженерные сети (водные, газовые, электрические, канализационные, коммуникационные), дороги, железные дороги, мосты, порты и тоннели и т. д.
+# Classifier
 
+**Welcome 👋!**
 
-#КОАМТ 2021
-Курылыс саласын трансформациалау. Құрылыстағы ақпараттық модельдеу технологиялары саласында нормативтік-техникалық базаны дамыту жөніндегі комиссия.
+This application for classifying construction objects according to ISO standards.
 
+BIM (eng. Building Information Model or Modeling) is an information model (or modeling) of buildings and structures, which in a broad sense means any infrastructure objects, for example, engineering networks (water, gas, electrical, sewer, communication), roads, railways , bridges, ports and tunnels, etc.
 
-#ТИМСО 2021
-Трансформация строительной отрасли. Комиссия по развитию нормативно-технической базы в области технологии информационного моделирования в строительстве.
-
-
-#BIM 2021
+#BIM
 Transformation of construction industry. Commission for the development of the regulatory and technical base in the field of information modeling technology in construction.
+
+If you want to talk about this topic, then go 🏃‍♂️
