@@ -61,7 +61,7 @@ gem 'rswag', '~> 2'
 # job
 gem 'redis-rails', '~> 5'
 gem 'sidekiq', '~> 6'
-gem 'sinatra', '2.2.0', require: false
+gem 'sinatra', '2.2.3', require: false
 gem 'whenever', '~> 1.0', require: false
 
 # Search
