@@ -1,7 +1,39 @@
 ru:
+  errors:
+    oops: "Ой! Ваша форма не может быть сохранена."
+    size: ":-)"
+  xcalss:
+    controller:
+      import: 'X-классы импортированы.'
+      not_import: 'X-классы не импортируются.'
+  services:
+    xcalss:
+      not_format: 'Неизвестный формат данных:'
+  services:
+    xcalss:
+      not_type: 'Неизвестный тип файла:'
+  form:
+    index: 'Список'
+    edit: 'Редактировать'
+    show: 'Показать'
+    new: 'Создать новый'
+    title: "Заголовок"
+    description: "Описание"
+    synonym: "Синоним"
+    code: "Код"
+    full_code: "Полный код"
+    version_date: "Дата версии"
+    publish: "Публиковать"
+    type: "Тип"
+    properties: "Характеристики"
+    parent: 'Родитель'
+    additional_properties: 'Дополнительные свойства'
+    activity: 'Активность'
+    remove: 'Удалить'
   search:
     placeholder: "Поиск"
     select: "Все"
+    result: "Результат поиска..."
   info:
     size: "Размер"
   classifier:  
@@ -11,7 +43,8 @@ ru:
     signin: "Войти"
     signup: "Регистрация"    
     signout: "Выйти"
-    edit_profile: "Редактировать профиль"
+    setting: "Настройка"
+    profile: "Профиль"
     logout: "Выйти"
   front_pages:
     back: "Назад"
@@ -32,21 +65,29 @@ ru:
       коммуникационные), дороги, железные дороги, мосты, порты и тоннели и т. д."  
       link_watch: "Начать"
   show:
-    all_xroots_you_can_her_start_tree_table: " Все xroots (вы можете начать ее древовидную таблицу)"
+    you_can_her_start_tree_table: " Вы можете начать древовидную таблицу"
     classification_system_tree_views_table: " Таблица представлений дерева системы классификации"
     classification_system: "СИСТЕМА КЛАССИФИКАЦИИ"
     example_title: " Пример"
     example_description: " Описание: Эта строка из текста описания объекта"
-    example_synonym: " синоним: Эта строка из текста синонима в объекте"
+    example_synonym: " Синоним: Эта строка из текста синонима в объекте"
     example_code: " Код: Эта строка из кода (А-А34) строка в объекте"
+    example_full_code: " Полный код: Эта строка из полного кода в объекте"
     example_version_date: " Дата версии: Эта строка из формата даты, созданного и обновленного в объекте"
-    example_publish: " опубликовать: Эту строку из булевых истинных или ложных в объекте"
+    example_publish: " Опубликовать: Эту строку из булевых истинных или ложных в объекте"
+    example_type: " Тип: Эту строку из булевых истинных или ложных в объекте"
     example_properties: " Свойства: Эта строка из дополнительных свойств в объекте"
-    title: " "
+    title: " заголовок: "
     description: " описание: "
     synonym: " синоним: "
     code: " код: "
     full_code: " полный код: "
     version_date: " дата версии: "
     publish: " публиковать: "
+    parent: ' родитель: '
+    type: " тип: "
+    ancestry: ' родословная: '
     properties: " характеристики: "
+    children: ' дети: '
+    buttons: 'Кнопки'
+    import: 'Импорт'

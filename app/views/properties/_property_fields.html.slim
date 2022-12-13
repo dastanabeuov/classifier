@@ -1,11 +1,11 @@
 .nested-fields
   .field.form-group
-    = f.text_field :title, class: 'form-control', placeholder: 'Title'
+    = f.text_field :title, class: 'form-control', placeholder: t('form.title')
 
   .field.form-group
-    = f.select :activity_id, Activity.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }
-    = f.label :activity_id, class: 'pl-2'
+    = f.label :activity_id, t('form.activity'), class: 'mx-2 my-2'
+    = f.select :activity_id, Activity.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }, class: 'form-select'
   
   .field.form-group
+    = f.label :_destroy, t('form.remove'), class: "mx-2 my-2"
     = f.check_box :_destroy
-    = f.label :_destroy, "Remove", class: "pl-2"

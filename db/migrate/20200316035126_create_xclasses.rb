@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateXclasses < ActiveRecord::Migration[5.0]
+class CreateXclasses < ActiveRecord::Migration[7.0]
   def up
     create_table :xclasses do |t|
       t.string :title, null: false
@@ -14,13 +14,11 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.string :position
       t.text :ancestry
       t.integer :ancestry_depth, default: 0
-      t.integer :xcategory_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true
 
       t.timestamps
     end
     add_index :xclasses, :user_id
-    add_index :xclasses, :xcategory_id
     add_index :xclasses, :position
     add_index :xclasses, :ancestry
   end
@@ -38,13 +36,11 @@ class CreateXclasses < ActiveRecord::Migration[5.0]
       t.string :position
       t.text :ancestry
       t.integer :ancestry_depth, default: 0
-      t.integer :xcategory_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true
 
       t.timestamps
     end
     remove_index :xclasses, :user_id
-    remove_index :xclasses, :xcategory_id
     remove_index :xclasses, :position
     remove_index :xclasses, :ancestry
   end

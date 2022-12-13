@@ -1,10 +1,40 @@
-footer class="fixed-bottom py-2 mt-5 text-white"
-  div class="footer-copyright text-center"
-    small
-      = link_to t('front_pages.feedback'), front_pages_feedback_path, class: 'mr-5'
-      = link_to t('front_pages.help'), front_pages_help_path, class: 'mr-5'
+footer.container-fluid.d-flex.flex-wrap.justify-content-between.align-items-center.py-3.mt-3.border-top
+  .col-md-4.d-flex.align-items-center
+    a.mb-3.me-2.mb-md-0.text-muted.text-decoration-none.lh-1 href="/" 
+      = image_tag 'logo-smoke.png', title: "Logo BIM", alt: "Logo BIM", heght: "40", width: "40"
+    span.mb-3.mb-md-0.text-muted
       = current_year
-      = t('classifier.copyright') 
-      = link_to fa_icon("code-fork"), github_url('dastanabeuov', 'Classifier'), target: '_blank', class: 'text-white', title: 'Repo-forked'
-      = link_to t('front_pages.service'), front_pages_service_path, class: 'ml-5'
-      = link_to t('front_pages.contact'), front_pages_contact_path, class: 'ml-5'
+      = t('classifier.copyright')
+
+    .dropup
+      a.ms-3.text-secondary.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" 
+        = t I18n.locale
+      ul.dropdown-menu
+        - I18n.available_locales.each do |locale|
+          li
+            - unless I18n.locale == locale
+              = link_to t(locale), url_for(locale: locale), class: 'dropdown-item'
+
+
+  ul.nav.col-md-4.justify-content-end.list-unstyled.d-flex
+    li.ms-3
+      = link_to t('front_pages.feedback'), front_pages_feedback_path
+    li.ms-3
+      = link_to t('front_pages.help'), front_pages_help_path
+    li.ms-3
+      = link_to icon("github", class: "text-secondary"), github_url('dastanabeuov', 'Classifier'), target: '_blank', title: 'Repo-forked'
+    li.ms-3
+      = link_to t('front_pages.service'), front_pages_service_path
+    li.ms-3
+      = link_to t('front_pages.contact'), front_pages_contact_path
+
+  ul.nav.col-md-4.justify-content-end.list-unstyled.d-flex
+    li.ms-3
+      a.text-muted href="#" 
+        = icon("twitter", class: "text-secondary")
+    li.ms-3
+      a.text-muted href="#" 
+        = icon("instagram", class: "text-secondary")
+    li.ms-3
+      a.text-muted href="#"
+        = icon("facebook", class: "text-secondary")

@@ -1,55 +1,82 @@
-- cache @xclass do
-  div.show-xclass
-    div.nav-side-menu
-      = render 'shared/btn_brand'
-      div.menu-list
-        <ul id="menu-content" class="menu-content collapse out">
-          - @xroot.xcategories.find_each(batch_size: 50) do |xcategory|
-            <li data-toggle="collapse" data-target="#xcategory-#{ xcategory.id }" class="collapsed #{ 'active' if @xclass.xcategory == xcategory }">
-              
-              <a class="file" href="#{ xroot_xcategory_path(xcategory.xroot, xcategory) }">
-                - if xcategory.xclasses.exists?
-                  <i class="fa fa-folder fa-lg"></i>
-                - else
-                  <i class="fa fa-file fa-lg"></i>
-              
-                span.pl-2
-                  = xcategory.code
-                  = truncate(xcategory.title, :length => 18)
-              </a>
-              
-              - if @xclass.xcategory != xcategory && xcategory.xclasses.exists?
-                <span class="arrow xcategories-sub-xclasses-load" data-xcategory-id="#{ xcategory.id }" data-xroot-id="#{ xcategory.xroot.id }"></span>
-            </li>
-            
-            - if @xclass.xcategory == xcategory
-              <ul class="tree sub-menu collapse pl-2 show" id="xcategory-#{ xcategory.id }">
-                = render xcategory.xclasses.roots if xcategory.xclasses.exists?
-              </ul>
-            - else
-              <ul class="tree sub-menu collapse pl-2 xcategories-sub-xclasses-#{ xcategory.id }" id="xcategory-#{ xcategory.id }"></ul>
-        </ul>
+.container-fluid
+  .d-grid.gap-3 style=("grid-template-columns: 1fr 2fr;") 
+    .bg-light.border.rounded-3.px-3.py-3
 
-    div.content
-      = render 'xroots/examples/example_info_0', xroot: @xroot
-      
-      nav aria-label="breadcrumb"
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">#{ link_to 'Xroots', xroots_path }</li>
-          <li class="breadcrumb-item">#{ link_to truncate(@xroot.title, :length => 18), xroot_path(@xroot) }</li>
-          <li class="breadcrumb-item">#{ link_to truncate(@xcategory.title, :length => 18), xroot_xcategory_path(@xroot, @xcategory) }</li>
-          - @xclass.ancestors.each do |ancestor|
-            <li class="breadcrumb-item">#{ link_to truncate(ancestor.title, :length => 18), xroot_xcategory_xclass_path(@xroot, @xcategory, ancestor) }</li>
+      .d-flex.flex-column.flex-shrink-0.p-3.text-bg-dark style=("width: 350px;") 
 
-          <li class="breadcrumb-item active" aria-current="page">#{ truncate(@xclass.title, :length => 8) }</li>
-        </ol>
-      </nav>
-      
-      div.show-errors
-        = render 'shared/errors', resource: @xclass
+        .d-flex.align-items-center.mb-3.mb-md-0.me-md-auto.text-white.text-decoration-none
+          span.fs-5.fw-semibold.text-secondary
+            = t('show.classification_system')
+            |   
+            = icon('tree')
+        
+        .search
+          <input type="text" id="xclasses_q" value="" placeholder='#{t('search.placeholder')}' class="form-control mt-4 mb-4">
+        
+        #xclasses
+          ul.nav.nav-pills.flex-column.mb-auto
+            = render @xclasses
 
-      div.resource-show.card
-        = render 'form_inline', xclass: @xclass
-        = render 'shared/content', resource: @xclass
+        hr
+        .dropdown
+          button.btn.btn-outline-secondary.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" type="button"
+            = icon('download')
+          .dropdown-menu
+            .dropdown-item
+              = form_tag import_xclass_path, multipart: true do
+                = file_field_tag :file
+                = submit_tag t('show.import'), class: 'btn btn-sm btn-outline-success'
 
-      = render 'shared/btn_action', resource: @xclass
+    .bg-light.border.rounded-3.px-3.py-3
+      .show-xclass.px-3.py-3
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">#{ link_to icon('house'), xclasses_path }</li>
+            - @xclass.ancestors.each do |ancestor|
+              <li class="breadcrumb-item">#{ link_to truncate(ancestor.title, :length => 18), xclass_path(ancestor) }</li>
+
+            <li class="breadcrumb-item active" aria-current="page">#{ truncate(@xclass.title, :length => 18) }</li>
+          </ol>
+        </nav>
+
+        h2.card-header
+          = @xclass.title
+        .card-body
+          .row
+            .col-md-12
+              p 
+                = t('show.synonym')
+                = @xclass.synonym
+              p
+                = t('show.description')
+                = @xclass.description
+              p 
+                = t('show.code')
+                = @xclass.code
+              p
+                = t('show.full_code')
+                = @xclass.full_code
+              p 
+                = t('show.version_date')
+                = @xclass.version_date
+              p 
+                = t('show.publish')
+                = @xclass.publish
+              p 
+                = t('show.type')
+                = @xclass.xtype
+              p 
+                = t('show.ancestry')
+                = @xclass.ancestry
+              p 
+                = t('show.properties')
+              = render 'properties/properties', resource: @xclass
+
+        .card-body
+          .mt-5.btn-group
+            - if current_user.author_of?(@xclass)
+              = link_to icon('plus'), new_xclass_path(parent_id: @xclass.id), class: "btn btn-sm btn-outline-success"
+              = link_to icon('pencil'), edit_xclass_path(@xclass), class: 'btn btn-sm btn-outline-warning ml-5'
+              = link_to icon('trash'), @xclass, class: "btn btn-sm btn-outline-danger ml-5",
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }

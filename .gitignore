@@ -26,3 +26,5 @@
 #api docs swagger
 /swagger/api/* linguist-generated=true
 /swagger/api/* -diff
+/app/assets/builds/*
+!/app/assets/builds/.keep

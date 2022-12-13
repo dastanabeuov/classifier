@@ -29,10 +29,8 @@
                 = render 'devise/shared/links'
 
               .col-md-5
-                p Для входа на портал "Единой системы классификации и кодирования в строительстве" используйте следующие пары логин и пароль:
+                p = t('devise.sessions.demo_info')
 
-                p Demo user:
-
-                p Login: guest@example.com
+                p = t('devise.sessions.demo_login')
                 
-                p Password: 123456
+                p = t('devise.sessions.demo_password')

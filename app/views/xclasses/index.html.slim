@@ -1,0 +1,21 @@
+.index-xclass
+  .container-fluid
+    .d-grid.gap-3 style=("grid-template-columns: 1fr 2fr;")
+      .bg-light.border.rounded-3.px-3.py-3
+
+        .flex-shrink-0.p-3 style=("width: 350px;") 
+          .d-flex.align-items-center.pb-3.mb-3.link-dark.text-decoration-none
+            span.fs-5.fw-semibold.text-secondary
+              = t('show.classification_system')
+              |  
+              = icon('tree')
+          
+          .search
+            <input type="text" id="xclasses_q" value="" placeholder='#{t('search.placeholder')}' class="form-control mb-4">
+          
+          #xclasses
+            ul.nav.nav-pills.flex-column.mb-auto
+              = render @xclasses
+
+      .bg-light.border.rounded-3.px-3.py-3
+        = render 'xclasses/examples/example_info'

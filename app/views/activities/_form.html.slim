@@ -1,47 +1,41 @@
-.form-group
-  = form_for(activity) do |f|
-    = render 'shared/errors', resource: activity
+= form_with(model: activity) do |f|
+  = render 'shared/errors', resource: activity
 
-    .field.mt-3
-      = f.label :title
-      = f.text_field :title, required: true, minlegth: 2, class: 'form-control'
-    
-    .field.mt-3
-      = f.label :synonym
-      = f.text_field :synonym, class: 'form-control'
+  .field.form-group
+    = f.text_field :title, class: 'form-control my-2', placeholder: t('form.title'), autofocus: true
 
-    .field.mt-3
-      = f.label :description
-      = f.text_area :description, class: 'form-control'
+  .field.form-group
+    = f.text_field :synonym, class: 'form-control my-2', placeholder: t('form.synonym')
 
-    .field.mt-3
-      = f.label :code
-      = f.text_field :code, class: 'form-control'
+  .field.form-group
+    = f.text_area :description, class: 'form-control my-2', placeholder: t('form.description'), rows: 10
 
-    .field.mt-3
-      = f.label :version_date, class: 'pr-3'
-      = f.date_select :version_date, class: 'form-control'
+  .field.form-group
+    = f.text_field :code, placeholder: 'Code', class: 'form-control my-2', placeholder: t('form.code')
+  
+  hr
 
-    .field.mt-3
-      = f.label :publish
-      = f.check_box :publish, class: 'form-control'
+  .field.form-group
+    = f.label :version_date, class: 'mx-2 my-2'
+    = f.datetime_select :version_date, ampm: true, class: 'datetime'
 
-    .field.mt-3
-      = f.label :position
-      = f.text_field :position, class: 'form-control'
+  .field.form-group
+    = f.label :publish, class: 'mx-2 my-2'
+    = f.check_box :publish
 
-    .field.mt-3
-      = f.label :parent_id, class: 'pr-3'
-      = f.select :parent_id, current_user.activities.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }
+  .field.form-group
+    = f.label :parent_id, t('form.parent'), class: 'mx-2 my-2'
+    = f.select :parent_id, Activity.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }, class: 'form-select'
+  
+  br/
+  .card
+    .card-body
+      h5 = t('form.additional_properties')
+      .field.form-group
+        = f.fields_for :properties do |property|
+          = render 'properties/property_fields', f: property
+      .field.form-group
+        = link_to_add_association icon('plus'), f, :properties, partial: 'properties/property_fields', class: 'my-2 mx-2'
 
-    hr
-    .field.mt-5
-      h2 Additional properties
-      = f.fields_for :properties do |property|
-        = render 'properties/property_fields', f: property
-
-      p
-        = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
-
-    .actions
-      = f.submit class: "btn btn-sm btn-outline-success mt-5"
+  .actions
+    = f.submit class: "btn btn-sm btn-outline-success my-5"

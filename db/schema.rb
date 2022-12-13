@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_085755) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_05_18_085755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", id: :serial, force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.string "title", null: false
     t.string "synonym"
     t.text "description"
@@ -79,23 +78,23 @@ ActiveRecord::Schema.define(version: 2022_05_18_085755) do
     t.text "redirect_uri", null: false
     t.string "scopes", default: "", null: false
     t.boolean "confidential", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "properties", id: :serial, force: :cascade do |t|
+  create_table "properties", force: :cascade do |t|
     t.string "title"
     t.integer "activity_id"
     t.string "propertyable_type"
-    t.integer "propertyable_id"
+    t.bigint "propertyable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_properties_on_activity_id"
-    t.index ["propertyable_type", "propertyable_id"], name: "index_properties_on_propertyable_type_and_propertyable_id"
+    t.index ["propertyable_type", "propertyable_id"], name: "index_properties_on_propertyable"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -114,22 +113,7 @@ ActiveRecord::Schema.define(version: 2022_05_18_085755) do
     t.index ["role"], name: "index_users_on_role"
   end
 
-  create_table "xcategories", id: :serial, force: :cascade do |t|
-    t.string "title", null: false
-    t.string "synonym"
-    t.text "description"
-    t.string "code"
-    t.date "version_date"
-    t.boolean "publish"
-    t.integer "xroot_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_xcategories_on_user_id"
-    t.index ["xroot_id"], name: "index_xcategories_on_xroot_id"
-  end
-
-  create_table "xclasses", id: :serial, force: :cascade do |t|
+  create_table "xclasses", force: :cascade do |t|
     t.string "title", null: false
     t.string "synonym"
     t.text "description"
@@ -141,27 +125,12 @@ ActiveRecord::Schema.define(version: 2022_05_18_085755) do
     t.string "position"
     t.text "ancestry"
     t.integer "ancestry_depth", default: 0
-    t.integer "xcategory_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_xclasses_on_ancestry"
     t.index ["position"], name: "index_xclasses_on_position"
     t.index ["user_id"], name: "index_xclasses_on_user_id"
-    t.index ["xcategory_id"], name: "index_xclasses_on_xcategory_id"
-  end
-
-  create_table "xroots", id: :serial, force: :cascade do |t|
-    t.string "title", null: false
-    t.string "synonym"
-    t.text "description"
-    t.string "code"
-    t.date "version_date"
-    t.boolean "publish"
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_xroots_on_user_id"
   end
 
   add_foreign_key "authorizations", "users"

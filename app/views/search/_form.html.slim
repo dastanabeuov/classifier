@@ -1,8 +1,7 @@
-= form_for :search, url: search_path, method: :get do |f|
+= form_for :search, url: search_path, method: :get, html: { class: 'w-100 me-5' } do |f|
+  .btn-group.w-100
+    = f.text_field :query, class: 'form-control w-70', placeholder: t('search.placeholder')
 
-  div.input-group.rounded
-    = f.text_field :query, class: 'form-control rounded', placeholder: t('search.placeholder')
-
-    = f.select :resource, Search::RESOURCES, { include_blank: t('search.select') }, class: 'select'
+    = f.select :resource, Search::RESOURCES, { include_blank: t('search.select') }, class: 'form-select w-25'
     
-    = f.submit t('search.placeholder'), class: 'input-group-text border-0'
+    = f.submit t('search.placeholder'), class: 'btn btn-outline-secondary'

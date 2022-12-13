@@ -1,10 +1,10 @@
 .new
-
   .row.justify-content-center
     .col-xl-8.col-sm-8.col-md-8
       .card
         .card-block
-          h1 class="card-header text-center" New Activity
+          h1.card-header.text-center
+            = t('form.new')
           .card-body
             .row.justify-content-md-center
               .col-md-8
@@ -12,5 +12,5 @@
                 = render 'form', activity: @activity
 
 
-  .btn-group.mt-5.mb-5
-    = link_to fa_icon('arrow-left'), activities_path, class: 'btn btn-sm btn-outline-secondary'
+      .mt-3
+        = link_to icon('arrow-left'), activities_path, class: 'btn btn-sm btn-secondary'

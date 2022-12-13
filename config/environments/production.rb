@@ -1,6 +1,21 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'classifier-beta-version.herokuapp.com' }
+
+  config.action_mailer.smtp_settings = {
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    domain: 'gmail.com',
+    address: 'smtp.gmail.com',
+    port: '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+  config.web_socket_server_url = 'wss://classifier-beta-version.herokuapp.com/cable'
+  config.action_cable.allowed_request_origins = ['https://classifier-beta-version.herokuapp.com', 'http://classifier-beta-version.herokuapp.com']
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -117,19 +132,4 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  # config.action_mailer.default_url_options = { host: 'classifier-beta-version.herokuapp.com' }
-
-  config.action_mailer.smtp_settings = {
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
-    domain: 'gmail.com',
-    address: 'smtp.gmail.com',
-    port: '587',
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
-
-  config.web_socket_server_url = 'wss://classifier-beta-version.herokuapp.com/cable'
-  config.action_cable.allowed_request_origins = ['https://classifier-beta-version.herokuapp.com', 'http://classifier-beta-version.herokuapp.com']
 end

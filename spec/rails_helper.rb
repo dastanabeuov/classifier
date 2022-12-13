@@ -23,31 +23,40 @@ end
 
 RSpec.configure do |config|
   config.backtrace_inclusion_patterns = [/app|spec/]
-  # Example records
   config.include FactoryBot::Syntax::Methods
-  # Devise engine require from controllers
   config.include Devise::Test::ControllerHelpers, type: :controller
-  # require /support/*.rb
-  config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
   config.include RequestHelpers, type: :request
   #config.include SphinxHelpers, type: :feature
 
-  # capybara from interface testing
   Capybara.javascript_driver = :selenium_chrome_headless
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
-  config.after(:all) do
-    FileUtils.rm_rf("#{Rails.root}/tmp/storage")
-  end
-
-  # database_cleaner
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+
+    # Configure and start Sphinx for request specs
+    if example.metadata[:type] == :request
+      ThinkingSphinx::Test.init
+      ThinkingSphinx::Test.start index: false
+    end
+
+    # Disable real-time callbacks if Sphinx isn't running
+    ThinkingSphinx::Configuration.instance.settings['real_time_callbacks'] =
+      (example.metadata[:type] == :request)
+  end
+
+  config.after(:all) do
+    FileUtils.rm_rf("#{Rails.root}/tmp/storage")
+
+    if example.metadata[:type] == :request
+      ThinkingSphinx::Test.stop
+      ThinkingSphinx::Test.clear
+    end
   end
 
   config.around do |example|
@@ -57,7 +66,6 @@ RSpec.configure do |config|
   end
 end
 
-# DSL from testing rspec
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec

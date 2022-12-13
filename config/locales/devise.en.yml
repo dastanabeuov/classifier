@@ -114,6 +114,9 @@ en:
       updated: Your account has been updated successfully.
       updated_but_not_signed_in: Your account has been updated successfully, but since your password was changed, you need to sign in again
     sessions:
+      demo_info: 'To enter the portal of the "Unified system of classification and coding in construction" use the following pairs of login and password:'
+      demo_login: 'Login: guest@example.com'
+      demo_password: 'Password: 123456'
       already_signed_out: Signed out successfully.
       new:
         sign_in: Log in

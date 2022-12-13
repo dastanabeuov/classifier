@@ -4,13 +4,12 @@
     .col-xl-8.col-sm-8.col-md-8
       .card
         .card-block
-          h1 class="card-header text-center" Editing Xclass
+          h1 class="card-header text-center" = t('form.edit')
           .card-body
             .row.justify-content-md-center
               .col-md-8
 
-                = render 'form'
+                = render 'form', xclass: @xclass
 
-  .btn-group.mt-5
-    = link_to fa_icon('eye'), xroot_xcategory_xclass_path(@xcategory.xroot, @xcategory, @xclass), class: 'btn btn-sm btn-info'
-    = link_to fa_icon('arrow-left'), xroot_xcategory_path(@xcategory.xroot, @xcategory), class: 'btn btn-sm btn-secondary'
+      .mt-3
+        = link_to icon('arrow-left'), xclass_path(@xclass), class: 'btn btn-sm btn-secondary'

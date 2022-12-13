@@ -1,0 +1,32 @@
+.parent.px-3.py-3
+
+  nav aria-label="breadcrumb"
+    ol class="breadcrumb"
+      li class="breadcrumb-item active" aria-current="page" = icon('house')
+
+  h2.card-header
+    = t('show.example_title')
+  .card-body
+    .row
+      .col-md-12
+        p 
+          = t('show.example_synonym')
+        p
+          = t('show.example_description')
+        p 
+          = t('show.example_code')
+        p 
+          = t('show.example_full_code')
+        p 
+          = t('show.example_version_date')
+        p 
+          = t('show.example_publish')
+        p 
+          = t('show.example_type')
+        p 
+          = t('show.example_properties')
+
+  .card-body
+    .btn-group
+    - if current_user
+      = link_to icon('plus'), new_xclass_path, class: 'btn btn-sm btn-outline-success'

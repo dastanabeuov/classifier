@@ -8,7 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Classifier
   class Application < Rails::Application
-    config.load_defaults 6.0
+    config.hosts << "ece8-37-99-43-218.eu.ngrok.io"
+    config.load_defaults 7.0
     config.time_zone = 'Almaty'
     config.i18n.fallbacks = true
     config.i18n.default_locale = :en

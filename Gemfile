@@ -6,108 +6,141 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ### (-: Boot large ruby/rails apps faster :-)
 ruby '~> 3.0.0'
 
-gem 'bootsnap', '~> 1.7', require: false
-gem 'pg', '~> 1.1'
+gem 'rails', '~> 7'
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'sprockets-rails'
+
+#postgresql
+gem 'pg'
+
+# Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.6'
-gem 'rails', '~> 6'
-gem 'turbolinks', '~> 5'
 
-# additional format suport
-gem 'jquery-rails', '~> 4.4.0'
-gem 'sass-rails', '~> 5.0'
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem 'jsbundling-rails'
 
-# minimize js
-gem 'uglifier', '~> 4.2.0'
-# gem 'mini_racer', '~> 0.6'
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem 'turbo-rails'
 
-# theme style
-gem 'bootstrap', '~> 4.6'
-gem 'font-awesome-rails', '~> 4'
-gem 'slim', '~> 4.1'
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem 'stimulus-rails'
 
-# tree date
-gem 'ancestry', '~> 4'
-gem 'cocoon', '~> 1.2.15'
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
+gem 'sass-rails'
 
-# authorize
-gem 'cancancan', '~> 3.2'
-gem 'devise', '~> 4.8'
-gem 'doorkeeper', '5.5.4'
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem 'jbuilder'
 
-# oauth2
-gem 'omniauth', '~> 2.0'
-gem 'omniauth-github', '~> 2.0'
-gem 'omniauth-rails_csrf_protection', '~> 1.0'
+# Use Redis adapter to run Action Cable in production
+gem 'redis'
 
-# localize
-gem 'rails-i18n', '~> 6'
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
 
-# serializer json
-gem 'active_model_serializers', '~> 0.10'
-gem 'oj', '~> 3.11'
-gem 'responders', '~> 3'
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
 
-# importer xlsx
-gem 'activerecord-import', '~> 1.1'
-gem 'roo', '~> 2.8'
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
 
-# admin dashboard
-gem 'rails_admin', '~> 2'
-gem 'rails_admin_nestable', '~> 0.3'
-
-# api docs
-gem 'rswag', '~> 2'
-
-# job
-gem 'redis-rails', '~> 5'
-gem 'sidekiq', '~> 6'
-gem 'sinatra', '2.2.0', require: false
-gem 'whenever', '~> 1.0', require: false
-
-# Search
-gem 'mysql2', '~> 0.5'
-gem 'thinking-sphinx', '~> 5.4'
-
-group :development, :test do
-  gem 'byebug', '~> 11', platforms: %i[mri mingw x64_mingw]
-
-  gem 'factory_bot_rails', '~> 6'
-  gem 'faker', '~> 2'
-  gem 'rspec-rails', '~> 5'
-end
-
-group :development do
-  gem 'bullet', '~> 6'
-
-  gem 'listen', '~> 3.7'
-  gem 'spring', '~> 2.1.1'
-  gem 'spring-watcher-listen', '~> 2.0.1'
-  gem 'web-console', '~> 3.7.0'
-
-  gem 'rubocop', '~> 1.16', require: false
-  gem 'rubocop-i18n', '~> 3.0', require: false
-  gem 'rubocop-performance', '~> 1.13', require: false
-  gem 'rubocop-rails', '~> 2.13', require: false
-  gem 'rubocop-rspec', '~> 2.8', require: false
-end
-
-group :test do
-  gem 'capybara', '~> 3'
-  gem 'chromedriver-helper', '~> 2'
-  gem 'launchy', '~> 2'
-  gem 'selenium-webdriver', '~> 3'
-
-  gem 'rails-controller-testing', '~> 1'
-  gem 'shoulda-matchers', '~> 4'
-
-  gem 'database_cleaner', '~> 2'
-  gem 'database_cleaner-active_record', '~> 2'
-  gem 'database_cleaner-core', '~> 2'
-end
-
-group :production do
-  gem 'rails_12factor'
-end
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', require: false
+
+# Use Sass to process CSS
+# gem "sassc-rails"
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+# gem "image_processing", "~> 1.2"
+
+# theme style
+gem 'bootstrap', '~> 4.6'
+gem 'font-awesome-rails'
+gem 'slim'
+
+# tree date
+gem 'ancestry'
+gem 'cocoon'
+
+# authorize
+gem 'cancancan'
+gem 'devise'
+gem 'doorkeeper'
+
+# oauth2
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+
+# localize
+gem 'rails-i18n'
+
+# serializer json
+gem 'active_model_serializers'
+gem 'oj'
+gem 'responders'
+
+# importer xlsx
+gem 'activerecord-import'
+gem 'roo'
+
+# admin dashboard
+gem 'rails_admin'
+gem 'rails_admin_nestable'
+
+# api docs
+gem 'rswag'
+
+# job
+gem 'redis-rails'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'whenever', require: false
+
+# Search
+gem 'mysql2',          '~> 0.5', :platform => :ruby
+gem 'jdbc-mysql',      '= 8.0.27',  :platform => :jruby
+gem 'thinking-sphinx', '~> 5.4'
+gem 'multi_json'
+
+group :development, :test do
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+end
+
+group :development do
+  gem 'bullet'
+
+  gem 'listen'
+  gem 'web-console'
+
+  gem 'rubocop', require: false
+  gem 'rubocop-i18n', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  gem 'capybara'
+  gem 'chromedriver-helper'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
+
+  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
+  gem 'database_cleaner-core'
+end

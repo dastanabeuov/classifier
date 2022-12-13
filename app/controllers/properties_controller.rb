@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
 
   before_action :set_property, only: %i[update destroy]
 
-  respond_to :html, :js, :json
+  respond_to :html
 
   def create
     @property = propertyable.properties.create(property_params)
@@ -25,7 +25,7 @@ class PropertiesController < ApplicationController
   private
 
   def set_property
-    @property ||= Property.find(params[:id])
+    @property = Property.find(params[:id])
   end
 
   def property_params

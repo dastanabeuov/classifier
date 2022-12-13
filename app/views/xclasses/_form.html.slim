@@ -1,47 +1,48 @@
-= form_for [@xroot, @xcategory, @xclass] do |f|
-  = render 'shared/errors', resource: @xclass
+= form_with(model: xclass) do |f|
+  = render 'shared/errors', resource: xclass
 
-  .xclass
-    .field.form-group
-      = f.text_field :title, required: true, minlegth: 2, class: 'form-control', placeholder: 'Title'
+  .field.form-group
+    = f.text_field :title, class: 'form-control my-2', placeholder: t('form.title'), autofocus: true
 
-    .field.form-group
-      = f.text_field :synonym, class: 'form-control', placeholder: 'Synonym'
+  .field.form-group
+    = f.text_field :synonym, class: 'form-control my-2', placeholder: t('form.synonym')
 
-    .field.form-group
-      = f.text_area :description, class: 'form-control', placeholder: 'Description'
+  .field.form-group
+    = f.text_area :description, class: 'form-control my-2', placeholder: t('form.description'), rows: 10
 
-    .field.form-group
-      = f.text_field :code, placeholder: 'Code'
+  .field.form-group
+    = f.text_field :code, placeholder: 'Code', class: 'form-control my-2', placeholder: t('form.code')
 
-    .field.form-group
-      = f.text_field :full_code, placeholder: 'Full code'
+  .field.form-group
+    = f.text_field :full_code, placeholder: 'Full code', class: 'form-control my-2', placeholder: t('form.full_code')
+  
+  hr
 
-    .field.form-group
-      = f.date_select :version_date
+  .field.form-group
+    = f.label :version_date, class: 'mx-2 my-2'
+    = f.datetime_select :version_date, ampm: true, class: 'datetime'
 
-    .field.form-group
-      = f.check_box :publish
-      = f.label :publish, class: 'pl-2'
+  .field.form-group
+    = f.label :publish, class: 'mx-2 my-2'
+    = f.check_box :publish
 
-    .field.form-group
-      = f.check_box :xtype
-      = f.label :xtype, class: 'pl-2'
+  .field.form-group
+    = f.label :xtype, class: 'mx-2 my-2'
+    = f.check_box :xtype
 
-    .field.form-group
-      = f.text_field :position, placeholder: 'Position'
-
-    .field.form-group
-      = f.select :parent_id, Xclass.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }
-      = f.label :parent_id, class: 'pl-2'
-    
-    br/
-    h2 Additional properties
-    .field.form-group
-      = f.fields_for :properties do |property|
-        = render 'properties/property_fields', f: property
-    .field.form-group
-      = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
+  .field.form-group
+    = f.label :parent_id, t('form.parent'), class: 'mx-2 my-2'
+    = f.select :parent_id, Xclass.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }, class: 'form-select'
+  
+  br/
+  .card
+    .card-body
+      h5 = t('form.additional_properties')
+      .field.form-group
+        = f.fields_for :properties do |property|
+          = render 'properties/property_fields', f: property
+      .field.form-group
+        = link_to_add_association icon('plus'), f, :properties, partial: 'properties/property_fields', class: 'my-2 mx-2'
 
   .actions
-    = f.submit class: "btn btn-sm btn-outline-success mt-5"
+    = f.submit class: "btn btn-sm btn-outline-success my-5"

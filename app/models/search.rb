@@ -1,5 +1,5 @@
 class Search < ApplicationRecord
-  RESOURCES = %w[Xroot Xcategory Xclass Property Activity User]
+  RESOURCES = %w[Xclass Property Activity User]
 
   def self.execute(query, resource = nil)
     if RESOURCES.include?(resource)

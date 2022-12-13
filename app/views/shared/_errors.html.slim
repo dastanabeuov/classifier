@@ -1,5 +1,7 @@
-- if resource&.errors&.full_messages&.any?
-  div class="alert alert-danger mb-5"
-    ul class="mb-0"
-      - resource.errors.full_messages.each do |msg|
-        li = msg
+- if resource.errors.any?
+  section.errors
+    h2 = t('errors.oops')
+    h3 = t('errors.size')
+    ul
+    - resource.errors.full_messages.each do |message|
+      li = message

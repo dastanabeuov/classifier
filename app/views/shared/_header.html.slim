@@ -1,67 +1,51 @@
-nav class="navbar sticky-top navbar-expand-md navbar-dark mb-5"
-
-  a href="#{root_path}"
-    = image_tag 'logo-white.png', title: "Logo BIM", alt: "Logo BIM", class: "navbar-brand img-fluid rounded-circle", heght: "50", width: "50"
-
-  button_to class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-    <span class="navbar-toggler-icon"></span>
-
-  .collapse.navbar-collapse id="navbarSupportedContent"
-    ul.navbar-nav.mr-auto
-
-      li.nav-item.dropdown.ml-2
-        a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          = t I18n.locale
-        ul.dropdown-menu aria-labelledby="navbarDropdown"
-          - I18n.available_locales.each do |locale|
-            li
-              - unless I18n.locale == locale
-                = link_to t(locale), url_for(locale: locale), class: 'dropdown-item'
-
-    - if user_signed_in?
-      ul.navbar-nav.pull-xs-center.mr-5
-        li.nav-item.mr-5
-          .search
-            = render 'search/form' if url_for != search_path    
-                
-      ul.navbar-nav.pull-xs-right
-        li.nav-item.dropdown.ml-2
-          a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tree Table"
-            = fa_icon "sitemap"
-          .dropdown-menu aria-labelledby="navbarDropdown"
-            = link_to "Root: #{count_xroots}", xroots_path, class: "dropdown-item"          
-            = link_to "Category: #{count_xcategories}", xroots_path, class: "dropdown-item"
-            = link_to "Classes: #{count_xclasses}", xroots_path, class: "dropdown-item"
-            = link_to "Properties: #{count_properties}", "#", class: "dropdown-item"
-            = link_to "Activities: #{count_activities}", activities_path, class: "dropdown-item"
+header.py-3.mb-3.border-bottom
+  .container-fluid.d-grid.gap-3.align-items-center style=("grid-template-columns: 1fr 2fr;") 
+    .dropdown
+      a.d-flex.align-items-center.col-lg-4.mb-2.mb-lg-0.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#"
         
-        li.nav-item.ml-2
-          = link_to fa_icon("star"), "/sidekiq", class: "nav-link", target: :_blank, title: "Sidekiq job/worker"
-        li.nav-item.ml-2
-          = link_to fa_icon("server"), "/oauth/applications", class: "nav-link", target: :_blank, title: "Applications"
-        li.nav-item.ml-2
-          = link_to fa_icon("plug"), "/api-docs/index.html", class: "nav-link", target: :_blank, title: "API docs"
-        li.nav-item.ml-2
-          = link_to fa_icon("keyboard-o"), "/admin/", class: "nav-link", title: "Admin panel"
-        li.nav-item.dropdown.ml-2
-          a class="nav-link dropdown-toggle dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            = current_user.email
-            = " "
-            = fa_icon "user-circle", title: "User avatar", alt: "User image"
-          .dropleft.dropdown-menu aria-labelledby="navbarDropdown"
-            a href="#" class="dropdown-item dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Мои таблицы 
-            div.dropdown-menu aria-labelledby="dropdown01"
-              = link_to "Root: #{current_user_count_xroots}", xroots_path, class: "dropdown-item"          
-              = link_to "Category: #{current_user_count_xcategories}", xroots_path, class: "dropdown-item"
-              = link_to "Classes: #{current_user_count_xclasses}", xroots_path, class: "dropdown-item"
-              = link_to "Activities: #{current_user_count_activities}", activities_path, class: "dropdown-item"
-            .dropdown-divider
-            = link_to t('user.edit_profile'), edit_user_registration_path, class: "dropdown-item"
-        li.nav-item.ml-2
-          = button_to t('user.signout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, title: "Sign out", alt: "Logout", class: "nav-link btn btn-sm btn-danger text-light"
-    - else
-      ul.navbar-nav.pull-xs-right
-        li.nav-item.ml-2
-          = button_to t('user.signin'), new_user_session_path, method: :get, class: "nav-link btn btn-sm btn-danger text-light"
-        li.nav-item.ml-2
-          = button_to t('user.signup'), new_user_registration_path, method: :get, class: "nav-link btn btn-sm btn-success text-light"
+        = image_tag 'logo-blue.png', title: "Logo BIM", alt: "Logo BIM", class: 'logo'
+      
+      ul.dropdown-menu.text-small.shadow
+        li
+          = link_to icon('house', class: 'text-light'), root_path, class: "dropdown-item active"
+        - if user_signed_in?
+          li
+            hr.dropdown-divider/
+          li
+            = link_to 'job/worker', "/sidekiq", class: "dropdown-item", target: :_blank
+          li
+            = link_to 'Applications', "/oauth/applications", class: "dropdown-item", target: :_blank
+          li
+            hr.dropdown-divider/
+          li
+            = link_to 'API docs', "/api-docs/index.html", class: "dropdown-item", target: :_blank
+          li
+            = link_to 'Admin panel', "/admin/", class: "dropdown-item", target: :_blank
+            hr.dropdown-divider/
+          li
+            = link_to t('form.activity'), activities_path, class: "dropdown-item", target: :_blank
+    
+    .d-flex.align-items-center
+      - if url_for != search_path
+        = render 'search/form'
+      -else
+        h4.text-secondary.w-100.me-3
+          = t('search.result')
+
+      - if user_signed_in?
+        .flex-shrink-0.dropstart
+          a.d-block.link-dark.text-decoration-none.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" 
+            = image_tag 'user.png', title: "Avatar", alt: "User", heght: "32", width: "32", class: 'rounded-circle'
+          ul.dropdown-menu.text-small.shadow
+            li
+              = link_to t('user.setting'), edit_user_registration_path, class: 'dropdown-item'
+            li
+              = link_to t('user.profile'), '#', class: 'dropdown-item'
+            li
+              hr.dropdown-divider/
+            li
+              = button_to t('user.signout'), destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item"
+      - else
+        .btn-group
+          = button_to t('user.signin'), new_user_session_path, method: :get, class: "btn btn-light me-2"
+          = button_to t('user.signup'), new_user_registration_path, method: :get, class: "btn btn-warning"

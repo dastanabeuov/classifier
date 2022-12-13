@@ -1,7 +1,39 @@
 kz:
+  errors:
+    oops: "Ой! Пішінді сақтау мүмкін болмады."
+    size: ":-)"
+  xclass:
+    controller:
+      import: 'X-кластар импортталды.'
+      not_import: 'X-кластар импортталмады.'
+  services:
+    xclass:
+      not_format: 'белгісіз деректер форматы:'
+  services:
+    xclass:
+      not_type: 'Белгісіз файл түрі:'
+  form:
+    index: 'Тізім'
+    edit: 'Өңдеу'
+    show: 'Көрсету'
+    new: 'Жаңасын жасау'
+    title: "Тақырып"
+    description: "Сипаттама"
+    synonym: "Синоним"
+    code: "Код"
+    full_code: "Толық код"
+    version_date: "Нұсқа күні"
+    publish: "Жариялау"
+    type: "Түр"
+    properties: "Қасиеттері"
+    parent: 'Ата-ана'
+    additional_properties: 'Қосымша қасиеттер'
+    activity: 'Белсенділік'
+    remove: 'Жою'
   search:
     placeholder: "Іздеу"
     select: "Барлығы"
+    result: "Іздеу нәтижесі..."
   info:
     size: "Мөлшері"
   classifier:
@@ -11,7 +43,8 @@ kz:
     signin: "Кіру"
     signup: "тіркелу"    
     signout: "Шығу"
-    edit_profile: "Профильді өңдеу"
+    setting: "Параметр"
+    profile: "Профиль"
     logout: "Шығу"
   front_pages:
     back: "Оралу"
@@ -33,21 +66,29 @@ kz:
       тоннельдер және т.б."
       link_watch: "Бастау"
   show:
-    all_xroots_you_can_her_start_tree_table: " Барлық xroots (сіз оны ағаш кестесін бастауға болады)"
+    you_can_her_start_tree_table: " Сізге ағаш кестесін бастауға болады"
     classification_system_tree_views_table: " Жіктеу жүйесінің ағаш көріністер кестесі"
     classification_system: "КЛАССИФИКАЦИЯ ЖҮЙЕСІ"
     example_title: " Мысал"
     example_description: " сипаттама: Объектідегі сипаттама мәтінінен алынған бұл жол"
     example_synonym: " синоним: Объектідегі синонимдік мәтіннен алынған бұл жол"
     example_code: " код: Бұл жол объектідегі код (A-A34) жолынан"
+    example_full_code: " Толық код: Бұл жол нысандағы толық кодтан алынған"
     example_version_date: " нұсқасы күні: Бұл жол объектіде күн форматында жасалған және жаңартылған жол"
     example_publish: " жариялау: Бұл жол логикалық немесе жалған объектіден"
+    example_type: " Түр: бұл нысандағы логикалық шын немесе жалған жол"
     example_properties: " қасиеттері: Объектідегі қосымша қасиеттерден тұратын бұл жол"
-    title: " "
+    title: " тақырып: "
     description: " сипаттама: "
     synonym: " синоним: "
     code: " код: "
     full_code: " толық код: "
     version_date: " нұсқа күні: "
     publish: " жариялау: "
+    parent: ' ата-ана: '
+    type: " түр: "
+    ancestry: ' ата-тегі: '
     properties: " қасиеттері: "
+    children: ' балалар: '
+    buttons: 'Түймелер'
+    import: 'Импорттау'

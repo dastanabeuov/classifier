@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: %i[show edit update destroy]
 
-  respond_to :html, :js, :json
+  respond_to :html
 
   def index
     @activities = Activity.all
@@ -16,7 +16,9 @@ class ActivitiesController < ApplicationController
     respond_with(@activity)
   end
 
-  def edit; end
+  def edit
+    respond_with(@activity)
+  end
 
   def new
     @activity = Activity.new
@@ -26,7 +28,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = Activity.create(activity_params)
+    @activity = current_user.activities.new(activity_params)
     @activity.save
     respond_with(@activity)
   end
@@ -38,20 +40,24 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy if current_user.author_of?(@activity)
-    respond_with @activity
+    if @activity.parent
+      respond_with(@activity.parent)
+    else
+      respond_with(@activity)
+    end
   end
 
   private
 
   def set_activity
-    @activity ||= Activity.find(params[:id])
+    @activity = Activity.find(params[:id])
   end
 
   def activity_params
     params.require(:activity).permit(:title, :description,
-                                     :synonym, :code, :version_date, :publish, :position,
-                                     :parent_id,
-                                     properties_attributes: %i[id title activity_id _destroy])
-          .merge(user: current_user)
+                                     :synonym, :code, 
+                                     :version_date, :publish, 
+                                     :position, :parent_id,
+                                      properties_attributes: %i[id title activity_id _destroy])
   end
 end

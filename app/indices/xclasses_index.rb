@@ -5,8 +5,10 @@ ThinkingSphinx::Index.define :xclass, with: :active_record do
   indexes description
   indexes code
   indexes full_code
+  indexes ancestry
+  indexes user.email, as: :author, sortable: true
 
   # attributes
-  has version_date, publish, xtype, position, ancestry, 
-  ancestry_depth, xcategory_id, user_id, created_at, updated_at
+  has version_date, publish, xtype, position, 
+  ancestry_depth, user_id, created_at, updated_at
 end

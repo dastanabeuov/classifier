@@ -1,7 +1,39 @@
 en:
+  errors:
+    oops: "Oops! Your form could not be saved."
+    size: ":-)"
+  xcalss:
+    controller:
+      import: 'Xclasses imported.'
+      not_import: 'Xclasses is not imported.'
+  services:
+    xcalss:
+      not_format: 'Unknown data format:'
+  services:
+    xcalss:
+      not_type: 'Unknown file type:'
+  form:
+    index: 'List'
+    edit: 'Edit'
+    show: 'Show'
+    new: 'Create new'
+    title: "Title"
+    description: "Description"
+    synonym: "Synonym"
+    code: "Code"
+    full_code: "Full code"
+    version_date: "Version date"
+    publish: "Publish"
+    type: "Type"
+    properties: "Properties"
+    parent: 'Parent'
+    additional_properties: 'Additional properties'
+    activity: 'Activity'
+    remove: 'Remove'
   search:
     placeholder: "Search"
     select: "All"
+    result: "Search result..."
   info:
     size: "Size"
   classifier:  
@@ -11,7 +43,8 @@ en:
     signin: "Sign in"
     signup: "Sign up"
     signout: "Sign out"    
-    edit_profile: "Edit profile"
+    setting: "Setting"
+    profile: "Profile"
   front_pages:
     back: "Back"
     help: "Help"
@@ -25,28 +58,36 @@ en:
     code: "6RGX+GG Almaty"   
     index:
       welcome: "Welcome!"
-      description: "BIM (Building Information Model or Modeling) is an information model
-       (or modeling) of buildings and structures,
-        which in a broad sense means any infrastructure objects,
-         for example, engineering networks (water, gas, electrical, sewer, communication),
-          roads, railways , bridges, ports and tunnels, etc."
+      description: "BIM (Building Information Model or Modeling) is an information model 
+      (or modeling) of buildings and structures, 
+      which in a broad sense means any infrastructure objects, 
+      for example, engineering networks (water, gas, electrical, sewer, communication), 
+      roads, railways , bridges, ports and tunnels, etc."
       link_watch: "Start"
   show:
-    all_xroots_you_can_her_start_tree_table: " All xroots (You can her start tree table)"
+    you_can_her_start_tree_table: " You can her start tree table"
     classification_system_tree_views_table: " Classification system tree views table"
     classification_system: "CLASSIFICATION SYSTEM"
     example_title: " Example"
     example_description: " description: This line from description text in object"
     example_synonym: " synonym: This line from synonym text in object"
     example_code: " code: This line from code(A-A34) string in object"
+    example_full_code: " Full code: This line is from the full code in the object"
     example_version_date: " version date: This line from created at and updated at date format in object"
     example_publish: " publish: This line from boolean true ore false in object"
+    example_type: " Type: This string of boolean true or false in the object"
     example_properties: " properties: This line from additional properties in object"
-    title: " "
+    title: " title: "
     description: " description: "
     synonym: " synonym: "
     code: " code: "
     full_code: " full code: "
     version_date: " version date: "
     publish: " publish: "
+    parent: ' parent: '
+    type: " type: "
+    ancestry: ' ancestry: '
     properties: " properties: "
+    children: ' children: '
+    buttons: 'Buttons'
+    import: 'Import'

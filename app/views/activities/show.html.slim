@@ -1,52 +1,52 @@
 - cache @activity do
-  .show-second.
-    .card.mt-5
-      .card-block
-        h1 class="card-header" 
-          = @activity.title
-        .card-body
-          .row.justify-content-md-center
-            .col-md-12
-              p 
-                <b>Synonym: </b>
-                = @activity.synonym
-              p 
-                <b>Description: </b>
-                = @activity.description
-              p 
-                <b>Code: </b>
-                = @activity.code
-              p 
-                <b>Version date: </b>
-                = @activity.version_date
-              p 
-                <b>Publish: </b>
-                = @activity.publish
-              p 
-                <b>Position: </b> 
-                = @activity.position
-              p 
-                <b>Ancestry: </b> 
-                = @activity.ancestry
-              p 
-                <b>Children: #{@activity.children.count}</b>
-                - if current_user.author_of?(@activity)
-                  = link_to 'add new child', new_activity_path(parent_id: @activity.id), class: "btn btn-sm btn-outline-success ml-2"
-              p
-                ul class="items list-group mt-3 mb-3"
-                  - @activity.children.each do |child|
-                    li class="d-flex justify-content-between align-items-center"
-                      = link_to truncate(child.name, :length => 30), activity_path(child), class: 'text-success'
-                      <small title="date of creation">
-                        = child.created_at
-                      </small>
-                      <span class="badge badge-info badge-pill" title="Children">
-                        = child.children.size
-                      </span>
-                      - if current_user.author_of?(child)
-                        = link_to fa_icon('trash'), activity_path(child), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete', class: 'btn btn-sm btn-outline-danger'
+  .show
+    .row.justify-content-center
+      .col-xl-8.col-sm-8.col-md-8
+        .card
+          .card-block
+            h2.card-header.text-center
+              = t('form.show')
+            .card-body
+              .row.justify-content-md-center
+                .col-md-12
+                  p 
+                    = t('show.title')
+                    = @activity.title
+                  p 
+                    = t('show.synonym')
+                    = @activity.synonym
+                  p 
+                    = t('show.description')
+                    = @activity.description
+                  p 
+                    = t('show.code')
+                    = @activity.code
+                  p 
+                    = t('show.version_date')
+                    = @activity.version_date
+                  p 
+                    = t('show.publish')
+                    = @activity.publish
+                  p 
+                    = t('show.parent')
+                    = @activity.ancestry
+                  p 
+                    <b>#{t('show.children')} #{@activity.children.count}</b>
+                    - if current_user.author_of?(@activity)
+                      = link_to icon('plus'), edit_activity_path(parent_id: @activity.id), class: "mx-2"
+                  p
+                    ul class="items list-group mx-2 my-2"
+                      - @activity.children.each do |child|
+                        li class="d-flex justify-content-between align-items-center"
+                          = link_to truncate(child.name, :length => 30), activity_path(child), class: 'text-success'
+                          small = child.created_at
+                          span.badge.badge-info.badge-pill
+                            = child.children.size
+                          - if current_user.author_of?(child)
+                            = link_to icon('trash'), child, class: "btn btn-sm btn-outline-danger",
+                              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
 
-    .btn-group.mt-5.mb-5
-      - if current_user.author_of?(@activity)
-        = link_to fa_icon('pencil'), edit_activity_path(@activity), class: 'btn btn-sm btn-outline-warning'
-        = link_to fa_icon('arrow-left'), activities_path, class: 'btn btn-sm btn-outline-secondary'
+        .btn-group.mt-5.mb-5
+          - if current_user.author_of?(@activity)
+            = link_to icon('pencil'), edit_activity_path(@activity), class: 'btn btn-sm btn-outline-warning'
+            = link_to icon('arrow-left'), activities_path, class: 'btn btn-sm btn-outline-secondary'

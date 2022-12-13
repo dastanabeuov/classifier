@@ -1,57 +1,45 @@
-body {
-  background-color: #1C2633;
-  font-family: 'Roboto', sans-serif !important;
-}
-footer {
-  background-color: #0C141E;
-}
-nav {
-  background-color: #1A2D44;
-}
-nav .navbar-nav li a {
-  color: white !important;
-}
-nav .navbar-nav li a:hover {
-  color: $danger !important;
-}
-.table-dark {
-  background-color: inherit !important;
-}
-.dropdown-menu {
-  background-color: #191E26 !important;
-}
-.dropdown-item {
-  background-color: transparent !important;
-}
-.parent {
-  color: $light;
-}
-.card, .container, .jumbotron {
-  color: $light;
-}
-.breadcrumb, .card, .jumbotron, .container, .action {
-  background-color: #0C141E !important;
-}
-.edit, .index, .new, .contact, .help, .service, .show-second {
-  padding-left: 70px;
-  padding-right: 70px;
+a {
+  color:  #6C757D;
 }
 .alert {
   margin-bottom: 0px;
 }
-.justify-content-center {
-  margin-top: 30px;
-}
-.container-fluid {
-  padding-left: 0px;
-  padding-right: 0px;
-}
 .hidden {
   display: none
 }
-.form-inline label {
-  justify-content: left !important;
+.logo {
+  heght: 40px;
+  width: 40px;
 }
-.form-inline .form-control, .form-update-inline {
-  width: 100% !important;
+
+/*Errors*/
+
+section.errors {
+  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 0.3rem;
+  background: #ffc;
+}
+section.errors h2 {
+  color: #dc3545;
+  font-size: 1.25rem;
+}
+
+section.errors h3 {
+  font-size: 1rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+div.field_with_errors {
+  display: inline;
+}
+div.field_with_errors input {
+  background: #ffc !important;
+}
+div.field_with_errors textarea {
+  background: #ffc !important;
+}
+div.field_with_errors select {
+  background: #ffc !important;
 }

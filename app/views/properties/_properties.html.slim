@@ -1,6 +1,5 @@
 - if resource.properties.exists?
+  ul
   - resource.properties.each do |property|
-      p
-        = property.title
-        = property.activity
-        small title="Date of creation" = property.created_at
+    li.mx-3
+      = property.title

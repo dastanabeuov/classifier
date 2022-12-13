@@ -1,19 +1,10 @@
-- xclass.children.find_each(batch_size: 1000) do |child|
-  <li data-toggle="collapse" data-target="#child-#{ child.id }" class="collapsed #{ 'active' if child == @xclass }">
-    
-    <a class="file" href="#{ xroot_xcategory_xclass_path(child.xcategory.xroot, child.xcategory, child) }">
-      - if child.children?
-        <i class="fa fa-folder fa-lg"></i>
-      - else
-        <i class="fa fa-file fa-lg"></i>
-    
-      span.pl-2 #{ truncate(child.code, :length => 10) } #{ truncate(child.title, :length => 18) }
-    </a>
-    
-    - if child.children?
-      <span class="arrow xclass-child-load" data-xroot-id="#{ child.xcategory.xroot.id }" data-xcategory-id="#{ child.xcategory.id }" data-child-id="#{ child.id }"></span>
-  </li>
+- xclass.children.find_each(batch_size: 500) do |child|
+  li.nav-item
+    a.nav-link.link-dark href="#{xclass_path(child)}"
+      = truncate(child.code, :length => 10)
+      | -
+      = truncate(child.title, :length => 18)
 
-  <ul class="tree sub-menu collapse pl-2 #{ 'show' if @xclass.ancestors.include?(child) } xclass-child-#{ child.id }" id="child-#{ child.id }">
-    = render 'child', child: child
-  </ul>
+    - if child.children?
+      ul
+        = render 'child', child: child

@@ -28,7 +28,7 @@ class Ability
 
   def paid_abilities(_user)
     guest_abilities
-    can %i[create update update_inline import destroy], [Xroot, Xcategory, Xclass, Activity, Property],
+    can %i[create update update_inline import destroy], [Xclass, Activity, Property],
         user_id: @user.id
   end
 
