@@ -1,5 +1,6 @@
+//document.addEventListener("turbolinks:load", function(){
 $(function(){
-
+  
   var to = false;
   $('#xclasses_q').keyup(function () {
     if(to) { clearTimeout(to); }

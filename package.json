@@ -1,22 +1,26 @@
 {
   "name": "classifier",
-  "private": "true",
+  "private": true,
   "dependencies": {
-    "4": "^0.0.0",
-    "@hotwired/stimulus": "^3.0.1",
-    "@hotwired/turbo-rails": "^7.1.1",
     "@nathanvda/cocoon": "^1.2.14",
-    "@popperjs/core": "^2.11.5",
+    "@popperjs/core": "^2.11.2",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
     "bootstrap": "^5.1.3",
-    "bootstrap-icons": "^1.9.1",
-    "esbuild": "^0.14.39",
-    "jquery": "^3.6.0",
+    "bootstrap-icons": "^1.10.2",
+    "esbuild": "^0.16.6",
+    "jquery": "^3.6.2",
     "jstree": "^3.3.12",
-    "sass": "^1.49.11",
-    "stimulus-dropdown": "^2.0.0"
+    "sass": "^1.48.0",
+    "turbolinks": "^5.2.0"
   },
+  "version": "0.1.0",
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "sass --style compressed ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build": "esbuild app/javascript/*.* --bundle --minify --outdir=app/assets/builds"
   }
 }

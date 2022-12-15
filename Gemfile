@@ -8,17 +8,27 @@ ruby '~> 3.0.0'
 
 gem 'rails', '~> 7'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
-
 #postgresql
 gem 'pg'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.6'
 
+#Fast redirect link
+gem 'turbolinks'
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'sprockets-rails'
+gem 'sass-rails'
+
+#If big project and more assets, you can use alternative sassc-rails (building lang C) Fasterer 4x
+#gem 'sassc-rails'
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
@@ -26,24 +36,8 @@ gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
-# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem 'cssbundling-rails'
-gem 'sass-rails'
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
-
-# Use Redis adapter to run Action Cable in production
-gem 'redis'
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -53,9 +47,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
-
-# Use Sass to process CSS
-# gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -100,7 +91,7 @@ gem 'rswag'
 
 # job
 gem 'redis-rails'
-gem 'sidekiq'
+gem 'sidekiq', '~> 6'
 gem 'sinatra', require: false
 gem 'whenever', require: false
 
@@ -139,8 +130,8 @@ group :test do
 
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
-
-  gem 'database_cleaner'
-  gem 'database_cleaner-active_record'
-  gem 'database_cleaner-core'
 end
+gem "sassc-rails"
+gem "sassc-rails"
+gem "sassc-rails"
+gem "sassc-rails"

@@ -2,6 +2,7 @@
 
 RailsAdmin.config do |config|
   config.asset_source = :sprockets
+
   # ##Set Locales
   I18n.default_locale = :ru
   I18n.available_locales = %i[ru kz en]
