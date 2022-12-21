@@ -1,0 +1,44 @@
+en:
+  activerecord:
+    models:
+      xroot: Xroot
+      xcategory: Xcategory
+      xclass: Xclass
+      property: Property
+      activity: Activity
+    attributes:
+      xroot:
+        title: "Title"
+        synosym: "Synonym"
+        description: "Description"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+      xcategory:
+        title: "Title"
+        synosym: "Synonym"
+        description: "Description"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+      xclass:
+        title: "Title"
+        synosym: "Synonym"
+        description: "Description"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+        position: "Position"
+        ancestry: "Ancestry"
+        xtype: "Xtype"
+      activity:
+        title: "Title"
+        synosym: "Synonym"
+        description: "Description"
+        code: "Code"
+        version_date: "Version date"
+        publish: "Publish"
+        position: "Position"
+        ancestry: "Ancestry"
+      property:
+        title: "Title"

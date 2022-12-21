@@ -1,0 +1,15 @@
+.container.pb-5.pt-5.pl-5.pr-5
+  p = link_to  "Back", xroots_path
+
+  .form
+    = render 'form'
+
+  .ml-5.pt-5
+    h2.text-white Search results
+    .results
+      -if @results.present?
+        ul
+          - @results.each do |result|
+            li = render_result(result)
+      -else
+        p.text-white No results

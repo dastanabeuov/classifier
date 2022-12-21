@@ -1,0 +1,53 @@
+kz:
+  search:
+    placeholder: "Іздеу"
+    select: "Барлығы"
+  info:
+    size: "Мөлшері"
+  classifier:
+    logo_text: "КОАМТ"
+    copyright: "КазНИИСА | Классификатор "
+  user:
+    signin: "Кіру"
+    signup: "тіркелу"    
+    signout: "Шығу"
+    edit_profile: "Профильді өңдеу"
+    logout: "Шығу"
+  front_pages:
+    back: "Оралу"
+    help: "Анықтама"
+    feedback: "Кері байланыс"
+    service: "Қызмет"
+    contact: "Байланыс"
+    location: "Алматы қаласы, Ұлықбек көшесі 45/1"
+    working_time: "Дүйсенбі - Жұма 9:00 - 18:30"
+    www: "kazniisa.kz"
+    phone: "+77273927559"
+    code: "6RGX+GG Алматы"
+    index:
+      welcome: "Қош келдіңіз!"
+      description: "BIM (Building Information Model or Modeling) - бұл кең мағынада 
+      кез-келген инфрақұрылым объектілерін, мысалы, инженерлік желілерді (су, газ, электр, 
+      канализация, байланыс), автомобиль жолдарын, теміржолды білдіретін ғимараттар мен 
+      құрылыстардың ақпараттық моделі (немесе модельдеуі). , көпірлер, порттар мен 
+      тоннельдер және т.б."
+      link_watch: "Бастау"
+  show:
+    all_xroots_you_can_her_start_tree_table: " Барлық xroots (сіз оны ағаш кестесін бастауға болады)"
+    classification_system_tree_views_table: " Жіктеу жүйесінің ағаш көріністер кестесі"
+    classification_system: "КЛАССИФИКАЦИЯ ЖҮЙЕСІ"
+    example_title: " Мысал"
+    example_description: " сипаттама: Объектідегі сипаттама мәтінінен алынған бұл жол"
+    example_synonym: " синоним: Объектідегі синонимдік мәтіннен алынған бұл жол"
+    example_code: " код: Бұл жол объектідегі код (A-A34) жолынан"
+    example_version_date: " нұсқасы күні: Бұл жол объектіде күн форматында жасалған және жаңартылған жол"
+    example_publish: " жариялау: Бұл жол логикалық немесе жалған объектіден"
+    example_properties: " қасиеттері: Объектідегі қосымша қасиеттерден тұратын бұл жол"
+    title: " "
+    description: " сипаттама: "
+    synonym: " синоним: "
+    code: " код: "
+    full_code: " толық код: "
+    version_date: " нұсқа күні: "
+    publish: " жариялау: "
+    properties: " қасиеттері: "

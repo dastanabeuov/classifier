@@ -1,0 +1,52 @@
+ru:
+  search:
+    placeholder: "Поиск"
+    select: "Все"
+  info:
+    size: "Размер"
+  classifier:  
+    logo_text: "ТИМСО"
+    copyright: "КазНИИСА | Классификатор "
+  user:
+    signin: "Войти"
+    signup: "Регистрация"    
+    signout: "Выйти"
+    edit_profile: "Редактировать профиль"
+    logout: "Выйти"
+  front_pages:
+    back: "Назад"
+    help: "Справочник"
+    feedback: "Обратная связь"
+    service: "Сервис"
+    contact: "Контакт"
+    location: "Ул.Улугбека 45/1, Алматы"
+    working_time: "Понедельник - Пятница 9:00 - 18:30"
+    www: "kazniisa.kz"
+    phone: "+77273927559"
+    code: "6RGX+GG Алматы"   
+    index:
+      welcome: "Добро пожаловать!"
+      description: "BIM (англ. Building Information Model или Modeling) — информационная модель 
+      (или моделирование) зданий и сооружений, под которыми в широком смысле понимают любые объекты 
+      инфраструктуры, например инженерные сети (водные, газовые, электрические, канализационные, 
+      коммуникационные), дороги, железные дороги, мосты, порты и тоннели и т. д."  
+      link_watch: "Начать"
+  show:
+    all_xroots_you_can_her_start_tree_table: " Все xroots (вы можете начать ее древовидную таблицу)"
+    classification_system_tree_views_table: " Таблица представлений дерева системы классификации"
+    classification_system: "СИСТЕМА КЛАССИФИКАЦИИ"
+    example_title: " Пример"
+    example_description: " Описание: Эта строка из текста описания объекта"
+    example_synonym: " синоним: Эта строка из текста синонима в объекте"
+    example_code: " Код: Эта строка из кода (А-А34) строка в объекте"
+    example_version_date: " Дата версии: Эта строка из формата даты, созданного и обновленного в объекте"
+    example_publish: " опубликовать: Эту строку из булевых истинных или ложных в объекте"
+    example_properties: " Свойства: Эта строка из дополнительных свойств в объекте"
+    title: " "
+    description: " описание: "
+    synonym: " синоним: "
+    code: " код: "
+    full_code: " полный код: "
+    version_date: " дата версии: "
+    publish: " публиковать: "
+    properties: " характеристики: "

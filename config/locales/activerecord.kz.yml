@@ -1,0 +1,44 @@
+kz:
+  activerecord:
+    models:
+      xroot: Тамыр
+      xcategory: Санат
+      xclass: Класс
+      property: Мүлік
+      activity: Сала
+    attributes:
+      xroot:
+        title: "Аты"
+        synosym: "Синоним"
+        description: "Сипаттама"
+        code: "Код"
+        version_date: "Күні"
+        publish: "Жариялау"
+      xcategory:
+        title: "Аты"
+        synosym: "Синоним"
+        description: "Сипаттама"
+        code: "Код"
+        version_date: "Күні"
+        publish: "Жариялау"
+      xclass:
+        title: "Аты"
+        synosym: "Синоним"
+        description: "Сипаттама"
+        code: "Код"
+        version_date: "Күні"
+        publish: "Жариялау"
+        position: "Лауазымы"
+        ancestry: "Тұқым"
+        xtype: "Xтүрі"
+      activity:
+        title: "Аты"
+        synosym: "Синоним"
+        description: "Сипаттама"
+        code: "Код"
+        version_date: "Күні"
+        publish: "Жариялау"
+        position: "Позиция"
+        ancestry: "Тұқым"
+      property:
+        title: "Аты"

@@ -1,0 +1,5 @@
+- if resource&.errors&.full_messages&.any?
+  div class="alert alert-danger mb-5"
+    ul class="mb-0"
+      - resource.errors.full_messages.each do |msg|
+        li = msg

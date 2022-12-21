@@ -1,0 +1,21 @@
+.home
+  .container
+    .jumbotron
+      h1 class="display-4" 
+        = t 'front_pages.index.welcome'
+      p
+        = t 'front_pages.index.description'
+      p
+        = link_to t('front_pages.index.link_watch'), xroots_path, role: "button", class: "btn btn-danger btn-md"
+      
+      hr
+      .row
+        .col-md-4
+          h2 #КОАМТ
+          p Курылыс саласын трансформациалау. Құрылыстағы ақпараттық модельдеу технологиялары саласында нормативтік-техникалық базаны дамыту жөніндегі комиссия.
+        .col-md-4
+          h2 #ТИМСО
+          p Трансформация строительной отрасли. Комиссия по развитию нормативно-технической базы в области технологии информационного моделирования в строительстве.
+        .col-md-4
+          h2 #BIM
+          p Transformation of construction industry. Commission for the development of the regulatory and technical base in the field of information modeling technology in construction.

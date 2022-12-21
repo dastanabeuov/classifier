@@ -1,0 +1,47 @@
+.form-group
+  = form_for(activity) do |f|
+    = render 'shared/errors', resource: activity
+
+    .field.mt-3
+      = f.label :title
+      = f.text_field :title, required: true, minlegth: 2, class: 'form-control'
+    
+    .field.mt-3
+      = f.label :synonym
+      = f.text_field :synonym, class: 'form-control'
+
+    .field.mt-3
+      = f.label :description
+      = f.text_area :description, class: 'form-control'
+
+    .field.mt-3
+      = f.label :code
+      = f.text_field :code, class: 'form-control'
+
+    .field.mt-3
+      = f.label :version_date, class: 'pr-3'
+      = f.date_select :version_date, class: 'form-control'
+
+    .field.mt-3
+      = f.label :publish
+      = f.check_box :publish, class: 'form-control'
+
+    .field.mt-3
+      = f.label :position
+      = f.text_field :position, class: 'form-control'
+
+    .field.mt-3
+      = f.label :parent_id, class: 'pr-3'
+      = f.select :parent_id, current_user.activities.order(:id).collect {|p| [ p.title, p.id ] }, { include_blank: true }
+
+    hr
+    .field.mt-5
+      h2 Additional properties
+      = f.fields_for :properties do |property|
+        = render 'properties/property_fields', f: property
+
+      p
+        = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
+
+    .actions
+      = f.submit class: "btn btn-sm btn-outline-success mt-5"

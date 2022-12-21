@@ -1,0 +1,16 @@
+.edit
+
+  .row.justify-content-center
+    .col-xl-8.col-sm-8.col-md-8
+      .card
+        .card-block
+          h1 class="card-header text-center" Editing Activity
+          .card-body
+            .row.justify-content-md-center
+              .col-md-8
+
+                = render 'form', activity: @activity
+
+  .btn-group.mt-5.mb-5
+    = link_to fa_icon('eye'), @activity, class: 'btn btn-sm btn-outline-info'
+    = link_to fa_icon('arrow-left'), activities_path, class: 'btn btn-sm btn-outline-secondary'

@@ -1,0 +1,33 @@
+.card-block
+  .form-inline.hidden data-resource-id="#{xroot.id}"
+    = form_with model: [xroot], url: update_inline_xroot_path(xroot), class: "form-update-inline" do |f|
+      h1 class="card-header"
+        = f.text_field :title, required: true, minlegth: 2, class: 'form-control', placeholder: 'Title'
+    
+      .card-body
+        .field.form-group
+          = f.text_field :synonym, class: 'form-control', placeholder: 'Synonym'
+        
+        .field.form-group
+          = f.text_area :description, class: 'form-control', placeholder: 'Description'
+        
+        .field.form-group
+          = f.text_field :code, placeholder: 'Code'
+        
+        .field.form-group
+          = f.date_select :version_date
+        
+        .field.form-group
+          = f.check_box :publish
+          = f.label :publish, class: 'pl-2'
+
+        br/
+        h2 Additional properties
+        .field.form-group
+          = f.fields_for :properties do |property|
+            = render 'properties/property_fields', f: property
+        .field.form-group
+          = link_to_add_association fa_icon('plus'), f, :properties, partial: 'properties/property_fields', title: "Add property"
+
+        .actions
+          = f.submit class: "btn btn-sm btn-outline-success mt-5"

@@ -1,0 +1,10 @@
+footer class="fixed-bottom py-2 mt-5 text-white"
+  div class="footer-copyright text-center"
+    small
+      = link_to t('front_pages.feedback'), front_pages_feedback_path, class: 'mr-5'
+      = link_to t('front_pages.help'), front_pages_help_path, class: 'mr-5'
+      = current_year
+      = t('classifier.copyright') 
+      = link_to fa_icon("code-fork"), github_url('dastanabeuov', 'Classifier'), target: '_blank', class: 'text-white', title: 'Repo-forked'
+      = link_to t('front_pages.service'), front_pages_service_path, class: 'ml-5'
+      = link_to t('front_pages.contact'), front_pages_contact_path, class: 'ml-5'

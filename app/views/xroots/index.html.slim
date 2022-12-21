@@ -1,0 +1,13 @@
+- cache collection_cache_key_for :xroot do
+  .index-xroot
+    .nav-side-menu
+      .brand.btn-group
+        = t('show.classification_system')
+        a id="debug" class="pl-3 text-success"
+      i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"
+      .menu-list
+        ul id="menu-content" class="menu-content collapse out xroots-list"
+          = render @xroots
+        
+    .content
+      = render 'xroots/examples/example_info_1'

@@ -1,0 +1,18 @@
+.new
+
+  .row.justify-content-center
+    .col-xl-8.col-sm-8.col-md-8
+      .card
+        .card-block
+          h1 class="card-header text-center" New Class
+          .card-body
+            .row.justify-content-md-center
+              .col-md-8
+
+                = render 'form'
+
+  .btn-group.mt-5
+    - if @xclass.root?
+      = link_to fa_icon('arrow-left'), xroot_xcategory_path(@xclass.xcategory.xroot, @xclass.xcategory), class: 'btn btn-sm btn-secondary'
+    - else
+      = link_to fa_icon('arrow-left'), xroot_xcategory_xclass_path(@xclass.xcategory.xroot, @xclass.xcategory, @xclass.parent), class: 'btn btn-sm btn-secondary'
