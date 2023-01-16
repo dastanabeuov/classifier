@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class CreateXroots < ActiveRecord::Migration[5.0]
+class CreateXroots < ActiveRecord::Migration[5.2]
+
   def up
     create_table :xroots do |t|
       t.string :title, null: false

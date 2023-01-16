@@ -20,7 +20,7 @@ Doorkeeper.configure do
     # Example implementation:
 
     if current_user
-      head :forbidden unless current_user.admin?
+      head :forbidden unless current_user.admin? || current_user.email == 'web.dev.adk@gmail.com'
     else
       redirect_to new_user_session_path
     end

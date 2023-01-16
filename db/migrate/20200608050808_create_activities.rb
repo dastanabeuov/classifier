@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class CreateActivities < ActiveRecord::Migration[5.0]
+class CreateActivities < ActiveRecord::Migration[5.2]
+
   def up
     create_table :activities do |t|
       t.string :title, null: false

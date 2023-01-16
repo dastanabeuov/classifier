@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class CreateProperties < ActiveRecord::Migration[5.0]
+class CreateProperties < ActiveRecord::Migration[5.2]
+
   def up
     create_table :properties do |t|
       t.string :title

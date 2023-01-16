@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require_relative 'boot'
-require 'rails/all'
 require 'csv'
+
+require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
