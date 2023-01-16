@@ -7,14 +7,9 @@ html
     
     = action_cable_meta_tag
     = csrf_meta_tags
-<<<<<<< HEAD
-
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-=======
     = csp_meta_tag
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'shared/flash'
