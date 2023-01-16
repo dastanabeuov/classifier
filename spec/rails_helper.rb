@@ -44,17 +44,16 @@ RSpec.configure do |config|
     FileUtils.rm_rf("#{Rails.root}/tmp/storage")
   end
 
-  # database_cleaner
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :transaction
+  #   DatabaseCleaner.clean_with(:truncation)
+  # end
 
-  config.around do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
+  # config.around do |example|
+  #   DatabaseCleaner.cleaning do
+  #     example.run
+  #   end
+  # end
 end
 
 # DSL from testing rspec

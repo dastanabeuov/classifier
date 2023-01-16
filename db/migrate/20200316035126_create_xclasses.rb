@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateXclasses < ActiveRecord::Migration[5.0]
+class CreateXclasses < ActiveRecord::Migration[5.2]
   def up
     create_table :xclasses do |t|
       t.string :title, null: false
