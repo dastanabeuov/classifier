@@ -11,14 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-<<<<<<< HEAD
-//= require jquery_ujs
-//= require action_cable
-//= require turbolinks
-//= require popper
-//= require bootstrap-sprockets
-//= require cocoon
-=======
 //= require popper
 //= require bootstrap-sprockets
 //= require cocoon
@@ -26,7 +18,6 @@
 //= require activestorage
 //= require action_cable
 //= require turbolinks
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
 //= require_tree .
 
 (function() {

@@ -6,28 +6,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ### (-: Boot large ruby/rails apps faster :-)
 ruby '2.7.0'
 
-<<<<<<< HEAD
-gem 'bootsnap', '~> 1.7', require: false
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 5.6'
-gem 'rails', '~> 5.2.6'
-gem 'turbolinks', '~> 5'
-
-# additional format suport
-gem 'jquery-rails', '~> 4.4.0'
-gem 'sass-rails', '~> 5.0'
-
-# minimize js
-gem 'uglifier', '~> 4.2.0'
-# gem 'mini_racer', '~> 0.6'
-
-# theme style
-gem 'bootstrap', '~> 4.6'
-gem 'font-awesome-rails', '~> 4'
-gem 'slim', '~> 4.1'
-
-# tree date
-=======
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8', '>= 5.2.8.1'
 # Use sqlite3 as the database for Active Record
@@ -72,7 +50,6 @@ gem 'bootstrap', '~> 4.6'
 gem 'font-awesome-rails', '~> 4'
 
 # tree views
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
 gem 'ancestry', '~> 4'
 gem 'cocoon', '~> 1.2.15'
 
@@ -116,12 +93,8 @@ gem 'mysql2', '~> 0.5'
 gem 'thinking-sphinx', '~> 5.4'
 
 group :development, :test do
-<<<<<<< HEAD
-  gem 'byebug', '~> 11', platforms: %i[mri mingw x64_mingw]
-=======
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
 
   gem 'factory_bot_rails', '~> 6'
   gem 'faker', '~> 2'
@@ -131,12 +104,6 @@ end
 group :development do
   gem 'bullet', '~> 6'
 
-<<<<<<< HEAD
-  gem 'listen', '~> 3.7'
-  gem 'spring', '~> 2.1.1'
-  gem 'spring-watcher-listen', '~> 2.0.1'
-  gem 'web-console', '~> 3.7.0'
-=======
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -144,8 +111,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
-
   gem 'rubocop', '~> 1.16', require: false
   gem 'rubocop-i18n', '~> 3.0', require: false
   gem 'rubocop-performance', '~> 1.13', require: false
@@ -154,27 +119,6 @@ group :development do
 end
 
 group :test do
-<<<<<<< HEAD
-  gem 'capybara', '~> 3'
-  gem 'chromedriver-helper', '~> 2'
-  gem 'launchy', '~> 2'
-  gem 'selenium-webdriver', '~> 3'
-
-  gem 'rails-controller-testing', '~> 1'
-  gem 'shoulda-matchers', '~> 4'
-
-  gem 'database_cleaner', '~> 2'
-  gem 'database_cleaner-active_record', '~> 2'
-  gem 'database_cleaner-core', '~> 2'
-end
-
-group :production do
-  gem 'rails_12factor'
-end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-=======
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
@@ -188,4 +132,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666

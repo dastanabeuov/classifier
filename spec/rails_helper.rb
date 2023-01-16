@@ -44,19 +44,6 @@ RSpec.configure do |config|
     FileUtils.rm_rf("#{Rails.root}/tmp/storage")
   end
 
-<<<<<<< HEAD
-  # database_cleaner
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.around do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
-=======
   # config.before(:suite) do
   #   DatabaseCleaner.strategy = :transaction
   #   DatabaseCleaner.clean_with(:truncation)
@@ -67,8 +54,6 @@ RSpec.configure do |config|
   #     example.run
   #   end
   # end
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
-end
 
 # DSL from testing rspec
 Shoulda::Matchers.configure do |config|

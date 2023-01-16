@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-<<<<<<< HEAD
-class DeviseCreateUsers < ActiveRecord::Migration[5.0]
-=======
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
+
   def change
     create_table :users do |t|
       ## Database authenticatable

@@ -22,6 +22,6 @@ every 1.day do
   runner "DigestXcategoryJob.perform_now"
 end
 
-# every 30.minutes do
-#  rake "ts:index"
-# end
+every 30.minutes do
+ rake "ts:index"
+end

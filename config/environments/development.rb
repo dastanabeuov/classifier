@@ -23,18 +23,6 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-<<<<<<< HEAD
-  config.cache_classes = false
-
-  config.eager_load = false
-
-  config.consider_all_requests_local = true
-
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-    config.cache_store = :memory_store
-
-=======
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -54,34 +42,12 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
-<<<<<<< HEAD
-    config.cache_store = :null_store
-  end
-
-  config.active_storage.service = :local
-
-  config.action_mailer.raise_delivery_errors = true
-
-  config.action_mailer.perform_caching = false
-
-  config.active_support.deprecation = :log
-
-  config.active_record.migration_error = :page_load
-
-  config.active_record.verbose_query_logs = true
-
-  config.assets.debug = true
-
-  config.assets.quiet = true
-
-=======
-
+    
     config.cache_store = :null_store
   end
 
@@ -115,6 +81,5 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
->>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
