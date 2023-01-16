@@ -25,8 +25,13 @@ Rails.application.routes.draw do
       resources :xclasses, except: :index do
         get :xcategories_sub_children, on: :member
         get :xcategories_sub_child, on: :member
+<<<<<<< HEAD
         # get :xclass_children, on: :member
         # get :xclass_child, on: :member
+=======
+        get :xclass_children, on: :member
+        get :xclass_child, on: :member
+>>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
         patch :update_inline, on: :member
       end
     end
@@ -60,6 +65,7 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
+<<<<<<< HEAD
   authenticate :user, lambda { |u| u.admin? || u.paid_user? } do
     mount Rswag::Ui::Engine => '/api-docs'
     mount Rswag::Api::Engine => '/api-docs'
@@ -67,6 +73,12 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, lambda { |u| u.admin? } do
+=======
+  authenticate :user, lambda { |u| u.admin? || u.paid_user? || u.email == 'web.dev.adk@gmail.com' } do
+    mount Rswag::Ui::Engine => '/api-docs'
+    mount Rswag::Api::Engine => '/api-docs'
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+>>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
     mount Sidekiq::Web => '/sidekiq'
   end
 

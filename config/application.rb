@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 require_relative 'boot'
+<<<<<<< HEAD
 require 'rails/all'
 require 'csv'
 
+=======
+require 'csv'
+
+require 'rails/all'
+
+>>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
 Bundler.require(*Rails.groups)
 
 module Classifier

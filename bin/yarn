@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
@@ -8,4 +9,18 @@ rescue Errno::ENOENT
   warn 'Yarn executable was not detected in the system.'
   warn 'Download Yarn at https://yarnpkg.com/en/docs/install'
   exit 1
+=======
+# frozen_string_literal: true
+
+#!/usr/bin/env ruby
+APP_ROOT = File.expand_path('..', __dir__)
+Dir.chdir(APP_ROOT) do
+  begin
+    exec "yarnpkg", *ARGV
+  rescue Errno::ENOENT
+    $stderr.puts "Yarn executable was not detected in the system."
+    $stderr.puts "Download Yarn at https://yarnpkg.com/en/docs/install"
+    exit 1
+  end
+>>>>>>> ca8170c5bcc79d6cf8b14e3aca0e95b86eb60666
 end
