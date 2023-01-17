@@ -54,7 +54,6 @@ RSpec.configure do |config|
   #     example.run
   #   end
   # end
-end
 
 # DSL from testing rspec
 Shoulda::Matchers.configure do |config|

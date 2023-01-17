@@ -7,11 +7,7 @@ class XclassesController < ApplicationController
   before_action :set_xcategory, only: %i[show edit update destroy new create update_inline]
   before_action :set_xclass, only:    %i[show edit update destroy update_inline]
   before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child]
-<<<<<<< HEAD
-  #  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child xclass_children xclass_child]
-=======
   before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child xclass_children xclass_child]
->>>>>>> f15a716b9218ce624bcf3f6995115d5e727bc6aa
 
   respond_to :html, :js, :json
 
@@ -19,15 +15,9 @@ class XclassesController < ApplicationController
 
   def xcategories_sub_child; end
 
-<<<<<<< HEAD
-  # def xclass_children; end
-
-  # def xclass_child; end
-=======
   def xclass_children; end
 
   def xclass_child; end
->>>>>>> f15a716b9218ce624bcf3f6995115d5e727bc6aa
 
   def set_resources
     set_xroot
