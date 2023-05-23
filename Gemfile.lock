@@ -527,6 +527,7 @@ DEPENDENCIES
   roo (~> 2.8)
   rspec-rails (~> 5)
   rswag (~> 2)
+  rswag-specs
   rubocop (~> 1.16)
   rubocop-i18n (~> 3.0)
   rubocop-performance (~> 1.13)

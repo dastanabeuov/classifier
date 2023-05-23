@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "API V1",
+    "title": "Classifier API",
     "version": "v1"
   },
   "paths": {
@@ -196,10 +196,10 @@
   },
   "servers": [
     {
-      "url": "https://{defaultHost}",
+      "url": "http://localhost:3000/",
       "variables": {
         "defaultHost": {
-          "default": "www.example.com"
+          "default": "www.classifier.kazniisa.kz"
         }
       }
     }

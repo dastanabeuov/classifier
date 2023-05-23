@@ -81,7 +81,8 @@ gem 'rails_admin_nestable', '~> 0.3'
 
 # api docs
 gem 'rswag', '~> 2'
-
+# gem 'rswag-api'
+# gem 'rswag-ui'
 # job
 gem 'redis-rails', '~> 5'
 gem 'sidekiq', '~> 6'
@@ -99,6 +100,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6'
   gem 'faker', '~> 2'
   gem 'rspec-rails', '~> 5'
+  gem 'rswag-specs'
 end
 
 group :development do
