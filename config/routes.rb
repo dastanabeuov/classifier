@@ -14,11 +14,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'oauth_callbacks' }
 
   resources :xroots do
-    get :xcategories_xcategory, on: :member
+    get :xroot_xcategories, on: :member
     patch :update_inline, on: :member
 
     resources :xcategories, except: :index do
-      get :xcategories_sub_xclasses, on: :member
+      get :xcategory_xclasses, on: :member
+
       post :import, on: :member
       patch :update_inline, on: :member
 
