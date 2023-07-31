@@ -1,0 +1,47 @@
+---
+openapi: 3.0.1
+info:
+  title: Classifier API
+  version: v1
+paths: {}
+components:
+  securitySchemes:
+    bearer:
+      description: Key necessary to use API calls as authenticated user
+      type: apiKey
+      name: Authorization
+      in: header
+  schemas:
+    xroot_info:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          type: object
+          properties:
+            title:
+              type: string
+              nullable: true
+            synonym:
+              type: string
+              nullable: true
+            description:
+              type: string
+              nullable: true
+            code:
+              type: string
+              nullable: true
+            version_date:
+              type: date
+              nullable: true
+            publish:
+              type: boolean
+              nullable: true
+servers:
+- url: https://{localhost:3000/}
+  variables:
+    defaultHost:
+      default: www.classifier.kazniisa.kz

@@ -14,6 +14,7 @@ RSpec.configure do |config|
   # By default, the operations defined in spec files are added to the first
   # document below. You can override this behavior by adding a swagger_doc tag to the
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
+
   config.swagger_docs = {
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
@@ -21,7 +22,23 @@ RSpec.configure do |config|
         title: 'Classifier API',
         version: 'v1'
       },
+
       paths: {},
+      components: {
+        securitySchemes: {
+          bearer: {
+            description: 'Key necessary to use API calls as authenticated user',
+            type: :apiKey,
+            name: 'Authorization',
+            in: :header
+          }
+        },
+
+        schemas: {
+          xroot_info: SwaggerSchemas::XROOT_INFO
+        }
+      },
+
       servers: [
         {
           url: 'https://{localhost:3000/}',

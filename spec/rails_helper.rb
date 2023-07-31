@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'database_cleaner'
+# require 'database_cleaner'
 
 require 'spec_helper'
 
@@ -54,6 +54,7 @@ RSpec.configure do |config|
   #     example.run
   #   end
   # end
+end
 
 # DSL from testing rspec
 Shoulda::Matchers.configure do |config|

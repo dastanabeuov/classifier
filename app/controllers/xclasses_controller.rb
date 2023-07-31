@@ -6,17 +6,19 @@ class XclassesController < ApplicationController
   before_action :set_xroot, only:     %i[show edit update destroy new create update_inline]
   before_action :set_xcategory, only: %i[show edit update destroy new create update_inline]
   before_action :set_xclass, only:    %i[show edit update destroy update_inline]
-  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child]
-  before_action :set_resources, only: %i[xcategories_sub_children xcategories_sub_child xclass_children xclass_child]
+
+  before_action :set_resources, only: %i[xcategories_sub_children
+                                         xcategories_sub_child
+
+                                         xclass_children
+                                         xclass_child]
 
   respond_to :html, :js, :json
 
   def xcategories_sub_children; end
-
   def xcategories_sub_child; end
 
   def xclass_children; end
-
   def xclass_child; end
 
   def set_resources
@@ -80,9 +82,10 @@ class XclassesController < ApplicationController
 
   def xclass_params
     params.require(:xclass).permit(:title, :description,
-                                   :synonym, :code, :full_code, :version_date, :publish, :xtype,
-                                   :position, :parent_id,
+                                   :synonym, :code, :full_code,
+                                   :version_date, :publish,
+                                   :xtype, :position, :parent_id,
                                    properties_attributes: %i[id title activity_id _destroy])
-          .merge(user: current_user)
+                                   .merge(user: current_user)
   end
 end

@@ -3,13 +3,13 @@
 class XrootsController < ApplicationController
   authorize_resource
 
-  before_action :set_xroot, only: %i[show edit update destroy update_inline xcategories_xcategory]
+  before_action :set_xroot, only: %i[show edit update destroy update_inline xroot_xcategories]
 
   after_action :publish_xroot, only: [:create]
 
   respond_to :html, :js, :json
 
-  def xcategories_xcategory; end
+  def xroot_xcategories; end
 
   def index
     @xroots = Xroot.all
@@ -71,6 +71,6 @@ class XrootsController < ApplicationController
     params.require(:xroot).permit(:title, :description,
                                   :synonym, :code, :version_date, :publish,
                                   properties_attributes: %i[id title activity_id _destroy])
-          .merge(user: current_user)
+                                  .merge(user: current_user)
   end
 end

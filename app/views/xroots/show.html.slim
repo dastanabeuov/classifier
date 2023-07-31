@@ -1,30 +1,30 @@
-- cache @xroot do
-  div.show-xroot
+.show-xroot
+  .content
+    = render 'xroots/examples/example_info_2'
 
-    div.content
-      = render 'xroots/examples/example_info_2'
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          = link_to 'Xroots', xroots_path
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">#{ truncate(@xroot.title, :length => 18) }</li>
+      </ol>
+    </nav>
+    
+    .show-errors
+      = render 'shared/errors', resource: @xroot
 
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            = link_to 'Xroots', xroots_path
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">#{ truncate(@xroot.title, :length => 18) }</li>
-        </ol>
-      </nav>
-      
-      div.show-errors
-        = render 'shared/errors', resource: @xroot
+    .resource-show.card
+      = render 'form_inline', xroot: @xroot
+      = render 'shared/content', resource: @xroot
 
-      div.resource-show.card
-        = render 'form_inline', xroot: @xroot
-        = render 'shared/content', resource: @xroot
+    = render 'shared/btn_action', resource: @xroot
 
-      = render 'shared/btn_action', resource: @xroot
+  .nav-side-menu
+    = render 'shared/btn_brand'
+    .menu-list
 
-    div.nav-side-menu
-      = render 'shared/btn_brand'
-      div.menu-list
-        <ul id="menu-content" class="menu-content collapse out xcategories-list">
+      <ul id="menu-content" class="menu-content collapse out xcategories-list">
+        - cache @xroot do
           = render @xroot.xcategories
-        </ul>
+      </ul>

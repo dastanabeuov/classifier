@@ -23,13 +23,19 @@ class Ability
   end
 
   def moderator_abilities(_user)
-    can :manage, :all
+    guest_abilities
+    can %i[create update update_inline import destroy],
+          [Xroot, Xcategory, Xclass, Activity, Property],
+          user_id: @user.id
+          # Доступ только к своим записям.
   end
 
   def paid_abilities(_user)
     guest_abilities
-    can %i[create update update_inline import destroy], [Xroot, Xcategory, Xclass, Activity, Property],
-        user_id: @user.id
+    can %i[create update update_inline import destroy],
+          [Xroot, Xcategory, Xclass, Activity, Property],
+          user_id: @user.id
+          # Доступ только к своим записям.
   end
 
   def guest_abilities

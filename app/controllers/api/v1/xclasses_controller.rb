@@ -41,7 +41,7 @@ module Api
                                        :version_date, :publish,
                                        :xtype, :position, :parent_id,
                                        properties_attributes: %i[id title activity_id _destroy])
-              .merge(user: current_resource_owner)
+                                       .merge(user: current_resource_owner)
       end
     end
   end
